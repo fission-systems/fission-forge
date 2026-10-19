@@ -11,8 +11,8 @@ Compare the following lanes on the same function identities and source labels:
 | Lane | Input | Status |
 | --- | --- | --- |
 | `asm` | Binary-derived assembly | Handwritten smoke fixtures implemented; real extraction pending |
-| `pcode-raw` | Fission raw P-code with original semantic details | Proposed first IR lane |
-| `pcode-plus-ssa` | P-code semantic contracts with deterministic SSA/CFG serialization | Proposed primary research input; implementation pending |
+| `pcode-raw` | Fission raw P-code with original semantic details | Typed import implemented as the substrate for v0; standalone raw-text training comparison pending |
+| `pcode-plus-ssa-v0` | P-code contracts with scalar SSA and effect ordering | Straight-line subset connected to training; CFG/phi/call support pending |
 | `vex` | VEX block statements, types, exits, next, and jumpkind | Proposed independent lifting comparison |
 | `asm-pcode` | Both representations with an explicit boundary | Optional ablation after separate lanes work |
 
@@ -23,7 +23,7 @@ was built locally and exercised on three small compiled x86-64 functions
 (addition, unsigned division, and signed division). All three dumps reached
 terminal control flow; division dumps retained `IntDiv`/`IntRem` and
 `IntSDiv`/`IntSRem` respectively. This checks extraction and opcode distinction,
-not semantic parity or general lifting coverage. Forge has no dataset adapter yet.
+not semantic parity or general lifting coverage. Forge now has a strict straight-line dataset adapter and reproducible owned-C fixture capture; see [the v0 contract](../pcode.md).
 VEX is a useful later comparison, with Python orchestration for PyVEX extraction
 if needed; the learned model and trainer can remain Rust.
 
@@ -33,7 +33,8 @@ The working recommendation is `SLEIGH -> raw P-code -> P-code+ -> SSA input -> C
 Start with a small x86-64 CPU subset. P-code+ supplies semantic contracts; SSA
 supplies explicit definition/use relationships and merge points. HIR need not be
 a mandatory dependency. The name P-code+ describes a proposed Forge contract,
-not an existing upstream Ghidra format or an implemented Forge frontend.
+not an existing upstream Ghidra format. A bounded version 0 is now implemented;
+the wider contract remains a design proposal.
 
 The Notion research notes distinguish three concerns:
 
@@ -49,8 +50,9 @@ Unknown helpers and incomplete lifting cannot be repaired by adding metadata.
 Record unsupported cases explicitly, and classify any lowering as lossless,
 lossy with declared losses, or unsupported. Do not infer register-space IDs from
 numeric literals: bind them to the pinned lifter's actual space definitions.
-SSA construction must handle overlapping register writes, memory state, unknown
-calls, and CFG incompleteness before being called semantics preserving.
+Version 0 handles overlapping register writes and conservatively orders memory
+accesses. Unknown calls and nontrivial CFGs are rejected. General SSA construction
+still needs explicit contracts for both; upstream lifting parity is unproven.
 
 The broader FIR/FSL migration is outside the initial model's prerequisites.
 These Notion documents are exploratory design sources, not implementation

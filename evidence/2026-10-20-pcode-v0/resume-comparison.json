@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "check": "separate_process_8_plus_2_vs_10",
+  "identical_checkpoint_bytes": true,
+  "checkpoint_sha256": "07b61d5946b0d70278ba2170bb649a3cee8df63eed792fd92eac675d0b57c082",
+  "input_fingerprint_mismatch_rejected": true,
+  "invalid_resume_output_created": false,
+  "input_sha256": "7c4b2f921b2156f7568d11a9cf1ffa874afe77867d0b34501e96af52f6338576"
+}

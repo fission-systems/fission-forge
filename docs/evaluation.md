@@ -8,9 +8,10 @@ published sample-set eval kit, which also provides a comparison surface for
 existing coding-agent results. Larger corpus evaluation follows after a working
 model and adapter exist.
 
-This document defines the intended protocol. No training, model inference,
-DecBench installation, scoring run, or upstream submission is completed by this
-decision. Reference revisions are recorded in
+This document defines the intended protocol. The fixed-batch training and input
+adapter probes described elsewhere do not establish a model-quality result.
+Model generation, DecBench adapter integration, a scoring run, and an upstream
+submission remain pending. Reference revisions are recorded in
 [`configs/evaluation/decbench.json`](../configs/evaluation/decbench.json);
 null dataset/hash fields must be resolved before a scored run.
 

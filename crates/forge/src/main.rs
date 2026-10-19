@@ -3,7 +3,7 @@ use std::path::PathBuf;
 use anyhow::{Result, bail};
 use candle_core::Device;
 use clap::{Parser, Subcommand, ValueEnum};
-use fission_forge::{probe, training};
+use fission_forge::{pcode, probe, training};
 
 #[derive(Parser)]
 #[command(
@@ -18,6 +18,15 @@ struct Cli {
 
 #[derive(Subcommand)]
 enum Command {
+    /// Validate a straight-line raw P-code dump and emit a canonical SSA prompt.
+    PcodeCompile {
+        #[arg(long)]
+        raw: PathBuf,
+        #[arg(long)]
+        profile: PathBuf,
+        #[arg(long)]
+        output: PathBuf,
+    },
     /// Train a from-scratch causal decoder on one fixed JSONL batch (a probe only).
     TrainSmoke {
         #[arg(long)]
@@ -74,6 +83,30 @@ fn device(backend: Backend) -> Result<Device> {
 
 fn main() -> Result<()> {
     match Cli::parse().command {
+        Command::PcodeCompile {
+            raw,
+            profile,
+            output,
+        } => {
+            anyhow::ensure!(
+                !output.exists(),
+                "output already exists: {}",
+                output.display()
+            );
+            let raw: pcode::RawDump = serde_json::from_slice(&std::fs::read(raw)?)?;
+            let profile: pcode::Profile = serde_json::from_slice(&std::fs::read(profile)?)?;
+            let report = pcode::compile(&raw, &profile)?;
+            if let Some(parent) = output.parent().filter(|p| !p.as_os_str().is_empty()) {
+                std::fs::create_dir_all(parent)?;
+            }
+            std::fs::create_dir(&output)?;
+            std::fs::write(output.join("prompt.txt"), &report.prompt)?;
+            std::fs::write(
+                output.join("report.json"),
+                serde_json::to_vec_pretty(&report)?,
+            )?;
+            println!("{}", serde_json::to_string_pretty(&report)?);
+        }
         Command::TrainSmoke {
             config,
             dataset,

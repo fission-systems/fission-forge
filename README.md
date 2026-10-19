@@ -35,11 +35,11 @@ A100 checks. It does not yet ship a usable decompiler or a pretrained checkpoint
 | Rust causal decoder | Multi-head causal attention, learned positions, pre-layer normalization, GELU feed-forward layers |
 | Training | Byte tokens, completion-only next-token loss, deterministic initialization, AdamW |
 | Checkpoints | Safetensors weights and optimizer moments; reload and next-update equivalence checks |
-| Model sizes | 148,608-parameter smoke model and 99,927,552-parameter experimental configuration |
-| CUDA | Both configurations exercised on a Colab A100 40 GB |
-| Input data | Four handwritten assembly/C pairs for software checks only |
-| P-code frontend | Pinned Fission CLI built and raw dumps inspected for three small functions; no Forge dataset adapter yet |
-| P-code+ / SSA | Proposed semantic contract and input representation; implementation pending |
+| Model sizes | 61,888-parameter IR probe, 148,608-parameter assembly smoke model, and 99,927,552-parameter experimental configuration |
+| CUDA | 148K and approximately 100M assembly probes exercised on a Colab A100 40 GB; IR lane tested on CPU |
+| Input data | Four handwritten assembly/C pairs and three compiled C/P-code fixture pairs; software checks only |
+| P-code frontend | Typed raw-dump validation, pinned SLA profile, reproducible owned-C extraction, and explicit unsupported records |
+| P-code+ / SSA | Version 0 supports straight-line scalar SSA, overlapping register writes, and conservative effect ordering; CFG/call support pending |
 | DecBench | Evaluation protocol documented; adapter and scoring run pending |
 
 The fixed-batch trainer accepts at most 32 examples and rejects truncation. Corpus
@@ -50,20 +50,24 @@ quality.
 ## Research direction
 
 ```text
-Binary → Fission SLEIGH → raw P-code → P-code+ contracts → SSA serialization → Forge → C
-                                      └────── proposed input pipeline ──────┘
+Binary → Fission SLEIGH → raw P-code → P-code+ / SSA v0 → Forge training
+                                       straight-line     fixed-batch
+
+Planned next: CFG / calls → corpus training → C generation → DecBench
 ```
 
-P-code is the selected IR family. The next experiment is a small CPU subset of
-**P-code+ with SSA**, preserving widths, numeric domains, memory effects, control
-flow, and lifting provenance. SSA describes definitions and uses; it does not
-replace those semantic contracts. HIR is an optional later comparison, rather
-than a required input to the first model.
+P-code is the selected IR family. A small x86-64 subset of **P-code+ with SSA**
+is implemented and connected to the trainer. It preserves widths, numeric-domain
+opcodes, register overlap, effect order, and lifting provenance. Branches, loops,
+calls, unknown operations, and incomplete lifts are explicitly rejected. SSA
+describes definitions and uses; it does not replace semantic contracts. HIR is
+an optional later comparison.
 
-This pipeline is a research plan. The executable trainer currently reads an
-`assembly` field; a versioned IR schema, serializer, and validation gates must
-land before any IR training claim. SLEIGH lifting failures must remain visible.
-See [representation experiments and P-code+ boundaries](docs/research/input-representations.md).
+See [the executable input lane and commands](docs/pcode.md) and
+[representation experiments and P-code+ boundaries](docs/research/input-representations.md).
+The current IR run exercises three compiled fixtures; it is not corpus pretraining
+or evidence of decompiler quality. A CPU run verified byte-identical checkpoints
+for 8+2 resumed versus 10 uninterrupted updates; see [IR evidence](evidence/2026-10-20-pcode-v0/README.md).
 
 ## Run locally
 
@@ -139,7 +143,8 @@ actual run is prepared. No DecBench score is claimed here. See
 | --- | --- |
 | [`crates/forge/`](crates/forge/) | Rust model, byte codec, loss, optimizer, checkpoint checks, and CLI |
 | [`configs/model/`](configs/model/) | Tiny and approximately 100M model configurations |
-| [`fixtures/smoke/`](fixtures/smoke/) | Hand-authored fixtures; no benchmark or corpus-quality claims |
+| [`fixtures/smoke/`](fixtures/smoke/) | Hand-authored assembly fixtures |
+| [`fixtures/pcode/`](fixtures/pcode/) | Owned C, real raw dumps, supported IR pairs, and unsupported control-flow fixtures |
 | [`scripts/colab/`](scripts/colab/) | CUDA build and bounded probe orchestration |
 | [`evidence/`](evidence/) | Small, recorded measurement reports; no model weights |
 | [`docs/research/`](docs/research/) | Paper notes and IR design hypotheses |
@@ -159,7 +164,8 @@ python3 -m py_compile scripts/colab/transformer_probe.py
 ```
 
 Tests cover causal masking, shifted completion loss, prompt/padding exclusion,
-and AdamW agreement with Candle. Runtime probes separately check checkpoint
+AdamW agreement with Candle, overlapping register SSA, domain/effect retention,
+input isolation, and fail-closed IR validation. Runtime probes separately check checkpoint
 reload and resumption. Any new IR lane needs deterministic serialization,
 semantic-preservation checks, and explicit unsupported-input reporting before
 corpus training.

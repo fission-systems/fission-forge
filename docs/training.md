@@ -2,9 +2,10 @@
 
 The trainer is a bounded fixed-batch acceptance tool, not a corpus trainer.
 It supports at most 32 JSONL pairs and refuses truncation or output overwrites.
-Each row has `id`, `assembly`, and `source`; fixture pairs are hand-authored.
-P-code/VEX schema and extraction are proposed separately, not implemented by
-renaming the assembly field.
+Legacy assembly rows have `id`, `assembly`, and `source`; those pairs are
+hand-authored. The versioned P-code+ v0 lane validates raw dumps, builds SSA
+prompts, and reads compiled fixture pairs. See [IR commands and schema](pcode.md).
+VEX remains a proposal.
 
 ## CPU
 
@@ -18,7 +19,8 @@ cargo run --locked --release -p fission-forge -- train-smoke \
 
 `training.safetensors` contains named weights and both AdamW moments;
 `state.json` contains configuration, step, seed, tokenizer identity, and dataset
-hash. A report is written only after checkpoint prediction and next-step
+hash. Schema 2 also records the effective batch hash, guarding against serializer
+changes; reports identify all input representations. A report is written only after checkpoint prediction and next-step
 equivalence checks pass. Checkpoint-reload checks use F32 absolute tolerance
 `1e-5`. Loss reduction is reported rather than used as a general quality gate.
 

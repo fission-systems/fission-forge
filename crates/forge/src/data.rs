@@ -10,7 +10,7 @@ pub const EOS: u32 = 3;
 
 #[derive(Deserialize)]
 #[serde(deny_unknown_fields)]
-pub struct Pair {
+pub struct AssemblyPair {
     pub id: String,
     pub assembly: String,
     pub source: String,
@@ -23,14 +23,37 @@ pub struct Batch {
     pub examples: usize,
     pub sequence_length: usize,
     pub completion_tokens: usize,
+    pub representations: Vec<String>,
+    pub input_sha256: String,
 }
 
-pub fn encode(pair: &Pair) -> (Vec<u32>, usize) {
+#[derive(Deserialize)]
+#[serde(untagged)]
+pub enum Pair {
+    Assembly(AssemblyPair),
+    Pcode(Box<crate::pcode::Pair>),
+}
+impl Pair {
+    fn representation(&self) -> &str {
+        match self {
+            Self::Assembly(_) => "assembly-v0",
+            Self::Pcode(p) => &p.input.representation,
+        }
+    }
+    fn parts(&self) -> Result<(&str, String, &str)> {
+        match self {
+            Self::Assembly(p) => Ok((&p.id, p.assembly.clone(), &p.source)),
+            Self::Pcode(p) => Ok((&p.id, p.prompt()?, &p.source)),
+        }
+    }
+}
+
+pub fn encode(prompt: &str, source: &str) -> (Vec<u32>, usize) {
     let mut ids = vec![BOS];
-    ids.extend(pair.assembly.bytes().map(|b| b as u32 + 4));
+    ids.extend(prompt.bytes().map(|b| b as u32 + 4));
     ids.push(SEP);
     let completion_start = ids.len();
-    ids.extend(pair.source.bytes().map(|b| b as u32 + 4));
+    ids.extend(source.bytes().map(|b| b as u32 + 4));
     ids.push(EOS);
     (ids, completion_start)
 }
@@ -47,21 +70,24 @@ pub fn batch(text: &str, context: usize, device: &Device) -> Result<Batch> {
     );
     let mut seen = std::collections::HashSet::new();
     let mut encoded = Vec::new();
+    let mut representations = std::collections::BTreeSet::new();
     for pair in &pairs {
+        let (id, prompt, source) = pair.parts()?;
+        representations.insert(pair.representation().to_string());
         ensure!(
-            !pair.id.is_empty() && seen.insert(&pair.id),
+            !id.is_empty() && seen.insert(id),
             "empty or duplicate pair ID"
         );
         ensure!(
-            !pair.assembly.is_empty() && !pair.source.is_empty(),
-            "empty assembly or source for {}",
-            pair.id
+            !prompt.is_empty() && !source.is_empty(),
+            "empty input or source for {}",
+            id
         );
-        let (tokens, start) = encode(pair);
+        let (tokens, start) = encode(&prompt, source);
         ensure!(
             tokens.len() - 1 <= context,
             "pair {} exceeds context; truncation is forbidden",
-            pair.id
+            id
         );
         encoded.push((tokens, start));
     }
@@ -80,7 +106,10 @@ pub fn batch(text: &str, context: usize, device: &Device) -> Result<Batch> {
     }
     let completion_tokens = mask.iter().filter(|m| **m == 1.).count();
     let shape = (pairs.len(), time);
+    let input_sha256 = crate::pcode::sha256(&serde_json::to_vec(&(shape, &input, &target, &mask))?);
     Ok(Batch {
+        representations: representations.into_iter().collect(),
+        input_sha256,
         input: Tensor::from_vec(input, shape, device)?,
         target: Tensor::from_vec(target, shape, device)?,
         mask: Tensor::from_vec(mask, shape, device)?,

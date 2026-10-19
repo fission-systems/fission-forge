@@ -12,8 +12,12 @@
   "initial_model_scope": {
     "source_language": "C",
     "architecture": "x86_64",
-    "input": "pcode_family_planned",
-    "implemented_smoke_input": "assembly"
+    "input": "pcode-plus-ssa-v0",
+    "implemented_smoke_inputs": [
+      "assembly-v0",
+      "pcode-plus-ssa-v0"
+    ],
+    "ir_control_flow_scope": "straight_line_only"
   },
   "metrics": [
     "ged",

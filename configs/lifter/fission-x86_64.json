@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "language": "x86:LE:64:default",
+  "endianness": "little",
+  "pointer_bytes": 8,
+  "word_size": 1,
+  "constant_space": 0,
+  "unique_space": 2,
+  "register_space": 4,
+  "ram_space": 3,
+  "fission_commit": "f714ffdf656fbc25993a4e6ffb038bb851ac6ba5",
+  "sla_sha256": "d5adc314e2278228b380d8f653b2b579fa4a65986bb1d39b095e461fd5432481"
+}

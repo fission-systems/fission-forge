@@ -149,6 +149,8 @@ struct Checkpoint {
     seed: u64,
     dataset_sha256: String,
     tokenizer: String,
+    #[serde(default)]
+    input_sha256: Option<String>,
 }
 
 pub struct Options {
@@ -167,6 +169,8 @@ pub struct TrainReport {
     pub parameters: usize,
     pub initialization: &'static str,
     pub dataset_sha256: String,
+    pub input_sha256: String,
+    pub representations: Vec<String>,
     pub examples: usize,
     pub sequence_length: usize,
     pub initial_step: u64,
@@ -216,7 +220,9 @@ pub fn run(
     if let Some(resume) = &options.resume {
         let state: Checkpoint = serde_json::from_slice(&fs::read(resume.join("state.json"))?)?;
         ensure!(
-            state.schema_version == 1
+            ((state.schema_version == 2
+                && state.input_sha256.as_deref() == Some(&batch.input_sha256))
+                || (state.schema_version == 1 && batch.representations == ["assembly-v0"]))
                 && state.model == config
                 && state.dataset_sha256 == digest
                 && state.tokenizer == "byte-v1-260"
@@ -263,7 +269,8 @@ pub fn run(
     ensure!(final_loss.is_finite(), "nonfinite final loss");
     let completed_steps = optimizer.step;
     let state = Checkpoint {
-        schema_version: 1,
+        schema_version: 2,
+        input_sha256: Some(batch.input_sha256.clone()),
         model: config.clone(),
         optimizer: optimizer.config.clone(),
         step: completed_steps,
@@ -323,6 +330,8 @@ pub fn run(
             "seeded_from_scratch"
         },
         dataset_sha256: digest,
+        input_sha256: batch.input_sha256.clone(),
+        representations: batch.representations.clone(),
         examples: batch.examples,
         sequence_length: batch.sequence_length,
         initial_step,
@@ -375,6 +384,97 @@ mod tests {
             reference.backward_step(&wb.sqr()?.sum_all()?)?;
             assert!(max_error(&wa, &wb)? < 1e-6);
         }
+        Ok(())
+    }
+}
+
+#[cfg(test)]
+mod ir_checkpoint_tests {
+    use super::*;
+
+    #[test]
+    fn ir_resume_matches_uninterrupted_and_rejects_changed_input_fingerprint() -> Result<()> {
+        struct Temporary(PathBuf);
+        impl Drop for Temporary {
+            fn drop(&mut self) {
+                let _ = fs::remove_dir_all(&self.0);
+            }
+        }
+        let nonce = std::time::SystemTime::now()
+            .duration_since(std::time::UNIX_EPOCH)?
+            .as_nanos();
+        let root = Temporary(
+            std::env::temp_dir().join(format!("forge-ir-resume-{}-{nonce}", std::process::id())),
+        );
+        fs::create_dir(&root.0)?;
+        let config = root.0.join("config.json");
+        fs::write(
+            &config,
+            r#"{"vocab_size":260,"hidden_size":8,"heads":2,"layers":1,"feed_forward_size":16,"max_seq_len":512}"#,
+        )?;
+        let dataset = root.0.join("pairs.jsonl");
+        fs::write(
+            &dataset,
+            include_str!("../../../fixtures/pcode/pairs.jsonl")
+                .lines()
+                .next()
+                .unwrap(),
+        )?;
+        let first = root.0.join("first");
+        let resumed = root.0.join("resumed");
+        let full = root.0.join("full");
+        let options = |steps, resume| Options {
+            steps,
+            learning_rate: 0.003,
+            seed: 42,
+            resume,
+        };
+        run(&config, &dataset, &first, &Device::Cpu, options(2, None))?;
+        run(
+            &config,
+            &dataset,
+            &resumed,
+            &Device::Cpu,
+            options(1, Some(first.clone())),
+        )?;
+        run(&config, &dataset, &full, &Device::Cpu, options(3, None))?;
+        assert_eq!(
+            fs::read(resumed.join("training.safetensors"))?,
+            fs::read(full.join("training.safetensors"))?
+        );
+        let mut state: Checkpoint = serde_json::from_slice(&fs::read(first.join("state.json"))?)?;
+        state.input_sha256 = Some("0".repeat(64));
+        fs::write(first.join("state.json"), serde_json::to_vec(&state)?)?;
+        let rejected = root.0.join("rejected");
+        let error = run(
+            &config,
+            &dataset,
+            &rejected,
+            &Device::Cpu,
+            options(1, Some(first.clone())),
+        )
+        .err()
+        .context("expected fingerprint rejection")?;
+        assert!(
+            error
+                .to_string()
+                .contains("provenance/configuration mismatch")
+        );
+        assert!(!rejected.exists());
+        state.schema_version = 1;
+        state.input_sha256 = None;
+        fs::write(first.join("state.json"), serde_json::to_vec(&state)?)?;
+        assert!(
+            run(
+                &config,
+                &dataset,
+                &rejected,
+                &Device::Cpu,
+                options(1, Some(first))
+            )
+            .is_err()
+        );
+        assert!(!rejected.exists());
         Ok(())
     }
 }

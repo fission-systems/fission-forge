@@ -1,0 +1,28 @@
+pcode-plus-ssa-v0 x86_64 le ptr8 ram_word1
+block0 effect0
+insn0
+%0:4=livein(r38)
+%1:4=Copy(%0) @r0
+%2:8=IntZExt(%1) @r0
+insn1
+%3:8=IntSExt(%2[0:4])
+%4:4=SubPiece(%3,#4:4) @r10
+%5:8=IntZExt(%4) @r10
+insn2
+%6:4=livein(r30)
+%7:8=IntSExt(%6)
+%8:8=IntZExt(%5[0:4])
+%9:8=IntLeft(%8,#20:4)
+%10:8=IntZExt(%2[0:4])
+%11:8=IntOr(%9,%10)
+%12:8=IntSDiv(%11,%7) !arithmetic_may_trap e0->e1
+%13:4=SubPiece(%12,#0:4) @r0
+%14:8=IntZExt(%13) @r0
+%15:8=IntSRem(%11,%7) !arithmetic_may_trap e1->e2
+%16:4=SubPiece(%15,#0:4) @r10
+%17:8=IntZExt(%16) @r10
+insn3
+%18:8=livein(r20)
+%19:8=Load(#3:8,%18) !read_ram_may_trap e2->e3 @r288
+%20:8=IntAdd(%18,#8:8) @r20
+Return(%19) !return e3->e4

@@ -1,0 +1,36 @@
+pcode-plus-ssa-v0 x86_64 le ptr8 ram_word1
+block0 effect0
+insn0
+%0:4=livein(r38)
+%1:4=Copy(%0) @r0
+%2:8=IntZExt(%1) @r0
+insn1
+%3:1=Copy(#0:1) @r200
+%4:1=Copy(#0:1) @r20b
+%5:4=livein(r10)
+%6:4=IntXor(%5,%5) @r10
+%7:8=IntZExt(%6) @r10
+%8:1=IntSLess(%7[0:4],#0:4) @r207
+%9:1=IntEqual(%7[0:4],#0:4) @r206
+%10:4=IntAnd(%7[0:4],#ff:4)
+%11:1=PopCount(%10)
+%12:1=IntAnd(%11,#1:1)
+%13:1=IntEqual(%12,#0:1) @r202
+insn2
+%14:4=livein(r30)
+%15:8=IntZExt(%14)
+%16:8=IntZExt(%7[0:4])
+%17:8=IntLeft(%16,#20:4)
+%18:8=IntZExt(%2[0:4])
+%19:8=IntOr(%17,%18)
+%20:8=IntDiv(%19,%15) !arithmetic_may_trap e0->e1
+%21:4=SubPiece(%20,#0:4) @r0
+%22:8=IntZExt(%21) @r0
+%23:8=IntRem(%19,%15) !arithmetic_may_trap e1->e2
+%24:4=SubPiece(%23,#0:4) @r10
+%25:8=IntZExt(%24) @r10
+insn3
+%26:8=livein(r20)
+%27:8=Load(#3:8,%26) !read_ram_may_trap e2->e3 @r288
+%28:8=IntAdd(%26,#8:8) @r20
+Return(%27) !return e3->e4

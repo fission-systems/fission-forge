@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "evidence_scope": "owned_fixture_extraction_only",
+  "fission_commit": "f714ffdf656fbc25993a4e6ffb038bb851ac6ba5",
+  "fission_cli_sha256": "6e21288510bafdece7ca01b0230f1d9604c47b48c0f1ab400f0b8b9ac6b310b9",
+  "compiler": "Homebrew clang version 22.1.8",
+  "compiler_arguments": [
+    "--target=x86_64-unknown-linux-gnu",
+    "-O1",
+    "-fno-inline",
+    "-nostdlib",
+    "-fuse-ld=lld",
+    "-Wl,-e,forge_add",
+    "-Wl,--build-id=none",
+    "WORKSPACE/outputs/pcode-v0-final-capture/functions.c",
+    "-o",
+    "WORKSPACE/outputs/pcode-v0-final-capture/functions.elf"
+  ],
+  "fixture_sha256": "115697372d9b363f67ec4aef8eb90ab063a79ef8b0fec553eff25ee001da72ab",
+  "binary_sha256": "4a1e5d0f9742370b501f77efddf8899fd0c85504c591b2b4fc100daf4c1d53d1",
+  "profile_sha256": "fa6ee43ef5b9789f84993ca925cc7ac81e1b23d8257f4ab6b1260fb8d81e89a3",
+  "attempted": 5,
+  "supported": 3,
+  "attempts": [
+    {
+      "id": "forge_add",
+      "address": "0x1350",
+      "status": "supported",
+      "operations": 7,
+      "prompt_sha256": "80ad1896f839f8ae2b8c0e2c743987fe32e9888a6278209c2b3864cebf6c4a3a",
+      "prompt_bytes": 313,
+      "raw_file_sha256": "c7d46b9f9a65b2ba5f05b9e2bcee86ed59b7010eae230e69122bc572cc45cf3c"
+    },
+    {
+      "id": "forge_udiv",
+      "address": "0x1360",
+      "status": "supported",
+      "operations": 26,
+      "prompt_sha256": "1b1630f1154405d611b6f75e463473a7302d55bca5bfdc048c21a406ed8476fb",
+      "prompt_bytes": 876,
+      "raw_file_sha256": "c3274e2a8d050f7e9b9156e12278aaf6fa19a3703a239e2c40bee6c48f84387a"
+    },
+    {
+      "id": "forge_sdiv",
+      "address": "0x1370",
+      "status": "supported",
+      "operations": 19,
+      "prompt_sha256": "29528e55019e95541a81eb7ae1eb073065232202254f983de82e3ffd485c8544",
+      "prompt_bytes": 664,
+      "raw_file_sha256": "d54b4e37df6666ec9e483188950ea674598118e4fd1736e263b2d53cda59df2f"
+    },
+    {
+      "id": "forge_branch",
+      "address": "0x1380",
+      "status": "unsupported",
+      "reason": "conversion rejected; see stderr",
+      "stderr": "Error: v0 requires exactly one block; CFG SSA is not implemented\n"
+    },
+    {
+      "id": "forge_call",
+      "address": "0x13a0",
+      "status": "unsupported",
+      "reason": "conversion rejected; see stderr",
+      "stderr": "Error: unsupported direct address space 3\n"
+    }
+  ],
+  "raw_capture_report_sha256": "a1fc3ea53b1ed8b60ce23950734d161f0da47fce41090f5dab40b6ca11aeddf0",
+  "paths_relativized_for_publication": true
+}
