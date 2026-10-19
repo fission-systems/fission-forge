@@ -1,0 +1,8 @@
+{
+  "vocab_size": 260,
+  "hidden_size": 768,
+  "heads": 12,
+  "layers": 14,
+  "feed_forward_size": 3072,
+  "max_seq_len": 512
+}

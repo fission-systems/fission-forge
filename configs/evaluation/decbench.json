@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "status": "protocol_only",
+  "benchmark": "DecBench",
+  "repository": "https://github.com/Noelo-Lab/decbench",
+  "reference_commit": "ae070b885b4e005ed37510a2c3445af6284dc2b9",
+  "dataset_repository": "noelo-lab/decbench-dataset",
+  "dataset_revision": null,
+  "evalkit_sha256": null,
+  "target_manifest_sha256": null,
+  "entry_slice": "sample-set",
+  "initial_model_scope": {
+    "source_language": "C",
+    "architecture": "x86_64",
+    "input": "pcode_family_planned",
+    "implemented_smoke_input": "assembly"
+  },
+  "metrics": [
+    "ged",
+    "type_match",
+    "byte_match"
+  ],
+  "report_union": true,
+  "training_use": "excluded",
+  "references": {
+    "fission_repository": "https://github.com/fission-systems/Fission",
+    "fission_commit": "f714ffdf656fbc25993a4e6ffb038bb851ac6ba5"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "observed_device_memory_peak_mib": 546,
+  "sampling_interval_seconds": 0.5,
+  "includes_device_baseline": true,
+  "wall_seconds": 16.66665232700001
+}

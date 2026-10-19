@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">Fission Forge</title>
+  <desc id="desc">Circuit-inspired F mark with an orange forge spark. Neural decompilation research in Rust and Candle.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="360" gradientUnits="userSpaceOnUse"><stop stop-color="#101827"/><stop offset="1" stop-color="#15122b"/></linearGradient>
+    <linearGradient id="metal" x1="72" y1="72" x2="260" y2="280" gradientUnits="userSpaceOnUse"><stop stop-color="#6cceff"/><stop offset="1" stop-color="#a78bfa"/></linearGradient>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" stroke="#7786b2" stroke-opacity=".08"/></pattern>
+  </defs>
+  <rect width="1200" height="360" rx="24" fill="url(#bg)"/>
+  <rect width="1200" height="360" rx="24" fill="url(#grid)"/>
+  <path d="M0 1H1200" stroke="#869bca" stroke-opacity=".18"/>
+  <g stroke="url(#metal)" stroke-width="18" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M102 268V98H240M102 170H206M146 98V132H214M146 170V222"/>
+  </g>
+  <g fill="#101827" stroke="#8dbcfb" stroke-width="5"><circle cx="240" cy="98" r="9"/><circle cx="214" cy="132" r="8"/><circle cx="206" cy="170" r="9"/><circle cx="146" cy="222" r="8"/></g>
+  <path d="M80 286H188L174 302H94Z" fill="#a78bfa"/>
+  <path d="M241 211L251 232L274 242L251 252L241 274L231 252L208 242L231 232Z" fill="#ffae57"/>
+  <path d="M278 180L282 190L292 194L282 198L278 208L274 198L264 194L274 190Z" fill="#ffd494"/>
+  <path d="M333 79V282" stroke="#8f9bc1" stroke-opacity=".22"/>
+  <text x="383" y="112" fill="#9eafd1" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" letter-spacing="5">FISSION SYSTEMS / RESEARCH</text>
+  <text x="378" y="192" fill="#f0f4ff" font-family="Arial, Helvetica, sans-serif" font-size="70" font-weight="700" letter-spacing="1">FISSION <tspan fill="#b8a3ff">FORGE</tspan></text>
+  <text x="383" y="238" fill="#b3c2df" font-family="Arial, Helvetica, sans-serif" font-size="23">Neural decompilation, trained from scratch.</text>
+  <g font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" letter-spacing="1.5">
+    <rect x="383" y="268" width="87" height="28" rx="6" fill="#20304a"/><text x="402" y="287" fill="#9bd8ff">RUST</text>
+    <rect x="482" y="268" width="110" height="28" rx="6" fill="#302645"/><text x="500" y="287" fill="#d3c3ff">CANDLE</text>
+    <rect x="604" y="268" width="139" height="28" rx="6" fill="#3c2c24"/><text x="621" y="287" fill="#ffc489">P-CODE → C</text>
+  </g>
+</svg>

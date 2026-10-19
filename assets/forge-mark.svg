@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">Fission Forge mark</title><desc id="desc">A blue and violet circuit F with an orange forge spark.</desc>
+  <defs><linearGradient id="f" x1="54" y1="40" x2="185" y2="220" gradientUnits="userSpaceOnUse"><stop stop-color="#6cceff"/><stop offset="1" stop-color="#a78bfa"/></linearGradient></defs>
+  <rect width="256" height="256" rx="48" fill="#12192b"/>
+  <g stroke="url(#f)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"><path d="M64 207V55H185M64 120H154M103 55V86H163M103 120V166"/></g>
+  <g fill="#12192b" stroke="#8dbcfb" stroke-width="4"><circle cx="185" cy="55" r="8"/><circle cx="163" cy="86" r="7"/><circle cx="154" cy="120" r="8"/><circle cx="103" cy="166" r="7"/></g>
+  <path d="M46 222H141L128 235H59Z" fill="#a78bfa"/>
+  <path d="M187 154L196 174L217 183L196 192L187 213L178 192L157 183L178 174Z" fill="#ffae57"/>
+</svg>

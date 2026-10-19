@@ -1,0 +1,4 @@
+{"id":"handwritten-add","assembly":"lea (%rdi,%rsi),%eax\nret","source":"int f(int a,int b){return a+b;}"}
+{"id":"handwritten-increment","assembly":"lea 1(%rdi),%eax\nret","source":"int f(int a){return a+1;}"}
+{"id":"handwritten-zero","assembly":"xor %eax,%eax\nret","source":"int f(void){return 0;}"}
+{"id":"handwritten-identity","assembly":"mov %edi,%eax\nret","source":"int f(int a){return a;}"}
