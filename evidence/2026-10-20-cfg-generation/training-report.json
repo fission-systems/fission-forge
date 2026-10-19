@@ -1,0 +1,32 @@
+{
+  "evidence_scope": "fixed_batch_transformer_training_probe_only",
+  "backend": "Cpu",
+  "dtype": "f32",
+  "model": {
+    "vocab_size": 260,
+    "hidden_size": 32,
+    "heads": 4,
+    "layers": 1,
+    "feed_forward_size": 128,
+    "max_seq_len": 1024
+  },
+  "parameters": 61888,
+  "initialization": "seeded_from_scratch",
+  "dataset_sha256": "70be69bb955f87112d3c2c08f882e61855c4be429a9b2af387beabe1a784a292",
+  "input_sha256": "f0db83fd45809c8dc7119a2a07e0a7f83b9fd6b645ccba147912e066dd60eda7",
+  "representations": [
+    "pcode-plus-ssa-v1"
+  ],
+  "examples": 1,
+  "sequence_length": 499,
+  "initial_step": 0,
+  "completed_steps": 160,
+  "measured_steps": 160,
+  "initial_loss": 5.5494685,
+  "final_loss": 0.00716038,
+  "training_seconds": 69.416807417,
+  "padded_tokens_per_second": 1150.1537303550406,
+  "completion_tokens_per_second": 119.8556993556355,
+  "checkpoint_logit_max_error": 0.0,
+  "resumed_adamw_step_max_error": 0.0
+}

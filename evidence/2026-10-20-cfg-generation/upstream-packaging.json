@@ -1,0 +1,10 @@
+{
+  "evidence_scope": "owned_fixture_packaging_format_only_NOT_DecBench_scores",
+  "upstream_commit": "ae070b885b4e005ed37510a2c3445af6284dc2b9",
+  "package_py_sha256": "2881da3f6059a157b31ee8c81643e6b3778ef7fb1f5d2e5c60d4ba75d8ea8892",
+  "exit_code": 0,
+  "stdout": "packaged 1 .c file(s) -> outputs/owned-decbench-format-kit/results-final.zip\nbinaries covered 1/1, functions 1/1\n",
+  "stderr": "",
+  "results_zip_sha256": "d5a5bd2067f363a8ccafa3d065c14ed7e1b08cb642a7eea15b3f0108624433b9",
+  "scores_computed": false
+}

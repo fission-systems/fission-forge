@@ -3,7 +3,7 @@ use std::path::PathBuf;
 use anyhow::{Result, bail};
 use candle_core::Device;
 use clap::{Parser, Subcommand, ValueEnum};
-use fission_forge::{pcode, probe, training};
+use fission_forge::{generation, pcode, probe, training};
 
 #[derive(Parser)]
 #[command(
@@ -18,10 +18,27 @@ struct Cli {
 
 #[derive(Subcommand)]
 enum Command {
-    /// Validate a straight-line raw P-code dump and emit a canonical SSA prompt.
+    /// Generate raw completion bytes from a trained checkpoint with bounded greedy decoding.
+    Generate {
+        #[arg(long)]
+        checkpoint: PathBuf,
+        #[arg(long)]
+        prompt: PathBuf,
+        #[arg(long, default_value = "assembly-v0")]
+        representation: String,
+        #[arg(long, default_value_t = 256)]
+        max_new_tokens: usize,
+        #[arg(long)]
+        output: PathBuf,
+        #[arg(long, value_enum, default_value = "cpu")]
+        device: Backend,
+    },
+    /// Validate a raw P-code dump and emit a versioned SSA prompt.
     PcodeCompile {
         #[arg(long)]
         raw: PathBuf,
+        #[arg(long, default_value = "pcode-plus-ssa-v0")]
+        representation: String,
         #[arg(long)]
         profile: PathBuf,
         #[arg(long)]
@@ -83,8 +100,28 @@ fn device(backend: Backend) -> Result<Device> {
 
 fn main() -> Result<()> {
     match Cli::parse().command {
+        Command::Generate {
+            checkpoint,
+            prompt,
+            representation,
+            max_new_tokens,
+            output,
+            device: backend,
+        } => {
+            let prompt = std::fs::read_to_string(prompt)?;
+            let report = generation::run(
+                &checkpoint,
+                &prompt,
+                &representation,
+                max_new_tokens,
+                &output,
+                &device(backend)?,
+            )?;
+            println!("{}", serde_json::to_string_pretty(&report)?);
+        }
         Command::PcodeCompile {
             raw,
+            representation,
             profile,
             output,
         } => {
@@ -95,7 +132,12 @@ fn main() -> Result<()> {
             );
             let raw: pcode::RawDump = serde_json::from_slice(&std::fs::read(raw)?)?;
             let profile: pcode::Profile = serde_json::from_slice(&std::fs::read(profile)?)?;
-            let report = pcode::compile(&raw, &profile)?;
+            let report = pcode::Input {
+                representation,
+                profile,
+                raw,
+            }
+            .compile()?;
             if let Some(parent) = output.parent().filter(|p| !p.as_os_str().is_empty()) {
                 std::fs::create_dir_all(parent)?;
             }

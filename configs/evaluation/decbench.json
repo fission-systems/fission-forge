@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "protocol_only",
+  "status": "adapter_implemented_scoring_pending",
   "benchmark": "DecBench",
   "repository": "https://github.com/Noelo-Lab/decbench",
   "reference_commit": "ae070b885b4e005ed37510a2c3445af6284dc2b9",
@@ -12,12 +12,13 @@
   "initial_model_scope": {
     "source_language": "C",
     "architecture": "x86_64",
-    "input": "pcode-plus-ssa-v0",
+    "input": "pcode-plus-ssa-v1",
     "implemented_smoke_inputs": [
       "assembly-v0",
-      "pcode-plus-ssa-v0"
+      "pcode-plus-ssa-v0",
+      "pcode-plus-ssa-v1"
     ],
-    "ir_control_flow_scope": "straight_line_only"
+    "ir_control_flow_scope": "resolved_direct_cfg_with_opaque_returning_calls"
   },
   "metrics": [
     "ged",

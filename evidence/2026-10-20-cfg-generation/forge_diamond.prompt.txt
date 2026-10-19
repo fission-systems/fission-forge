@@ -1,0 +1,76 @@
+pcode-plus-ssa-v1 x86_64 le ptr8 ram_word1 call_contract=opaque_all_regs_ram
+%89:4=livein(r3c:4)
+%90:4=livein(r38:4)
+%91:4=livein(r34:4)
+%92:4=livein(r30:4)
+%93:8=livein(r20:8)
+block0
+%4:8=phi(entry:%93) @r20:8
+%5:4=phi(entry:%92) @r30:4
+%6:4=phi(entry:%91) @r34:4
+%7:4=phi(entry:%90) @r38:4
+%8:4=phi(entry:%89) @r3c:4
+e0_0=effect_phi(entry:effect0)
+%51:8=IntAdd(le(%5,%6),#fffffffffffffffe:8)
+%52:4=SubPiece(%51,#0:4) @r0
+%53:8=IntZExt(%52) @r0
+%54:8=IntAdd(le(%7,%8),#3:8)
+%55:4=SubPiece(%54,#0:4) @r8
+%56:8=IntZExt(%55) @r8
+%57:4=Copy(%7)
+%58:1=IntLess(%57,%5) @r200
+%59:1=IntSBorrow(%57,%5) @r20b
+%60:4=IntSub(%57,%5)
+%61:1=IntSLess(%60,#0:4) @r207
+%62:1=IntEqual(%60,#0:4) @r206
+%63:4=IntAnd(%60,#ff:4)
+%64:1=PopCount(%63)
+%65:1=IntAnd(%64,#1:1)
+%66:1=IntEqual(%65,#0:1) @r202
+%67:1=BoolOr(%58,%62)
+%68:4=Copy(%53[0:4])
+%69:8=IntZExt(%56[0:4]) @r8
+%70:1=BoolNegate(%67)
+If(%70,b2,b1)
+block1
+%19:4=phi(b0:%69[4:4]) @rc:4
+%20:8=phi(b0:%4) @r20:8
+%21:4=phi(b0:%5) @r30:4
+%22:4=phi(b0:%6) @r34:4
+%23:4=phi(b0:%7) @r38:4
+%24:4=phi(b0:%8) @r3c:4
+%25:1=phi(b0:%58) @r200:1
+%32:4=phi(b0:%68) @temporary
+e1_0=effect_phi(b0:e0_0)
+%71:4=Copy(%32) @r8
+Jump(b2)
+block2
+%36:4=phi(b0:%69[0:4],b1:%71) @r8:4
+%37:4=phi(b0:%69[4:4],b1:%19) @rc:4
+%38:8=phi(b0:%4,b1:%20) @r20:8
+%39:4=phi(b0:%5,b1:%21) @r30:4
+%40:4=phi(b0:%6,b1:%22) @r34:4
+%41:4=phi(b0:%7,b1:%23) @r38:4
+%42:4=phi(b0:%8,b1:%24) @r3c:4
+%43:1=phi(b0:%58,b1:%25) @r200:1
+e2_0=effect_phi(b0:e0_0,b1:e1_0)
+%72:8=IntAdd(#fffffffffffffffc:8,%38)
+%73:4=Copy(%36)
+Store(#3:4,%72,%73) !write_ram_may_trap e2_0->e2_1
+%74:8=IntAdd(#fffffffffffffffc:8,%38)
+%75:4=Load(#3:4,%74) !read_ram_may_trap e2_1->e2_2
+%76:4=Copy(%75) @r0
+%77:8=IntZExt(%76) @r0
+%78:1=IntSCarry(%77[0:4],#1:4) @r20b
+%79:4=IntAdd(%77[0:4],#1:4) @r0
+%80:8=IntZExt(%79) @r0
+%81:1=IntSLess(%80[0:4],#0:4) @r207
+%82:1=IntEqual(%80[0:4],#0:4) @r206
+%83:4=IntAnd(%80[0:4],#ff:4)
+%84:1=PopCount(%83)
+%85:1=IntAnd(%84,#1:1)
+%86:1=IntEqual(%85,#0:1) @r202
+%87:8=Load(#3:8,%38) !read_ram_may_trap e2_2->e2_3 @r288
+%88:8=IntAdd(%38,#8:8) @r20
+Return(%87) !return e2_3->e2_4
+exit_regs(r0=%80[0:4],r4=%80[4:4],r8=%36,rc=%37,r20=%88,r30=%39,r34=%40,r38=%41,r3c=%42,r200=%43,r202=%86,r206=%82,r207=%81,r20b=%78,r288=%87)

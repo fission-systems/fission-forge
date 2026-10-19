@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "status": "complete",
+  "scope": "external_kit_adapter_only_no_scores",
+  "selection": "all public targets; ELF64 little-endian x86-64 headers only; no source-language oracle",
+  "forge_revision": "94f5551a0e0c451cffc2dfd39baf5436afb96b26",
+  "forge_worktree_dirty": true,
+  "forge_binary_sha256": "a3ad202dbde4b022ddeb7cbbf1f99e1ba7856005df906b312c50622f0deae170",
+  "fission_commit": "f714ffdf656fbc25993a4e6ffb038bb851ac6ba5",
+  "fission_cli_sha256": "6e21288510bafdece7ca01b0230f1d9604c47b48c0f1ab400f0b8b9ac6b310b9",
+  "profile_sha256": "fa6ee43ef5b9789f84993ca925cc7ac81e1b23d8257f4ab6b1260fb8d81e89a3",
+  "functions_json_sha256": "ded51226ef898c2e0e24902f60d03a4e96936f7ef76bb6acb3312235777f2970",
+  "representation": "pcode-plus-ssa-v1",
+  "max_new_tokens": 128,
+  "prepare_only": false,
+  "max_targets": null,
+  "manifest_targets": 1,
+  "device": "cpu",
+  "targets": [
+    {
+      "binary": "bin_000.elf",
+      "address": "0x13b0",
+      "binary_sha256": "7b00115eeeb8d678ac2f4ae53855a7cd1018e66f97d723a43c177d9745394a3c",
+      "lift_attempted": true,
+      "raw_sha256": "a22b0b5f651e85a27ef91ff4e47ec797ba9338fbceb61fe90a6bbea3f57c3a17",
+      "prompt_sha256": "45cab7cafe0871a23f72244a8d5b40aca53850dd6e7805beaf03a63950ed9260",
+      "prompt_bytes": 446,
+      "blocks": 1,
+      "phis": 2,
+      "opaque_calls": 0,
+      "generation_attempted": true,
+      "generation_stop_reason": "eos",
+      "status": "emitted",
+      "function_identifier": "forge_callee",
+      "raw_output_sha256": "e28bd011b29f00da302317d5c91d676eff61ce265d88f8d7d2ffd6fd08704107"
+    }
+  ],
+  "checkpoint_sha256": "02b92779f800d0ac64513cf9ae93f94559d6a3a1d831f4b115e88addccc3aa5e",
+  "checkpoint_state_sha256": "8773e13e16e9b97c8478a2bb163a9971c14d596dc2ed36c6e9b2d60513dbc763",
+  "outcomes": {
+    "emitted": 1
+  },
+  "attempted_lifts": 1,
+  "attempted_generations": 1
+}

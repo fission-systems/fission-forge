@@ -28,7 +28,7 @@ but Forge is an independent implementation rather than a fine-tune of its models
 ## Current state
 
 This repository contains a working **training prototype**, with CPU and Colab
-A100 checks. It does not yet ship a usable decompiler or a pretrained checkpoint.
+A100 checks. It does not yet ship a generally useful decompiler or a pretrained model release.
 
 | Component | What exists today |
 | --- | --- |
@@ -39,35 +39,38 @@ A100 checks. It does not yet ship a usable decompiler or a pretrained checkpoint
 | CUDA | 148K and approximately 100M assembly probes exercised on a Colab A100 40 GB; IR lane tested on CPU |
 | Input data | Four handwritten assembly/C pairs and three compiled C/P-code fixture pairs; software checks only |
 | P-code frontend | Typed raw-dump validation, pinned SLA profile, reproducible owned-C extraction, and explicit unsupported records |
-| P-code+ / SSA | Version 0 supports straight-line scalar SSA, overlapping register writes, and conservative effect ordering; CFG/call support pending |
-| DecBench | Evaluation protocol documented; adapter and scoring run pending |
+| P-code+ / SSA | Stable straight-line v0 plus v1 CFG reconstruction, loop phis, instruction-internal merges, and conservative opaque calls |
+| Generation | Bounded greedy byte decoding, exact output preservation, EOS/context/budget reporting, checkpoint lane checks; CPU validated |
+| DecBench | Static external-kit adapter and pinned packaging format exercised on an owned fixture; benchmark scores pending |
 
 The fixed-batch trainer accepts at most 32 examples and rejects truncation. Corpus
-streaming, generation, mixed precision, and generalization evaluation remain to be
-implemented. Loss reduction on the smoke fixtures is not evidence of decompilation
+streaming, mixed precision, and generalization evaluation remain to be implemented. Loss reduction on the smoke fixtures is not evidence of decompilation
 quality.
 
 ## Research direction
 
 ```text
-Binary → Fission SLEIGH → raw P-code → P-code+ / SSA v0 → Forge training
-                                       straight-line     fixed-batch
-
-Planned next: CFG / calls → corpus training → C generation → DecBench
+Binary → Fission raw P-code → P-code+ / SSA → Forge checkpoint → C bytes
+                              v0 / v1        fixed-batch       greedy
+                                                               ↓
+                                                   DecBench external-kit format
 ```
 
-P-code is the selected IR family. A small x86-64 subset of **P-code+ with SSA**
-is implemented and connected to the trainer. It preserves widths, numeric-domain
-opcodes, register overlap, effect order, and lifting provenance. Branches, loops,
-calls, unknown operations, and incomplete lifts are explicitly rejected. SSA
-describes definitions and uses; it does not replace semantic contracts. HIR is
-an optional later comparison.
+Version 1 reconstructs CFG edges from operations, including branches inside a
+machine instruction. It adds register/temporary phis, loop backedges, effect
+merges, and opaque direct/indirect calls. Unknown calls invalidate observed
+register state and may change memory or fail to return; no ABI is guessed.
+Unresolved branches, unsupported operations, and incomplete lifts reject explicitly.
+HIR is not required.
 
-See [the executable input lane and commands](docs/pcode.md) and
-[representation experiments and P-code+ boundaries](docs/research/input-representations.md).
-The current IR run exercises three compiled fixtures; it is not corpus pretraining
-or evidence of decompiler quality. A CPU run verified byte-identical checkpoints
-for 8+2 resumed versus 10 uninterrupted updates; see [IR evidence](evidence/2026-10-20-pcode-v0/README.md).
+Five owned compiled fixtures pass v1 conversion. Diamond/loop SSA execution
+matches raw P-code and independent integer oracles on 106 inputs. A separate
+one-example memorization probe generated its C label and passed the pinned
+DecBench packaging format. **This is plumbing evidence, not held-out accuracy or
+a DecBench score.** Corpus training and scored evaluation remain ahead.
+
+Read [v0 input commands](docs/pcode.md), [CFG/call contracts](docs/cfg.md),
+[generation](docs/generation.md), and [recorded evidence](evidence/2026-10-20-cfg-generation/README.md).
 
 ## Run locally
 
@@ -132,9 +135,11 @@ GED, type match, byte match, and the upstream Union score on matching scopes,
 alongside lifting coverage and input conditions. DecBench evaluation targets
 must remain excluded from training.
 
-The evaluation configuration is currently **protocol only**: dataset revision,
-evalkit digest, and target-manifest digest are intentionally unset until an
-actual run is prepared. No DecBench score is claimed here. See
+The external-kit adapter records every target, unsupported input, timeout,
+context/generation failure, and raw output. It uses only the public target mapping
+and writes one C file per binary. Scoring dataset revision, evalkit digest, and
+target-manifest digest remain unset until a real benchmark run is frozen.
+No DecBench score is claimed here. See
 [the protocol](docs/evaluation.md) and [reference configuration](configs/evaluation/decbench.json).
 
 ## Repository map
@@ -144,8 +149,10 @@ actual run is prepared. No DecBench score is claimed here. See
 | [`crates/forge/`](crates/forge/) | Rust model, byte codec, loss, optimizer, checkpoint checks, and CLI |
 | [`configs/model/`](configs/model/) | Tiny and approximately 100M model configurations |
 | [`fixtures/smoke/`](fixtures/smoke/) | Hand-authored assembly fixtures |
-| [`fixtures/pcode/`](fixtures/pcode/) | Owned C, real raw dumps, supported IR pairs, and unsupported control-flow fixtures |
+| [`fixtures/pcode/`](fixtures/pcode/) | Stable v0 fixtures and negative cases |
+| [`fixtures/pcode-cfg/`](fixtures/pcode-cfg/) | Owned diamond/loop/call functions, real dumps, and v1 extraction rows |
 | [`scripts/colab/`](scripts/colab/) | CUDA build and bounded probe orchestration |
+| [`scripts/evaluation/`](scripts/evaluation/) | Static DecBench external-kit adapter and parser checks |
 | [`evidence/`](evidence/) | Small, recorded measurement reports; no model weights |
 | [`docs/research/`](docs/research/) | Paper notes and IR design hypotheses |
 | [`assets/`](assets/) | Self-contained SVG banner and mark |
@@ -160,7 +167,8 @@ No GitHub, Colab, or Hugging Face credentials belong in this repository.
 cargo fmt --all -- --check
 cargo test --locked --workspace
 cargo clippy --locked --workspace --all-targets -- -D warnings
-python3 -m py_compile scripts/colab/transformer_probe.py
+python3 -m py_compile scripts/colab/transformer_probe.py scripts/pcode/capture_fixture.py
+python3 -m unittest discover -s scripts/evaluation -p 'test_*.py'
 ```
 
 Tests cover causal masking, shifted completion loss, prompt/padding exclusion,

@@ -1,5 +1,8 @@
 # P-code+ v0 input lane
 
+For CFG/loop phis and conservative call handling, use the separate
+[v1 lane](cfg.md). This page documents the stable straight-line representation.
+
 Forge now accepts a bounded, executable `pcode-plus-ssa-v0` lane. It converts
 Fission raw P-code to a deterministic text prompt, then feeds that prompt to the
 same byte-level completion trainer used by the assembly baseline. The model and
@@ -140,9 +143,10 @@ undefined temporaries, malformed widths/constants, and unsupported control flow.
 These tests establish the adapter's bounded behavior; they do not prove the
 upstream lift equivalent to the source or machine code.
 
-Next work requires CFG recovery and SSA merge nodes, explicit call and memory
-contracts, a project-disjoint corpus with source/build provenance, and generation
-before a DecBench adapter and scoring run are useful. No DecBench score or
+The separate [v1 lane](cfg.md) now supplies resolved CFGs, loop merges, and
+opaque calls; [generation](generation.md) and an [external-kit adapter](evaluation.md)
+are also implemented. A project-disjoint corpus, more precise call/memory
+contracts, and actual DecBench scoring remain pending. No DecBench score or
 semantic-equivalence result is claimed by this input-lane experiment.
 
 Primary semantics reference: [Ghidra P-code operation reference](https://ghidra.re/ghidra_docs/languages/html/pcodedescription.html).

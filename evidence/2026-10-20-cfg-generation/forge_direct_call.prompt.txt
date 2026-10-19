@@ -1,0 +1,58 @@
+pcode-plus-ssa-v1 x86_64 le ptr8 ram_word1 call_contract=opaque_all_regs_ram
+%49:8=livein(r288:8)
+%50:1=livein(r20b:1)
+%51:1=livein(r207:1)
+%52:1=livein(r206:1)
+%53:1=livein(r202:1)
+%54:8=livein(r20:8)
+%55:8=livein(r8:8)
+%56:4=livein(r4:4)
+%57:4=livein(r0:4)
+block0
+%0:4=phi(entry:%57) @r0:4
+%1:4=phi(entry:%56) @r4:4
+%2:8=phi(entry:%55) @r8:8
+%3:8=phi(entry:%54) @r20:8
+%4:1=phi(entry:%53) @r202:1
+%5:1=phi(entry:%52) @r206:1
+%6:1=phi(entry:%51) @r207:1
+%7:1=phi(entry:%50) @r20b:1
+%8:8=phi(entry:%49) @r288:8
+e0_0=effect_phi(entry:effect0)
+%22:8=Copy(le(%0,%1))
+%23:8=IntSub(%3,#8:8) @r20
+Store(#3:8,%23,%22) !write_ram_may_trap e0_0->e0_1
+%24:8=IntSub(%23,#8:8) @r20
+Store(#3:8,%24,#13c6:8) !write_ram_may_trap e0_1->e0_2
+call0=OpaqueCall(ram@13b0,regs(r0:4=%0,r4:4=%1,r8:8=%2,r20:8=%24,r202:1=%4,r206:1=%5,r207:1=%6,r20b:1=%7,r288:8=%8)) !may_read_write_all_regs_ram_may_trap_or_not_return e0_2->e0_3
+%25:4=havoc(call0,r0:4)
+%26:4=havoc(call0,r4:4)
+%27:8=havoc(call0,r8:8)
+%28:8=havoc(call0,r20:8)
+%29:1=havoc(call0,r202:1)
+%30:1=havoc(call0,r206:1)
+%31:1=havoc(call0,r207:1)
+%32:1=havoc(call0,r20b:1)
+%33:8=havoc(call0,r288:8)
+MayReturn(b1)
+block1
+%10:4=phi(b0:%25) @r0:4
+%13:8=phi(b0:%28) @r20:8
+e1_0=effect_phi(b0:e0_3)
+%34:1=IntSCarry(%10,#1:4) @r20b
+%35:4=IntAdd(%10,#1:4) @r0
+%36:8=IntZExt(%35) @r0
+%37:1=IntSLess(%36[0:4],#0:4) @r207
+%38:1=IntEqual(%36[0:4],#0:4) @r206
+%39:4=IntAnd(%36[0:4],#ff:4)
+%40:1=PopCount(%39)
+%41:1=IntAnd(%40,#1:1)
+%42:1=IntEqual(%41,#0:1) @r202
+%43:8=Copy(#0:8)
+%44:8=Load(#3:8,%13) !read_ram_may_trap e1_0->e1_1
+%45:8=IntAdd(%13,#8:8) @r20
+%46:8=Copy(%44) @r8
+%47:8=Load(#3:8,%45) !read_ram_may_trap e1_1->e1_2 @r288
+%48:8=IntAdd(%45,#8:8) @r20
+Return(%47) !return e1_2->e1_3
+exit_regs(r0=%36[0:4],r4=%36[4:4],r8=%46,r20=%48,r202=%42,r206=%38,r207=%37,r20b=%34,r288=%47)

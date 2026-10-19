@@ -1,0 +1,687 @@
+{
+  "decode_address": "0x13d0",
+  "decoded_instructions": 7,
+  "entry_address": "0x13d0",
+  "pcode": {
+    "blocks": [
+      {
+        "index": 0,
+        "ops": [
+          {
+            "address": 5072,
+            "asm_mnemonic": "COPY",
+            "inputs": [
+              {
+                "constant_val": 0,
+                "is_constant": false,
+                "offset": 0,
+                "size": 8,
+                "space_id": 4
+              }
+            ],
+            "opcode": "Copy",
+            "output": {
+              "constant_val": 0,
+              "is_constant": false,
+              "offset": 325888,
+              "size": 8,
+              "space_id": 2
+            },
+            "seq_num": 0
+          },
+          {
+            "address": 5072,
+            "asm_mnemonic": "INT_SUB",
+            "inputs": [
+              {
+                "constant_val": 0,
+                "is_constant": false,
+                "offset": 32,
+                "size": 8,
+                "space_id": 4
+              },
+              {
+                "constant_val": 8,
+                "is_constant": true,
+                "offset": 8,
+                "size": 8,
+                "space_id": 0
+              }
+            ],
+            "opcode": "IntSub",
+            "output": {
+              "constant_val": 0,
+              "is_constant": false,
+              "offset": 32,
+              "size": 8,
+              "space_id": 4
+            },
+            "seq_num": 1
+          },
+          {
+            "address": 5072,
+            "asm_mnemonic": "STORE",
+            "inputs": [
+              {
+                "constant_val": 3,
+                "is_constant": true,
+                "offset": 3,
+                "size": 8,
+                "space_id": 0
+              },
+              {
+                "constant_val": 0,
+                "is_constant": false,
+                "offset": 32,
+                "size": 8,
+                "space_id": 4
+              },
+              {
+                "constant_val": 0,
+                "is_constant": false,
+                "offset": 325888,
+                "size": 8,
+                "space_id": 2
+              }
+            ],
+            "opcode": "Store",
+            "output": null,
+            "seq_num": 2
+          },
+          {
+            "address": 5073,
+            "asm_mnemonic": "COPY",
+            "inputs": [
+              {
+                "constant_val": 0,
+                "is_constant": false,
+                "offset": 56,
+                "size": 8,
+                "space_id": 4
+              }
+            ],
+            "opcode": "Copy",
+            "output": {
+              "constant_val": 0,
+              "is_constant": false,
+              "offset": 0,
+              "size": 8,
+              "space_id": 4
+            },
+            "seq_num": 3
+          },
+          {
+            "address": 5076,
+            "asm_mnemonic": "COPY",
+            "inputs": [
+              {
+                "constant_val": 0,
+                "is_constant": false,
+                "offset": 48,
+                "size": 4,
+                "space_id": 4
+              }
+            ],
+            "opcode": "Copy",
+            "output": {
+              "constant_val": 0,
+              "is_constant": false,
+              "offset": 56,
+              "size": 4,
+              "space_id": 4
+            },
+            "seq_num": 4
+          },
+          {
+            "address": 5076,
+            "asm_mnemonic": "INT_ZEXT",
+            "inputs": [
+              {
+                "constant_val": 0,
+                "is_constant": false,
+                "offset": 56,
+                "size": 4,
+                "space_id": 4
+              }
+            ],
+            "opcode": "IntZExt",
+            "output": {
+              "constant_val": 0,
+              "is_constant": false,
+              "offset": 56,
+              "size": 8,
+              "space_id": 4
+            },
+            "seq_num": 5
+          },
+          {
+            "address": 5078,
+            "asm_mnemonic": "COPY",
+            "inputs": [
+              {
+                "constant_val": 0,
+                "is_constant": false,
+                "offset": 0,
+                "size": 8,
+                "space_id": 4
+              }
+            ],
+            "opcode": "Copy",
+            "output": {
+              "constant_val": 0,
+              "is_constant": false,
+              "offset": 497152,
+              "size": 8,
+              "space_id": 2
+            },
+            "seq_num": 6
+          },
+          {
+            "address": 5078,
+            "asm_mnemonic": "INT_SUB",
+            "inputs": [
+              {
+                "constant_val": 0,
+                "is_constant": false,
+                "offset": 32,
+                "size": 8,
+                "space_id": 4
+              },
+              {
+                "constant_val": 8,
+                "is_constant": true,
+                "offset": 8,
+                "size": 8,
+                "space_id": 0
+              }
+            ],
+            "opcode": "IntSub",
+            "output": {
+              "constant_val": 0,
+              "is_constant": false,
+              "offset": 32,
+              "size": 8,
+              "space_id": 4
+            },
+            "seq_num": 7
+          },
+          {
+            "address": 5078,
+            "asm_mnemonic": "STORE",
+            "inputs": [
+              {
+                "constant_val": 3,
+                "is_constant": true,
+                "offset": 3,
+                "size": 8,
+                "space_id": 0
+              },
+              {
+                "constant_val": 0,
+                "is_constant": false,
+                "offset": 32,
+                "size": 8,
+                "space_id": 4
+              },
+              {
+                "constant_val": 5080,
+                "is_constant": true,
+                "offset": 5080,
+                "size": 8,
+                "space_id": 0
+              }
+            ],
+            "opcode": "Store",
+            "output": null,
+            "seq_num": 8
+          },
+          {
+            "address": 5078,
+            "asm_mnemonic": "CALLIND",
+            "inputs": [
+              {
+                "constant_val": 0,
+                "is_constant": false,
+                "offset": 497152,
+                "size": 8,
+                "space_id": 2
+              }
+            ],
+            "opcode": "CallInd",
+            "output": null,
+            "seq_num": 9
+          },
+          {
+            "address": 5080,
+            "asm_mnemonic": "INT_SCARRY",
+            "inputs": [
+              {
+                "constant_val": 0,
+                "is_constant": false,
+                "offset": 0,
+                "size": 4,
+                "space_id": 4
+              },
+              {
+                "constant_val": 1,
+                "is_constant": true,
+                "offset": 1,
+                "size": 4,
+                "space_id": 0
+              }
+            ],
+            "opcode": "IntSCarry",
+            "output": {
+              "constant_val": 0,
+              "is_constant": false,
+              "offset": 523,
+              "size": 1,
+              "space_id": 4
+            },
+            "seq_num": 10
+          },
+          {
+            "address": 5080,
+            "asm_mnemonic": "INT_ADD",
+            "inputs": [
+              {
+                "constant_val": 0,
+                "is_constant": false,
+                "offset": 0,
+                "size": 4,
+                "space_id": 4
+              },
+              {
+                "constant_val": 1,
+                "is_constant": true,
+                "offset": 1,
+                "size": 4,
+                "space_id": 0
+              }
+            ],
+            "opcode": "IntAdd",
+            "output": {
+              "constant_val": 0,
+              "is_constant": false,
+              "offset": 0,
+              "size": 4,
+              "space_id": 4
+            },
+            "seq_num": 11
+          },
+          {
+            "address": 5080,
+            "asm_mnemonic": "INT_ZEXT",
+            "inputs": [
+              {
+                "constant_val": 0,
+                "is_constant": false,
+                "offset": 0,
+                "size": 4,
+                "space_id": 4
+              }
+            ],
+            "opcode": "IntZExt",
+            "output": {
+              "constant_val": 0,
+              "is_constant": false,
+              "offset": 0,
+              "size": 8,
+              "space_id": 4
+            },
+            "seq_num": 12
+          },
+          {
+            "address": 5080,
+            "asm_mnemonic": "INT_SLESS",
+            "inputs": [
+              {
+                "constant_val": 0,
+                "is_constant": false,
+                "offset": 0,
+                "size": 4,
+                "space_id": 4
+              },
+              {
+                "constant_val": 0,
+                "is_constant": true,
+                "offset": 0,
+                "size": 4,
+                "space_id": 0
+              }
+            ],
+            "opcode": "IntSLess",
+            "output": {
+              "constant_val": 0,
+              "is_constant": false,
+              "offset": 519,
+              "size": 1,
+              "space_id": 4
+            },
+            "seq_num": 13
+          },
+          {
+            "address": 5080,
+            "asm_mnemonic": "INT_EQUAL",
+            "inputs": [
+              {
+                "constant_val": 0,
+                "is_constant": false,
+                "offset": 0,
+                "size": 4,
+                "space_id": 4
+              },
+              {
+                "constant_val": 0,
+                "is_constant": true,
+                "offset": 0,
+                "size": 4,
+                "space_id": 0
+              }
+            ],
+            "opcode": "IntEqual",
+            "output": {
+              "constant_val": 0,
+              "is_constant": false,
+              "offset": 518,
+              "size": 1,
+              "space_id": 4
+            },
+            "seq_num": 14
+          },
+          {
+            "address": 5080,
+            "asm_mnemonic": "INT_AND",
+            "inputs": [
+              {
+                "constant_val": 0,
+                "is_constant": false,
+                "offset": 0,
+                "size": 4,
+                "space_id": 4
+              },
+              {
+                "constant_val": 255,
+                "is_constant": true,
+                "offset": 255,
+                "size": 4,
+                "space_id": 0
+              }
+            ],
+            "opcode": "IntAnd",
+            "output": {
+              "constant_val": 0,
+              "is_constant": false,
+              "offset": 361216,
+              "size": 4,
+              "space_id": 2
+            },
+            "seq_num": 15
+          },
+          {
+            "address": 5080,
+            "asm_mnemonic": "POPCOUNT",
+            "inputs": [
+              {
+                "constant_val": 0,
+                "is_constant": false,
+                "offset": 361216,
+                "size": 4,
+                "space_id": 2
+              }
+            ],
+            "opcode": "PopCount",
+            "output": {
+              "constant_val": 0,
+              "is_constant": false,
+              "offset": 361472,
+              "size": 1,
+              "space_id": 2
+            },
+            "seq_num": 16
+          },
+          {
+            "address": 5080,
+            "asm_mnemonic": "INT_AND",
+            "inputs": [
+              {
+                "constant_val": 0,
+                "is_constant": false,
+                "offset": 361472,
+                "size": 1,
+                "space_id": 2
+              },
+              {
+                "constant_val": 1,
+                "is_constant": true,
+                "offset": 1,
+                "size": 1,
+                "space_id": 0
+              }
+            ],
+            "opcode": "IntAnd",
+            "output": {
+              "constant_val": 0,
+              "is_constant": false,
+              "offset": 361728,
+              "size": 1,
+              "space_id": 2
+            },
+            "seq_num": 17
+          },
+          {
+            "address": 5080,
+            "asm_mnemonic": "INT_EQUAL",
+            "inputs": [
+              {
+                "constant_val": 0,
+                "is_constant": false,
+                "offset": 361728,
+                "size": 1,
+                "space_id": 2
+              },
+              {
+                "constant_val": 0,
+                "is_constant": true,
+                "offset": 0,
+                "size": 1,
+                "space_id": 0
+              }
+            ],
+            "opcode": "IntEqual",
+            "output": {
+              "constant_val": 0,
+              "is_constant": false,
+              "offset": 514,
+              "size": 1,
+              "space_id": 4
+            },
+            "seq_num": 18
+          },
+          {
+            "address": 5082,
+            "asm_mnemonic": "COPY",
+            "inputs": [
+              {
+                "constant_val": 0,
+                "is_constant": true,
+                "offset": 0,
+                "size": 8,
+                "space_id": 0
+              }
+            ],
+            "opcode": "Copy",
+            "output": {
+              "constant_val": 0,
+              "is_constant": false,
+              "offset": 697344,
+              "size": 8,
+              "space_id": 2
+            },
+            "seq_num": 19
+          },
+          {
+            "address": 5082,
+            "asm_mnemonic": "LOAD",
+            "inputs": [
+              {
+                "constant_val": 3,
+                "is_constant": true,
+                "offset": 3,
+                "size": 8,
+                "space_id": 0
+              },
+              {
+                "constant_val": 0,
+                "is_constant": false,
+                "offset": 32,
+                "size": 8,
+                "space_id": 4
+              }
+            ],
+            "opcode": "Load",
+            "output": {
+              "constant_val": 0,
+              "is_constant": false,
+              "offset": 697344,
+              "size": 8,
+              "space_id": 2
+            },
+            "seq_num": 20
+          },
+          {
+            "address": 5082,
+            "asm_mnemonic": "INT_ADD",
+            "inputs": [
+              {
+                "constant_val": 0,
+                "is_constant": false,
+                "offset": 32,
+                "size": 8,
+                "space_id": 4
+              },
+              {
+                "constant_val": 8,
+                "is_constant": true,
+                "offset": 8,
+                "size": 8,
+                "space_id": 0
+              }
+            ],
+            "opcode": "IntAdd",
+            "output": {
+              "constant_val": 0,
+              "is_constant": false,
+              "offset": 32,
+              "size": 8,
+              "space_id": 4
+            },
+            "seq_num": 21
+          },
+          {
+            "address": 5082,
+            "asm_mnemonic": "COPY",
+            "inputs": [
+              {
+                "constant_val": 0,
+                "is_constant": false,
+                "offset": 697344,
+                "size": 8,
+                "space_id": 2
+              }
+            ],
+            "opcode": "Copy",
+            "output": {
+              "constant_val": 0,
+              "is_constant": false,
+              "offset": 8,
+              "size": 8,
+              "space_id": 4
+            },
+            "seq_num": 22
+          },
+          {
+            "address": 5083,
+            "asm_mnemonic": "LOAD",
+            "inputs": [
+              {
+                "constant_val": 3,
+                "is_constant": true,
+                "offset": 3,
+                "size": 8,
+                "space_id": 0
+              },
+              {
+                "constant_val": 0,
+                "is_constant": false,
+                "offset": 32,
+                "size": 8,
+                "space_id": 4
+              }
+            ],
+            "opcode": "Load",
+            "output": {
+              "constant_val": 0,
+              "is_constant": false,
+              "offset": 648,
+              "size": 8,
+              "space_id": 4
+            },
+            "seq_num": 23
+          },
+          {
+            "address": 5083,
+            "asm_mnemonic": "INT_ADD",
+            "inputs": [
+              {
+                "constant_val": 0,
+                "is_constant": false,
+                "offset": 32,
+                "size": 8,
+                "space_id": 4
+              },
+              {
+                "constant_val": 8,
+                "is_constant": true,
+                "offset": 8,
+                "size": 8,
+                "space_id": 0
+              }
+            ],
+            "opcode": "IntAdd",
+            "output": {
+              "constant_val": 0,
+              "is_constant": false,
+              "offset": 32,
+              "size": 8,
+              "space_id": 4
+            },
+            "seq_num": 24
+          },
+          {
+            "address": 5083,
+            "asm_mnemonic": "RETURN",
+            "inputs": [
+              {
+                "constant_val": 0,
+                "is_constant": false,
+                "offset": 648,
+                "size": 8,
+                "space_id": 4
+              }
+            ],
+            "opcode": "Return",
+            "output": null,
+            "seq_num": 25
+          }
+        ],
+        "start_address": 5072,
+        "successors": []
+      }
+    ]
+  },
+  "stop_reason": "terminal_control_flow",
+  "template_source_counts": {
+    "sla_construct_tpl": 7
+  }
+}

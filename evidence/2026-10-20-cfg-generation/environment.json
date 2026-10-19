@@ -1,0 +1,9 @@
+{
+  "architecture": "arm64",
+  "system": "Darwin",
+  "rustc": "rustc 1.97.0 (2d8144b78 2026-07-07)",
+  "clang": "Homebrew clang version 22.1.8",
+  "python": "3.12.1",
+  "candle": "0.11.0",
+  "backend": "CPU; no Colab runtime allocated"
+}

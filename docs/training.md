@@ -19,7 +19,7 @@ cargo run --locked --release -p fission-forge -- train-smoke \
 
 `training.safetensors` contains named weights and both AdamW moments;
 `state.json` contains configuration, step, seed, tokenizer identity, and dataset
-hash. Schema 2 also records the effective batch hash, guarding against serializer
+hash. Schema 2+ also records the effective batch hash, guarding against serializer
 changes; reports identify all input representations. A report is written only after checkpoint prediction and next-step
 equivalence checks pass. Checkpoint-reload checks use F32 absolute tolerance
 `1e-5`. Loss reduction is reported rather than used as a general quality gate.
@@ -37,7 +37,10 @@ cargo run --locked --release -p fission-forge -- train-smoke \
 The fixed batch, absence of dropout, and deterministic initialization eliminate
 sampler/RNG state from this probe. A future corpus trainer must add that state
 before claiming equivalent resumption. No LR scheduler, gradient accumulation,
-gradient clipping, mixed precision, or generation path exists yet.
+gradient clipping, or mixed precision exists yet. A separate bounded
+[generation path](generation.md) loads model weights without optimizer state.
+Schema 3 saves also record training input representations and reject mismatched
+lanes during generation.
 
 ## Colab A100
 

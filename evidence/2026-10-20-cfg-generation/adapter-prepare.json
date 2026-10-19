@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "status": "complete",
+  "scope": "external_kit_adapter_only_no_scores",
+  "selection": "all public targets; ELF64 little-endian x86-64 headers only; no source-language oracle",
+  "forge_revision": "94f5551a0e0c451cffc2dfd39baf5436afb96b26",
+  "forge_worktree_dirty": true,
+  "forge_binary_sha256": "17abf81309cd2c38fc4d32e8a2a7b32ccb13a3e8b069fe58d89752f49be5ecf5",
+  "fission_commit": "f714ffdf656fbc25993a4e6ffb038bb851ac6ba5",
+  "fission_cli_sha256": "6e21288510bafdece7ca01b0230f1d9604c47b48c0f1ab400f0b8b9ac6b310b9",
+  "profile_sha256": "fa6ee43ef5b9789f84993ca925cc7ac81e1b23d8257f4ab6b1260fb8d81e89a3",
+  "functions_json_sha256": "49e36b9bb052c849c52918eb2dc8d63e58e3f80af17c22ecf61a0e295cdfeca2",
+  "representation": "pcode-plus-ssa-v1",
+  "max_new_tokens": 256,
+  "prepare_only": true,
+  "max_targets": null,
+  "manifest_targets": 7,
+  "device": "cpu",
+  "targets": [
+    {
+      "binary": "bin_000.elf",
+      "address": "0x1360",
+      "binary_sha256": "7b00115eeeb8d678ac2f4ae53855a7cd1018e66f97d723a43c177d9745394a3c",
+      "lift_attempted": true,
+      "raw_sha256": "061aa84f8b9dd3f8d8ffd44a4c43e85f898d8bfa008486b67f1b9434bd9cfa55",
+      "prompt_sha256": "dcc44c15a61b9bd76064a0003f866fc44765b77c74ef64ab610611e31ddab52e",
+      "prompt_bytes": 2217,
+      "blocks": 3,
+      "phis": 21,
+      "opaque_calls": 0,
+      "status": "prepared_only"
+    },
+    {
+      "binary": "bin_000.elf",
+      "address": "0x1380",
+      "binary_sha256": "7b00115eeeb8d678ac2f4ae53855a7cd1018e66f97d723a43c177d9745394a3c",
+      "lift_attempted": true,
+      "raw_sha256": "621d751eeeb39f3d0696707f97f7fc1bb73cb4cb6f37ecdcad6565cab78d1c34",
+      "prompt_sha256": "c62191e5b26c7c4c537236055556819507ea363ee49b080ff00e7bb412031880",
+      "prompt_bytes": 4581,
+      "blocks": 5,
+      "phis": 30,
+      "opaque_calls": 0,
+      "status": "prepared_only"
+    },
+    {
+      "binary": "bin_000.elf",
+      "address": "0x13b0",
+      "binary_sha256": "7b00115eeeb8d678ac2f4ae53855a7cd1018e66f97d723a43c177d9745394a3c",
+      "lift_attempted": true,
+      "raw_sha256": "a22b0b5f651e85a27ef91ff4e47ec797ba9338fbceb61fe90a6bbea3f57c3a17",
+      "prompt_sha256": "45cab7cafe0871a23f72244a8d5b40aca53850dd6e7805beaf03a63950ed9260",
+      "prompt_bytes": 446,
+      "blocks": 1,
+      "phis": 2,
+      "opaque_calls": 0,
+      "status": "prepared_only"
+    },
+    {
+      "binary": "bin_000.elf",
+      "address": "0x13c0",
+      "binary_sha256": "7b00115eeeb8d678ac2f4ae53855a7cd1018e66f97d723a43c177d9745394a3c",
+      "lift_attempted": true,
+      "raw_sha256": "572b107ecdb8613e00c832301f6284829d06f9627c802579fcc2e3a6256ee49b",
+      "prompt_sha256": "f9d4128f49c517b4e4468e97a53cf95c12e1fabc41c6525e346c487fb9f5ae30",
+      "prompt_bytes": 1811,
+      "blocks": 2,
+      "phis": 11,
+      "opaque_calls": 1,
+      "status": "prepared_only"
+    },
+    {
+      "binary": "bin_000.elf",
+      "address": "0x13d0",
+      "binary_sha256": "7b00115eeeb8d678ac2f4ae53855a7cd1018e66f97d723a43c177d9745394a3c",
+      "lift_attempted": true,
+      "raw_sha256": "24cea7cc965698ee38c13035d8cebebd63e0ad805140bdef95523637a508393b",
+      "prompt_sha256": "6538447c3b7bb2445b063bdbce00f5d0f46585138733a099ca032e143a27c131",
+      "prompt_bytes": 2265,
+      "blocks": 2,
+      "phis": 17,
+      "opaque_calls": 1,
+      "status": "prepared_only"
+    },
+    {
+      "binary": "bin_001.dat",
+      "address": "0x0",
+      "binary_sha256": "05226bd6f265c1a408644f2d31ed9f6a4ead045c1d25f64e2a43d830249ab641",
+      "status": "unsupported_binary_format"
+    },
+    {
+      "binary": "bin_002_missing.elf",
+      "address": "0x0",
+      "status": "failed",
+      "phase": "selection",
+      "diagnostic": "[Errno 2] No such file or directory: 'WORKSPACE/outputs/owned-decbench-failure-kit/binaries/bin_002_missing.elf'"
+    }
+  ],
+  "outcomes": {
+    "prepared_only": 5,
+    "unsupported_binary_format": 1,
+    "failed": 1
+  },
+  "attempted_lifts": 5,
+  "attempted_generations": 0,
+  "raw_report_sha256": "4d43628ce5d7d84664c8a79ddede034cc266e96d115bef02e4887557423a99bb",
+  "paths_relativized_for_publication": true
+}

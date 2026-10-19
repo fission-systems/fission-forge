@@ -10,8 +10,8 @@ model and adapter exist.
 
 This document defines the intended protocol. The fixed-batch training and input
 adapter probes described elsewhere do not establish a model-quality result.
-Model generation, DecBench adapter integration, a scoring run, and an upstream
-submission remain pending. Reference revisions are recorded in
+Bounded model generation and an external-kit adapter are implemented;
+a real DecBench dataset scoring run and upstream submission remain pending. Reference revisions are recorded in
 [`configs/evaluation/decbench.json`](../configs/evaluation/decbench.json);
 null dataset/hash fields must be resolved before a scored run.
 
@@ -116,3 +116,55 @@ evaluation result.
 
 DecBench reference: Noelo Lab, *DecBench: A Benchmarking Suite for Evaluating
 Perfect Decompilation* (2026), https://github.com/Noelo-Lab/decbench.
+
+## Implemented external-kit adapter
+
+`scripts/evaluation/decbench.py` now connects static Fission lifting, Rust SSA
+conversion, Rust checkpoint generation, Clang syntax/identifier validation,
+and the upstream external-results format. It does not run metric computation,
+kit binaries, generated C, kit-provided scripts, or an upstream submission.
+
+```sh
+# Inspect support and input sizes without running the model.
+python3 scripts/evaluation/decbench.py \
+  --kit /path/to/frozen-kit --prepare-only \
+  --representation pcode-plus-ssa-v1 --output outputs/decbench-inputs
+
+# Run a schema-3 checkpoint whose training lane matches the requested IR.
+python3 scripts/evaluation/decbench.py \
+  --kit /path/to/frozen-kit --checkpoint /path/to/checkpoint \
+  --representation pcode-plus-ssa-v1 --max-new-tokens 256 \
+  --output outputs/decbench-run
+```
+
+Run from the Forge root with the pinned clean Fission release build, a matching
+SLA profile, the Forge binary, and Clang on PATH. `--device cuda`/`metal` forward
+the requested generation backend and require a matching Forge build; the
+recorded adapter exercise used CPU. `--max-targets N` is an explicit budget:
+targets beyond it remain in the report as excluded, not absent. Each subprocess
+has a 120-second timeout. This initial adapter handles ELF64 little-endian x86-64
+headers. It does not consult private source-language metadata and therefore must
+not be called a C-only benchmark slice without an independently frozen selection.
+
+`run.json` records every public target, file/manifest/profile/checkpoint hashes,
+Forge binary/revision/dirty state, frontend revision, input sizes and CFG counts,
+generation stop reasons, errors, and separate lift/generation denominators.
+`target_*/` retains raw dumps, prompts, and exact model outputs. A separate
+`results/` contains one combined C file per binary and `results.json`.
+
+A function is emitted only after EOS, valid UTF-8, one top-level C function
+identified by Clang, and syntax validity of the combined translation unit. Partial
+or invalid outputs remain raw evidence, not repaired submissions. The initial
+output contract excludes preprocessor directives; no reference-source headers,
+fixups, inferred function names, or retries are injected. Syntactic validity
+is a preflight gate, not a DecBench metric or proof of equivalence.
+
+The adapter writes to a fresh directory and leaves the kit untouched. To package,
+review the results and follow the frozen kit's trusted upstream packaging procedure;
+packaging remains separate from metric scoring. The checked exercise used an
+owned one-function kit with the pinned DecBench packager, **not the DecBench
+dataset**. Its output was deliberately memorized during the connection probe,
+so it is unsuitable for model-quality evaluation. The failure exercise retained
+five prepared functions, one unsupported file, and one missing file; a budgeted
+run retained two prepared and five excluded targets. See
+[the evidence record](../evidence/2026-10-20-cfg-generation/README.md).

@@ -1,0 +1,14 @@
+{
+  "decompiler": {
+    "name": "Fission Forge",
+    "version": "94f5551a0e0c451cffc2dfd39baf5436afb96b26+dirty"
+  },
+  "results": {
+    "binary_00000.c": {
+      "binary": "bin_000.elf",
+      "functions": {
+        "forge_callee": "0x13b0"
+      }
+    }
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "evidence_scope": "owned_fixture_extraction_only",
+  "representation": "pcode-plus-ssa-v1",
+  "fission_commit": "f714ffdf656fbc25993a4e6ffb038bb851ac6ba5",
+  "fission_cli_sha256": "6e21288510bafdece7ca01b0230f1d9604c47b48c0f1ab400f0b8b9ac6b310b9",
+  "compiler": "Homebrew clang version 22.1.8",
+  "compiler_arguments": [
+    "--target=x86_64-unknown-linux-gnu",
+    "-O1",
+    "-fno-inline",
+    "-nostdlib",
+    "-fuse-ld=lld",
+    "-Wl,-e,forge_loop",
+    "-Wl,--build-id=none",
+    "WORKSPACE/outputs/pcode-cfg-final/functions.c",
+    "-o",
+    "WORKSPACE/outputs/pcode-cfg-final/functions.elf"
+  ],
+  "fixture_sha256": "e5e3acdc5a51d00a195d779a09aebcf0fd994b9921d575577e2046fb6ead6777",
+  "binary_sha256": "7b00115eeeb8d678ac2f4ae53855a7cd1018e66f97d723a43c177d9745394a3c",
+  "profile_sha256": "fa6ee43ef5b9789f84993ca925cc7ac81e1b23d8257f4ab6b1260fb8d81e89a3",
+  "attempted": 5,
+  "supported": 5,
+  "attempts": [
+    {
+      "id": "forge_diamond",
+      "address": "0x1360",
+      "status": "supported",
+      "operations": 41,
+      "prompt_sha256": "dcc44c15a61b9bd76064a0003f866fc44765b77c74ef64ab610611e31ddab52e",
+      "prompt_bytes": 2217,
+      "raw_file_sha256": "061aa84f8b9dd3f8d8ffd44a4c43e85f898d8bfa008486b67f1b9434bd9cfa55"
+    },
+    {
+      "id": "forge_loop",
+      "address": "0x1380",
+      "status": "supported",
+      "operations": 102,
+      "prompt_sha256": "c62191e5b26c7c4c537236055556819507ea363ee49b080ff00e7bb412031880",
+      "prompt_bytes": 4581,
+      "raw_file_sha256": "621d751eeeb39f3d0696707f97f7fc1bb73cb4cb6f37ecdcad6565cab78d1c34"
+    },
+    {
+      "id": "forge_callee",
+      "address": "0x13b0",
+      "status": "supported",
+      "operations": 6,
+      "prompt_sha256": "45cab7cafe0871a23f72244a8d5b40aca53850dd6e7805beaf03a63950ed9260",
+      "prompt_bytes": 446,
+      "raw_file_sha256": "a22b0b5f651e85a27ef91ff4e47ec797ba9338fbceb61fe90a6bbea3f57c3a17"
+    },
+    {
+      "id": "forge_direct_call",
+      "address": "0x13c0",
+      "status": "supported",
+      "operations": 22,
+      "prompt_sha256": "f9d4128f49c517b4e4468e97a53cf95c12e1fabc41c6525e346c487fb9f5ae30",
+      "prompt_bytes": 1811,
+      "raw_file_sha256": "572b107ecdb8613e00c832301f6284829d06f9627c802579fcc2e3a6256ee49b"
+    },
+    {
+      "id": "forge_indirect_call",
+      "address": "0x13d0",
+      "status": "supported",
+      "operations": 26,
+      "prompt_sha256": "6538447c3b7bb2445b063bdbce00f5d0f46585138733a099ca032e143a27c131",
+      "prompt_bytes": 2265,
+      "raw_file_sha256": "24cea7cc965698ee38c13035d8cebebd63e0ad805140bdef95523637a508393b"
+    }
+  ],
+  "raw_report_sha256": "7ffa02b36db6a5e0e1c7330e3ed76dbec7a5cd92ad15ddb30eed0ecd85ec4189",
+  "paths_relativized_for_publication": true
+}

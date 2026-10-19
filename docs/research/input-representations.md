@@ -12,7 +12,8 @@ Compare the following lanes on the same function identities and source labels:
 | --- | --- | --- |
 | `asm` | Binary-derived assembly | Handwritten smoke fixtures implemented; real extraction pending |
 | `pcode-raw` | Fission raw P-code with original semantic details | Typed import implemented as the substrate for v0; standalone raw-text training comparison pending |
-| `pcode-plus-ssa-v0` | P-code contracts with scalar SSA and effect ordering | Straight-line subset connected to training; CFG/phi/call support pending |
+| `pcode-plus-ssa-v0` | P-code contracts with scalar SSA and effect ordering | Stable straight-line subset |
+| `pcode-plus-ssa-v1` | Reconstructed CFG, cell/effect phis, and opaque calls | Five owned fixture conversions and CPU training/generation connection checked; corpus evaluation pending |
 | `vex` | VEX block statements, types, exits, next, and jumpkind | Proposed independent lifting comparison |
 | `asm-pcode` | Both representations with an explicit boundary | Optional ablation after separate lanes work |
 
@@ -51,8 +52,9 @@ Record unsupported cases explicitly, and classify any lowering as lossless,
 lossy with declared losses, or unsupported. Do not infer register-space IDs from
 numeric literals: bind them to the pinned lifter's actual space definitions.
 Version 0 handles overlapping register writes and conservatively orders memory
-accesses. Unknown calls and nontrivial CFGs are rejected. General SSA construction
-still needs explicit contracts for both; upstream lifting parity is unproven.
+accesses. Version 1 adds resolved CFGs and loop merges, with calls represented as conservative
+opaque effects. Precise ABI/callee analysis and upstream lifting parity remain
+unproven; see [the v1 contract](../cfg.md).
 
 The broader FIR/FSL migration is outside the initial model's prerequisites.
 These Notion documents are exploratory design sources, not implementation

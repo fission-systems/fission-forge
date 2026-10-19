@@ -6,6 +6,8 @@ use anyhow::{Context, Result, bail, ensure};
 use serde::{Deserialize, Serialize};
 use sha2::{Digest, Sha256};
 
+pub mod cfg;
+
 pub const REPRESENTATION: &str = "pcode-plus-ssa-v0";
 
 pub fn sha256(bytes: &[u8]) -> String {
@@ -35,7 +37,7 @@ impl Profile {
                 && self.endianness == "little"
                 && self.pointer_bytes == 8
                 && self.word_size == 1,
-            "unsupported lifter profile; v0 supports byte-addressed little-endian x86-64 only"
+            "unsupported lifter profile; P-code lanes support byte-addressed little-endian x86-64 only"
         );
         let spaces = [
             self.constant_space,
@@ -109,11 +111,11 @@ pub struct Input {
 }
 impl Input {
     pub fn compile(&self) -> Result<Compiled> {
-        ensure!(
-            self.representation == REPRESENTATION,
-            "unsupported input representation"
-        );
-        compile(&self.raw, &self.profile)
+        match self.representation.as_str() {
+            REPRESENTATION => compile(&self.raw, &self.profile),
+            cfg::REPRESENTATION => cfg::compile(&self.raw, &self.profile),
+            _ => bail!("unsupported input representation"),
+        }
     }
 }
 
@@ -170,6 +172,9 @@ pub struct Compiled {
     pub instructions: usize,
     pub ssa_values: usize,
     pub effect_steps: usize,
+    pub blocks: usize,
+    pub phis: usize,
+    pub opaque_calls: usize,
 }
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
@@ -543,6 +548,9 @@ pub fn compile(raw: &RawDump, profile: &Profile) -> Result<Compiled> {
         instructions,
         ssa_values: state.sizes.len(),
         effect_steps: effect,
+        blocks: 1,
+        phis: 0,
+        opaque_calls: 0,
     })
 }
 

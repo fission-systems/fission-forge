@@ -29,6 +29,9 @@ def main():
     parser.add_argument('--fission-root', type=Path, default=Path('external/Fission'))
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--forge', type=Path, default=Path('target/debug/forge'))
+    parser.add_argument('--fixture-dir', type=Path, default=Path('fixtures/pcode'))
+    parser.add_argument('--entry', default='forge_add')
+    parser.add_argument('--representation', choices=['pcode-plus-ssa-v0','pcode-plus-ssa-v1'], default='pcode-plus-ssa-v0')
     parser.add_argument('--cc', default='clang')
     parser.add_argument('--nm', default='llvm-nm')
     parser.add_argument('--rustc', default='rustc', help='Must match the Fission build compiler')
@@ -61,12 +64,12 @@ def main():
                    unique_space=spaces['unique'][0], register_space=spaces['register'][0],
                    ram_space=spaces['ram'][0], fission_commit=revision, sla_sha256=digest(sla.read_bytes()))
     write(output / 'profile.json', profile)
-    fixture_source = root / 'fixtures/pcode/functions.c'
-    labels = json.loads((root / 'fixtures/pcode/labels.json').read_text())
+    fixture_source = args.fixture_dir.resolve() / 'functions.c'
+    labels = json.loads((args.fixture_dir.resolve() / 'labels.json').read_text())
     shutil.copyfile(fixture_source, output / 'functions.c')
     binary = output / 'functions.elf'
     command = [args.cc, '--target=x86_64-unknown-linux-gnu', '-O1', '-fno-inline', '-nostdlib',
-               '-fuse-ld=lld', '-Wl,-e,forge_add', '-Wl,--build-id=none', str(output / 'functions.c'), '-o', str(binary)]
+               '-fuse-ld=lld', f'-Wl,-e,{args.entry}', '-Wl,--build-id=none', str(output / 'functions.c'), '-o', str(binary)]
     subprocess.run(command, check=True, timeout=180)
     symbols = {}
     for line in run([args.nm, '--defined-only', '--format=posix', binary]).splitlines():
@@ -88,20 +91,20 @@ def main():
             raw_path = output / f'{name}.raw.json'
             raw_path.write_text(raw_text)
             raw = json.loads(raw_text)
-            compiled = run([forge, 'pcode-compile', '--raw', raw_path, '--profile', output / 'profile.json',
+            compiled = run([forge, 'pcode-compile', '--representation', args.representation, '--raw', raw_path, '--profile', output / 'profile.json',
                             '--output', output / f'{name}.ssa'])
             summary = json.loads(compiled)
             record.update(status='supported', operations=summary['operations'], prompt_sha256=summary['prompt_sha256'],
                           prompt_bytes=len(summary['prompt'].encode()), raw_file_sha256=digest(raw_text.encode()))
             pairs.append(dict(schema_version=1, id=name,
-                              input=dict(representation='pcode-plus-ssa-v0', profile=profile, raw=raw), source=source,
+                              input=dict(representation=args.representation, profile=profile, raw=raw), source=source,
                               provenance=dict(binary_sha256=digest(binary.read_bytes()), raw_sha256=summary['raw_canonical_sha256'],
                                               source_sha256=digest(source.encode()), extraction='owned_c_fixture_static_lift')))
         except (ValueError, subprocess.CalledProcessError, subprocess.TimeoutExpired) as error:
             record.update(status='unsupported', reason=str(error), stderr=getattr(error, 'stderr', None))
     (output / 'pairs.jsonl').write_text(''.join(json.dumps(pair, separators=(',', ':')) + '\n' for pair in pairs))
     write(output / 'capture.json', dict(schema_version=1, evidence_scope='owned_fixture_extraction_only',
-          fission_commit=revision, fission_cli_sha256=digest(cli.read_bytes()),
+          representation=args.representation, fission_commit=revision, fission_cli_sha256=digest(cli.read_bytes()),
           compiler=run([args.cc, '--version']).splitlines()[0], compiler_arguments=command[1:],
           fixture_sha256=digest(fixture_source.read_bytes()), binary_sha256=digest(binary.read_bytes()),
           profile_sha256=digest((output / 'profile.json').read_bytes()),

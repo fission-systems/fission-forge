@@ -141,16 +141,18 @@ impl Adam {
 
 #[derive(Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
-struct Checkpoint {
-    schema_version: u32,
-    model: ModelConfig,
+pub(crate) struct Checkpoint {
+    pub(crate) schema_version: u32,
+    pub(crate) model: ModelConfig,
     optimizer: AdamConfig,
     step: u64,
     seed: u64,
     dataset_sha256: String,
-    tokenizer: String,
+    pub(crate) tokenizer: String,
     #[serde(default)]
     input_sha256: Option<String>,
+    #[serde(default)]
+    pub(crate) representations: Vec<String>,
 }
 
 pub struct Options {
@@ -220,7 +222,8 @@ pub fn run(
     if let Some(resume) = &options.resume {
         let state: Checkpoint = serde_json::from_slice(&fs::read(resume.join("state.json"))?)?;
         ensure!(
-            ((state.schema_version == 2
+            (((state.schema_version == 2
+                || (state.schema_version == 3 && state.representations == batch.representations))
                 && state.input_sha256.as_deref() == Some(&batch.input_sha256))
                 || (state.schema_version == 1 && batch.representations == ["assembly-v0"]))
                 && state.model == config
@@ -269,7 +272,8 @@ pub fn run(
     ensure!(final_loss.is_finite(), "nonfinite final loss");
     let completed_steps = optimizer.step;
     let state = Checkpoint {
-        schema_version: 2,
+        schema_version: 3,
+        representations: batch.representations.clone(),
         input_sha256: Some(batch.input_sha256.clone()),
         model: config.clone(),
         optimizer: optimizer.config.clone(),
@@ -443,6 +447,21 @@ mod ir_checkpoint_tests {
             fs::read(full.join("training.safetensors"))?
         );
         let mut state: Checkpoint = serde_json::from_slice(&fs::read(first.join("state.json"))?)?;
+        state.schema_version = 2;
+        state.representations.clear();
+        fs::write(first.join("state.json"), serde_json::to_vec(&state)?)?;
+        let schema2 = root.0.join("schema2-resume");
+        run(
+            &config,
+            &dataset,
+            &schema2,
+            &Device::Cpu,
+            options(1, Some(first.clone())),
+        )?;
+        assert_eq!(
+            fs::read(schema2.join("training.safetensors"))?,
+            fs::read(full.join("training.safetensors"))?
+        );
         state.input_sha256 = Some("0".repeat(64));
         fs::write(first.join("state.json"), serde_json::to_vec(&state)?)?;
         let rejected = root.0.join("rejected");
