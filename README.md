@@ -152,6 +152,13 @@ to improve, with all 320 completions preserved and original-reference execution
 rechecked. An explicit LR-resume option now preserves Adam history while
 recording an intentional LR fork; it is not an implicit optimizer reset.
 
+A separate [lower-LR recovery](evidence/2026-10-20-lr-recovery/README.md) resumed
+step 120 with preserved Adam history at LR 0.0001. It retained **NLL 1.966 at
+step 240**, then regressed to 2.532 at the fixed final step 1080. Baseline and
+final raw C still compiled **0/160**; the intermediate NLL-best checkpoint's
+functional accuracy is unmeasured. The final checkpoint is not promoted, and
+further repetition of this tiny corpus is not treated as a scaling strategy.
+
 Earlier short-input probes:
 
 On **2026-10-20 KST**, the Rust/Candle CUDA implementation ran on a Colab

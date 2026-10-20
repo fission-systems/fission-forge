@@ -110,8 +110,10 @@ cases before reporting compile and probe-match rates. It does not change the
 old CPU functional protocol or claim a DecBench score.
 
 Archives above 8 MiB upload in 4 MiB parts and are assembled remotely with a
-full SHA-256 check before launch. Continuation result archives retain final and
-validation-best checkpoint weights plus intermediate state/report metadata.
+full SHA-256 check before launch. Continuation result archives retain final weights and any validation-best
+checkpoint produced in that job, plus intermediate state/report metadata.
+A historical best from another run must be retained separately; its metadata
+can remain present even when its original absolute path is unavailable.
 Other intermediate weights remain only on the temporary VM and are not exported.
 If a phase fails before a final report exists, partial checkpoints are retained
 for recovery. Cleanup still releases the named runtime after artifact collection.
@@ -140,3 +142,12 @@ old/new LR and the parent checkpoint SHA/step. Subsequent ordinary resumes use
 the newly saved LR. Model, corpus and validation-setting mismatches remain
 errors even with the LR override. A real CPU corpus integration test exercises
 rejection, explicit override, unchanged parent hashes and subsequent resume.
+
+Freshly rebuilt Apache-2.0 corpus metadata changes the release lock and cannot
+resume an old checkpoint expecting the historical lock. Preserve the old frozen
+corpus to reproduce these recorded runs. A new corpus needs a newly declared
+functional plan with its own lock/checkpoint hashes and a fresh
+`functional.py freeze` run. To use that fresh freeze with `score_gpu.py --reference-evidence`,
+copy its `manifest.json` to `protocol-manifest.json` inside the same new freeze
+directory; keep its generated `inputs.json` and `references.json`. Do not edit
+an old frozen manifest to make a new corpus appear compatible.

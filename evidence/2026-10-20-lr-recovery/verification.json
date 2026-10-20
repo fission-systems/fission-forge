@@ -1,0 +1,31 @@
+{
+  "result_archive_sha256_verified": true,
+  "final_and_validation_best_checkpoint_sha256_verified": true,
+  "parent_checkpoint_sha256_unchanged": true,
+  "explicit_lr_transition_recorded": true,
+  "optimizer_step_and_sampler_continued": true,
+  "updates": 960,
+  "initial_step": 120,
+  "final_step": 1080,
+  "sampler": {
+    "cursor": 120,
+    "epoch": 2,
+    "seed": 42
+  },
+  "all_sample_ids_belong_to_train": true,
+  "epoch_one_contains_all_480_train_ids": true,
+  "source_driver_sha256_verified": true,
+  "test_model_examples": 0,
+  "external_training_rows": 0,
+  "tests": {
+    "rust": 22,
+    "corpus_python": 8,
+    "evaluation_python": 11,
+    "colab_controller": 8,
+    "real_cpu_lr_resume": 1,
+    "data_intake": 4
+  },
+  "account_compute_units_before": 245.93,
+  "account_compute_units_after": 242.18,
+  "account_balance_is_not_per_run_price": true
+}

@@ -1,0 +1,13 @@
+{
+  "selection": "validation_NLL_only_no_functional_or_test_selection",
+  "selected_step": 240,
+  "selected_nll": 1.9655011126507558,
+  "checkpoint_sha256": "12a076b3655db1f21eb0bae0f0d2a3e570490af87c311f76efc5a4f6a0dbb86f",
+  "local_checkpoint": "outputs/colab-lr-recovery-v1/results/continuation/checkpoints/step-00000240",
+  "final_step": 1080,
+  "final_nll": 2.5315698534219604,
+  "final_checkpoint_promoted": false,
+  "selected_checkpoint_functional_accuracy": "not_measured",
+  "selected_weights_verified": true,
+  "model_parameters": 5380608
+}

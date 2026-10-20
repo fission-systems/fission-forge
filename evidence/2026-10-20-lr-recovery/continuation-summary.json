@@ -1,0 +1,14 @@
+{
+  "initial_step": 120,
+  "completed_step": 1080,
+  "initial_nll": 2.036877628579058,
+  "final_nll": 2.5315698534219604,
+  "best_validation": {
+    "checkpoint": "/content/forge-corpus-results/continuation/checkpoints/step-00000240",
+    "nll": 1.9655011126507558,
+    "step": 240,
+    "weights_sha256": "12a076b3655db1f21eb0bae0f0d2a3e570490af87c311f76efc5a4f6a0dbb86f"
+  },
+  "external_training_rows": 0,
+  "test_model_examples": 0
+}

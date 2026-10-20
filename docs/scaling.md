@@ -90,3 +90,10 @@ labels. Four additional passes consumed 215,632 completion tokens, not new data.
 These byte tokens are not directly comparable to another model's BPE-token
 training budget. They show why corpus scale, coverage and independent evaluation
 must grow before treating a 20B parameter target as an executable training plan.
+
+The recovery has completed. Best NLL was 1.965501113 at step 240 (saved), but
+fixed final step 1080 regressed to 2.531569853. Baseline and fixed-final C both
+compiled 0/160, so no functional improvement is claimed. The NLL-best checkpoint
+has not received a functional score. The final is not promoted; expanded
+validated data is the next prerequisite rather than another blind repeat.
+[Recovery evidence](../evidence/2026-10-20-lr-recovery/README.md).
