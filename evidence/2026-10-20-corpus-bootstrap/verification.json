@@ -1,0 +1,19 @@
+{
+  "full_release_reaudit": "passed",
+  "rust_tests": 18,
+  "corpus_python_tests": 8,
+  "evaluation_python_tests": 2,
+  "integrity_fixture": "20 owned programs / 60 attempted compiler variants",
+  "integrity_cases": [
+    "frozen split tamper",
+    "artifact hash tamper",
+    "rehashed assignment swap",
+    "missing planned attempt",
+    "rehashed incorrect label",
+    "cross-split fingerprint quarantine and empty holdout refusal",
+    "unsupported attempt retained in denominator"
+  ],
+  "cpu_only": true,
+  "corpus_training_performed": false,
+  "heldout_model_evaluation_performed": false
+}

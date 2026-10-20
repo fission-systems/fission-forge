@@ -3,7 +3,7 @@ use std::path::PathBuf;
 use anyhow::{Result, bail};
 use candle_core::Device;
 use clap::{Parser, Subcommand, ValueEnum};
-use fission_forge::{generation, pcode, probe, training};
+use fission_forge::{corpus, generation, pcode, probe, training};
 
 #[derive(Parser)]
 #[command(
@@ -18,6 +18,13 @@ struct Cli {
 
 #[derive(Subcommand)]
 enum Command {
+    /// Verify corpus provenance, remove cross-split clones, and optionally freeze a new release.
+    CorpusAudit {
+        #[arg(long)]
+        root: PathBuf,
+        #[arg(long)]
+        finalize: bool,
+    },
     /// Generate raw completion bytes from a trained checkpoint with bounded greedy decoding.
     Generate {
         #[arg(long)]
@@ -100,6 +107,12 @@ fn device(backend: Backend) -> Result<Device> {
 
 fn main() -> Result<()> {
     match Cli::parse().command {
+        Command::CorpusAudit { root, finalize } => {
+            println!(
+                "{}",
+                serde_json::to_string_pretty(&corpus::run(&root, finalize)?)?
+            );
+        }
         Command::Generate {
             checkpoint,
             prompt,

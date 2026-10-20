@@ -7,6 +7,7 @@
   <a href="docs/training.md">Training</a> ·
   <a href="docs/research/input-representations.md">Input representations</a> ·
   <a href="docs/evaluation.md">Evaluation</a> ·
+  <a href="docs/corpus.md">Corpus</a> ·
   <a href="LICENSE">AGPL-3.0</a>
 </p>
 
@@ -37,7 +38,7 @@ A100 checks. It does not yet ship a generally useful decompiler or a pretrained 
 | Checkpoints | Safetensors weights and optimizer moments; reload and next-update equivalence checks |
 | Model sizes | 61,888-parameter IR probe, 148,608-parameter assembly smoke model, and 99,927,552-parameter experimental configuration |
 | CUDA | 148K and approximately 100M assembly probes exercised on a Colab A100 40 GB; IR lane tested on CPU |
-| Input data | Four handwritten assembly/C pairs and three compiled C/P-code fixture pairs; software checks only |
+| Input data | Owned synthetic bootstrap corpus with frozen family-disjoint train/validation/test splits, plus small assembly and P-code fixtures |
 | P-code frontend | Typed raw-dump validation, pinned SLA profile, reproducible owned-C extraction, and explicit unsupported records |
 | P-code+ / SSA | Stable straight-line v0 plus v1 CFG reconstruction, loop phis, instruction-internal merges, and conservative opaque calls |
 | Generation | Bounded greedy byte decoding, exact output preservation, EOS/context/budget reporting, checkpoint lane checks; CPU validated |
@@ -68,6 +69,12 @@ matches raw P-code and independent integer oracles on 106 inputs. A separate
 one-example memorization probe generated its C label and passed the pinned
 DecBench packaging format. **This is plumbing evidence, not held-out accuracy or
 a DecBench score.** Corpus training and scored evaluation remain ahead.
+
+The [bootstrap corpus pipeline](docs/corpus.md) checks owned C labels on the host,
+records every compiler/lifter attempt, filters duplicate and cross-split
+fingerprints, and freezes separate train/validation/test files. This is synthetic
+family-disjoint data preparation; real-project independence, corpus training,
+and held-out model quality remain unmeasured.
 
 Read [v0 input commands](docs/pcode.md), [CFG/call contracts](docs/cfg.md),
 [generation](docs/generation.md), and [recorded evidence](evidence/2026-10-20-cfg-generation/README.md).
@@ -152,6 +159,8 @@ No DecBench score is claimed here. See
 | [`fixtures/pcode/`](fixtures/pcode/) | Stable v0 fixtures and negative cases |
 | [`fixtures/pcode-cfg/`](fixtures/pcode-cfg/) | Owned diamond/loop/call functions, real dumps, and v1 extraction rows |
 | [`scripts/colab/`](scripts/colab/) | CUDA build and bounded probe orchestration |
+| [`scripts/corpus/`](scripts/corpus/) | Owned C corpus builder and frozen-release integrity checks |
+| [`configs/corpus/`](configs/corpus/) | Versioned source-family split recipe |
 | [`scripts/evaluation/`](scripts/evaluation/) | Static DecBench external-kit adapter and parser checks |
 | [`evidence/`](evidence/) | Small, recorded measurement reports; no model weights |
 | [`docs/research/`](docs/research/) | Paper notes and IR design hypotheses |
@@ -169,6 +178,7 @@ cargo test --locked --workspace
 cargo clippy --locked --workspace --all-targets -- -D warnings
 python3 -m py_compile scripts/colab/transformer_probe.py scripts/pcode/capture_fixture.py
 python3 -m unittest discover -s scripts/evaluation -p 'test_*.py'
+python3 -m unittest discover -s scripts/corpus -p 'test_*.py'
 ```
 
 Tests cover causal masking, shifted completion loss, prompt/padding exclusion,

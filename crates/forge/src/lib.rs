@@ -1,3 +1,4 @@
+pub mod corpus;
 pub mod data;
 pub mod generation;
 pub mod model;

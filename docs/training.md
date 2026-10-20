@@ -72,3 +72,11 @@ whole GPU and may miss short-lived peaks; it is not an allocator peak metric.
 Both smoke configurations use a 260-token byte vocabulary. The larger one is
 14 layers, hidden size 768, 12 heads, and a 3072-wide feed-forward network.
 It exists to measure feasibility; two updates are not pretraining.
+
+## Corpus preparation
+
+The [synthetic bootstrap corpus](corpus.md) has frozen family-disjoint splits
+and an independent Rust integrity audit. Building it does not extend this
+fixed-batch trainer into a corpus trainer. Use training rows only; validation and
+test stay separate. Recorded corpus sequences exceed the original IR probe
+context, so long-context memory and throughput require a new measured gate.

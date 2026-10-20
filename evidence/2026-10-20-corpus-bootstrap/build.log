@@ -1,0 +1,32 @@
+{"phase": "native_labels_checked", "programs": 400, "comparisons": 25600}
+{"phase": "lifted", "family": "affine", "optimization": "O0", "attempted": 40, "supported": 40}
+{"phase": "lifted", "family": "affine", "optimization": "O1", "attempted": 80, "supported": 80}
+{"phase": "lifted", "family": "affine", "optimization": "O2", "attempted": 120, "supported": 120}
+{"phase": "lifted", "family": "bitmask", "optimization": "O0", "attempted": 160, "supported": 160}
+{"phase": "lifted", "family": "bitmask", "optimization": "O1", "attempted": 200, "supported": 200}
+{"phase": "lifted", "family": "bitmask", "optimization": "O2", "attempted": 240, "supported": 240}
+{"phase": "lifted", "family": "bounded_loop", "optimization": "O0", "attempted": 280, "supported": 280}
+{"phase": "lifted", "family": "bounded_loop", "optimization": "O1", "attempted": 320, "supported": 320}
+{"phase": "lifted", "family": "bounded_loop", "optimization": "O2", "attempted": 360, "supported": 360}
+{"phase": "lifted", "family": "carry", "optimization": "O0", "attempted": 400, "supported": 400}
+{"phase": "lifted", "family": "carry", "optimization": "O1", "attempted": 440, "supported": 440}
+{"phase": "lifted", "family": "carry", "optimization": "O2", "attempted": 480, "supported": 480}
+{"phase": "lifted", "family": "clamp", "optimization": "O0", "attempted": 520, "supported": 520}
+{"phase": "lifted", "family": "clamp", "optimization": "O1", "attempted": 560, "supported": 560}
+{"phase": "lifted", "family": "clamp", "optimization": "O2", "attempted": 600, "supported": 600}
+{"phase": "lifted", "family": "quotient_round", "optimization": "O0", "attempted": 640, "supported": 640}
+{"phase": "lifted", "family": "quotient_round", "optimization": "O1", "attempted": 680, "supported": 680}
+{"phase": "lifted", "family": "quotient_round", "optimization": "O2", "attempted": 720, "supported": 720}
+{"phase": "lifted", "family": "remainder", "optimization": "O0", "attempted": 760, "supported": 760}
+{"phase": "lifted", "family": "remainder", "optimization": "O1", "attempted": 800, "supported": 800}
+{"phase": "lifted", "family": "remainder", "optimization": "O2", "attempted": 840, "supported": 840}
+{"phase": "lifted", "family": "rotate_mix", "optimization": "O0", "attempted": 880, "supported": 880}
+{"phase": "lifted", "family": "rotate_mix", "optimization": "O1", "attempted": 920, "supported": 920}
+{"phase": "lifted", "family": "rotate_mix", "optimization": "O2", "attempted": 960, "supported": 960}
+{"phase": "lifted", "family": "select", "optimization": "O0", "attempted": 1000, "supported": 1000}
+{"phase": "lifted", "family": "select", "optimization": "O1", "attempted": 1040, "supported": 1040}
+{"phase": "lifted", "family": "select", "optimization": "O2", "attempted": 1080, "supported": 1080}
+{"phase": "lifted", "family": "xor_fold", "optimization": "O0", "attempted": 1120, "supported": 1120}
+{"phase": "lifted", "family": "xor_fold", "optimization": "O1", "attempted": 1160, "supported": 1160}
+{"phase": "lifted", "family": "xor_fold", "optimization": "O2", "attempted": 1200, "supported": 1200}
+{"attempted": 1200, "quarantined_families": [], "splits": {"test": {"context_eligible": {"1024": 0, "16384": 160, "2048": 0, "4096": 120, "8192": 160}, "families": ["clamp", "quotient_round"], "max_sequence": 5321, "min_sequence": 2579, "programs": 80, "rows": 160}, "train": {"context_eligible": {"1024": 0, "16384": 480, "2048": 119, "4096": 401, "8192": 480}, "families": ["affine", "bitmask", "bounded_loop", "carry", "rotate_mix", "select"], "max_sequence": 4878, "min_sequence": 1167, "programs": 240, "rows": 480}, "validation": {"context_eligible": {"1024": 0, "16384": 160, "2048": 41, "4096": 121, "8192": 160}, "families": ["remainder", "xor_fold"], "max_sequence": 4153, "min_sequence": 1979, "programs": 80, "rows": 160}}, "supported": 1200, "unsupported": 0}

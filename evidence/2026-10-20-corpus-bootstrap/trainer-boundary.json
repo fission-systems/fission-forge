@@ -1,0 +1,18 @@
+{
+  "command": [
+    "target/debug/forge",
+    "train-smoke",
+    "--config",
+    "configs/model/tiny-ir.json",
+    "--dataset",
+    "outputs/corpus-context-single.jsonl",
+    "--output",
+    "outputs/corpus-context-rejected",
+    "--steps",
+    "1"
+  ],
+  "exit_code": 1,
+  "stderr": "Error: pair affine_0000-O0 exceeds context; truncation is forbidden\n",
+  "input_sha256": "cd3baf4449380581361b97987cf405390b60fbae2342348c88ee25cfd29383e5",
+  "checkpoint_created": false
+}
