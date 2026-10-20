@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "status": "complete",
+  "scope": "owned_synthetic_validation_functional_probes_not_DecBench_or_real_project_accuracy",
+  "manifest_sha256": "c8de92360f5281f9f7c1afc47a4ee643c857ae28b8a9cb71b3c514944940bdf0",
+  "checkpoint_sha256": "a05dc1839199068281d3517ac52a5f40625b4f4ad0476382dac17a289a52f05d",
+  "checkpoint_state_sha256": "1cffd0925eddf676e14a46d10c435b4a291fd19174b4c73ee624d8aa929371bd",
+  "checkpoint_step": 1920,
+  "settings": {
+    "max_new_tokens": 256,
+    "generation_timeout_seconds": 30,
+    "execution_timeout_seconds": 10,
+    "fuel_per_case": 100000,
+    "memory_bytes": 1048576,
+    "decoding": "greedy_eos_and_bytes_only_kv_cache",
+    "device": "cpu"
+  },
+  "expected_targets": 160,
+  "cases_per_target": 64,
+  "test_model_examples": 0,
+  "completed_targets": 160,
+  "status_counts": {
+    "compile_failure": 160
+  },
+  "stop_reason_counts": {
+    "eos": 160
+  },
+  "compiled_targets": 0,
+  "compile_rate": 0.0,
+  "all_case_match_targets": 0,
+  "all_case_match_rate": 0.0,
+  "expected_cases": 10240,
+  "matched_cases": 0,
+  "case_match_rate": 0.0,
+  "wall_seconds": 15.563300125068054,
+  "records_sha256": "44821ff7cbc381e48523e9f697d0ae65ab4a3808ac20704e47412c1e51991628"
+}

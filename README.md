@@ -42,7 +42,7 @@ A100 checks. It does not yet ship a generally useful decompiler or a pretrained 
 | Input data | Owned synthetic bootstrap corpus with frozen family-disjoint train/validation/test splits, plus small assembly and P-code fixtures |
 | P-code frontend | Typed raw-dump validation, pinned SLA profile, reproducible owned-C extraction, and explicit unsupported records |
 | P-code+ / SSA | Stable straight-line v0 plus v1 CFG reconstruction, loop phis, instruction-internal merges, and conservative opaque calls |
-| Generation | Bounded greedy byte decoding, exact output preservation, EOS/context/budget reporting, checkpoint lane checks; CPU validated |
+| Generation | Bounded greedy byte decoding with detached KV cache, exact bytes, EOS/context/budget reporting and checkpoint lane checks; CPU validated |
 | DecBench | Static external-kit adapter and pinned packaging format exercised on an owned fixture; benchmark scores pending |
 
 The fixed-batch probe accepts at most 32 examples. The new corpus trainer samples
@@ -144,6 +144,14 @@ handles orchestration; model computation stays in Rust. Runtime allocation is
 manual and should be stopped after collecting results.
 
 ## Evaluation
+
+[Full synthetic validation](docs/functional-evaluation.md) now measures unchanged
+generated C through freestanding compilation and capability-free Wasm execution.
+The 480-update baseline and a fixed 1,920-update additional-training experiment
+both compiled **0/160** targets; neither reached candidate execution. Failure
+rows remain in the denominator. These are measured limitations of the tiny model,
+not DecBench scores or evidence of useful decompilation.
+
 
 Use a pinned DecBench evaluator, dataset revision, and target manifest. Report
 GED, type match, byte match, and the upstream Union score on matching scopes,

@@ -1,12 +1,14 @@
 # Bounded generation from Forge checkpoints
 
 `forge generate` loads model tensors from a training checkpoint and performs
-full-prefix greedy decoding. There is no KV cache, sampling, beam search,
+greedy decoding with a detached KV cache. There is no sampling, beam search,
 repair loop, or source-reference lookup. EOS and the 256 byte tokens are legal
 completion tokens; PAD/BOS/SEP are masked. Ties choose the lowest legal token ID.
 The token budget is 1..4,096; context limits stop generation without truncating
-the input. Every step recomputes the whole prefix, so this is a correctness-first
-inference path, not a serving-throughput benchmark.
+the input. The prefix is computed once in query tiles; subsequent tokens update per-layer
+keys/values at the correct learned position. Cache logits are compared with full
+prefix evaluation across multiple layers and context boundaries. This remains a
+correctness-first path rather than a serving-throughput benchmark.
 
 ```sh
 cargo run --locked -p fission-forge -- generate \

@@ -1,4 +1,4 @@
-//! Deterministic, bounded byte generation. Full-prefix inference; no KV cache.
+//! Deterministic, bounded byte generation with detached incremental KV inference.
 use crate::{
     data,
     model::{Decoder, ModelConfig},
@@ -132,7 +132,7 @@ pub fn run(
     }
     let tensors = candle_core::safetensors::SliceSafetensors::new(&bytes)?;
     let vars = candle_nn::VarMap::new();
-    let model = Decoder::new(&state.model, &vars, device)?;
+    let _ = Decoder::new(&state.model, &vars, device)?;
     let expected = crate::model::named_vars(&vars);
     let model_names: std::collections::BTreeSet<_> = tensors
         .tensors()
@@ -154,19 +154,28 @@ pub fn run(
     }
     // Drop optimizer payload bytes after loading only model tensors onto the device.
     drop(bytes);
+    let model = Decoder::for_eval(&state.model, &vars, device)?;
+    let mut cache: Option<crate::model::DecodeCache> = None;
+    let query_chunk = state
+        .corpus
+        .as_ref()
+        .map_or(256, |s| s.settings.attention_chunk);
     let completion = decode(prompt, state.model.max_seq_len, max_new_tokens, |ids| {
-        let ids = Tensor::from_slice(ids, (1, ids.len()), device)?;
-        Ok(model
-            .forward_chunked(
-                &ids,
-                state
-                    .corpus
-                    .as_ref()
-                    .map_or(0, |s| s.settings.attention_chunk),
-            )?
-            .get(0)?
-            .get(ids.dim(1)? - 1)?
-            .to_vec1::<f32>()?)
+        let logits = if let Some(cache) = &mut cache {
+            ensure!(
+                cache.position() + 1 == ids.len(),
+                "generation cache length mismatch"
+            );
+            model.decode_step(&Tensor::new(&[[*ids.last().unwrap()]], device)?, cache)?
+        } else {
+            let (logits, prefix_cache) = model.prefill(
+                &Tensor::from_slice(ids, (1, ids.len()), device)?,
+                query_chunk,
+            )?;
+            cache = Some(prefix_cache);
+            logits
+        };
+        Ok(logits.get(0)?.get(0)?.to_vec1::<f32>()?)
     })?;
     let text = String::from_utf8(completion.bytes.clone()).ok();
     let report = Report {
@@ -178,7 +187,7 @@ pub fn run(
         prompt_sha256: pcode::sha256(prompt.as_bytes()),
         prompt_bytes: prompt.len(),
         max_new_tokens,
-        decoding: "greedy_eos_and_bytes_only",
+        decoding: "greedy_eos_and_bytes_only_kv_cache",
         model: state.model,
         backend: format!("{:?}", device.location()),
         completion,

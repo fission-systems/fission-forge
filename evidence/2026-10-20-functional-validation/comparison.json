@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "scope": "owned_synthetic_validation_functional_probes_not_DecBench_or_real_project_accuracy",
+  "manifest_sha256": "c8de92360f5281f9f7c1afc47a4ee643c857ae28b8a9cb71b3c514944940bdf0",
+  "corpus_lock_sha256": "f3c7d0d3f65460e8b4efdf32caa218ba6d68a24b5d0dfd0c949b8b1617252d9d",
+  "validation_split_sha256": "ffa2c040db602bc327706d87e6ddc553cf3097091eaba56ab6d2d4ea3c8020a7",
+  "evaluation_settings": {
+    "max_new_tokens": 256,
+    "generation_timeout_seconds": 30,
+    "execution_timeout_seconds": 10,
+    "fuel_per_case": 100000,
+    "memory_bytes": 1048576,
+    "decoding": "greedy_eos_and_bytes_only_kv_cache",
+    "device": "cpu"
+  },
+  "reference_comparisons": 10240,
+  "baseline": {
+    "checkpoint_step": 480,
+    "checkpoint_sha256": "dab69ac3f0fa46dc5c9d7e5e0667ab57685da75da31dd21c9acb98d214fbe334",
+    "targets": 160,
+    "compiled": 0,
+    "execution_reached": 0,
+    "executed_probe_cases": 0,
+    "all_cases_match": 0,
+    "matched_probe_cases": 0,
+    "expected_probe_cases": 10240,
+    "statuses": {
+      "compile_failure": 160
+    },
+    "compile_rate": 0.0,
+    "all_case_match_rate": 0.0
+  },
+  "improved": {
+    "checkpoint_step": 1920,
+    "checkpoint_sha256": "a05dc1839199068281d3517ac52a5f40625b4f4ad0476382dac17a289a52f05d",
+    "targets": 160,
+    "compiled": 0,
+    "execution_reached": 0,
+    "executed_probe_cases": 0,
+    "all_cases_match": 0,
+    "matched_probe_cases": 0,
+    "expected_probe_cases": 10240,
+    "statuses": {
+      "compile_failure": 160
+    },
+    "compile_rate": 0.0,
+    "all_case_match_rate": 0.0
+  },
+  "training": {
+    "additional_updates": 1440,
+    "unique_train_ids": 480,
+    "visits_per_train_id": 3,
+    "initial_validation_nll": 2.1763323508425274,
+    "final_validation_nll": 2.7032660774256656,
+    "test_model_examples": 0
+  },
+  "differences": {
+    "compiled_targets": 0,
+    "all_case_match_targets": 0
+  },
+  "test_model_examples": 0,
+  "interpretation": "finite_64_case_u32_source_equivalence_probe_not_formal_equivalence_or_DecBench",
+  "artifacts": {
+    "baseline-completions.jsonl": "7e6e6e807804942bb51959f30623703fe168e9870486d790439cae14da3aa656",
+    "improved-completions.jsonl": "742d59b67896b01921879407e338f5692d32f5ef24a5208b85c701b5fcf79f1e"
+  }
+}

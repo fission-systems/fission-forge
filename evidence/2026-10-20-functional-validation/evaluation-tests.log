@@ -1,0 +1,14 @@
+test_clang_parses_one_function_without_repair (test_decbench.AdapterTests.test_clang_parses_one_function_without_repair) ... ok
+test_manifest_uses_public_and_rejects_ambiguous_identity (test_decbench.AdapterTests.test_manifest_uses_public_and_rejects_ambiguous_identity) ... ok
+test_failed_rows_remain_in_full_denominator_and_missing_rows_fail (test_functional.DenominatorTests.test_failed_rows_remain_in_full_denominator_and_missing_rows_fail) ... ok
+test_modified_completion_is_rejected (test_functional.DenominatorTests.test_modified_completion_is_rejected) ... ok
+test_compile_source_contract_and_invalid_encoding_failures (test_functional.FunctionalTests.test_compile_source_contract_and_invalid_encoding_failures) ... ok
+test_nontermination_and_undefined_division_are_failures (test_functional.FunctionalTests.test_nontermination_and_undefined_division_are_failures) ... ok
+test_sandbox_rejects_host_imports_wrong_abi_and_memory_overcommit (test_functional.FunctionalTests.test_sandbox_rejects_host_imports_wrong_abi_and_memory_overcommit) ... ok
+test_unchanged_correct_source_and_wrong_output_are_distinguished (test_functional.FunctionalTests.test_unchanged_correct_source_and_wrong_output_are_distinguished) ... ok
+test_wall_timeout_terminates_process_group (test_functional.FunctionalTests.test_wall_timeout_terminates_process_group) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 1.035s
+
+OK

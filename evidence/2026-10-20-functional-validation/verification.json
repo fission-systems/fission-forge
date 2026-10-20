@@ -1,0 +1,26 @@
+{
+  "scope": "full_validation_generation_compilation_and_capability_free_execution_pipeline",
+  "source_base_revision": "38a9563639830ece8d180af9f98720841426299b",
+  "source_worktree_dirty": true,
+  "checks": {
+    "rust": 22,
+    "corpus_python": 8,
+    "evaluation_python": 9,
+    "rustfmt": true,
+    "clippy_warnings_denied": true,
+    "python_compile": true
+  },
+  "baseline_repeat_raw_bytes_identical_targets": 160,
+  "reference_execution_comparisons": 10240,
+  "raw_outputs_unchanged_targets_per_arm": 160,
+  "baseline_complete_targets": 160,
+  "additional_training_complete_targets": 160,
+  "train_only_additional_updates": 1440,
+  "train_visits_each": 3,
+  "test_model_examples": 0,
+  "training_peak_resident_bytes": 823115776,
+  "gpu_runtime_allocated": false,
+  "published_raw_outputs_replayed_targets_per_arm": 160,
+  "replayed_original_source_comparisons": 10240,
+  "published_metrics_reproduced": true
+}

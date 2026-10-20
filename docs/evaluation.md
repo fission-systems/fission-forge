@@ -168,3 +168,10 @@ so it is unsuitable for model-quality evaluation. The failure exercise retained
 five prepared functions, one unsupported file, and one missing file; a budgeted
 run retained two prepared and five excluded targets. See
 [the evidence record](../evidence/2026-10-20-cfg-generation/README.md).
+
+## Local functional validation
+
+The [synthetic functional protocol](functional-evaluation.md) independently
+measures full-validation generation, compilation, and bounded source-result
+comparisons. It retains every failure and uses no test examples in the model.
+Its uint32/Wasm32 scope and finite probes are distinct from DecBench metrics.

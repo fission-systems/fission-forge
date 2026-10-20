@@ -1,0 +1,25 @@
+{
+  "scope": "published_C_and_regenerated_reference_replay_not_new_model_inference",
+  "manifest_sha256": "c8de92360f5281f9f7c1afc47a4ee643c857ae28b8a9cb71b3c514944940bdf0",
+  "original_comparisons": 10240,
+  "arms": {
+    "baseline": {
+      "targets": 160,
+      "compiled": 0,
+      "all_cases_match": 0,
+      "statuses": {
+        "compile_failure": 160
+      }
+    },
+    "improved": {
+      "targets": 160,
+      "compiled": 0,
+      "all_cases_match": 0,
+      "statuses": {
+        "compile_failure": 160
+      }
+    }
+  },
+  "metrics_reproduced": true,
+  "test_model_examples": 0
+}

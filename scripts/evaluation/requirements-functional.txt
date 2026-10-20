@@ -1,0 +1,2 @@
+# Isolated capability-free WebAssembly execution; model computation stays in Rust.
+wasmtime==49.0.0

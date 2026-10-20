@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "name": "forge-synthetic-bootstrap-v1",
+  "seed": 42,
+  "variants_per_family": 40,
+  "optimizations": ["O0", "O1", "O2"],
+  "representation": "pcode-plus-ssa-v1",
+  "families": {
+    "affine": "train",
+    "bitmask": "train",
+    "bounded_loop": "train",
+    "carry": "train",
+    "rotate_mix": "train",
+    "select": "train",
+    "remainder": "validation",
+    "xor_fold": "validation",
+    "clamp": "test",
+    "quotient_round": "test"
+  }
+}

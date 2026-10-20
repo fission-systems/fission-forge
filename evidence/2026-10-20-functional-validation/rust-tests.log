@@ -1,0 +1,42 @@
+   Compiling fission-forge v0.1.0 (/Users/sjkim1127/Documents/ChatGPT/fission-forge/crates/forge)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.37s
+     Running unittests src/lib.rs (target/debug/deps/fission_forge-76af94663c8cc940)
+
+running 22 tests
+test corpus::tests::elf_bounds_fail_closed ... ok
+test generation::tests::decoding_preserves_bytes_masks_prompt_tokens_and_reports_limits ... ok
+test corpus::tests::transitive_clone_quarantines_whole_families ... ok
+test pcode::tests::constants_preserve_twos_complement_and_reject_overflowing_subpieces ... ok
+test data::tests::shift_scores_first_source_byte_and_eos_but_not_prompt_or_padding ... ok
+test corpus_training::tests::sampler_visits_each_epoch_once_and_resumes_at_boundary ... ok
+test pcode::tests::labels_and_ids_cannot_enter_prompt_and_raw_mutation_is_detected ... ok
+test pcode::tests::relocation_temp_renaming_and_advisory_text_do_not_change_prompt ... ok
+test data::tests::prompt_and_padding_logits_do_not_contribute_to_loss ... ok
+test pcode::tests::unsupported_and_malformed_lifts_fail_closed ... ok
+test training::tests::adamw_matches_candle_reference_over_multiple_steps ... ok
+test pcode::tests::real_lifts_keep_numeric_domains_and_effect_order ... ok
+test pcode::cfg::tests::opaque_calls_have_returning_havoc_and_no_stale_register_values ... ok
+test pcode::cfg::tests::malformed_targets_undefined_temps_and_unknown_edges_are_rejected ... ok
+test pcode::tests::partial_register_writes_match_independent_byte_array ... ok
+test corpus_training::tests::validation_aggregates_completion_tokens_and_leaves_weights_unchanged ... ok
+test model::tests::future_tokens_cannot_change_prefix_logits ... ok
+test model::tiled_tests::tiled_attention_matches_full_logits_and_parameter_gradients ... ok
+test model::cache_tests::cached_logits_match_full_prefix_across_layers_and_stop_at_context ... ok
+test pcode::cfg::tests::real_loop_and_instruction_internal_diamond_match_raw_and_source_oracles ... ok
+test generation::checkpoint_tests::real_checkpoint_generates_memorized_c_and_checks_lane_before_loading_weights ... ok
+test training::ir_checkpoint_tests::ir_resume_matches_uninterrupted_and_rejects_changed_input_fingerprint ... ok
+
+test result: ok. 22 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.53s
+
+     Running unittests src/main.rs (target/debug/deps/forge-6273190f94eeaf04)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests fission_forge
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

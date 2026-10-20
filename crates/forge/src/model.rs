@@ -55,6 +55,23 @@ impl Norm {
     }
 }
 
+struct LayerCache {
+    key: Tensor,
+    value: Tensor,
+}
+
+pub struct DecodeCache {
+    layers: Vec<LayerCache>,
+    position: usize,
+    batch: usize,
+    config: ModelConfig,
+}
+impl DecodeCache {
+    pub fn position(&self) -> usize {
+        self.position
+    }
+}
+
 struct Block {
     norm1: Norm,
     norm2: Norm,
@@ -81,6 +98,14 @@ impl Block {
         c: &ModelConfig,
         query_chunk: usize,
     ) -> candle_core::Result<Tensor> {
+        Ok(self.prefill(x, c, query_chunk)?.0)
+    }
+    fn prefill(
+        &self,
+        x: &Tensor,
+        c: &ModelConfig,
+        query_chunk: usize,
+    ) -> candle_core::Result<(Tensor, LayerCache)> {
         let (batch, time, hidden) = x.dims3()?;
         let width = hidden / c.heads;
         let qkv = self.qkv.forward(&self.norm1.forward(x)?)?;
@@ -122,6 +147,44 @@ impl Block {
         let ff = self
             .down
             .forward(&self.up.forward(&self.norm2.forward(&x)?)?.gelu_erf()?)?;
+        Ok((
+            (x + ff)?,
+            LayerCache {
+                key: k.detach(),
+                value: v.detach(),
+            },
+        ))
+    }
+    fn step(
+        &self,
+        x: &Tensor,
+        c: &ModelConfig,
+        cache: &mut LayerCache,
+    ) -> candle_core::Result<Tensor> {
+        let (batch, _, hidden) = x.dims3()?;
+        let width = hidden / c.heads;
+        let qkv = self.qkv.forward(&self.norm1.forward(x)?)?;
+        let split = |offset| {
+            qkv.narrow(2, offset, hidden)?
+                .reshape((batch, 1, c.heads, width))?
+                .transpose(1, 2)?
+                .contiguous()
+        };
+        let (q, k, v) = (split(0)?, split(hidden)?, split(hidden * 2)?);
+        let key = Tensor::cat(&[&cache.key, &k], 2)?;
+        let value = Tensor::cat(&[&cache.value, &v], 2)?;
+        let scores = (q.matmul(&key.transpose(2, 3)?)? / (width as f64).sqrt())?;
+        let values = candle_nn::ops::softmax(&scores, candle_core::D::Minus1)?
+            .matmul(&value)?
+            .transpose(1, 2)?
+            .contiguous()?
+            .reshape((batch, 1, hidden))?;
+        let x = (x + self.out.forward(&values)?)?;
+        let ff = self
+            .down
+            .forward(&self.up.forward(&self.norm2.forward(&x)?)?.gelu_erf()?)?;
+        cache.key = key.detach();
+        cache.value = value.detach();
         x + ff
     }
 }
@@ -158,6 +221,56 @@ impl Decoder {
             norm: Norm::new(c.hidden_size, vb.pp("final_norm"))?,
             head: linear_no_bias(c.hidden_size, c.vocab_size, vb.pp("head"))?,
         })
+    }
+    /// Full causal prefix once, retaining detached keys/values for incremental inference.
+    pub fn prefill(&self, ids: &Tensor, query_chunk: usize) -> Result<(Tensor, DecodeCache)> {
+        let (batch, time) = ids.dims2()?;
+        ensure!(
+            batch > 0 && time > 0 && time <= self.config.max_seq_len,
+            "invalid cached prefix/context"
+        );
+        let positions = Tensor::arange(0u32, time as u32, ids.device())?;
+        let mut x = self
+            .tokens
+            .forward(ids)?
+            .broadcast_add(&self.positions.forward(&positions)?.unsqueeze(0)?)?;
+        let mut layers = Vec::new();
+        for block in &self.blocks {
+            let (next, cache) = block.prefill(&x, &self.config, query_chunk)?;
+            x = next;
+            layers.push(cache);
+        }
+        let logits = self
+            .head
+            .forward(&self.norm.forward(&x.narrow(1, time - 1, 1)?)?)?;
+        Ok((
+            logits,
+            DecodeCache {
+                layers,
+                position: time,
+                batch,
+                config: self.config.clone(),
+            },
+        ))
+    }
+    pub fn decode_step(&self, token: &Tensor, cache: &mut DecodeCache) -> Result<Tensor> {
+        ensure!(
+            token.dims2()? == (cache.batch, 1)
+                && cache.config == self.config
+                && cache.layers.len() == self.blocks.len()
+                && cache.position < self.config.max_seq_len,
+            "invalid decode cache/token/context"
+        );
+        let position = Tensor::new(&[cache.position as u32], token.device())?;
+        let mut x = self
+            .tokens
+            .forward(token)?
+            .broadcast_add(&self.positions.forward(&position)?.unsqueeze(0)?)?;
+        for (block, layer) in self.blocks.iter().zip(&mut cache.layers) {
+            x = block.step(&x, &self.config, layer)?;
+        }
+        cache.position += 1;
+        Ok(self.head.forward(&self.norm.forward(&x)?)?)
     }
     pub fn forward(&self, ids: &Tensor) -> Result<Tensor> {
         self.forward_chunked(ids, 0)
@@ -290,6 +403,72 @@ mod tiled_tests {
                 "validation retains variable graph"
             );
         }
+        Ok(())
+    }
+}
+
+#[cfg(test)]
+mod cache_tests {
+    use super::*;
+    #[test]
+    fn cached_logits_match_full_prefix_across_layers_and_stop_at_context() -> Result<()> {
+        let c = ModelConfig {
+            vocab_size: 260,
+            hidden_size: 16,
+            heads: 2,
+            layers: 2,
+            feed_forward_size: 32,
+            max_seq_len: 16,
+        };
+        let vars = VarMap::new();
+        let _ = Decoder::new(&c, &vars, &Device::Cpu)?;
+        initialize(&vars, 42)?;
+        let model = Decoder::for_eval(&c, &vars, &Device::Cpu)?;
+        let mut tokens = vec![1u32, 5, 6, 7, 8];
+        let (prefill, mut cache) = model.prefill(
+            &Tensor::from_slice(&tokens, (1, tokens.len()), &Device::Cpu)?,
+            3,
+        )?;
+        let last = model
+            .forward(&Tensor::from_slice(
+                &tokens,
+                (1, tokens.len()),
+                &Device::Cpu,
+            )?)?
+            .narrow(1, tokens.len() - 1, 1)?;
+        assert!(
+            (&prefill - &last)?
+                .abs()?
+                .flatten_all()?
+                .max(0)?
+                .to_scalar::<f32>()?
+                < 1e-5
+        );
+        for token in 20..31 {
+            tokens.push(token);
+            let step = model.decode_step(&Tensor::new(&[[token]], &Device::Cpu)?, &mut cache)?;
+            let expected = model
+                .forward(&Tensor::from_slice(
+                    &tokens,
+                    (1, tokens.len()),
+                    &Device::Cpu,
+                )?)?
+                .narrow(1, tokens.len() - 1, 1)?;
+            assert!(
+                (&step - &expected)?
+                    .abs()?
+                    .flatten_all()?
+                    .max(0)?
+                    .to_scalar::<f32>()?
+                    < 1e-5
+            );
+        }
+        assert_eq!(cache.position(), 16);
+        assert!(
+            model
+                .decode_step(&Tensor::new(&[[42u32]], &Device::Cpu)?, &mut cache)
+                .is_err()
+        );
         Ok(())
     }
 }

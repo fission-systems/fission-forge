@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "name": "forge-synthetic-functional-validation-v1",
+  "scope": "owned_synthetic_family_disjoint_validation_only",
+  "corpus_lock_sha256": "f3c7d0d3f65460e8b4efdf32caa218ba6d68a24b5d0dfd0c949b8b1617252d9d",
+  "baseline": {
+    "step": 480,
+    "checkpoint_sha256": "dab69ac3f0fa46dc5c9d7e5e0667ab57685da75da31dd21c9acb98d214fbe334"
+  },
+  "improvement": {
+    "kind": "three_additional_train_only_epochs",
+    "additional_updates": 1440,
+    "final_step": 1920,
+    "selection": "fixed_final_step_not_functional_score_search",
+    "learning_rate": 0.001,
+    "seed": 42,
+    "batch_size": 1,
+    "attention_chunk": 256,
+    "validation_limit": 0,
+    "evaluate_every": 120,
+    "checkpoint_every": 120
+  },
+  "evaluation": {
+    "max_new_tokens": 256,
+    "generation_timeout_seconds": 30,
+    "execution_timeout_seconds": 10,
+    "fuel_per_case": 100000,
+    "memory_bytes": 1048576,
+    "decoding": "greedy_eos_and_bytes_only_kv_cache",
+    "device": "cpu"
+  },
+  "test_policy": "never_pass_test_examples_to_model_or_select_checkpoint_against_test"
+}
