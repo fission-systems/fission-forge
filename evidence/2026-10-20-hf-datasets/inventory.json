@@ -1,0 +1,511 @@
+{
+  "schema_version": 1,
+  "config_sha256": "13790e310ec0945c790b6f24c07e650bc74a80377108e0a1f325466c9dc23dcc",
+  "sources": [
+    {
+      "repo": "jordiae/exebench",
+      "revision": "093085f8558cfd53de8e2c8f4ccc7b9e73dc22ae",
+      "policy": "research_candidate",
+      "priority": 1,
+      "reason": "Original C, dependencies and executable IO; source licenses need upstream review",
+      "sample_archive": "train_real_simple_io.tar.gz",
+      "pinned_revision_returned": "093085f8558cfd53de8e2c8f4ccc7b9e73dc22ae",
+      "card_metadata": null,
+      "card_sha256": "a659ea610436569a32f9fb3c79a91095abe9ec5c54e28ca19fb66d2a800d2296",
+      "training_approved": false,
+      "benchmark_overlap": "not_measured",
+      "source_license_verified": false,
+      "viewer_splits": {
+        "error": "HTTP Error 501: Not Implemented",
+        "url": "https://datasets-server.huggingface.co/splits?dataset=jordiae%2Fexebench"
+      },
+      "viewer_status": "unavailable_not_evidence_of_empty_dataset",
+      "file_count": 13,
+      "file_examples": [
+        ".gitattributes",
+        "README.md",
+        "exebench.py",
+        "test_real.tar.gz",
+        "test_synth.tar.gz"
+      ],
+      "pinned_metadata_verified": true
+    },
+    {
+      "repo": "LLM4Binary/decompile-bench",
+      "revision": "4b708c2211cd7d4af403675db56322aa4ed7050c",
+      "policy": "research_candidate",
+      "priority": 2,
+      "reason": "Source/assembly/path alignment; separate binary archive and C/C++ filtering required",
+      "pinned_revision_returned": "4b708c2211cd7d4af403675db56322aa4ed7050c",
+      "card_sha256": "c49158c95f5129ac60c11a3b755ad0ffd6e815cf434e8a598388ecf4191c9570",
+      "training_approved": false,
+      "benchmark_overlap": "not_measured",
+      "source_license_verified": false,
+      "viewer_splits": {
+        "splits": [
+          {
+            "dataset": "LLM4Binary/decompile-bench",
+            "config": "default",
+            "split": "train"
+          }
+        ],
+        "pending": [],
+        "failed": []
+      },
+      "features": [
+        {
+          "feature_idx": 0,
+          "name": "name",
+          "type": {
+            "dtype": "string",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 1,
+          "name": "code",
+          "type": {
+            "dtype": "string",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 2,
+          "name": "asm",
+          "type": {
+            "dtype": "string",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 3,
+          "name": "file",
+          "type": {
+            "dtype": "string",
+            "_type": "Value"
+          }
+        }
+      ],
+      "preview_rows": 3,
+      "viewer_total_rows": 1359586,
+      "preview_revision_binding": "Viewer_HEAD_only_not_admissible_as_pinned_training_rows",
+      "file_count": 22,
+      "file_examples": [
+        ".gitattributes",
+        "LICENSE",
+        "README.md",
+        "data-00000-of-00017.arrow",
+        "data-00001-of-00017.arrow"
+      ],
+      "card_license": "cc0-1.0",
+      "pinned_metadata_verified": true
+    },
+    {
+      "repo": "LLM4Binary/decompile-bench-bins",
+      "revision": "173b32f8e963daabb0807585f4f3e202dfb0dcc7",
+      "policy": "research_candidate",
+      "priority": 2,
+      "reason": "Potential real-binary P-code extraction; large multipart download not admitted",
+      "pinned_revision_returned": "173b32f8e963daabb0807585f4f3e202dfb0dcc7",
+      "card_sha256": "8b5d626396f71f847e308bbd4e5b194933a912c34b5ef4c4804a06e42f6c3f75",
+      "training_approved": false,
+      "benchmark_overlap": "not_measured",
+      "source_license_verified": false,
+      "viewer_splits": {
+        "error": "HTTP Error 500: Internal Server Error",
+        "url": "https://datasets-server.huggingface.co/splits?dataset=LLM4Binary%2Fdecompile-bench-bins"
+      },
+      "viewer_status": "unavailable_not_evidence_of_empty_dataset",
+      "file_count": 74,
+      "file_examples": [
+        ".gitattributes",
+        "LICENSE",
+        "README.md",
+        "bins.zip.001",
+        "bins.zip.002"
+      ],
+      "card_license": "mit",
+      "pinned_metadata_verified": true
+    },
+    {
+      "repo": "LLM4Binary/decompile-ghidra-100k",
+      "revision": "9f9c6a839b4df455835049d1932baa896e05486f",
+      "policy": "research_candidate",
+      "priority": 3,
+      "reason": "Ghidra pseudo-C/source refinement pairs, not raw P-code; origin/label checks needed",
+      "pinned_revision_returned": "9f9c6a839b4df455835049d1932baa896e05486f",
+      "card_sha256": "41293677c5cdd4018ee3f46224b7aae49408cccce0be8b919797e28c872f20c9",
+      "training_approved": false,
+      "benchmark_overlap": "not_measured",
+      "source_license_verified": false,
+      "viewer_splits": {
+        "splits": [
+          {
+            "dataset": "LLM4Binary/decompile-ghidra-100k",
+            "config": "default",
+            "split": "train"
+          }
+        ],
+        "pending": [],
+        "failed": []
+      },
+      "features": [
+        {
+          "feature_idx": 0,
+          "name": "instruction",
+          "type": {
+            "dtype": "string",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 1,
+          "name": "output",
+          "type": {
+            "dtype": "string",
+            "_type": "Value"
+          }
+        }
+      ],
+      "preview_rows": 3,
+      "viewer_total_rows": 100000,
+      "preview_revision_binding": "Viewer_HEAD_only_not_admissible_as_pinned_training_rows",
+      "file_count": 3,
+      "file_examples": [
+        ".gitattributes",
+        "README.md",
+        "data/train-00000-of-00001.parquet"
+      ],
+      "card_license": "mit",
+      "pinned_metadata_verified": true
+    },
+    {
+      "repo": "mistral0105/exebench_io_validated_full",
+      "revision": "9efe4326e8b51cf42b2e5068a869baf14e28a1bc",
+      "policy": "research_candidate",
+      "priority": 3,
+      "reason": "Convenient parquet derivative with source/dependencies/IO; preserve original provenance and license checks",
+      "pinned_revision_returned": "9efe4326e8b51cf42b2e5068a869baf14e28a1bc",
+      "card_sha256": "166b85d6b13f6dfc86405e25e78a6f0898aa66c3eafdb14ee411d4599b2d23c4",
+      "training_approved": false,
+      "benchmark_overlap": "not_measured",
+      "source_license_verified": false,
+      "viewer_splits": {
+        "splits": [
+          {
+            "dataset": "mistral0105/exebench_io_validated_full",
+            "config": "default",
+            "split": "train"
+          }
+        ],
+        "pending": [],
+        "failed": []
+      },
+      "features": [
+        {
+          "feature_idx": 0,
+          "name": "path",
+          "type": {
+            "dtype": "string",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 1,
+          "name": "func_def",
+          "type": {
+            "dtype": "string",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 2,
+          "name": "func_head",
+          "type": {
+            "dtype": "string",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 3,
+          "name": "func_head_types",
+          "type": {
+            "dtype": "string",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 4,
+          "name": "fname",
+          "type": {
+            "dtype": "string",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 5,
+          "name": "signature",
+          "type": {
+            "feature": {
+              "dtype": "string",
+              "_type": "Value"
+            },
+            "_type": "List"
+          }
+        },
+        {
+          "feature_idx": 6,
+          "name": "asm",
+          "type": {
+            "code": {
+              "feature": {
+                "dtype": "string",
+                "_type": "Value"
+              },
+              "_type": "List"
+            },
+            "target": {
+              "feature": {
+                "dtype": "string",
+                "_type": "Value"
+              },
+              "_type": "List"
+            }
+          }
+        },
+        {
+          "feature_idx": 7,
+          "name": "synth_deps",
+          "type": {
+            "dtype": "string",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 8,
+          "name": "real_deps",
+          "type": {
+            "dtype": "string",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 9,
+          "name": "synth_io_pairs",
+          "type": {
+            "dummy_funcs": {
+              "feature": {
+                "dtype": "string",
+                "_type": "Value"
+              },
+              "_type": "List"
+            },
+            "dummy_funcs_seed": {
+              "feature": {
+                "dtype": "int64",
+                "_type": "Value"
+              },
+              "_type": "List"
+            },
+            "input": {
+              "feature": {
+                "value": {
+                  "feature": {
+                    "dtype": "string",
+                    "_type": "Value"
+                  },
+                  "_type": "List"
+                },
+                "var": {
+                  "feature": {
+                    "dtype": "string",
+                    "_type": "Value"
+                  },
+                  "_type": "List"
+                }
+              },
+              "_type": "List"
+            },
+            "output": {
+              "feature": {
+                "value": {
+                  "feature": {
+                    "dtype": "string",
+                    "_type": "Value"
+                  },
+                  "_type": "List"
+                },
+                "var": {
+                  "feature": {
+                    "dtype": "string",
+                    "_type": "Value"
+                  },
+                  "_type": "List"
+                }
+              },
+              "_type": "List"
+            }
+          }
+        },
+        {
+          "feature_idx": 10,
+          "name": "real_io_pairs",
+          "type": {
+            "dummy_funcs": {
+              "feature": {
+                "dtype": "null",
+                "_type": "Value"
+              },
+              "_type": "List"
+            },
+            "dummy_funcs_seed": {
+              "feature": {
+                "dtype": "null",
+                "_type": "Value"
+              },
+              "_type": "List"
+            },
+            "input": {
+              "feature": {
+                "value": {
+                  "feature": {
+                    "dtype": "string",
+                    "_type": "Value"
+                  },
+                  "_type": "List"
+                },
+                "var": {
+                  "feature": {
+                    "dtype": "string",
+                    "_type": "Value"
+                  },
+                  "_type": "List"
+                }
+              },
+              "_type": "List"
+            },
+            "output": {
+              "feature": {
+                "value": {
+                  "feature": {
+                    "dtype": "string",
+                    "_type": "Value"
+                  },
+                  "_type": "List"
+                },
+                "var": {
+                  "feature": {
+                    "dtype": "string",
+                    "_type": "Value"
+                  },
+                  "_type": "List"
+                }
+              },
+              "_type": "List"
+            }
+          }
+        },
+        {
+          "feature_idx": 11,
+          "name": "synth_exe_wrapper",
+          "type": {
+            "dtype": "string",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 12,
+          "name": "real_exe_wrapper",
+          "type": {
+            "dtype": "string",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 13,
+          "name": "ref",
+          "type": {
+            "dtype": "string",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 14,
+          "name": "synth_iospec",
+          "type": {
+            "dtype": "string",
+            "_type": "Value"
+          }
+        },
+        {
+          "feature_idx": 15,
+          "name": "real_iospec",
+          "type": {
+            "dtype": "string",
+            "_type": "Value"
+          }
+        }
+      ],
+      "preview_rows": 3,
+      "viewer_total_rows": 17238,
+      "preview_revision_binding": "Viewer_HEAD_only_not_admissible_as_pinned_training_rows",
+      "file_count": 3,
+      "file_examples": [
+        ".gitattributes",
+        "README.md",
+        "data/train-00000-of-00001.parquet"
+      ],
+      "card_license": null,
+      "pinned_metadata_verified": true
+    },
+    {
+      "repo": "noelo-lab/decbench-dataset",
+      "revision": "815eb96f130b6d2ef7fa600e04669bf20139bf27",
+      "policy": "evaluation_reserved",
+      "priority": 0,
+      "reason": "Chosen external benchmark; never sample for training",
+      "pinned_revision_returned": "815eb96f130b6d2ef7fa600e04669bf20139bf27",
+      "card_sha256": "ee4ffed206f1c674e554f6008f5efe1ef6f2093689161aaa4499d18164051f8f",
+      "training_approved": false,
+      "benchmark_overlap": "not_measured",
+      "source_license_verified": false,
+      "content_sampled": false,
+      "reason_content_not_sampled": "evaluation reservation",
+      "file_count": 22102,
+      "file_examples": [
+        ".gitattributes",
+        ".gitignore",
+        "README.md",
+        "binaries/O0/base-passwd/update-passwd",
+        "binaries/O0/bash/bash"
+      ],
+      "card_license": "bsd-2-clause",
+      "pinned_metadata_verified": true
+    },
+    {
+      "repo": "LLM4Binary/decompile-eval",
+      "revision": "b9271fae3c556e46948559f4176ffa6f8b4f9491",
+      "policy": "evaluation_reserved",
+      "priority": 0,
+      "reason": "Upstream evaluation collection; reserve from training even if Viewer labels it train",
+      "pinned_revision_returned": "b9271fae3c556e46948559f4176ffa6f8b4f9491",
+      "card_sha256": "075c3c19c83a3e77ee4f7def61413f6d2c192231974595dd1894bb46c5e317c0",
+      "training_approved": false,
+      "benchmark_overlap": "not_measured",
+      "source_license_verified": false,
+      "content_sampled": false,
+      "reason_content_not_sampled": "evaluation reservation",
+      "file_count": 14,
+      "file_examples": [
+        ".gitattributes",
+        "LICENSE",
+        "README.md",
+        "dataset_dict.json",
+        "github/data-00000-of-00002.arrow"
+      ],
+      "card_license": "cc0-1.0",
+      "pinned_metadata_verified": true
+    }
+  ],
+  "external_rows_admitted_to_training": 0
+}

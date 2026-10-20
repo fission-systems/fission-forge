@@ -1,0 +1,21 @@
+{
+  "result_archive_sha256_verified": true,
+  "final_checkpoint_sha256_verified": true,
+  "resumed_weights_and_adam_byte_identical": true,
+  "full_validation_ids_match_release": true,
+  "one_training_epoch_sampler_verified": true,
+  "test_model_examples": 0,
+  "tests": {
+    "rust": 22,
+    "corpus_python": 8,
+    "evaluation_python": 9,
+    "colab_controller": 4,
+    "data_intake": 4
+  },
+  "functional_quality_evaluated": false,
+  "initial_account_compute_units": 246.75,
+  "final_account_compute_units": 246.36,
+  "account_usage_includes_setup_retries": true,
+  "active_sessions_after": 0,
+  "usage_rate_after": 0
+}

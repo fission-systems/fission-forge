@@ -1,0 +1,8 @@
+{
+  "wall_seconds": 4.459825889000058,
+  "observed_whole_device_peak_mib": 5186,
+  "sampling_interval_seconds": 0.2,
+  "samples": 20,
+  "exit_code": 0,
+  "includes_device_baseline": true
+}

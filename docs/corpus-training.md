@@ -143,3 +143,11 @@ accumulation, mixed precision, distributed training, efficient attention kernels
 and large-corpus host-memory scaling remain future work. Teacher-forced loss
 improvement is not functional C correctness or a DecBench score. Keep test data
 untouched until the checkpoint and external evaluation protocol are fixed.
+
+## Colab GPU corpus training
+
+[The bounded GPU runner](colab-corpus.md) exercises the same corpus trainer on
+a Colab A100, using the 5.38M 8K configuration. It now records a complete
+480-update epoch, full validation, CUDA resume equivalence and GPU generation.
+See [measured evidence](../evidence/2026-10-20-colab-corpus/README.md).
+External Hugging Face datasets remain [staged research candidates](hf-datasets.md).

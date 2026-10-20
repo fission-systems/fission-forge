@@ -1,0 +1,132 @@
+{
+  "attention_memory": "query_tiled_exact_causal_attention_still_quadratic_training_activations",
+  "backend": "Cuda { gpu_id: 0 }",
+  "best_validation": {
+    "checkpoint": "/content/forge-corpus-results/preflight-one/checkpoints/step-00000001",
+    "nll": 4.970275163650513,
+    "step": 1,
+    "weights_sha256": "523d2298101f9a4b3fc5d7bfa8b07dd513fd069a68b0a7eb1d431ef52e15d5dd"
+  },
+  "completed_step": 1,
+  "completion_tokens_per_second_including_periodic_validation": 65.17691685368105,
+  "corpus_audit": {
+    "test": {
+      "context_eligible": {
+        "1024": 0,
+        "16384": 160,
+        "2048": 0,
+        "4096": 120,
+        "8192": 160
+      },
+      "families": [
+        "clamp",
+        "quotient_round"
+      ],
+      "max_sequence": 5321,
+      "min_sequence": 2579,
+      "programs": 80,
+      "rows": 160
+    },
+    "train": {
+      "context_eligible": {
+        "1024": 0,
+        "16384": 480,
+        "2048": 119,
+        "4096": 401,
+        "8192": 480
+      },
+      "families": [
+        "affine",
+        "bitmask",
+        "bounded_loop",
+        "carry",
+        "rotate_mix",
+        "select"
+      ],
+      "max_sequence": 4878,
+      "min_sequence": 1167,
+      "programs": 240,
+      "rows": 480
+    },
+    "validation": {
+      "context_eligible": {
+        "1024": 0,
+        "16384": 160,
+        "2048": 41,
+        "4096": 121,
+        "8192": 160
+      },
+      "families": [
+        "remainder",
+        "xor_fold"
+      ],
+      "max_sequence": 4153,
+      "min_sequence": 1979,
+      "programs": 80,
+      "rows": 160
+    }
+  },
+  "corpus_lock_sha256": "f3c7d0d3f65460e8b4efdf32caa218ba6d68a24b5d0dfd0c949b8b1617252d9d",
+  "dtype": "f32",
+  "evidence_scope": "bounded_corpus_training_and_teacher_forced_validation_not_decompilation_accuracy",
+  "final_checkpoint": "/content/forge-corpus-results/preflight-one/checkpoints/step-00000001",
+  "final_validation": {
+    "completion_tokens": 234,
+    "examples": 2,
+    "nll": 4.970275163650513,
+    "perplexity": 144.06652378802107,
+    "selected_ids": [
+      "remainder_0000-O0",
+      "remainder_0000-O1"
+    ],
+    "selection": "fixed_file_order_prefix_probe",
+    "step": 1,
+    "total_examples": 160
+  },
+  "initial_step": 0,
+  "initial_validation": {
+    "completion_tokens": 234,
+    "examples": 2,
+    "nll": 5.6067283153533936,
+    "perplexity": 272.2520564591199,
+    "selected_ids": [
+      "remainder_0000-O0",
+      "remainder_0000-O1"
+    ],
+    "selection": "fixed_file_order_prefix_probe",
+    "step": 0,
+    "total_examples": 160
+  },
+  "max_training_sequence": 4878,
+  "measured_updates": 1,
+  "model": {
+    "feed_forward_size": 1024,
+    "heads": 4,
+    "hidden_size": 256,
+    "layers": 4,
+    "max_seq_len": 8192,
+    "vocab_size": 260
+  },
+  "parameters": 5380608,
+  "sampler": {
+    "cursor": 1,
+    "epoch": 0,
+    "seed": 619
+  },
+  "schema_version": 1,
+  "settings": {
+    "attention_chunk": 256,
+    "batch_size": 1,
+    "checkpoint_every": 100,
+    "evaluate_every": 100,
+    "validation_limit": 2
+  },
+  "test_model_examples": 0,
+  "train_encoded_sha256": "b9252f11e5336169967cc191410e321e5154af4d03893f7b62e4d9668926b425",
+  "train_examples": 480,
+  "trained_completion_tokens": 123,
+  "trained_examples": 1,
+  "training_and_periodic_validation_seconds": 1.887171194,
+  "validation_encoded_sha256": "61337d9fe260abf94f05568ac7b388df5dc3210e68be8689e6e2121d1db08460",
+  "validation_examples": 160
+}

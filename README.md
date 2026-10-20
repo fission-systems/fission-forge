@@ -35,21 +35,21 @@ A100 checks. It does not yet ship a generally useful decompiler or a pretrained 
 | --- | --- |
 | Rust causal decoder | Multi-head causal attention, learned positions, pre-layer normalization, GELU feed-forward layers |
 | Training | Byte tokens, completion-only loss, AdamW, deterministic epoch sampling and resumable corpus checkpoints |
-| Long inputs / validation | 8K-context CPU configuration, tiled causal queries, detached token-weighted validation; test split excluded from model batches |
+| Long inputs / validation | 8K-context CPU/GPU configurations, tiled causal queries, detached token-weighted validation; test split excluded from model batches |
 | Checkpoints | Safetensors weights and optimizer moments; reload and next-update equivalence checks |
-| Model sizes | 61,888-parameter IR probe, 70,512-parameter 8K corpus probe, 148,608-parameter assembly smoke model, and 99,927,552-parameter experimental configuration |
-| CUDA | 148K and approximately 100M assembly probes exercised on a Colab A100 40 GB; IR lane tested on CPU |
-| Input data | Owned synthetic bootstrap corpus with frozen family-disjoint train/validation/test splits, plus small assembly and P-code fixtures |
+| Model sizes | 61,888-parameter IR probe, 70,512-parameter 8K CPU probe, 5,380,608-parameter 8K GPU pilot, 148,608-parameter assembly smoke model, and 99,927,552-parameter experimental configuration |
+| CUDA | Colab A100: 5.38M P-code+ SSA model trained for one 480-example epoch with full 160-example validation; earlier 148K / 100M short assembly probes |
+| Input data | Owned synthetic frozen corpus; seven pinned HF candidates/evaluation reservations researched, zero external training rows admitted |
 | P-code frontend | Typed raw-dump validation, pinned SLA profile, reproducible owned-C extraction, and explicit unsupported records |
 | P-code+ / SSA | Stable straight-line v0 plus v1 CFG reconstruction, loop phis, instruction-internal merges, and conservative opaque calls |
-| Generation | Bounded greedy byte decoding with detached KV cache, exact bytes, EOS/context/budget reporting and checkpoint lane checks; CPU validated |
+| Generation | Bounded greedy byte decoding with detached KV cache, exact bytes, EOS/context/budget reporting and checkpoint lane checks; CPU and 5.38M CUDA paths exercised |
 | DecBench | Static external-kit adapter and pinned packaging format exercised on an owned fixture; benchmark scores pending |
 
 The fixed-batch probe accepts at most 32 examples. The new corpus trainer samples
 from all training rows, supports batches of 1..32, caches tokenized rows on the
 host, and rejects truncation. Out-of-core streaming, mixed precision, and
-functional generalization evaluation remain ahead. Loss reduction alone is not
-evidence of decompilation quality.
+real-project functional generalization evaluation remain ahead. Loss reduction
+alone is not evidence of decompilation quality.
 
 ## Research direction
 
@@ -122,6 +122,23 @@ validated in this project.
 
 ## Colab evidence
 
+The [corpus GPU runner](docs/colab-corpus.md) now builds Rust/Candle, checks the
+longest 4,878-token training input, verifies byte-identical resumed weights and
+Adam moments, trains one full epoch, retrieves checkpoints and stops its VM.
+On a Colab **A100 40 GB**, the **5,380,608-parameter, 8K-context** model completed
+480 training updates and independent validation on all 160 held-out pairs:
+**NLL 5.530 → 2.547**, 148.6 seconds for the measured pilot phase and **7,266 MiB**
+sampled whole-device peak. Test model batches: zero. CUDA generation ran, but its
+sample is not valid C; this establishes training/inference infrastructure, not
+functional quality. [Reports and artifact verification](evidence/2026-10-20-colab-corpus/README.md).
+
+[HF data research](docs/hf-datasets.md) prioritizes original ExeBench source/IO
+pairs for future compilation and P-code extraction. Licenses, project overlap,
+source reconstruction and label checks remain admission gates; external data
+has not been mixed into training. DecBench stays reserved for evaluation.
+
+Earlier short-input probes:
+
 On **2026-10-20 KST**, the Rust/Candle CUDA implementation ran on a Colab
 **A100-SXM4 40 GB**, using F32 and four examples with a padded sequence length of
 57 tokens:
@@ -140,8 +157,9 @@ throughput, or model quality.
 [Recorded reports and provenance](evidence/2026-10-20-a100/README.md) are committed.
 [Training documentation](docs/training.md) explains measurement scope and Colab
 reproduction. Python in [the Colab driver](scripts/colab/transformer_probe.py)
-handles orchestration; model computation stays in Rust. Runtime allocation is
-manual and should be stopped after collecting results.
+handles orchestration; model computation stays in Rust. The older probe requires
+manual runtime cleanup; the new corpus runner releases its named runtime after
+result collection.
 
 ## Evaluation
 

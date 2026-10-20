@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "purpose": "bounded_dataset_research_not_training_admission",
+  "sources": [
+    {"repo": "jordiae/exebench", "revision": "093085f8558cfd53de8e2c8f4ccc7b9e73dc22ae", "policy": "research_candidate", "priority": 1, "reason": "Original C, dependencies and executable IO; source licenses need upstream review", "sample_archive": "train_real_simple_io.tar.gz"},
+    {"repo": "LLM4Binary/decompile-bench", "revision": "4b708c2211cd7d4af403675db56322aa4ed7050c", "policy": "research_candidate", "priority": 2, "reason": "Source/assembly/path alignment; separate binary archive and C/C++ filtering required"},
+    {"repo": "LLM4Binary/decompile-bench-bins", "revision": "173b32f8e963daabb0807585f4f3e202dfb0dcc7", "policy": "research_candidate", "priority": 2, "reason": "Potential real-binary P-code extraction; large multipart download not admitted"},
+    {"repo": "LLM4Binary/decompile-ghidra-100k", "revision": "9f9c6a839b4df455835049d1932baa896e05486f", "policy": "research_candidate", "priority": 3, "reason": "Ghidra pseudo-C/source refinement pairs, not raw P-code; origin/label checks needed"},
+    {"repo": "mistral0105/exebench_io_validated_full", "revision": "9efe4326e8b51cf42b2e5068a869baf14e28a1bc", "policy": "research_candidate", "priority": 3, "reason": "Convenient parquet derivative with source/dependencies/IO; preserve original provenance and license checks"},
+    {"repo": "noelo-lab/decbench-dataset", "revision": "815eb96f130b6d2ef7fa600e04669bf20139bf27", "policy": "evaluation_reserved", "priority": 0, "reason": "Chosen external benchmark; never sample for training"},
+    {"repo": "LLM4Binary/decompile-eval", "revision": "b9271fae3c556e46948559f4176ffa6f8b4f9491", "policy": "evaluation_reserved", "priority": 0, "reason": "Upstream evaluation collection; reserve from training even if Viewer labels it train"}
+  ],
+  "training_admission": {
+    "approved": false,
+    "requirements": ["source-level license/provenance review", "project-level holdout and DecBench overlap exclusions", "C-only compilable dependencies without invented stubs", "pinned binary/profile/raw P-code to Forge SSA conversion", "source-label and semantic validation", "context/deduplication audit"]
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "evidence_scope": "bounded_owned_synthetic_GPU_corpus_training_not_functional_accuracy",
+  "model_parameters": 5380608,
+  "initial_nll": 5.529699742144161,
+  "final_nll": 2.546526410125504,
+  "train_examples": 480,
+  "validation_examples": 160,
+  "completed_step": 480,
+  "test_model_examples": 0,
+  "final_checkpoint": "/content/forge-corpus-results/pilot/checkpoints/step-00000480"
+}

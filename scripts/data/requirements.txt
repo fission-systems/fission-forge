@@ -1,0 +1,2 @@
+# Used only to inspect original ExeBench JSONL.zst members; no dataset code executes.
+zstandard==0.25.0

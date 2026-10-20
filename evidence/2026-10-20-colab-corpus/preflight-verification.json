@@ -1,0 +1,7 @@
+{
+  "longest_training_sequence": 4878,
+  "model_parameters": 5380608,
+  "weights_and_adam_resume_byte_identical": true,
+  "sampler_resume_identical": true,
+  "observed_gpu_memory_below_85_percent": true
+}
