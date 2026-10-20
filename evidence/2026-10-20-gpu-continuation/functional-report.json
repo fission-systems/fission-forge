@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "status": "complete",
+  "scope": "owned_synthetic_validation_not_DecBench",
+  "selection": "fixed_final_step_predeclared_before_training_not_functional_score_search",
+  "reference_manifest_sha256": "c8de92360f5281f9f7c1afc47a4ee643c857ae28b8a9cb71b3c514944940bdf0",
+  "continuation_plan_sha256": "449b58f0cf301510e40ca8f2123b91e1a8e1f5d5d923a52e535b83cc05418a2f",
+  "generation_driver_sha256": "6218d12319557528d527da465d8c04734520fe3e37c3bb628f1361004eb4c96e",
+  "scorer_sha256": "90dfbdffc96b4c281e385f21c6b3a3930e1fb117f4619f6d2856c4a88314686f",
+  "checkpoint_sha256": {
+    "baseline": "5ded3358ea7d14e252ed4c85fc5c08b8e061e1ff034f49258b327a263a89f3ef",
+    "continued": "60bf175d66fffc4144e7a47ada298d85a382782d9d859bd452bf8c42a55cf0a6"
+  },
+  "reference_comparisons": 10240,
+  "expected_targets": 160,
+  "arms": {
+    "baseline": {
+      "targets": 160,
+      "compiled": 0,
+      "all_cases_match": 0,
+      "matched_cases": 0,
+      "executed_cases": 0,
+      "targets_reaching_execution": 0,
+      "statuses": {
+        "compile_failure": 160
+      },
+      "compile_rate": 0.0,
+      "all_case_match_rate": 0.0,
+      "case_match_rate": 0.0
+    },
+    "continued": {
+      "targets": 160,
+      "compiled": 0,
+      "all_cases_match": 0,
+      "matched_cases": 0,
+      "executed_cases": 0,
+      "targets_reaching_execution": 0,
+      "statuses": {
+        "compile_failure": 160
+      },
+      "compile_rate": 0.0,
+      "all_case_match_rate": 0.0,
+      "case_match_rate": 0.0
+    }
+  },
+  "test_model_examples": 0,
+  "raw_output_policy": "unchanged_C_no_repairs"
+}

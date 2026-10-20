@@ -220,7 +220,7 @@ def build(args):
     attempts = []
     manifest = dict(schema_version=1, name=cfg['name'], origin='owned_synthetic_generator', split_unit='generator_family',
                     representation=cfg['representation'], config_sha256=sha((output/'config.json').read_bytes()),
-                    profile_sha256=sha(profile_bytes), source_license='repository AGPL-3.0',
+                    profile_sha256=sha(profile_bytes), source_license='repository Apache-2.0',
                     compiler=run([args.cc, '--version']).splitlines()[0], fission_commit=profile['fission_commit'],
                     fission_cli_sha256=sha(cli.read_bytes()), forge_binary_sha256=sha(forge.read_bytes()),
                     forge_revision=run(['git','rev-parse','HEAD']).strip(), forge_worktree_dirty=bool(run(['git','status','--porcelain']).strip()),

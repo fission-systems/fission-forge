@@ -1,0 +1,8 @@
+{
+  "mode": "continue",
+  "additional_steps": 1920,
+  "baseline_step": 480,
+  "baseline_checkpoint_sha256": "5ded3358ea7d14e252ed4c85fc5c08b8e061e1ff034f49258b327a263a89f3ef",
+  "generation_max_new_tokens": 256,
+  "functional_targets": "all_validation"
+}

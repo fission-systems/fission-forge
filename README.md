@@ -8,7 +8,7 @@
   <a href="docs/research/input-representations.md">Input representations</a> ·
   <a href="docs/evaluation.md">Evaluation</a> ·
   <a href="docs/corpus.md">Corpus</a> ·
-  <a href="LICENSE">AGPL-3.0</a>
+  <a href="LICENSE">Apache-2.0</a>
 </p>
 
 # Fission Forge
@@ -52,6 +52,14 @@ real-project functional generalization evaluation remain ahead. Loss reduction
 alone is not evidence of decompilation quality.
 
 ## Research direction
+
+The user-confirmed long-term objective is **approximately 20B parameters**.
+This is a scaling target; the current corpus GPU model has 5.38M parameters.
+The current F32/Adam implementation needs at least 320 GB for four dense arrays
+at 20B, excluding activations, so it cannot train that model on the present
+single A100 40 GB. [Scaling stages and resource gates](docs/scaling.md) separate
+current experiments from cluster/distributed training work.
+
 
 ```text
 Binary → Fission raw P-code → P-code+ / SSA → Forge checkpoint → C bytes
@@ -136,6 +144,13 @@ functional quality. [Reports and artifact verification](evidence/2026-10-20-cola
 pairs for future compilation and P-code extraction. Licenses, project overlap,
 source reconstruction and label checks remain admission gates; external data
 has not been mixed into training. DecBench stays reserved for evaluation.
+
+The next [fixed-LR continuation](evidence/2026-10-20-gpu-continuation/README.md)
+reached step 2400 but regressed NLL to 3.152. Both step-480 and step-2400 arms
+compiled **0/160** held-out raw C outputs. This result is recorded as a failure
+to improve, with all 320 completions preserved and original-reference execution
+rechecked. An explicit LR-resume option now preserves Adam history while
+recording an intentional LR fork; it is not an implicit optimizer reset.
 
 Earlier short-input probes:
 
@@ -224,5 +239,5 @@ corpus training.
 
 ## License
 
-[GNU Affero General Public License v3.0](LICENSE). Upstream tools, datasets, and
+[Apache License 2.0](LICENSE). Upstream tools, datasets, and
 model artifacts retain their respective licenses.

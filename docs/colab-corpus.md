@@ -83,3 +83,60 @@ python3 -m unittest discover -s scripts/data -p 'test_*.py'
 The fake CLI tests cover result recovery and release, lost observations without
 duplicate allocation, idempotent launch retry after timeout, and release after
 launch failure. These complement the recorded real GPU run.
+
+## Continue a real checkpoint and compare generated C
+
+```sh
+python3 scripts/colab/run_corpus.py \
+  --corpus outputs/corpus-bootstrap-v1 \
+  --resume outputs/colab-corpus-gpu-v3/results/pilot/checkpoints/step-00000480 \
+  --additional-steps 1920 --output outputs/colab-continuation-new \
+  --session forge-continue-new --gpu A100
+
+outputs/eval-venv/bin/python scripts/evaluation/score_gpu.py \
+  --results outputs/colab-continuation-new/results \
+  --corpus outputs/corpus-bootstrap-v1 --output outputs/colab-functional-new
+```
+
+Continuation verifies schema-4 weights and corpus-lock identity before allocation.
+It retains the existing seed, LR, batch and validation/checkpoint cadence; the
+Rust trainer refuses incompatible resume state. At most 1,920 additional updates
+are accepted per bounded job. Baseline and fixed final checkpoint each generate
+all 160 validation prompts with a 256-token greedy budget on CUDA. Reference C
+and expected values are used only by the separate local scorer. Generation
+errors/timeouts remain in the full denominator. The scorer verifies prompt,
+checkpoint and byte identity and rechecks original C on all 10,240 reference
+cases before reporting compile and probe-match rates. It does not change the
+old CPU functional protocol or claim a DecBench score.
+
+Archives above 8 MiB upload in 4 MiB parts and are assembled remotely with a
+full SHA-256 check before launch. Continuation result archives retain final and
+validation-best checkpoint weights plus intermediate state/report metadata.
+Other intermediate weights remain only on the temporary VM and are not exported.
+If a phase fails before a final report exists, partial checkpoints are retained
+for recovery. Cleanup still releases the named runtime after artifact collection.
+
+A relabelled project license does not rewrite historical frozen corpus metadata.
+The current owned corpus lock remains unchanged for checkpoint compatibility;
+newly generated owned-source corpora record Apache-2.0.
+
+## Explicit learning-rate fork
+
+A changed LR is rejected on ordinary resume. For a declared new experiment:
+
+```sh
+python3 scripts/colab/run_corpus.py \
+  --corpus outputs/corpus-bootstrap-v1 \
+  --resume outputs/colab-corpus-gpu-v3/results/pilot/checkpoints/step-00000120 \
+  --resume-learning-rate 0.0001 --additional-steps 960 \
+  --output outputs/colab-lr-recovery-new --session forge-lr-new --gpu A100
+```
+
+The controller declares the change in `job.json`. The Rust CLI uses
+`--override-learning-rate` with `--resume` and the new `--learning-rate`.
+Weights, Adam moments, optimizer step, seed and sampler are loaded unchanged;
+only LR is replaced. The parent checkpoint is never edited. The report records
+old/new LR and the parent checkpoint SHA/step. Subsequent ordinary resumes use
+the newly saved LR. Model, corpus and validation-setting mismatches remain
+errors even with the LR override. A real CPU corpus integration test exercises
+rejection, explicit override, unchanged parent hashes and subsequent resume.

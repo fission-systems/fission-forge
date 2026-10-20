@@ -1,0 +1,14 @@
+{
+  "archive_sha256_verified": true,
+  "checkpoint_sha256_verified": true,
+  "driver_snapshot_sha256_verified": true,
+  "train_steps_exactly_481_through_2400": true,
+  "four_epochs_each_visit_all_480_train_ids_once": true,
+  "all_evaluations_full_validation": true,
+  "raw_completion_arms": 2,
+  "targets_per_arm": 160,
+  "original_reference_comparisons": 10240,
+  "functional_metric_improved": false,
+  "external_rows_in_training": 0,
+  "test_model_examples": 0
+}

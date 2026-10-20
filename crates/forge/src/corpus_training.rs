@@ -87,6 +87,7 @@ pub struct ResumeState {
 pub struct Options {
     pub steps: usize,
     pub learning_rate: f64,
+    pub override_learning_rate: bool,
     pub seed: u64,
     pub resume: Option<PathBuf>,
     pub settings: Settings,
@@ -281,6 +282,10 @@ pub fn run(
             && options.learning_rate > 0.,
         "invalid training options"
     );
+    ensure!(
+        !options.override_learning_rate || options.resume.is_some(),
+        "learning-rate override requires resume"
+    );
     let settings = &options.settings;
     ensure!(
         (1..=32).contains(&settings.batch_size)
@@ -314,6 +319,7 @@ pub fn run(
         best: None,
     };
     let mut checkpoint = None;
+    let mut learning_rate_transition = None;
     if let Some(path) = &options.resume {
         let previous: Checkpoint = serde_json::from_slice(&fs::read(path.join("state.json"))?)?;
         let prior = previous
@@ -326,7 +332,8 @@ pub fn run(
                 && previous.seed == options.seed
                 && previous.tokenizer == "byte-v1-260"
                 && previous.dataset_sha256 == train_sha
-                && previous.optimizer.lr == options.learning_rate
+                && (previous.optimizer.lr == options.learning_rate
+                    || options.override_learning_rate)
                 && previous.representations == [pcode::cfg::REPRESENTATION]
                 && previous.input_sha256.as_deref() == Some(&state.train_encoded_sha256),
             "corpus checkpoint provenance/configuration mismatch"
@@ -388,13 +395,22 @@ pub fn run(
             }
         }
 
+        if previous.optimizer.lr != options.learning_rate {
+            learning_rate_transition = Some(
+                json!({"policy":"explicit_resume_lr_override_preserve_adam_moments_and_step", "previous_lr":previous.optimizer.lr,"new_lr":options.learning_rate,"parent_checkpoint_sha256":previous.checkpoint_sha256,"parent_step":previous.step}),
+            );
+        }
         checkpoint = Some(previous);
     }
     let vars = VarMap::new();
     let model = Decoder::new(&config, &vars, device)?;
     let mut optimizer = Adam::new(&vars, AdamConfig::new(options.learning_rate))?;
     if let Some(c) = checkpoint {
-        optimizer = Adam::new(&vars, c.optimizer)?;
+        let mut resumed_config = c.optimizer;
+        if options.override_learning_rate {
+            resumed_config.lr = options.learning_rate;
+        }
+        optimizer = Adam::new(&vars, resumed_config)?;
         optimizer.load(
             &options
                 .resume
@@ -497,7 +513,7 @@ pub fn run(
         }
     }
     let seconds = timer.elapsed().as_secs_f64();
-    let report = json!({"schema_version":1,"evidence_scope":"bounded_corpus_training_and_teacher_forced_validation_not_decompilation_accuracy","backend":format!("{:?}",device.location()),"dtype":"f32","model":config,"parameters":model::named_vars(&vars).iter().map(|(_,v)|v.elem_count()).sum::<usize>(),"settings":settings,"initial_step":initial_step,"completed_step":optimizer.step,"measured_updates":options.steps,"train_examples":train.rows.len(),"validation_examples":validation.rows.len(),"test_model_examples":0,"trained_examples":trained_examples,"trained_completion_tokens":trained_tokens,"max_training_sequence":max_sequence,"training_and_periodic_validation_seconds":seconds,"completion_tokens_per_second_including_periodic_validation":trained_tokens as f64/seconds,"initial_validation":initial_validation,"final_validation":last_validation,"best_validation":state.best,"sampler":state.sampler,"corpus_lock_sha256":state.corpus_lock_sha256,"train_encoded_sha256":train.effective_sha256,"validation_encoded_sha256":validation.effective_sha256,"corpus_audit":audit["splits"],"final_checkpoint":final_checkpoint,"attention_memory":"query_tiled_exact_causal_attention_still_quadratic_training_activations"});
+    let report = json!({"schema_version":1,"learning_rate_transition":learning_rate_transition,"evidence_scope":"bounded_corpus_training_and_teacher_forced_validation_not_decompilation_accuracy","backend":format!("{:?}",device.location()),"dtype":"f32","model":config,"parameters":model::named_vars(&vars).iter().map(|(_,v)|v.elem_count()).sum::<usize>(),"settings":settings,"initial_step":initial_step,"completed_step":optimizer.step,"measured_updates":options.steps,"train_examples":train.rows.len(),"validation_examples":validation.rows.len(),"test_model_examples":0,"trained_examples":trained_examples,"trained_completion_tokens":trained_tokens,"max_training_sequence":max_sequence,"training_and_periodic_validation_seconds":seconds,"completion_tokens_per_second_including_periodic_validation":trained_tokens as f64/seconds,"initial_validation":initial_validation,"final_validation":last_validation,"best_validation":state.best,"sampler":state.sampler,"corpus_lock_sha256":state.corpus_lock_sha256,"train_encoded_sha256":train.effective_sha256,"validation_encoded_sha256":validation.effective_sha256,"corpus_audit":audit["splits"],"final_checkpoint":final_checkpoint,"attention_memory":"query_tiled_exact_causal_attention_still_quadratic_training_activations"});
     fs::write(
         output.join("report.json"),
         serde_json::to_vec_pretty(&report)?,

@@ -1,0 +1,14 @@
+{
+  "initial_step": 480,
+  "completed_step": 2400,
+  "initial_nll": 2.546526410125504,
+  "final_nll": 3.151724867088955,
+  "best_validation": {
+    "checkpoint": null,
+    "nll": 2.036877628579058,
+    "step": 120,
+    "weights_sha256": "684bd3113144de7cf361e2690f9f4c6faea12215c25ad141c02dd57857eb06ad"
+  },
+  "external_training_rows": 0,
+  "test_model_examples": 0
+}

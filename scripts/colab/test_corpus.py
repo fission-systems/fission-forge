@@ -1,5 +1,6 @@
 """Exercise local lease control without allocating a real VM or spending units."""
 import json
+import hashlib
 import os
 from pathlib import Path
 import subprocess
@@ -29,7 +30,7 @@ if command=='exec':
 elif command=='download':
     remote,destination=args[-2:];destination=pathlib.Path(destination)
     if remote.endswith('.tar.gz'):shutil.copyfile(root/'fake.tar.gz',destination)
-    elif remote.endswith('.json'):destination.write_text(json.dumps({'state':'complete','phase':'done','archive_sha256':hashlib.sha256((root/'fake.tar.gz').read_bytes()).hexdigest()}))
+    elif remote.endswith('.json'):destination.write_text(json.dumps({'state':'complete','phase':'done','archive_sha256':'0'*64 if os.environ.get('FORGE_BAD_DIGEST') else hashlib.sha256((root/'fake.tar.gz').read_bytes()).hexdigest()}))
     else:destination.write_text('fake log')
 else:print('ok')
 '''
@@ -78,6 +79,39 @@ class ControllerTests(unittest.TestCase):
         self.assertEqual(len(seen),2)
         self.assertEqual(sum(c[0]=='new' for c in self.calls()),1)
         self.assertEqual(sum(c[0]=='stop' for c in self.calls()),1)
+    def test_resume_packages_only_verified_checkpoint_and_records_plan(self):
+        resume=self.root/'resume';resume.mkdir();weights=b'owned test checkpoint'
+        (resume/'training.safetensors').write_bytes(weights)
+        state=dict(schema_version=4,step=480,checkpoint_sha256=hashlib.sha256(weights).hexdigest(),corpus=dict(corpus_lock_sha256=hashlib.sha256(b'{}').hexdigest()))
+        (resume/'state.json').write_text(json.dumps(state))
+        with mock.patch.object(sys,'argv',['run_corpus.py','--corpus',str(self.corpus),'--output',str(self.root/'job'),'--session','unit-gpu','--resume',str(resume),'--package-only']):run_corpus.main()
+        with tarfile.open(self.root/'job/source.tar.gz') as tar:
+            plan=json.load(tar.extractfile('job.json'))
+            self.assertEqual(plan['baseline_step'],480);self.assertEqual(plan['additional_steps'],1920)
+            self.assertEqual(tar.extractfile('resume/training.safetensors').read(),weights)
+        self.assertFalse((self.root/'calls.jsonl').exists())
+    def test_corrupt_resume_refused_before_runtime_allocation(self):
+        resume=self.root/'resume';resume.mkdir();(resume/'training.safetensors').write_bytes(b'changed')
+        (resume/'state.json').write_text(json.dumps(dict(schema_version=4,checkpoint_sha256='0'*64)))
+        with mock.patch.object(sys,'argv',['run_corpus.py','--corpus',str(self.corpus),'--output',str(self.root/'job'),'--session','unit-gpu','--resume',str(resume)]),self.assertRaisesRegex(ValueError,'integrity mismatch'):run_corpus.main()
+        self.assertFalse((self.root/'calls.jsonl').exists())
+    def test_bad_result_archive_digest_still_releases_runtime(self):
+        with self.assertRaisesRegex(ValueError,'digest mismatch'):self.invoke({'FORGE_BAD_DIGEST':'1'})
+        self.assertEqual(sum(c[0]=='stop' for c in self.calls()),1)
+        self.assertFalse((self.root/'job/results').exists())
+    def test_large_archive_upload_is_chunked_and_assembled_before_launch(self):
+        large=self.root/'crates/large.bin';large.parent.mkdir();large.write_bytes(os.urandom(9*1024*1024))
+        subprocess.run(['git','add',str(large)],check=True)
+        self.invoke();calls=self.calls()
+        uploads=[c for c in calls if c[0]=='upload' and '/source.part-' in c[-1]]
+        self.assertGreater(len(uploads),1)
+        self.assertTrue(all(Path(c[-2]).stat().st_size<=4*1024*1024 for c in uploads))
+        archive=self.root/'job/source.tar.gz'
+        self.assertEqual(b''.join(Path(c[-2]).read_bytes() for c in uploads),archive.read_bytes())
+        assemble=next(i for i,c in enumerate(calls) if c[0]=='exec' and c[-1].endswith('assemble.py'))
+        launch=next(i for i,c in enumerate(calls) if c[0]=='exec' and c[-1].endswith('launch.py'))
+        self.assertLess(assemble,launch)
+        self.assertIn(hashlib.sha256(archive.read_bytes()).hexdigest(),(self.root/'job/assemble.py').read_text())
     def test_launch_failure_still_releases_runtime(self):
         with self.assertRaisesRegex(RuntimeError,'confirm idempotent'):self.invoke({'FORGE_LAUNCH_FAIL':'1'})
         self.assertEqual(sum(c[0]=='stop' for c in self.calls()),1)

@@ -30,6 +30,9 @@ enum Command {
         steps: usize,
         #[arg(long, default_value_t = 0.0003)]
         learning_rate: f64,
+        /// Explicitly change LR on resume while retaining Adam moments and step.
+        #[arg(long)]
+        override_learning_rate: bool,
         #[arg(long, default_value_t = 42)]
         seed: u64,
         #[arg(long, default_value_t = 1)]
@@ -142,6 +145,7 @@ fn main() -> Result<()> {
             output,
             steps,
             learning_rate,
+            override_learning_rate,
             seed,
             batch_size,
             attention_chunk,
@@ -159,6 +163,7 @@ fn main() -> Result<()> {
                 corpus_training::Options {
                     steps,
                     learning_rate,
+                    override_learning_rate,
                     seed,
                     resume,
                     settings: corpus_training::Settings {

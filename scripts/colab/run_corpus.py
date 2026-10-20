@@ -17,8 +17,7 @@ def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def checked(cmd,timeout=90,**kwargs):return subprocess.run(list(map(str,cmd)),check=True,timeout=timeout,**kwargs)
 def source_files(root,corpus):
     tracked=subprocess.check_output(['git','ls-files'],cwd=root,text=True).splitlines()
-    selected=[p for p in tracked if p in ['Cargo.toml','Cargo.lock'] or p.startswith('crates/') or p.startswith('configs/model/')]
-    # Include explicitly requested new model config before it is committed.
+    selected=[p for p in tracked if p in ['Cargo.toml','Cargo.lock','LICENSE','NOTICE'] or p.startswith('crates/') or p.startswith('configs/model/')]
     selected.append('configs/model/gpu-pilot-5m-8k.json')
     files={name:root/name for name in sorted(set(selected))}
     manifest=json.loads((corpus/'manifest.json').read_text())
@@ -33,9 +32,18 @@ def source_files(root,corpus):
 
 
 def main():
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--corpus',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--session',required=True);p.add_argument('--gpu',choices=['A100','L4','T4','G4'],default='A100');p.add_argument('--package-only',action='store_true');p.add_argument('--attach',action='store_true',help='Reuse this explicitly named existing session; it will still be stopped when done')
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--corpus',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--session',required=True);p.add_argument('--gpu',choices=['A100','L4','T4','G4'],default='A100');p.add_argument('--resume',type=Path,help='Continue a verified schema-4 local corpus checkpoint');p.add_argument('--additional-steps',type=int,default=1920);p.add_argument('--resume-learning-rate',type=float,help='Explicitly fork the resume LR while preserving Adam history');p.add_argument('--package-only',action='store_true');p.add_argument('--attach',action='store_true',help='Reuse this explicitly named existing session; it will still be stopped when done')
     args=p.parse_args();root=Path.cwd();corpus=args.corpus.resolve();output=args.output.resolve();output.mkdir(parents=True,exist_ok=False)
+    if args.resume_learning_rate is not None and args.resume is None:raise ValueError('resume LR requires --resume')
     files=source_files(root,corpus)
+    if args.resume:
+        if not 1<=args.additional_steps<=1920:raise ValueError('continuation requires 1..1920 additional updates per bounded job')
+        resume=args.resume.resolve();state=json.loads((resume/'state.json').read_text())
+        if state.get('schema_version')!=4 or sha(resume/'training.safetensors')!=state.get('checkpoint_sha256'):raise ValueError('resume checkpoint integrity mismatch')
+        if state['corpus']['corpus_lock_sha256']!=sha(corpus/'release/lock.json'):raise ValueError('resume corpus lock mismatch')
+        if args.resume_learning_rate is not None and not 0<args.resume_learning_rate<=0.001:raise ValueError('resume LR must be >0 and <=0.001')
+        for name in ['state.json','training.safetensors']:files['resume/'+name]=resume/name
+        job=output/'job.json';job.write_text(json.dumps(dict(mode='continue',additional_steps=args.additional_steps,baseline_step=state['step'],baseline_checkpoint_sha256=state['checkpoint_sha256'],generation_max_new_tokens=256,functional_targets='all_validation',resume_learning_rate=args.resume_learning_rate),indent=2)+'\n');files['job.json']=job
     metadata=dict(source_revision=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),source_worktree_dirty=bool(subprocess.check_output(['git','status','--porcelain'],text=True).strip()),files={name:sha(path) for name,path in files.items()},corpus_lock_sha256=sha(corpus/'release/lock.json'),credentials_uploaded=False)
     metadata_path=output/'payload.json';metadata_path.write_text(json.dumps(metadata,indent=2)+'\n')
     archive=output/'source.tar.gz'
@@ -49,7 +57,13 @@ def main():
             checked(['colab','status','-s',session]);allocated=True
         else:
             checked(['colab','new','-s',session,'--gpu',args.gpu],timeout=180);allocated=True
-        checked(['colab','upload','-s',session,archive,'/content/forge-corpus-source.tar.gz'],timeout=180)
+        pieces=[]
+        if archive.stat().st_size>8*1024*1024:
+            with archive.open('rb') as incoming:
+                while data:=incoming.read(4*1024*1024):
+                    part=output/('source.part-%04d'%len(pieces));part.write_bytes(data);pieces.append(part)
+            for part in pieces:checked(['colab','upload','-s',session,part,'/content/'+part.name],timeout=90)
+        else:checked(['colab','upload','-s',session,archive,'/content/forge-corpus-source.tar.gz'],timeout=180)
         checked(['colab','upload','-s',session,root/'scripts/colab/corpus_driver.py','/content/forge-corpus-driver.py'],timeout=90)
         warmup=output/'warmup.py';warmup.write_text("print('forge-kernel-ready')\n")
         for attempt in range(4):
@@ -59,6 +73,9 @@ def main():
             except subprocess.TimeoutExpired:pass
             if attempt==3:raise RuntimeError('kernel did not become ready on the existing session')
             time.sleep(5)
+        if pieces:
+            assembly=output/'assemble.py';assembly.write_text("import hashlib,pathlib\nparts="+repr([p.name for p in pieces])+"\noutput=pathlib.Path('/content/forge-corpus-source.tar.gz')\nwith output.open('wb') as out:\n    for name in parts:out.write(pathlib.Path('/content',name).read_bytes())\nassert hashlib.sha256(output.read_bytes()).hexdigest()=="+repr(sha(archive))+"\nprint('archive assembled and SHA verified')\n")
+            checked(['colab','exec','-s',session,'-f',assembly],timeout=90)
         launch=output/'launch.py';launch.write_text("""import subprocess,sys,pathlib,json,os
 pidfile=pathlib.Path('/content/forge-corpus-pid.json')
 statusfile=pathlib.Path('/content/forge-corpus-status.json')
