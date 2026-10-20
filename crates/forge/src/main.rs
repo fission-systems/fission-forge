@@ -3,7 +3,7 @@ use std::path::PathBuf;
 use anyhow::{Result, bail};
 use candle_core::Device;
 use clap::{Parser, Subcommand, ValueEnum};
-use fission_forge::{corpus, generation, pcode, probe, training};
+use fission_forge::{corpus, corpus_training, generation, pcode, probe, training};
 
 #[derive(Parser)]
 #[command(
@@ -18,6 +18,35 @@ struct Cli {
 
 #[derive(Subcommand)]
 enum Command {
+    /// Train on a frozen corpus release, with separate validation and resumable epoch sampling.
+    TrainCorpus {
+        #[arg(long)]
+        config: PathBuf,
+        #[arg(long)]
+        corpus: PathBuf,
+        #[arg(long)]
+        output: PathBuf,
+        #[arg(long, default_value_t = 100)]
+        steps: usize,
+        #[arg(long, default_value_t = 0.0003)]
+        learning_rate: f64,
+        #[arg(long, default_value_t = 42)]
+        seed: u64,
+        #[arg(long, default_value_t = 1)]
+        batch_size: usize,
+        #[arg(long, default_value_t = 256)]
+        attention_chunk: usize,
+        #[arg(long, default_value_t = 0)]
+        validation_limit: usize,
+        #[arg(long, default_value_t = 100)]
+        evaluate_every: u64,
+        #[arg(long, default_value_t = 100)]
+        checkpoint_every: u64,
+        #[arg(long)]
+        resume: Option<PathBuf>,
+        #[arg(long, value_enum, default_value = "cpu")]
+        device: Backend,
+    },
     /// Verify corpus provenance, remove cross-split clones, and optionally freeze a new release.
     CorpusAudit {
         #[arg(long)]
@@ -107,6 +136,42 @@ fn device(backend: Backend) -> Result<Device> {
 
 fn main() -> Result<()> {
     match Cli::parse().command {
+        Command::TrainCorpus {
+            config,
+            corpus,
+            output,
+            steps,
+            learning_rate,
+            seed,
+            batch_size,
+            attention_chunk,
+            validation_limit,
+            evaluate_every,
+            checkpoint_every,
+            resume,
+            device: backend,
+        } => {
+            let report = corpus_training::run(
+                &config,
+                &corpus,
+                &output,
+                &device(backend)?,
+                corpus_training::Options {
+                    steps,
+                    learning_rate,
+                    seed,
+                    resume,
+                    settings: corpus_training::Settings {
+                        batch_size,
+                        attention_chunk,
+                        validation_limit,
+                        evaluate_every,
+                        checkpoint_every,
+                    },
+                },
+            )?;
+            println!("{}", serde_json::to_string_pretty(&report)?);
+        }
         Command::CorpusAudit { root, finalize } => {
             println!(
                 "{}",

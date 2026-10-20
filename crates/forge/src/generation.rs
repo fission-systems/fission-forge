@@ -106,7 +106,7 @@ pub fn run(
     let state_bytes = fs::read(checkpoint.join("state.json"))?;
     let state: training::Checkpoint = serde_json::from_slice(&state_bytes)?;
     ensure!(
-        (1..=3).contains(&state.schema_version) && state.tokenizer == "byte-v1-260",
+        (1..=4).contains(&state.schema_version) && state.tokenizer == "byte-v1-260",
         "unsupported checkpoint schema/tokenizer"
     );
     ensure!(
@@ -124,6 +124,12 @@ pub fn run(
     prefix(prompt, state.model.max_seq_len, max_new_tokens)?;
     let bytes = fs::read(checkpoint.join("training.safetensors"))?;
     let digest = pcode::sha256(&bytes);
+    if state.schema_version == 4 {
+        ensure!(
+            state.corpus.is_some() && state.checkpoint_sha256.as_deref() == Some(&digest),
+            "corpus checkpoint integrity mismatch"
+        );
+    }
     let tensors = candle_core::safetensors::SliceSafetensors::new(&bytes)?;
     let vars = candle_nn::VarMap::new();
     let model = Decoder::new(&state.model, &vars, device)?;
@@ -151,7 +157,13 @@ pub fn run(
     let completion = decode(prompt, state.model.max_seq_len, max_new_tokens, |ids| {
         let ids = Tensor::from_slice(ids, (1, ids.len()), device)?;
         Ok(model
-            .forward(&ids)?
+            .forward_chunked(
+                &ids,
+                state
+                    .corpus
+                    .as_ref()
+                    .map_or(0, |s| s.settings.attention_chunk),
+            )?
             .get(0)?
             .get(ids.dim(1)? - 1)?
             .to_vec1::<f32>()?)

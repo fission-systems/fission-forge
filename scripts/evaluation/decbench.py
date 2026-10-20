@@ -97,8 +97,8 @@ def run(args):
             raise ValueError('--checkpoint is required for generation')
         args.checkpoint = args.checkpoint.resolve()
         state = json.loads((args.checkpoint / 'state.json').read_text())
-        if state.get('schema_version') != 3 or args.representation not in state.get('representations', []):
-            raise ValueError('benchmark adapter requires checkpoint schema 3 with a matching input lane')
+        if state.get('schema_version') not in (3, 4) or args.representation not in state.get('representations', []):
+            raise ValueError('benchmark adapter requires checkpoint schema 3 or 4 with a matching input lane')
     output.mkdir(parents=True)
     (output / 'functions.json').write_bytes(manifest_bytes)
     (output / 'results').mkdir()

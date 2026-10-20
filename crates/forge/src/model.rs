@@ -75,7 +75,12 @@ impl Block {
             down: linear_no_bias(c.feed_forward_size, h, vb.pp("down"))?,
         })
     }
-    fn forward(&self, x: &Tensor, mask: &Tensor, c: &ModelConfig) -> candle_core::Result<Tensor> {
+    fn forward(
+        &self,
+        x: &Tensor,
+        c: &ModelConfig,
+        query_chunk: usize,
+    ) -> candle_core::Result<Tensor> {
         let (batch, time, hidden) = x.dims3()?;
         let width = hidden / c.heads;
         let qkv = self.qkv.forward(&self.norm1.forward(x)?)?;
@@ -86,11 +91,30 @@ impl Block {
                 .contiguous()
         };
         let (q, k, v) = (split(0)?, split(hidden)?, split(hidden * 2)?);
-        let scores =
-            (q.matmul(&k.transpose(2, 3)?)? / (width as f64).sqrt())?.broadcast_add(mask)?;
-        let attention = candle_nn::ops::softmax(&scores, candle_core::D::Minus1)?;
-        let values = attention
-            .matmul(&v)?
+        // Query tiling avoids a full T*T mask and skips future key blocks.
+        // Backprop still retains attention activations: this is not FlashAttention.
+        let chunk = if query_chunk == 0 {
+            time
+        } else {
+            query_chunk.min(time)
+        };
+        let mut pieces = Vec::new();
+        for start in (0..time).step_by(chunk) {
+            let count = chunk.min(time - start);
+            let end = start + count;
+            let mask: Vec<f32> = (start..end)
+                .flat_map(|i| (0..end).map(move |j| if j > i { f32::NEG_INFINITY } else { 0. }))
+                .collect();
+            let mask = Tensor::from_vec(mask, (1, 1, count, end), x.device())?;
+            let scores = (q
+                .narrow(2, start, count)?
+                .matmul(&k.narrow(2, 0, end)?.transpose(2, 3)?)?
+                / (width as f64).sqrt())?
+            .broadcast_add(&mask)?;
+            let attention = candle_nn::ops::softmax(&scores, candle_core::D::Minus1)?;
+            pieces.push(attention.matmul(&v.narrow(2, 0, end)?)?);
+        }
+        let values = Tensor::cat(&pieces, 2)?
             .transpose(1, 2)?
             .contiguous()?
             .reshape((batch, time, hidden))?;
@@ -112,8 +136,18 @@ pub struct Decoder {
 }
 impl Decoder {
     pub fn new(c: &ModelConfig, vars: &VarMap, device: &Device) -> Result<Self> {
+        Self::from_builder(c, VarBuilder::from_varmap(vars, DType::F32, device))
+    }
+    /// A weight snapshot with no variable leaves; validation creates no gradient graph.
+    pub fn for_eval(c: &ModelConfig, vars: &VarMap, device: &Device) -> Result<Self> {
+        let tensors = named_vars(vars)
+            .into_iter()
+            .map(|(n, v)| (n, v.detach()))
+            .collect();
+        Self::from_builder(c, VarBuilder::from_tensors(tensors, DType::F32, device))
+    }
+    fn from_builder(c: &ModelConfig, vb: VarBuilder<'_>) -> Result<Self> {
         c.validate()?;
-        let vb = VarBuilder::from_varmap(vars, DType::F32, device);
         Ok(Self {
             config: c.clone(),
             tokens: embedding(c.vocab_size, c.hidden_size, vb.pp("tokens"))?,
@@ -126,6 +160,9 @@ impl Decoder {
         })
     }
     pub fn forward(&self, ids: &Tensor) -> Result<Tensor> {
+        self.forward_chunked(ids, 0)
+    }
+    pub fn forward_chunked(&self, ids: &Tensor, query_chunk: usize) -> Result<Tensor> {
         let (_, time) = ids.dims2()?;
         ensure!(
             time > 0 && time <= self.config.max_seq_len,
@@ -136,12 +173,8 @@ impl Decoder {
             .tokens
             .forward(ids)?
             .broadcast_add(&self.positions.forward(&positions)?.unsqueeze(0)?)?;
-        let mask: Vec<f32> = (0..time)
-            .flat_map(|i| (0..time).map(move |j| if j > i { f32::NEG_INFINITY } else { 0. }))
-            .collect();
-        let mask = Tensor::from_vec(mask, (1, 1, time, time), ids.device())?;
         for block in &self.blocks {
-            x = block.forward(&x, &mask, &self.config)?;
+            x = block.forward(&x, &self.config, query_chunk)?;
         }
         Ok(self.head.forward(&self.norm.forward(&x)?)?)
     }
@@ -207,6 +240,56 @@ mod tests {
             .max(0)?
             .to_scalar::<f32>()?;
         assert!(delta <= 1e-6, "future-token leakage: {delta}");
+        Ok(())
+    }
+}
+
+#[cfg(test)]
+mod tiled_tests {
+    use super::*;
+    #[test]
+    fn tiled_attention_matches_full_logits_and_parameter_gradients() -> Result<()> {
+        let c = ModelConfig {
+            vocab_size: 260,
+            hidden_size: 8,
+            heads: 2,
+            layers: 1,
+            feed_forward_size: 16,
+            max_seq_len: 32,
+        };
+        let vars = VarMap::new();
+        let model = Decoder::new(&c, &vars, &Device::Cpu)?;
+        initialize(&vars, 42)?;
+        let ids = Tensor::new(&[[1u32, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]], &Device::Cpu)?;
+        let full = model.forward(&ids)?;
+        let tiled = model.forward_chunked(&ids, 3)?;
+        assert!(
+            (&full - &tiled)?
+                .abs()?
+                .flatten_all()?
+                .max(0)?
+                .to_scalar::<f32>()?
+                < 1e-6
+        );
+        let a = full.sqr()?.mean_all()?.backward()?;
+        let b = tiled.sqr()?.mean_all()?.backward()?;
+        for (_, v) in named_vars(&vars) {
+            let delta = (a.get(&v).unwrap() - b.get(&v).unwrap())?
+                .abs()?
+                .flatten_all()?
+                .max(0)?
+                .to_scalar::<f32>()?;
+            assert!(delta < 1e-5, "gradient mismatch {delta}");
+        }
+        let inference = Decoder::for_eval(&c, &vars, &Device::Cpu)?;
+        let loss = inference.forward_chunked(&ids, 3)?.sqr()?.mean_all()?;
+        let detached = loss.backward()?;
+        for (_, v) in named_vars(&vars) {
+            assert!(
+                detached.get(&v).is_none(),
+                "validation retains variable graph"
+            );
+        }
         Ok(())
     }
 }

@@ -1,0 +1,38 @@
+{
+  "evidence_scope": "bounded_model_generation_only",
+  "representation": "pcode-plus-ssa-v1",
+  "checkpoint_representations": [
+    "pcode-plus-ssa-v1"
+  ],
+  "checkpoint_sha256": "f6742ff5c019dfa94db320123b5c307a79bf03421008815ccf59058d94b2cd68",
+  "checkpoint_state_sha256": "58f63d11d5e58e0d7c035ea3403745ae3a7a891272103ede12af4c0f1b6fa503",
+  "prompt_sha256": "da4768364f73979a0343ee7c4d11d0d6577667f8893eb5e31c2702bacdccb0ce",
+  "prompt_bytes": 2057,
+  "max_new_tokens": 4,
+  "decoding": "greedy_eos_and_bytes_only",
+  "model": {
+    "vocab_size": 260,
+    "hidden_size": 8,
+    "heads": 1,
+    "layers": 1,
+    "feed_forward_size": 32,
+    "max_seq_len": 8192
+  },
+  "backend": "Cpu",
+  "completion": {
+    "tokens": [
+      38,
+      196,
+      131,
+      69
+    ],
+    "bytes": [
+      34,
+      192,
+      127,
+      65
+    ],
+    "stop_reason": "max_new_tokens"
+  },
+  "text": null
+}

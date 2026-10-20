@@ -34,9 +34,10 @@ A100 checks. It does not yet ship a generally useful decompiler or a pretrained 
 | Component | What exists today |
 | --- | --- |
 | Rust causal decoder | Multi-head causal attention, learned positions, pre-layer normalization, GELU feed-forward layers |
-| Training | Byte tokens, completion-only next-token loss, deterministic initialization, AdamW |
+| Training | Byte tokens, completion-only loss, AdamW, deterministic epoch sampling and resumable corpus checkpoints |
+| Long inputs / validation | 8K-context CPU configuration, tiled causal queries, detached token-weighted validation; test split excluded from model batches |
 | Checkpoints | Safetensors weights and optimizer moments; reload and next-update equivalence checks |
-| Model sizes | 61,888-parameter IR probe, 148,608-parameter assembly smoke model, and 99,927,552-parameter experimental configuration |
+| Model sizes | 61,888-parameter IR probe, 70,512-parameter 8K corpus probe, 148,608-parameter assembly smoke model, and 99,927,552-parameter experimental configuration |
 | CUDA | 148K and approximately 100M assembly probes exercised on a Colab A100 40 GB; IR lane tested on CPU |
 | Input data | Owned synthetic bootstrap corpus with frozen family-disjoint train/validation/test splits, plus small assembly and P-code fixtures |
 | P-code frontend | Typed raw-dump validation, pinned SLA profile, reproducible owned-C extraction, and explicit unsupported records |
@@ -44,15 +45,17 @@ A100 checks. It does not yet ship a generally useful decompiler or a pretrained 
 | Generation | Bounded greedy byte decoding, exact output preservation, EOS/context/budget reporting, checkpoint lane checks; CPU validated |
 | DecBench | Static external-kit adapter and pinned packaging format exercised on an owned fixture; benchmark scores pending |
 
-The fixed-batch trainer accepts at most 32 examples and rejects truncation. Corpus
-streaming, mixed precision, and generalization evaluation remain to be implemented. Loss reduction on the smoke fixtures is not evidence of decompilation
-quality.
+The fixed-batch probe accepts at most 32 examples. The new corpus trainer samples
+from all training rows, supports batches of 1..32, caches tokenized rows on the
+host, and rejects truncation. Out-of-core streaming, mixed precision, and
+functional generalization evaluation remain ahead. Loss reduction alone is not
+evidence of decompilation quality.
 
 ## Research direction
 
 ```text
 Binary → Fission raw P-code → P-code+ / SSA → Forge checkpoint → C bytes
-                              v0 / v1        fixed-batch       greedy
+                              v0 / v1        corpus / probe    greedy
                                                                ↓
                                                    DecBench external-kit format
 ```
@@ -68,13 +71,18 @@ Five owned compiled fixtures pass v1 conversion. Diamond/loop SSA execution
 matches raw P-code and independent integer oracles on 106 inputs. A separate
 one-example memorization probe generated its C label and passed the pinned
 DecBench packaging format. **This is plumbing evidence, not held-out accuracy or
-a DecBench score.** Corpus training and scored evaluation remain ahead.
+a DecBench score.** Larger-scale training and scored evaluation remain ahead.
 
 The [bootstrap corpus pipeline](docs/corpus.md) checks owned C labels on the host,
 records every compiler/lifter attempt, filters duplicate and cross-split
 fingerprints, and freezes separate train/validation/test files. This is synthetic
-family-disjoint data preparation; real-project independence, corpus training,
-and held-out model quality remain unmeasured.
+family-disjoint data preparation; real-project independence, larger-scale training,
+and functional held-out quality remain unmeasured.
+[Corpus training and validation](docs/corpus-training.md) now add epoch sampling,
+long-input attention, separate validation NLL, and schema-4 resume state. A
+70,512-parameter CPU run completed one pass over all 480 training pairs and
+validated separately on 160 pairs: NLL 5.559 → 2.176. This measures next-token
+prediction, not functional C accuracy. [Execution record](evidence/2026-10-20-corpus-training/README.md).
 
 Read [v0 input commands](docs/pcode.md), [CFG/call contracts](docs/cfg.md),
 [generation](docs/generation.md), and [recorded evidence](evidence/2026-10-20-cfg-generation/README.md).
@@ -159,7 +167,7 @@ No DecBench score is claimed here. See
 | [`fixtures/pcode/`](fixtures/pcode/) | Stable v0 fixtures and negative cases |
 | [`fixtures/pcode-cfg/`](fixtures/pcode-cfg/) | Owned diamond/loop/call functions, real dumps, and v1 extraction rows |
 | [`scripts/colab/`](scripts/colab/) | CUDA build and bounded probe orchestration |
-| [`scripts/corpus/`](scripts/corpus/) | Owned C corpus builder and frozen-release integrity checks |
+| [`scripts/corpus/`](scripts/corpus/) | Owned C builder, release integrity checks and training/resume acceptance driver |
 | [`configs/corpus/`](configs/corpus/) | Versioned source-family split recipe |
 | [`scripts/evaluation/`](scripts/evaluation/) | Static DecBench external-kit adapter and parser checks |
 | [`evidence/`](evidence/) | Small, recorded measurement reports; no model weights |

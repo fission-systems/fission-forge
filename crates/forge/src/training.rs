@@ -20,15 +20,15 @@ use crate::{
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
-struct AdamConfig {
-    lr: f64,
+pub(crate) struct AdamConfig {
+    pub(crate) lr: f64,
     beta1: f64,
     beta2: f64,
     eps: f64,
     weight_decay: f64,
 }
 impl AdamConfig {
-    fn new(lr: f64) -> Self {
+    pub(crate) fn new(lr: f64) -> Self {
         Self {
             lr,
             beta1: 0.9,
@@ -45,13 +45,13 @@ struct Slot {
     m: Tensor,
     v: Tensor,
 }
-struct Adam {
+pub(crate) struct Adam {
     slots: Vec<Slot>,
-    config: AdamConfig,
-    step: u64,
+    pub(crate) config: AdamConfig,
+    pub(crate) step: u64,
 }
 impl Adam {
-    fn new(vars: &VarMap, config: AdamConfig) -> Result<Self> {
+    pub(crate) fn new(vars: &VarMap, config: AdamConfig) -> Result<Self> {
         ensure!(
             config.lr.is_finite()
                 && config.lr > 0.
@@ -80,7 +80,7 @@ impl Adam {
             step: 0,
         })
     }
-    fn update(&mut self, loss: &Tensor) -> Result<()> {
+    pub(crate) fn update(&mut self, loss: &Tensor) -> Result<()> {
         let grads = loss.backward()?;
         self.step += 1;
         let c = &self.config;
@@ -99,7 +99,7 @@ impl Adam {
         }
         Ok(())
     }
-    fn save(&self, path: &Path) -> Result<()> {
+    pub(crate) fn save(&self, path: &Path) -> Result<()> {
         let mut tensors = HashMap::new();
         for slot in &self.slots {
             tensors.insert(
@@ -111,7 +111,7 @@ impl Adam {
         }
         Ok(candle_core::safetensors::save(&tensors, path)?)
     }
-    fn load(&mut self, path: &Path, step: u64, device: &Device) -> Result<()> {
+    pub(crate) fn load(&mut self, path: &Path, step: u64, device: &Device) -> Result<()> {
         let tensors = candle_core::safetensors::load(path, device)?;
         ensure!(
             tensors.len() == self.slots.len() * 3,
@@ -144,15 +144,19 @@ impl Adam {
 pub(crate) struct Checkpoint {
     pub(crate) schema_version: u32,
     pub(crate) model: ModelConfig,
-    optimizer: AdamConfig,
-    step: u64,
-    seed: u64,
-    dataset_sha256: String,
+    pub(crate) optimizer: AdamConfig,
+    pub(crate) step: u64,
+    pub(crate) seed: u64,
+    pub(crate) dataset_sha256: String,
     pub(crate) tokenizer: String,
     #[serde(default)]
-    input_sha256: Option<String>,
+    pub(crate) input_sha256: Option<String>,
     #[serde(default)]
     pub(crate) representations: Vec<String>,
+    #[serde(default)]
+    pub(crate) corpus: Option<crate::corpus_training::ResumeState>,
+    #[serde(default)]
+    pub(crate) checkpoint_sha256: Option<String>,
 }
 
 pub struct Options {
@@ -273,6 +277,8 @@ pub fn run(
     let completed_steps = optimizer.step;
     let state = Checkpoint {
         schema_version: 3,
+        corpus: None,
+        checkpoint_sha256: None,
         representations: batch.representations.clone(),
         input_sha256: Some(batch.input_sha256.clone()),
         model: config.clone(),

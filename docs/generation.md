@@ -26,8 +26,11 @@ No invalid bytes or partial outputs are silently rewritten.
 New checkpoint schema 3 records training input lanes. Generation rejects a lane
 not listed in that checkpoint before loading weights. Older schema 1/2 checkpoints
 can be loaded, but missing lane metadata remains unrecorded; the DecBench adapter
-requires schema 3. Training resume accepts schema 2 with its effective-batch hash
-and schema 1 for legacy assembly; new saves upgrade to schema 3.
+accepts schemas 3 and 4. Training resume accepts schema 2 with its effective-batch hash
+and schema 1 for legacy assembly; new smoke saves upgrade to schema 3.
+The separate [corpus trainer](corpus-training.md) writes schema 4 with sampler
+state and a weights-file digest. Generation checks this digest and uses the
+recorded query-tile size. Corpus training resumes through `train-corpus`.
 
 The loader reads the Safetensors file into host memory and transfers only model
 tensors to the requested device. AdamW payload bytes are not used for inference.

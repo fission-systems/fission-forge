@@ -91,8 +91,32 @@ pub fn batch(text: &str, context: usize, device: &Device) -> Result<Batch> {
         );
         encoded.push((tokens, start));
     }
+    encoded_batch(
+        &encoded,
+        representations.into_iter().collect(),
+        context,
+        device,
+    )
+}
+
+pub(crate) fn encoded_batch(
+    encoded: &[(Vec<u32>, usize)],
+    representations: Vec<String>,
+    context: usize,
+    device: &Device,
+) -> Result<Batch> {
+    ensure!(
+        !encoded.is_empty() && encoded.len() <= 32,
+        "batch requires 1..32 examples"
+    );
+    for (tokens, start) in encoded {
+        ensure!(
+            *start > 0 && *start < tokens.len() && tokens.len() - 1 <= context,
+            "invalid encoded pair or context exceeded; truncation is forbidden"
+        );
+    }
     let time = encoded.iter().map(|(t, _)| t.len() - 1).max().unwrap();
-    let mut input = vec![PAD; pairs.len() * time];
+    let mut input = vec![PAD; encoded.len() * time];
     let mut target = input.clone();
     let mut mask = vec![0f32; input.len()];
     for (b, (tokens, start)) in encoded.iter().enumerate() {
@@ -105,15 +129,15 @@ pub fn batch(text: &str, context: usize, device: &Device) -> Result<Batch> {
         }
     }
     let completion_tokens = mask.iter().filter(|m| **m == 1.).count();
-    let shape = (pairs.len(), time);
+    let shape = (encoded.len(), time);
     let input_sha256 = crate::pcode::sha256(&serde_json::to_vec(&(shape, &input, &target, &mask))?);
     Ok(Batch {
-        representations: representations.into_iter().collect(),
+        representations,
         input_sha256,
         input: Tensor::from_vec(input, shape, device)?,
         target: Tensor::from_vec(target, shape, device)?,
         mask: Tensor::from_vec(mask, shape, device)?,
-        examples: pairs.len(),
+        examples: encoded.len(),
         sequence_length: time,
         completion_tokens,
     })

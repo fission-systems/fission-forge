@@ -1,6 +1,9 @@
-# Rust/Candle training probes
+# Rust/Candle training
 
-The trainer is a bounded fixed-batch acceptance tool, not a corpus trainer.
+`train-smoke` is a bounded fixed-batch acceptance tool. For long-input epoch
+sampling, separate validation, and corpus resumption, use
+[`train-corpus`](corpus-training.md). The remainder of this page describes the
+original smoke path.
 It supports at most 32 JSONL pairs and refuses truncation or output overwrites.
 Legacy assembly rows have `id`, `assembly`, and `source`; those pairs are
 hand-authored. The versioned P-code+ v0 lane validates raw dumps, builds SSA
@@ -35,8 +38,8 @@ cargo run --locked --release -p fission-forge -- train-smoke \
 ```
 
 The fixed batch, absence of dropout, and deterministic initialization eliminate
-sampler/RNG state from this probe. A future corpus trainer must add that state
-before claiming equivalent resumption. No LR scheduler, gradient accumulation,
+sampler/RNG state from this probe. The separate corpus trainer records versioned epoch/cursor state
+and effective split hashes to make resumption reproducible. No LR scheduler, gradient accumulation,
 gradient clipping, or mixed precision exists yet. A separate bounded
 [generation path](generation.md) loads model weights without optimizer state.
 Schema 3 saves also record training input representations and reject mismatched
@@ -76,7 +79,7 @@ It exists to measure feasibility; two updates are not pretraining.
 ## Corpus preparation
 
 The [synthetic bootstrap corpus](corpus.md) has frozen family-disjoint splits
-and an independent Rust integrity audit. Building it does not extend this
-fixed-batch trainer into a corpus trainer. Use training rows only; validation and
-test stay separate. Recorded corpus sequences exceed the original IR probe
-context, so long-context memory and throughput require a new measured gate.
+and an independent Rust integrity audit. The separate
+[corpus trainer](corpus-training.md) uses only training rows for updates, with
+detached validation and test exclusion. Its 8K CPU acceptance configuration fits
+this release; long-context GPU memory/throughput remain unmeasured.

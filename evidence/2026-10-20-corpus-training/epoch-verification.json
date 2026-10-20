@@ -1,0 +1,37 @@
+{
+  "scope": "one_epoch_tiny_CPU_training_and_full_teacher_forced_validation_only",
+  "forge_revision": "aa96c9e55035f45d8ac6ba75675800a329de5860",
+  "forge_worktree_dirty": true,
+  "forge_binary_sha256": "9c626afab4afe472f15c90ea582280ff25370991821ac27138c6776b554d388b",
+  "corpus_lock_sha256": "f3c7d0d3f65460e8b4efdf32caa218ba6d68a24b5d0dfd0c949b8b1617252d9d",
+  "epoch": {
+    "updates": 480,
+    "unique_training_ids": 480,
+    "exactly_matches_frozen_train_ids": true,
+    "all_validation_checks_use_full_frozen_validation_ids": true,
+    "initial_nll": 5.559393758294122,
+    "final_nll": 2.1763323508425274,
+    "max_sequence": 4878,
+    "training_and_periodic_validation_seconds": 36.781046041,
+    "maximum_resident_bytes": 821362688
+  },
+  "epoch_boundary_resume": {
+    "step": 481,
+    "sampler": {
+      "cursor": 1,
+      "epoch": 1,
+      "seed": 42
+    },
+    "next_id": "bounded_loop_0014-O0",
+    "expected_next_id_matches": true
+  },
+  "test_model_examples": 0,
+  "checks": {
+    "rust_tests": 21,
+    "corpus_python_tests": 8,
+    "evaluation_python_tests": 2,
+    "rustfmt": true,
+    "clippy_warnings_denied": true,
+    "python_compile": true
+  }
+}

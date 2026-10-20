@@ -109,19 +109,18 @@ renaming.
 
 ## Training boundary
 
-This release is data preparation, **not a newly pretrained model**. The current
-trainer still accepts at most 32 examples in one fixed batch. It has no corpus
-sampler, held-out loss loop, or sampler-aware resume state. Never concatenate
-validation/test into its input to fill a batch.
+The release remains data preparation, separate from model checkpoints. The new
+[corpus trainer](corpus-training.md) now samples training rows across epochs,
+validates separately, and saves sampler-aware checkpoints. The original
+`train-smoke` remains a 32-example fixed-batch probe. Never concatenate validation
+or test into its input to fill a batch.
 
 The audit reports shifted byte-token sequence lengths and eligibility at fixed
 context budgets. Overlong pairs must not be truncated. The original 1,024-token
-IR configuration fits none of the recorded release rows. Supporting all rows
-requires a larger context; memory/throughput must be measured for that context
-before allocating a large training run. The earlier approximately 100M A100
-probe used length 57 and says nothing about this corpus's long-context capacity.
+IR configuration fits none of the recorded release rows; the new 8,192-token
+CPU acceptance configuration fits all of them. Long-context GPU capacity still
+requires measurement: the approximately 100M A100 probe used length 57.
 
-Next steps are a bounded corpus trainer with train-only sampling and resumable
-sampler state, frozen validation loss and generation checks, and independent
-project-split source acquisition. Keep the final test and DecBench targets
-untouched until their evaluation protocol and checkpoint are fixed.
+Independent real-project source acquisition, functional held-out generation,
+and DecBench scoring remain ahead. Keep the final test and DecBench targets
+untouched until the evaluation protocol and checkpoint are fixed.

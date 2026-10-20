@@ -1,4 +1,5 @@
 pub mod corpus;
+pub mod corpus_training;
 pub mod data;
 pub mod generation;
 pub mod model;

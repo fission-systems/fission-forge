@@ -130,7 +130,7 @@ python3 scripts/evaluation/decbench.py \
   --kit /path/to/frozen-kit --prepare-only \
   --representation pcode-plus-ssa-v1 --output outputs/decbench-inputs
 
-# Run a schema-3 checkpoint whose training lane matches the requested IR.
+# Run a schema-3 or schema-4 checkpoint whose training lane matches the requested IR.
 python3 scripts/evaluation/decbench.py \
   --kit /path/to/frozen-kit --checkpoint /path/to/checkpoint \
   --representation pcode-plus-ssa-v1 --max-new-tokens 256 \
