@@ -1,0 +1,7 @@
+{
+  "result_archive_sha256": "7f3061fbd208e0014e5a3675690dbca7b0cc742f97df233fd73be8eb7fe36179",
+  "source_archive_sha256": "d1f17f8bef18a87d077d41960e4920cbcf3f0ad11b6436b8fbfc95d2e0f7ff3a",
+  "selected_and_final_weights_digest_verified": true,
+  "initial_inference_failures": 130,
+  "recovery_policy": "same_selected_checkpoint_no_retraining_all_130_targets"
+}

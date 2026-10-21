@@ -1,0 +1,17 @@
+{
+  "mode": "fresh",
+  "representation": "pcode-plus-ssa-return-u32-v1",
+  "epochs": 8,
+  "steps": 7224,
+  "train_examples": 903,
+  "learning_rate": 0.0003,
+  "evaluate_every": 256,
+  "generation_max_new_tokens": 512,
+  "selection": "lowest_full_validation_NLL_before_functional_scoring",
+  "corpus_lock_sha256": "7c441e1e67bb093031bcd0bf44fc23016a9c502d0ff63115f7c1d3f23cb72726",
+  "tokenizer": "lexical-byte-bpe-v1",
+  "tokenizer_file_sha256": "8cef91889fed94a43c42bd1e9e1fefc43ed9c35e79fe537bbc1a19838d560af3",
+  "tokenizer_sha256": "2316ca467353302223ed7e871e776cf4ae5b7b534e1ed7ab87d1dd491f2aaec2",
+  "max_output_bytes": 512,
+  "model_sha256": "d33012531bd244cae6c977952482096cd2e24ca2565261303153ab0bec284df4"
+}

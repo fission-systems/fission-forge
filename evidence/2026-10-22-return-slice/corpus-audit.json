@@ -1,0 +1,1413 @@
+{
+  "attempted": 1536,
+  "exclusions": [
+    {
+      "id": "expr_002_0000-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_002_0001-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_002_0002-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_002_0003-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_002_0004-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_002_0005-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_002_0008-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_002_0009-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_002_0010-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_002_0011-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_002_0012-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_002_0013-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_002_0014-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_002_0015-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_005_0000-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_005_0001-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_005_0014-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_005_0015-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_007_0000-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_007_0001-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_007_0002-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_007_0003-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_007_0004-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_007_0005-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_007_0006-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_007_0007-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_007_0008-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_007_0009-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_007_0010-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_007_0011-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_007_0012-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_007_0013-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_007_0014-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_011_0000-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_011_0001-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_011_0002-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_011_0003-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_011_0004-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_011_0005-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_011_0006-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_011_0007-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_011_0008-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_011_0009-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_011_0010-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_011_0011-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_011_0012-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_011_0013-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_011_0014-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_011_0015-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_013_0000-O1",
+      "reason": "cross_split_fingerprint_family"
+    },
+    {
+      "id": "expr_013_0001-O1",
+      "reason": "cross_split_fingerprint_family"
+    },
+    {
+      "id": "expr_013_0002-O1",
+      "reason": "cross_split_fingerprint_family"
+    },
+    {
+      "id": "expr_013_0003-O1",
+      "reason": "cross_split_fingerprint_family"
+    },
+    {
+      "id": "expr_013_0004-O1",
+      "reason": "cross_split_fingerprint_family"
+    },
+    {
+      "id": "expr_013_0005-O1",
+      "reason": "cross_split_fingerprint_family"
+    },
+    {
+      "id": "expr_013_0006-O1",
+      "reason": "cross_split_fingerprint_family"
+    },
+    {
+      "id": "expr_013_0007-O1",
+      "reason": "cross_split_fingerprint_family"
+    },
+    {
+      "id": "expr_013_0008-O1",
+      "reason": "cross_split_fingerprint_family"
+    },
+    {
+      "id": "expr_013_0009-O1",
+      "reason": "cross_split_fingerprint_family"
+    },
+    {
+      "id": "expr_013_0010-O1",
+      "reason": "cross_split_fingerprint_family"
+    },
+    {
+      "id": "expr_013_0011-O1",
+      "reason": "cross_split_fingerprint_family"
+    },
+    {
+      "id": "expr_013_0012-O1",
+      "reason": "cross_split_fingerprint_family"
+    },
+    {
+      "id": "expr_013_0013-O1",
+      "reason": "cross_split_fingerprint_family"
+    },
+    {
+      "id": "expr_013_0014-O1",
+      "reason": "cross_split_fingerprint_family"
+    },
+    {
+      "id": "expr_013_0015-O1",
+      "reason": "cross_split_fingerprint_family"
+    },
+    {
+      "id": "expr_014_0000-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_014_0001-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_014_0002-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_014_0003-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_014_0004-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_014_0005-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_014_0006-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_014_0007-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_014_0008-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_014_0009-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_014_0010-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_014_0011-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_014_0012-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_014_0013-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_014_0014-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_019_0000-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_019_0001-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_019_0002-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_019_0003-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_019_0004-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_019_0005-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_019_0008-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_019_0009-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_019_0010-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_019_0011-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_019_0012-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_019_0013-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_019_0014-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_019_0015-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_025_0000-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_025_0015-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_027_0000-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_027_0001-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_027_0002-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_027_0003-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_027_0004-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_027_0005-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_027_0006-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_027_0007-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_027_0008-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_027_0009-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_027_0010-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_027_0011-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_027_0012-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_027_0013-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_027_0014-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_027_0015-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_028_0000-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_028_0001-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_028_0002-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_028_0003-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_028_0004-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_028_0005-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_028_0008-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_028_0009-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_028_0010-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_028_0011-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_028_0012-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_028_0013-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_028_0014-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_028_0015-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_029_0000-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_029_0001-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_029_0002-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_029_0003-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_029_0004-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_029_0005-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_029_0006-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_029_0007-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_029_0008-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_029_0009-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_029_0010-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_029_0011-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_029_0012-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_029_0013-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_029_0014-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_029_0015-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_036_0000-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_036_0001-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_036_0002-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_036_0003-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_036_0004-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_036_0005-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_036_0008-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_036_0009-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_036_0010-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_036_0011-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_036_0012-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_036_0013-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_036_0014-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_036_0015-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_038_0001-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_038_0002-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_038_0014-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_038_0015-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_042_0000-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_042_0015-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_045_0000-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_045_0001-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_045_0002-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_045_0003-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_045_0004-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_045_0005-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_045_0006-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_045_0007-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_045_0008-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_045_0009-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_045_0010-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_045_0011-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_045_0012-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_045_0013-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_045_0014-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_045_0015-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_047_0000-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_047_0001-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_047_0014-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_047_0015-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_051_0000-O1",
+      "reason": "cross_split_fingerprint_family"
+    },
+    {
+      "id": "expr_051_0001-O1",
+      "reason": "cross_split_fingerprint_family"
+    },
+    {
+      "id": "expr_051_0002-O1",
+      "reason": "cross_split_fingerprint_family"
+    },
+    {
+      "id": "expr_051_0003-O1",
+      "reason": "cross_split_fingerprint_family"
+    },
+    {
+      "id": "expr_051_0004-O1",
+      "reason": "cross_split_fingerprint_family"
+    },
+    {
+      "id": "expr_051_0005-O1",
+      "reason": "cross_split_fingerprint_family"
+    },
+    {
+      "id": "expr_051_0006-O1",
+      "reason": "cross_split_fingerprint_family"
+    },
+    {
+      "id": "expr_051_0007-O1",
+      "reason": "cross_split_fingerprint_family"
+    },
+    {
+      "id": "expr_051_0008-O1",
+      "reason": "cross_split_fingerprint_family"
+    },
+    {
+      "id": "expr_051_0009-O1",
+      "reason": "cross_split_fingerprint_family"
+    },
+    {
+      "id": "expr_051_0010-O1",
+      "reason": "cross_split_fingerprint_family"
+    },
+    {
+      "id": "expr_051_0011-O1",
+      "reason": "cross_split_fingerprint_family"
+    },
+    {
+      "id": "expr_051_0012-O1",
+      "reason": "cross_split_fingerprint_family"
+    },
+    {
+      "id": "expr_051_0013-O1",
+      "reason": "cross_split_fingerprint_family"
+    },
+    {
+      "id": "expr_051_0014-O1",
+      "reason": "cross_split_fingerprint_family"
+    },
+    {
+      "id": "expr_051_0015-O1",
+      "reason": "cross_split_fingerprint_family"
+    },
+    {
+      "id": "expr_053_0000-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_053_0001-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_053_0002-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_053_0003-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_053_0004-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_053_0005-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_053_0008-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_053_0009-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_053_0010-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_053_0011-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_053_0012-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_053_0013-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_053_0014-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_053_0015-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_069_0000-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_069_0001-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_069_0002-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_069_0003-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_069_0004-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_069_0005-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_069_0006-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_069_0007-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_069_0008-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_069_0009-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_069_0010-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_069_0011-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_069_0012-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_069_0013-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_069_0014-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_069_0015-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_071_0000-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_071_0001-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_071_0002-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_071_0003-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_071_0004-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_071_0005-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_071_0006-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_071_0007-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_071_0008-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_071_0009-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_071_0010-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_071_0011-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_071_0012-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_071_0013-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_071_0014-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_071_0015-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_073_0000-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_073_0001-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_073_0002-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_073_0003-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_073_0004-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_073_0005-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_073_0006-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_073_0007-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_073_0008-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_073_0009-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_073_0010-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_073_0011-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_073_0012-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_073_0013-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_074_0000-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_074_0015-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_076_0000-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_076_0001-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_076_0002-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_076_0003-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_076_0004-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_076_0005-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_076_0006-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_076_0007-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_076_0008-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_076_0009-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_076_0010-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_076_0011-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_076_0012-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_076_0013-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_078_0000-O1",
+      "reason": "cross_split_fingerprint_family"
+    },
+    {
+      "id": "expr_078_0001-O1",
+      "reason": "cross_split_fingerprint_family"
+    },
+    {
+      "id": "expr_078_0002-O1",
+      "reason": "cross_split_fingerprint_family"
+    },
+    {
+      "id": "expr_078_0003-O1",
+      "reason": "cross_split_fingerprint_family"
+    },
+    {
+      "id": "expr_078_0004-O1",
+      "reason": "cross_split_fingerprint_family"
+    },
+    {
+      "id": "expr_078_0005-O1",
+      "reason": "cross_split_fingerprint_family"
+    },
+    {
+      "id": "expr_078_0006-O1",
+      "reason": "cross_split_fingerprint_family"
+    },
+    {
+      "id": "expr_078_0007-O1",
+      "reason": "cross_split_fingerprint_family"
+    },
+    {
+      "id": "expr_078_0008-O1",
+      "reason": "cross_split_fingerprint_family"
+    },
+    {
+      "id": "expr_078_0009-O1",
+      "reason": "cross_split_fingerprint_family"
+    },
+    {
+      "id": "expr_078_0010-O1",
+      "reason": "cross_split_fingerprint_family"
+    },
+    {
+      "id": "expr_078_0011-O1",
+      "reason": "cross_split_fingerprint_family"
+    },
+    {
+      "id": "expr_078_0012-O1",
+      "reason": "cross_split_fingerprint_family"
+    },
+    {
+      "id": "expr_078_0013-O1",
+      "reason": "cross_split_fingerprint_family"
+    },
+    {
+      "id": "expr_078_0014-O1",
+      "reason": "cross_split_fingerprint_family"
+    },
+    {
+      "id": "expr_078_0015-O1",
+      "reason": "cross_split_fingerprint_family"
+    },
+    {
+      "id": "expr_079_0001-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_079_0002-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_079_0014-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_079_0015-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_082_0000-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_082_0015-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_083_0000-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_083_0001-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_083_0002-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_083_0003-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_083_0004-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_083_0005-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_083_0006-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_083_0007-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_083_0008-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_083_0009-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_083_0010-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_083_0011-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_083_0012-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_083_0013-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_083_0014-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_085_0001-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_085_0002-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_085_0014-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "expr_085_0015-O1",
+      "reason": "ambiguous_prompt_labels"
+    }
+  ],
+  "external_evaluation_overlap": "not_measured",
+  "native_source_comparisons": 98304,
+  "quarantined_families": [
+    "expr_013",
+    "expr_051",
+    "expr_078"
+  ],
+  "schema_version": 1,
+  "scope": "owned_synthetic_family_disjoint_not_real_project_generalization",
+  "splits": {
+    "test": {
+      "context_eligible": {
+        "1024": 141,
+        "16384": 188,
+        "2048": 188,
+        "4096": 188,
+        "8192": 188
+      },
+      "families": [
+        "expr_005",
+        "expr_006",
+        "expr_008",
+        "expr_018",
+        "expr_033",
+        "expr_049",
+        "expr_055",
+        "expr_057",
+        "expr_058",
+        "expr_072",
+        "expr_080",
+        "expr_089"
+      ],
+      "max_sequence": 1264,
+      "min_sequence": 603,
+      "programs": 188,
+      "rows": 188
+    },
+    "train": {
+      "context_eligible": {
+        "1024": 656,
+        "16384": 903,
+        "2048": 903,
+        "4096": 903,
+        "8192": 903
+      },
+      "families": [
+        "expr_000",
+        "expr_001",
+        "expr_002",
+        "expr_003",
+        "expr_004",
+        "expr_009",
+        "expr_010",
+        "expr_012",
+        "expr_014",
+        "expr_015",
+        "expr_016",
+        "expr_017",
+        "expr_019",
+        "expr_020",
+        "expr_021",
+        "expr_023",
+        "expr_024",
+        "expr_026",
+        "expr_028",
+        "expr_030",
+        "expr_031",
+        "expr_032",
+        "expr_034",
+        "expr_035",
+        "expr_036",
+        "expr_037",
+        "expr_038",
+        "expr_039",
+        "expr_041",
+        "expr_042",
+        "expr_043",
+        "expr_044",
+        "expr_046",
+        "expr_047",
+        "expr_048",
+        "expr_050",
+        "expr_052",
+        "expr_053",
+        "expr_054",
+        "expr_056",
+        "expr_059",
+        "expr_060",
+        "expr_061",
+        "expr_062",
+        "expr_063",
+        "expr_065",
+        "expr_067",
+        "expr_068",
+        "expr_070",
+        "expr_073",
+        "expr_074",
+        "expr_077",
+        "expr_079",
+        "expr_081",
+        "expr_082",
+        "expr_084",
+        "expr_085",
+        "expr_086",
+        "expr_088",
+        "expr_090",
+        "expr_091",
+        "expr_092",
+        "expr_093",
+        "expr_095"
+      ],
+      "max_sequence": 1472,
+      "min_sequence": 565,
+      "programs": 903,
+      "rows": 903
+    },
+    "validation": {
+      "context_eligible": {
+        "1024": 96,
+        "16384": 130,
+        "2048": 130,
+        "4096": 130,
+        "8192": 130
+      },
+      "families": [
+        "expr_007",
+        "expr_022",
+        "expr_025",
+        "expr_040",
+        "expr_064",
+        "expr_066",
+        "expr_075",
+        "expr_076",
+        "expr_083",
+        "expr_087",
+        "expr_094"
+      ],
+      "max_sequence": 1145,
+      "min_sequence": 538,
+      "programs": 130,
+      "rows": 130
+    }
+  },
+  "supported": 1536,
+  "truncation": false,
+  "unsupported": 0,
+  "unsupported_by_split": {},
+  "x86_ir_execution_parity": "not_measured"
+}

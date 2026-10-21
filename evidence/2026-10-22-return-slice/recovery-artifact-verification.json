@@ -1,0 +1,10 @@
+{
+  "result_archive_sha256": "53b1503aab1db9dc0cb7b0eea69a529d53531a548712e7de9e88997b356c11e2",
+  "source_archive_sha256": "f89bb3d27b49c96a0e6d190e79e0870302805cfbfce437ff46514d167d10af0e",
+  "checkpoint_weights_sha256": "76cdc73bd84777607185b979e245d5bfb7f6f71baa1c9123d9ab37cc1419915c",
+  "checkpoint_state_sha256": "13ef482762f46613c6f7b105f548adafba4c9e6eed51563cd56a1e7267468060",
+  "original_local_checkpoint_unchanged": true,
+  "remote_checkpoint_unchanged_checked_by_driver": true,
+  "optimizer_updates": 0,
+  "all_130_exported_raw_bytes_verified": true
+}

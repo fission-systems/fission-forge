@@ -1,0 +1,14 @@
+{
+  "train": {
+    "rows": 903,
+    "identical_ordered_ids_sources_and_raw": true
+  },
+  "validation": {
+    "rows": 130,
+    "identical_ordered_ids_sources_and_raw": true
+  },
+  "test": {
+    "rows": 188,
+    "identical_ordered_ids_sources_and_raw": true
+  }
+}

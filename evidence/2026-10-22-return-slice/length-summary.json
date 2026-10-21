@@ -1,0 +1,10 @@
+{
+  "training_rows": 903,
+  "full_ssa_bpe_max": 3836,
+  "return_ssa_bpe_max": 935,
+  "full_ssa_bpe_mean": 1480.0066445182724,
+  "return_ssa_bpe_mean": 503.60575858250274,
+  "full_ssa_bpe_median": 1304,
+  "return_ssa_bpe_median": 435,
+  "completion_token_counts_identical_per_train_row": true
+}

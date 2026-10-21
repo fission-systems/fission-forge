@@ -1,0 +1,2347 @@
+{
+  "targets": 130,
+  "distinct_raw_completions": 18,
+  "most_repeated_raw_counts": [
+    17,
+    16,
+    16,
+    14,
+    14
+  ],
+  "stop_reasons": {
+    "eos": 130
+  },
+  "compiler_error_targets": {
+    "expected ')'": 130,
+    "expected expression": 34,
+    "expected '}'": 31,
+    "expected ':'": 3
+  },
+  "unbalanced_parenthesis_targets": 130,
+  "records": [
+    {
+      "id": "expr_007_0015-O1",
+      "source_sha256": "3914ec291e7240083ae04a216ecd09bd05e39f53ed78b9b5be80cf0ccae8aec5",
+      "raw_bytes": 104,
+      "tokens": 73,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 6,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "bc1f06633ab2828648542b89880b5d685fc789616e4adc181bdf8ad3ee94225d"
+    },
+    {
+      "id": "expr_022_0000-O1",
+      "source_sha256": "70d98559da48525af6e84aca383d5df73246e46dda44986d23eb032c39bf1f8c",
+      "raw_bytes": 86,
+      "tokens": 55,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 4,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "d7c96ee744fa37d5793a01823636e71736c2efe2f4a656c92665b7eb2793c89a"
+    },
+    {
+      "id": "expr_022_0001-O1",
+      "source_sha256": "b4568fee239a0f0074e40e01e5bf3234735311c08d6d65da3df70bbd4d0dccd0",
+      "raw_bytes": 86,
+      "tokens": 55,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 4,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "9f8a790aef15c6ab4689aecacc5426a6bb76742730604c3a53f1768b22b2d286"
+    },
+    {
+      "id": "expr_022_0002-O1",
+      "source_sha256": "b4568fee239a0f0074e40e01e5bf3234735311c08d6d65da3df70bbd4d0dccd0",
+      "raw_bytes": 86,
+      "tokens": 55,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 4,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "be1590d0e046ad615bb25d05831252980f5c59a9b89ee37cca9b6d55862c085d"
+    },
+    {
+      "id": "expr_022_0003-O1",
+      "source_sha256": "b4568fee239a0f0074e40e01e5bf3234735311c08d6d65da3df70bbd4d0dccd0",
+      "raw_bytes": 86,
+      "tokens": 55,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 4,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "c444fa0ff19fecc5ef8a41dcfe7e94f2647ba89889cc735e3cf7341af8637050"
+    },
+    {
+      "id": "expr_022_0004-O1",
+      "source_sha256": "b4568fee239a0f0074e40e01e5bf3234735311c08d6d65da3df70bbd4d0dccd0",
+      "raw_bytes": 86,
+      "tokens": 55,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 4,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "c8662593cf744e410137712a344e93b500011184a850118301dad355c2ea5b4f"
+    },
+    {
+      "id": "expr_022_0005-O1",
+      "source_sha256": "b4568fee239a0f0074e40e01e5bf3234735311c08d6d65da3df70bbd4d0dccd0",
+      "raw_bytes": 86,
+      "tokens": 55,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 4,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "067a2fe1dfa8ebd2353f42db34830732fd6dbbce055dece5fe83515271529161"
+    },
+    {
+      "id": "expr_022_0006-O1",
+      "source_sha256": "b4568fee239a0f0074e40e01e5bf3234735311c08d6d65da3df70bbd4d0dccd0",
+      "raw_bytes": 86,
+      "tokens": 55,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 4,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "8486f4129c8b6140d85d739b1ba95ede5f2683fa47877c4efd3e160e3e4c2791"
+    },
+    {
+      "id": "expr_022_0007-O1",
+      "source_sha256": "b4568fee239a0f0074e40e01e5bf3234735311c08d6d65da3df70bbd4d0dccd0",
+      "raw_bytes": 86,
+      "tokens": 55,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 4,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "27f5e58f8f61e43aa5b63dff4fa62eb41a3437ae1a9c42487c2de68a904370a3"
+    },
+    {
+      "id": "expr_022_0008-O1",
+      "source_sha256": "b4568fee239a0f0074e40e01e5bf3234735311c08d6d65da3df70bbd4d0dccd0",
+      "raw_bytes": 86,
+      "tokens": 55,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 4,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "0d5039a0d3ca1ff72540d7900448e7160e450d90fda452a2a3709c514002b128"
+    },
+    {
+      "id": "expr_022_0009-O1",
+      "source_sha256": "b4568fee239a0f0074e40e01e5bf3234735311c08d6d65da3df70bbd4d0dccd0",
+      "raw_bytes": 86,
+      "tokens": 55,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 4,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "60fa0cb7e2f70905fbcd54283ab484974b070a3e88a15ad26563b656b040b22a"
+    },
+    {
+      "id": "expr_022_0010-O1",
+      "source_sha256": "b4568fee239a0f0074e40e01e5bf3234735311c08d6d65da3df70bbd4d0dccd0",
+      "raw_bytes": 86,
+      "tokens": 55,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 4,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "85176c18b5df3c9b1d6ee598a491d874d2fceca4a4a4982f28846bc1676ff5ab"
+    },
+    {
+      "id": "expr_022_0011-O1",
+      "source_sha256": "4dd65e09b6a04303a8aa758092cd13552613373ce4fbbcbce53c41a75fffec0a",
+      "raw_bytes": 80,
+      "tokens": 49,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 2,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "2eaefc7f2e84ab1c80535178688c1f3d62d81925f24011a1578abcd243bcfe6e"
+    },
+    {
+      "id": "expr_022_0012-O1",
+      "source_sha256": "b4568fee239a0f0074e40e01e5bf3234735311c08d6d65da3df70bbd4d0dccd0",
+      "raw_bytes": 86,
+      "tokens": 55,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 4,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "041745aa88e13a482bbaaa3c02d25982c72a41f3e19fa00def55846776b9e5f7"
+    },
+    {
+      "id": "expr_022_0013-O1",
+      "source_sha256": "4dd65e09b6a04303a8aa758092cd13552613373ce4fbbcbce53c41a75fffec0a",
+      "raw_bytes": 80,
+      "tokens": 49,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 2,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "d5473d788cfd7f2465a880ce5ae269d4de5cd00d137455ca151d9c2ce50e43d2"
+    },
+    {
+      "id": "expr_022_0014-O1",
+      "source_sha256": "85218f8c2680764847b411149b8db5c6edccad3470a6755b8618a7fe18a6eb24",
+      "raw_bytes": 86,
+      "tokens": 55,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 4,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "4feee73ab8a25841b90a8c0dfa1bd04fec74f0757b65435595d44a648b94bec6"
+    },
+    {
+      "id": "expr_022_0015-O1",
+      "source_sha256": "85218f8c2680764847b411149b8db5c6edccad3470a6755b8618a7fe18a6eb24",
+      "raw_bytes": 86,
+      "tokens": 55,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 4,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "331373a38c8ee417ab94704417e2c0ca9f5b44b4b114ef989f5303263f3d101a"
+    },
+    {
+      "id": "expr_025_0001-O1",
+      "source_sha256": "78552f1f735c63e86f508ea240a4ca4a56bf88bedfa62e087798137a3eae5670",
+      "raw_bytes": 80,
+      "tokens": 49,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 2,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "15376fa70ddff1f83ceffe8d761e829a7d65c85809f9075312ff256e04f9eaa9"
+    },
+    {
+      "id": "expr_025_0002-O1",
+      "source_sha256": "78552f1f735c63e86f508ea240a4ca4a56bf88bedfa62e087798137a3eae5670",
+      "raw_bytes": 80,
+      "tokens": 49,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 2,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "dcc3e1ffcbdecc8cc455c7cc0d88ff721321ebec0e8d5c3b723da5260d669c2a"
+    },
+    {
+      "id": "expr_025_0003-O1",
+      "source_sha256": "78552f1f735c63e86f508ea240a4ca4a56bf88bedfa62e087798137a3eae5670",
+      "raw_bytes": 80,
+      "tokens": 49,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 2,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "68bf1b154cf38369927fcca97d0198920a9e16479d3247b2af6456237f96bda8"
+    },
+    {
+      "id": "expr_025_0004-O1",
+      "source_sha256": "78552f1f735c63e86f508ea240a4ca4a56bf88bedfa62e087798137a3eae5670",
+      "raw_bytes": 80,
+      "tokens": 49,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 2,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "e5b5d3e1e15cfc26d4d3137ea23d8caebcfb32ec3d52e9776148859a6a5f0b7d"
+    },
+    {
+      "id": "expr_025_0005-O1",
+      "source_sha256": "78552f1f735c63e86f508ea240a4ca4a56bf88bedfa62e087798137a3eae5670",
+      "raw_bytes": 80,
+      "tokens": 49,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 2,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "6e6cb30df6310a2a3bce4c2a912da9beb62d5fd7636da96fceb9c05ec76677fc"
+    },
+    {
+      "id": "expr_025_0006-O1",
+      "source_sha256": "e8b4dd2277e5149b687ce2285772b1c60ea530b4ea7ec2b5900d569e9a643382",
+      "raw_bytes": 80,
+      "tokens": 49,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 2,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "7df7211d4425c77019e1ad91dca3ff42391f37981992affba969e58609a479cf"
+    },
+    {
+      "id": "expr_025_0007-O1",
+      "source_sha256": "78552f1f735c63e86f508ea240a4ca4a56bf88bedfa62e087798137a3eae5670",
+      "raw_bytes": 80,
+      "tokens": 49,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 2,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "288d8ae48573c0647bf0471a5d21874024415d2de0667c465055aa5b626915aa"
+    },
+    {
+      "id": "expr_025_0008-O1",
+      "source_sha256": "78552f1f735c63e86f508ea240a4ca4a56bf88bedfa62e087798137a3eae5670",
+      "raw_bytes": 80,
+      "tokens": 49,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 2,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "cabba2d47400e63b071845700c1f4f6c22717ede91dadfd203f04a56c969e5bb"
+    },
+    {
+      "id": "expr_025_0009-O1",
+      "source_sha256": "78552f1f735c63e86f508ea240a4ca4a56bf88bedfa62e087798137a3eae5670",
+      "raw_bytes": 80,
+      "tokens": 49,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 2,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "3f6f4f431190416ea63d5883d1dd9d01bab778fe361b126dd863ae77df152876"
+    },
+    {
+      "id": "expr_025_0010-O1",
+      "source_sha256": "78552f1f735c63e86f508ea240a4ca4a56bf88bedfa62e087798137a3eae5670",
+      "raw_bytes": 80,
+      "tokens": 49,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 2,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "2febfc8a638166e5288897256110a3b647768acdcbab7279316ea21e69b77e9e"
+    },
+    {
+      "id": "expr_025_0011-O1",
+      "source_sha256": "78552f1f735c63e86f508ea240a4ca4a56bf88bedfa62e087798137a3eae5670",
+      "raw_bytes": 80,
+      "tokens": 49,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 2,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "a7a95d8253f64fa03c749898ca3606b5937b388299b361e81157d2f8d878a51f"
+    },
+    {
+      "id": "expr_025_0012-O1",
+      "source_sha256": "78552f1f735c63e86f508ea240a4ca4a56bf88bedfa62e087798137a3eae5670",
+      "raw_bytes": 80,
+      "tokens": 49,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 2,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "2db6dd9a992af19712bcdd33f172219e50fd7daa1ec6f51dee845d7f8734bc35"
+    },
+    {
+      "id": "expr_025_0013-O1",
+      "source_sha256": "78552f1f735c63e86f508ea240a4ca4a56bf88bedfa62e087798137a3eae5670",
+      "raw_bytes": 80,
+      "tokens": 49,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 2,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "0a90b07a24975999810efcaf290e90a902d00a3d2065d87a3d76a1f016ac7f86"
+    },
+    {
+      "id": "expr_025_0014-O1",
+      "source_sha256": "78552f1f735c63e86f508ea240a4ca4a56bf88bedfa62e087798137a3eae5670",
+      "raw_bytes": 80,
+      "tokens": 49,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 2,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "972f3ec4f0d5fb20169688ca9e431603719f36cd68c4d75ac01729376cc00e7c"
+    },
+    {
+      "id": "expr_040_0000-O1",
+      "source_sha256": "e6d0c8bd2909edb08992955b3e19d0fbd740ee817fdd6b045dbc24886e802eb2",
+      "raw_bytes": 134,
+      "tokens": 103,
+      "stop_reason": "eos",
+      "opening_parentheses": 12,
+      "closing_parentheses": 11,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected expression",
+        "expected '}'"
+      ],
+      "compile_stderr_sha256": "0c101e322664c1d147d3d117b8e3d10a16155e42da61742b9c36b01298f50f2e"
+    },
+    {
+      "id": "expr_040_0001-O1",
+      "source_sha256": "e6d0c8bd2909edb08992955b3e19d0fbd740ee817fdd6b045dbc24886e802eb2",
+      "raw_bytes": 134,
+      "tokens": 103,
+      "stop_reason": "eos",
+      "opening_parentheses": 12,
+      "closing_parentheses": 11,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected expression",
+        "expected '}'"
+      ],
+      "compile_stderr_sha256": "fddb306be5968252d04fb95ce966f5b58d99dc415a8e45f12152482c6d345ed0"
+    },
+    {
+      "id": "expr_040_0002-O1",
+      "source_sha256": "e6d0c8bd2909edb08992955b3e19d0fbd740ee817fdd6b045dbc24886e802eb2",
+      "raw_bytes": 134,
+      "tokens": 103,
+      "stop_reason": "eos",
+      "opening_parentheses": 12,
+      "closing_parentheses": 11,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected expression",
+        "expected '}'"
+      ],
+      "compile_stderr_sha256": "1d074e943d96d306b85e6cce0c7d24dc889c8a24fd2ffe2242c77b93a7f1edfe"
+    },
+    {
+      "id": "expr_040_0003-O1",
+      "source_sha256": "e6d0c8bd2909edb08992955b3e19d0fbd740ee817fdd6b045dbc24886e802eb2",
+      "raw_bytes": 134,
+      "tokens": 103,
+      "stop_reason": "eos",
+      "opening_parentheses": 12,
+      "closing_parentheses": 11,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected expression",
+        "expected '}'"
+      ],
+      "compile_stderr_sha256": "c0306f7cbc60e1770730c77b6ed0ce0f33492a501bd23fe40aba9b889df3290b"
+    },
+    {
+      "id": "expr_040_0004-O1",
+      "source_sha256": "e6d0c8bd2909edb08992955b3e19d0fbd740ee817fdd6b045dbc24886e802eb2",
+      "raw_bytes": 134,
+      "tokens": 103,
+      "stop_reason": "eos",
+      "opening_parentheses": 12,
+      "closing_parentheses": 11,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected expression",
+        "expected '}'"
+      ],
+      "compile_stderr_sha256": "a2850d84194a08fe51ff0cf4acc6dc5f58354ee1f673a0e7bc0be27fe3ca1507"
+    },
+    {
+      "id": "expr_040_0005-O1",
+      "source_sha256": "e6d0c8bd2909edb08992955b3e19d0fbd740ee817fdd6b045dbc24886e802eb2",
+      "raw_bytes": 134,
+      "tokens": 103,
+      "stop_reason": "eos",
+      "opening_parentheses": 12,
+      "closing_parentheses": 11,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected expression",
+        "expected '}'"
+      ],
+      "compile_stderr_sha256": "6b262b4548e524c92aedeaea0d7d35fa46409d396c7f6d6abd8fe5ba05d734ca"
+    },
+    {
+      "id": "expr_040_0006-O1",
+      "source_sha256": "665b80e092b4840db32647b9415f66446065c22f1bb30a3013688a5d146fe034",
+      "raw_bytes": 103,
+      "tokens": 72,
+      "stop_reason": "eos",
+      "opening_parentheses": 9,
+      "closing_parentheses": 7,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ':'",
+        "expected expression"
+      ],
+      "compile_stderr_sha256": "6d33c85a2cc47f3cbdf44741d57dd0cdc9d18604868601d46bd746d36a5b7419"
+    },
+    {
+      "id": "expr_040_0007-O1",
+      "source_sha256": "e6d0c8bd2909edb08992955b3e19d0fbd740ee817fdd6b045dbc24886e802eb2",
+      "raw_bytes": 134,
+      "tokens": 103,
+      "stop_reason": "eos",
+      "opening_parentheses": 12,
+      "closing_parentheses": 11,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected expression",
+        "expected '}'"
+      ],
+      "compile_stderr_sha256": "37efa616604d38d53fae7f5993daa3cf60cc3f660f1b97fad95b7240fda927f8"
+    },
+    {
+      "id": "expr_040_0008-O1",
+      "source_sha256": "e6d0c8bd2909edb08992955b3e19d0fbd740ee817fdd6b045dbc24886e802eb2",
+      "raw_bytes": 134,
+      "tokens": 103,
+      "stop_reason": "eos",
+      "opening_parentheses": 12,
+      "closing_parentheses": 11,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected expression",
+        "expected '}'"
+      ],
+      "compile_stderr_sha256": "344fb17b5989319df2d0ab62063ccb35309847b3e1a293ff2fb4c540c1edf2d7"
+    },
+    {
+      "id": "expr_040_0009-O1",
+      "source_sha256": "e6d0c8bd2909edb08992955b3e19d0fbd740ee817fdd6b045dbc24886e802eb2",
+      "raw_bytes": 134,
+      "tokens": 103,
+      "stop_reason": "eos",
+      "opening_parentheses": 12,
+      "closing_parentheses": 11,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected expression",
+        "expected '}'"
+      ],
+      "compile_stderr_sha256": "1c431751e49e09e36f4e1e51c38a7c6a1a217958f189250bb24576e1b29dc6ed"
+    },
+    {
+      "id": "expr_040_0010-O1",
+      "source_sha256": "e6d0c8bd2909edb08992955b3e19d0fbd740ee817fdd6b045dbc24886e802eb2",
+      "raw_bytes": 134,
+      "tokens": 103,
+      "stop_reason": "eos",
+      "opening_parentheses": 12,
+      "closing_parentheses": 11,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected expression",
+        "expected '}'"
+      ],
+      "compile_stderr_sha256": "7c50d8bfa92f2cb7a6f23f3029bd5380b31a5c651ce0c71d4edc0c4092aee9e4"
+    },
+    {
+      "id": "expr_040_0011-O1",
+      "source_sha256": "e6d0c8bd2909edb08992955b3e19d0fbd740ee817fdd6b045dbc24886e802eb2",
+      "raw_bytes": 134,
+      "tokens": 103,
+      "stop_reason": "eos",
+      "opening_parentheses": 12,
+      "closing_parentheses": 11,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected expression",
+        "expected '}'"
+      ],
+      "compile_stderr_sha256": "e65c5a921020a4299ee542b3f270a75fb303100e23949d4bb23355d45efeee0e"
+    },
+    {
+      "id": "expr_040_0012-O1",
+      "source_sha256": "e6d0c8bd2909edb08992955b3e19d0fbd740ee817fdd6b045dbc24886e802eb2",
+      "raw_bytes": 134,
+      "tokens": 103,
+      "stop_reason": "eos",
+      "opening_parentheses": 12,
+      "closing_parentheses": 11,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected expression",
+        "expected '}'"
+      ],
+      "compile_stderr_sha256": "b1c96e21f6dab937b661444e719ad1fdb2597b0a5f0396fd54140b0e5c620ac1"
+    },
+    {
+      "id": "expr_040_0013-O1",
+      "source_sha256": "e6d0c8bd2909edb08992955b3e19d0fbd740ee817fdd6b045dbc24886e802eb2",
+      "raw_bytes": 134,
+      "tokens": 103,
+      "stop_reason": "eos",
+      "opening_parentheses": 12,
+      "closing_parentheses": 11,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected expression",
+        "expected '}'"
+      ],
+      "compile_stderr_sha256": "bbed4735e257a7dbeb998543336e8c9bdafcd07712482cd35604e41f3e34c30c"
+    },
+    {
+      "id": "expr_040_0014-O1",
+      "source_sha256": "6dbe4a4ac3624b006322db0dc58b08e0943992fbe69119211270ffdaf4b6bb57",
+      "raw_bytes": 127,
+      "tokens": 96,
+      "stop_reason": "eos",
+      "opening_parentheses": 12,
+      "closing_parentheses": 10,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected expression",
+        "expected '}'"
+      ],
+      "compile_stderr_sha256": "2e8fbaae90c61afb944576da320a59fcbb825b18ffed4dc76a9d2b06144a8e4e"
+    },
+    {
+      "id": "expr_040_0015-O1",
+      "source_sha256": "e6d0c8bd2909edb08992955b3e19d0fbd740ee817fdd6b045dbc24886e802eb2",
+      "raw_bytes": 134,
+      "tokens": 103,
+      "stop_reason": "eos",
+      "opening_parentheses": 12,
+      "closing_parentheses": 11,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected expression",
+        "expected '}'"
+      ],
+      "compile_stderr_sha256": "a9fb6d913c71d4e8a0c465d00970b3327e6ae93742605b9712157fe554a0fade"
+    },
+    {
+      "id": "expr_064_0000-O1",
+      "source_sha256": "6dbe4a4ac3624b006322db0dc58b08e0943992fbe69119211270ffdaf4b6bb57",
+      "raw_bytes": 127,
+      "tokens": 96,
+      "stop_reason": "eos",
+      "opening_parentheses": 12,
+      "closing_parentheses": 10,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected expression",
+        "expected '}'"
+      ],
+      "compile_stderr_sha256": "68a3da94fd3b5f11b1e9ddf9ecb091b88aad2a699ffb1228fdab87c0be6afea9"
+    },
+    {
+      "id": "expr_064_0001-O1",
+      "source_sha256": "6dbe4a4ac3624b006322db0dc58b08e0943992fbe69119211270ffdaf4b6bb57",
+      "raw_bytes": 127,
+      "tokens": 96,
+      "stop_reason": "eos",
+      "opening_parentheses": 12,
+      "closing_parentheses": 10,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected expression",
+        "expected '}'"
+      ],
+      "compile_stderr_sha256": "9fbaf32670db800c2517046bca7a5bde1c8e6a9d26343c61ca73dfd5688b1571"
+    },
+    {
+      "id": "expr_064_0002-O1",
+      "source_sha256": "6dbe4a4ac3624b006322db0dc58b08e0943992fbe69119211270ffdaf4b6bb57",
+      "raw_bytes": 127,
+      "tokens": 96,
+      "stop_reason": "eos",
+      "opening_parentheses": 12,
+      "closing_parentheses": 10,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected expression",
+        "expected '}'"
+      ],
+      "compile_stderr_sha256": "af015b14e277a018c307de6870c2f24affbda2873b96084f7115251c21662ef8"
+    },
+    {
+      "id": "expr_064_0003-O1",
+      "source_sha256": "6dbe4a4ac3624b006322db0dc58b08e0943992fbe69119211270ffdaf4b6bb57",
+      "raw_bytes": 127,
+      "tokens": 96,
+      "stop_reason": "eos",
+      "opening_parentheses": 12,
+      "closing_parentheses": 10,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected expression",
+        "expected '}'"
+      ],
+      "compile_stderr_sha256": "bc66fa8d9d83f2466bd0c0d44a96fc064399456f1f170121bd51e0b3c75e5be8"
+    },
+    {
+      "id": "expr_064_0004-O1",
+      "source_sha256": "6dbe4a4ac3624b006322db0dc58b08e0943992fbe69119211270ffdaf4b6bb57",
+      "raw_bytes": 127,
+      "tokens": 96,
+      "stop_reason": "eos",
+      "opening_parentheses": 12,
+      "closing_parentheses": 10,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected expression",
+        "expected '}'"
+      ],
+      "compile_stderr_sha256": "cb95054d618eb78799095c344c6ec98b0a21e3d0c48cf3261164f01ba08c310b"
+    },
+    {
+      "id": "expr_064_0005-O1",
+      "source_sha256": "6dbe4a4ac3624b006322db0dc58b08e0943992fbe69119211270ffdaf4b6bb57",
+      "raw_bytes": 127,
+      "tokens": 96,
+      "stop_reason": "eos",
+      "opening_parentheses": 12,
+      "closing_parentheses": 10,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected expression",
+        "expected '}'"
+      ],
+      "compile_stderr_sha256": "988537671e1807fa6bad7ab083865b8516b295b1fbc7118450a2125d88e9be65"
+    },
+    {
+      "id": "expr_064_0006-O1",
+      "source_sha256": "6dbe4a4ac3624b006322db0dc58b08e0943992fbe69119211270ffdaf4b6bb57",
+      "raw_bytes": 127,
+      "tokens": 96,
+      "stop_reason": "eos",
+      "opening_parentheses": 12,
+      "closing_parentheses": 10,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected expression",
+        "expected '}'"
+      ],
+      "compile_stderr_sha256": "7f752f9aea8520e981c8314b73988952aa7d563b6670d23468a6bddd4b719de6"
+    },
+    {
+      "id": "expr_064_0007-O1",
+      "source_sha256": "6dbe4a4ac3624b006322db0dc58b08e0943992fbe69119211270ffdaf4b6bb57",
+      "raw_bytes": 127,
+      "tokens": 96,
+      "stop_reason": "eos",
+      "opening_parentheses": 12,
+      "closing_parentheses": 10,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected expression",
+        "expected '}'"
+      ],
+      "compile_stderr_sha256": "9513bc44c07295b0f299cfdb2ec110dc92dc06a3b531db0702c06671034757e1"
+    },
+    {
+      "id": "expr_064_0008-O1",
+      "source_sha256": "6dbe4a4ac3624b006322db0dc58b08e0943992fbe69119211270ffdaf4b6bb57",
+      "raw_bytes": 127,
+      "tokens": 96,
+      "stop_reason": "eos",
+      "opening_parentheses": 12,
+      "closing_parentheses": 10,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected expression",
+        "expected '}'"
+      ],
+      "compile_stderr_sha256": "9a047215230e87006c8301316cb577d17e6faedf7a84d169e59e540edf7923e8"
+    },
+    {
+      "id": "expr_064_0009-O1",
+      "source_sha256": "6dbe4a4ac3624b006322db0dc58b08e0943992fbe69119211270ffdaf4b6bb57",
+      "raw_bytes": 127,
+      "tokens": 96,
+      "stop_reason": "eos",
+      "opening_parentheses": 12,
+      "closing_parentheses": 10,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected expression",
+        "expected '}'"
+      ],
+      "compile_stderr_sha256": "a06f1419b9774fdbdc82a76af812d8e945f0ca3338fa35a9f5f3c81968c69fa9"
+    },
+    {
+      "id": "expr_064_0010-O1",
+      "source_sha256": "6dbe4a4ac3624b006322db0dc58b08e0943992fbe69119211270ffdaf4b6bb57",
+      "raw_bytes": 127,
+      "tokens": 96,
+      "stop_reason": "eos",
+      "opening_parentheses": 12,
+      "closing_parentheses": 10,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected expression",
+        "expected '}'"
+      ],
+      "compile_stderr_sha256": "0adc820eebe3ae37153210281f00a43220528ac370f3c00b2a8118f82e74a796"
+    },
+    {
+      "id": "expr_064_0011-O1",
+      "source_sha256": "6dbe4a4ac3624b006322db0dc58b08e0943992fbe69119211270ffdaf4b6bb57",
+      "raw_bytes": 127,
+      "tokens": 96,
+      "stop_reason": "eos",
+      "opening_parentheses": 12,
+      "closing_parentheses": 10,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected expression",
+        "expected '}'"
+      ],
+      "compile_stderr_sha256": "ef4c78ff77fb1fa481abea897af9e4b1b994079191ab07475c1011b9616e2185"
+    },
+    {
+      "id": "expr_064_0012-O1",
+      "source_sha256": "6dbe4a4ac3624b006322db0dc58b08e0943992fbe69119211270ffdaf4b6bb57",
+      "raw_bytes": 127,
+      "tokens": 96,
+      "stop_reason": "eos",
+      "opening_parentheses": 12,
+      "closing_parentheses": 10,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected expression",
+        "expected '}'"
+      ],
+      "compile_stderr_sha256": "9ba6f04aa1721c135fbefb2d223ba90087a9c57c8bfbbbe09c4dac8ac1416c89"
+    },
+    {
+      "id": "expr_064_0013-O1",
+      "source_sha256": "6dbe4a4ac3624b006322db0dc58b08e0943992fbe69119211270ffdaf4b6bb57",
+      "raw_bytes": 127,
+      "tokens": 96,
+      "stop_reason": "eos",
+      "opening_parentheses": 12,
+      "closing_parentheses": 10,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected expression",
+        "expected '}'"
+      ],
+      "compile_stderr_sha256": "808803098785aa9bbccbfaffe20c14cbd0bbc83cdf0bed96c91307e1b4046111"
+    },
+    {
+      "id": "expr_064_0014-O1",
+      "source_sha256": "6dbe4a4ac3624b006322db0dc58b08e0943992fbe69119211270ffdaf4b6bb57",
+      "raw_bytes": 127,
+      "tokens": 96,
+      "stop_reason": "eos",
+      "opening_parentheses": 12,
+      "closing_parentheses": 10,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected expression",
+        "expected '}'"
+      ],
+      "compile_stderr_sha256": "60b864944b53bbbd63864b78bc8181be7ce4ae9bc23b56db0a5ed38f059c3d1a"
+    },
+    {
+      "id": "expr_064_0015-O1",
+      "source_sha256": "6dbe4a4ac3624b006322db0dc58b08e0943992fbe69119211270ffdaf4b6bb57",
+      "raw_bytes": 127,
+      "tokens": 96,
+      "stop_reason": "eos",
+      "opening_parentheses": 12,
+      "closing_parentheses": 10,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected expression",
+        "expected '}'"
+      ],
+      "compile_stderr_sha256": "bd6f7bd1748fcb2444afda44bd0a4b250c3de93dc12ff375aae28a126d78f8d7"
+    },
+    {
+      "id": "expr_066_0000-O1",
+      "source_sha256": "485bdbc623699314add5ed907bda79c228475abe8bf4e1b67e1990103cbd38a6",
+      "raw_bytes": 80,
+      "tokens": 49,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 2,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "6b0f4de42a8e665dda0ffecf081f9f0b344a101313459edf2b7974756c6640c7"
+    },
+    {
+      "id": "expr_066_0001-O1",
+      "source_sha256": "485bdbc623699314add5ed907bda79c228475abe8bf4e1b67e1990103cbd38a6",
+      "raw_bytes": 80,
+      "tokens": 49,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 2,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "e4ce8fcaaa090a666dec1a52c4e1625c8f9911b63b9434aa774fba5475dfa22c"
+    },
+    {
+      "id": "expr_066_0002-O1",
+      "source_sha256": "485bdbc623699314add5ed907bda79c228475abe8bf4e1b67e1990103cbd38a6",
+      "raw_bytes": 80,
+      "tokens": 49,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 2,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "9d271cead478d827c394ae4aa01c76ee59638155a5a5e55814295ae6603ac40b"
+    },
+    {
+      "id": "expr_066_0003-O1",
+      "source_sha256": "485bdbc623699314add5ed907bda79c228475abe8bf4e1b67e1990103cbd38a6",
+      "raw_bytes": 80,
+      "tokens": 49,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 2,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "d4a74e26c739f7f19ee098b868574b0a580af8caf6640e728c2073b638508ac8"
+    },
+    {
+      "id": "expr_066_0004-O1",
+      "source_sha256": "485bdbc623699314add5ed907bda79c228475abe8bf4e1b67e1990103cbd38a6",
+      "raw_bytes": 80,
+      "tokens": 49,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 2,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "169f3004cabaf21b8665d2592ba2c55f1182cb7fa6bb90f4ac51d8dd12ad62c9"
+    },
+    {
+      "id": "expr_066_0005-O1",
+      "source_sha256": "485bdbc623699314add5ed907bda79c228475abe8bf4e1b67e1990103cbd38a6",
+      "raw_bytes": 80,
+      "tokens": 49,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 2,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "991de9cd25793f2550255f3f970b63324256f6185c6e72477b74545dd478f0d7"
+    },
+    {
+      "id": "expr_066_0006-O1",
+      "source_sha256": "485bdbc623699314add5ed907bda79c228475abe8bf4e1b67e1990103cbd38a6",
+      "raw_bytes": 80,
+      "tokens": 49,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 2,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "8ff424fe6ceb01fbd3537ab353fa79166450e27788f942a743480ecedf44a60b"
+    },
+    {
+      "id": "expr_066_0007-O1",
+      "source_sha256": "485bdbc623699314add5ed907bda79c228475abe8bf4e1b67e1990103cbd38a6",
+      "raw_bytes": 80,
+      "tokens": 49,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 2,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "e3f07d4399c34a5034677318dc40674fd4d430eea1a20210185ca31159aa51fe"
+    },
+    {
+      "id": "expr_066_0008-O1",
+      "source_sha256": "485bdbc623699314add5ed907bda79c228475abe8bf4e1b67e1990103cbd38a6",
+      "raw_bytes": 80,
+      "tokens": 49,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 2,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "2604f356291147ce82cbf762c8d4795dfd2432ea56f792df9685b6ebafaa0119"
+    },
+    {
+      "id": "expr_066_0009-O1",
+      "source_sha256": "485bdbc623699314add5ed907bda79c228475abe8bf4e1b67e1990103cbd38a6",
+      "raw_bytes": 80,
+      "tokens": 49,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 2,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "406147b7f8ac56871c074d2e151ab83e83f6672fe79d59e1658acb3ca90f1e35"
+    },
+    {
+      "id": "expr_066_0010-O1",
+      "source_sha256": "485bdbc623699314add5ed907bda79c228475abe8bf4e1b67e1990103cbd38a6",
+      "raw_bytes": 80,
+      "tokens": 49,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 2,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "e19a8c83eac7b3a6af51f3bd7d3b6b75b33e8ef9361be1e13aa132cb55e25b0b"
+    },
+    {
+      "id": "expr_066_0011-O1",
+      "source_sha256": "485bdbc623699314add5ed907bda79c228475abe8bf4e1b67e1990103cbd38a6",
+      "raw_bytes": 80,
+      "tokens": 49,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 2,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "20acff7b18a83b9df32e6591c8343ad2146f846970a86f382188d4ec17f3159a"
+    },
+    {
+      "id": "expr_066_0012-O1",
+      "source_sha256": "485bdbc623699314add5ed907bda79c228475abe8bf4e1b67e1990103cbd38a6",
+      "raw_bytes": 80,
+      "tokens": 49,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 2,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "69f8b7057eb7920c21ed13c1feeaf6cadd318030be0e8eb4861dcca3b7f834ee"
+    },
+    {
+      "id": "expr_066_0013-O1",
+      "source_sha256": "485bdbc623699314add5ed907bda79c228475abe8bf4e1b67e1990103cbd38a6",
+      "raw_bytes": 80,
+      "tokens": 49,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 2,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "f84802baa6468c3fac6d2268f46736bfc65d3f18ad48e50c99ffa1b7049ff8dd"
+    },
+    {
+      "id": "expr_066_0014-O1",
+      "source_sha256": "485bdbc623699314add5ed907bda79c228475abe8bf4e1b67e1990103cbd38a6",
+      "raw_bytes": 80,
+      "tokens": 49,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 2,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "072a74f3cf0bd0dce0674f7af837950e93a0ac50601daa32eee7b4458e1ca131"
+    },
+    {
+      "id": "expr_066_0015-O1",
+      "source_sha256": "78552f1f735c63e86f508ea240a4ca4a56bf88bedfa62e087798137a3eae5670",
+      "raw_bytes": 80,
+      "tokens": 49,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 2,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "a0788eaff3ef12a2b491e9d3d4c0c72d4bdf1ed4910894f868651ee4931ddf80"
+    },
+    {
+      "id": "expr_075_0000-O1",
+      "source_sha256": "98f75be0e7a1e420e9ac2151cf9bace53d11b22ddc8fe4d652d0aede3998152c",
+      "raw_bytes": 80,
+      "tokens": 49,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 3,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "60788b920bd9f9d0336d37ecebe04f831cce3b3914ad3184ae4039633091db8c"
+    },
+    {
+      "id": "expr_075_0001-O1",
+      "source_sha256": "98f75be0e7a1e420e9ac2151cf9bace53d11b22ddc8fe4d652d0aede3998152c",
+      "raw_bytes": 80,
+      "tokens": 49,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 3,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "843e45592b886d1f79bf94f96143215b42f2b7f9f41a24607f3b1bbe86695294"
+    },
+    {
+      "id": "expr_075_0002-O1",
+      "source_sha256": "98f75be0e7a1e420e9ac2151cf9bace53d11b22ddc8fe4d652d0aede3998152c",
+      "raw_bytes": 80,
+      "tokens": 49,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 3,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "9727fb8609e878d9b1d2663aa9428fdf41cc43e939798c36e8dd8825cfb006d0"
+    },
+    {
+      "id": "expr_075_0003-O1",
+      "source_sha256": "98f75be0e7a1e420e9ac2151cf9bace53d11b22ddc8fe4d652d0aede3998152c",
+      "raw_bytes": 80,
+      "tokens": 49,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 3,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "e9922aded8b41cff58174092a373dd2c541b961e9823268cff79747bc7d08bf8"
+    },
+    {
+      "id": "expr_075_0004-O1",
+      "source_sha256": "98f75be0e7a1e420e9ac2151cf9bace53d11b22ddc8fe4d652d0aede3998152c",
+      "raw_bytes": 80,
+      "tokens": 49,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 3,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "4e801ece1cc01e356293ef5327646598007832012c271fd43f91d67e70c2f7d3"
+    },
+    {
+      "id": "expr_075_0005-O1",
+      "source_sha256": "98f75be0e7a1e420e9ac2151cf9bace53d11b22ddc8fe4d652d0aede3998152c",
+      "raw_bytes": 80,
+      "tokens": 49,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 3,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "2083994ffaf39831a13b68b05469fa20c91e7f310a680eb86a6dad51c7414e09"
+    },
+    {
+      "id": "expr_075_0006-O1",
+      "source_sha256": "98f75be0e7a1e420e9ac2151cf9bace53d11b22ddc8fe4d652d0aede3998152c",
+      "raw_bytes": 80,
+      "tokens": 49,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 3,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "f18f437a484cc8c881deec800b5ae87c243e00c486ca1f19958bb7fe266c56e3"
+    },
+    {
+      "id": "expr_075_0007-O1",
+      "source_sha256": "98f75be0e7a1e420e9ac2151cf9bace53d11b22ddc8fe4d652d0aede3998152c",
+      "raw_bytes": 80,
+      "tokens": 49,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 3,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "c0aebd72f3222e3191de9a96fb82f5dc82435e085e7d89329261c4e045cb1670"
+    },
+    {
+      "id": "expr_075_0008-O1",
+      "source_sha256": "98f75be0e7a1e420e9ac2151cf9bace53d11b22ddc8fe4d652d0aede3998152c",
+      "raw_bytes": 80,
+      "tokens": 49,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 3,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "b7d91696fef33c82dc8ececd32e82f8b5472f7fe0f36b2822efcb5625625c6ab"
+    },
+    {
+      "id": "expr_075_0009-O1",
+      "source_sha256": "98f75be0e7a1e420e9ac2151cf9bace53d11b22ddc8fe4d652d0aede3998152c",
+      "raw_bytes": 80,
+      "tokens": 49,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 3,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "2411dcb701ce69f6befaa9c6bc51a171715fa2be8acf9a447d55a071a68d4485"
+    },
+    {
+      "id": "expr_075_0010-O1",
+      "source_sha256": "98f75be0e7a1e420e9ac2151cf9bace53d11b22ddc8fe4d652d0aede3998152c",
+      "raw_bytes": 80,
+      "tokens": 49,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 3,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "1338c358c8f6a9cd6d8ed316dec4a58f842b5132bbaa2bf7a7661d11be02a059"
+    },
+    {
+      "id": "expr_075_0011-O1",
+      "source_sha256": "98f75be0e7a1e420e9ac2151cf9bace53d11b22ddc8fe4d652d0aede3998152c",
+      "raw_bytes": 80,
+      "tokens": 49,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 3,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "18d6ed5248322b884db9f4b450ab7f71ea05bcfe71d9929f7514f8a17ab236b4"
+    },
+    {
+      "id": "expr_075_0012-O1",
+      "source_sha256": "98f75be0e7a1e420e9ac2151cf9bace53d11b22ddc8fe4d652d0aede3998152c",
+      "raw_bytes": 80,
+      "tokens": 49,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 3,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "dde0ed16f107468bce0c4eaaf9f812eed9757ad5416a5788051baf7596d1e37f"
+    },
+    {
+      "id": "expr_075_0013-O1",
+      "source_sha256": "98f75be0e7a1e420e9ac2151cf9bace53d11b22ddc8fe4d652d0aede3998152c",
+      "raw_bytes": 80,
+      "tokens": 49,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 3,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "fbe25b8cea9fcc54d6bf63b17715bc0c2d6f925b57ef2ddfd3fa03e6c09e14bf"
+    },
+    {
+      "id": "expr_075_0014-O1",
+      "source_sha256": "98f75be0e7a1e420e9ac2151cf9bace53d11b22ddc8fe4d652d0aede3998152c",
+      "raw_bytes": 80,
+      "tokens": 49,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 3,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "005f2c6ae7964ee0a270efcde1b3c696a3e5db4180ada8daf636125ef31ac520"
+    },
+    {
+      "id": "expr_075_0015-O1",
+      "source_sha256": "98f75be0e7a1e420e9ac2151cf9bace53d11b22ddc8fe4d652d0aede3998152c",
+      "raw_bytes": 80,
+      "tokens": 49,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 3,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "0e6da7a860179ed697aeac098e784147a33858c8ad6f3de9af362ea2aefa1450"
+    },
+    {
+      "id": "expr_076_0014-O1",
+      "source_sha256": "ea2b5d6edb845a8931ff826a27b82923f58fa15b1460acd1a9e44f22ebb0bc7c",
+      "raw_bytes": 109,
+      "tokens": 78,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 7,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ':'",
+        "expected expression"
+      ],
+      "compile_stderr_sha256": "e8e1fec8cf64aa15c08384d0e127647aaade77292606ac333fcafaac44cd49d3"
+    },
+    {
+      "id": "expr_076_0015-O1",
+      "source_sha256": "a6ba3c998d2d7613d9c23f66d384f1334b0c9352cf9907b42aee4e42556167b6",
+      "raw_bytes": 104,
+      "tokens": 73,
+      "stop_reason": "eos",
+      "opening_parentheses": 9,
+      "closing_parentheses": 7,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ':'",
+        "expected expression"
+      ],
+      "compile_stderr_sha256": "92a898a382e573af09a35a9452bc7dd8b9442115e2056d752bfe91b21ec45603"
+    },
+    {
+      "id": "expr_083_0015-O1",
+      "source_sha256": "485bdbc623699314add5ed907bda79c228475abe8bf4e1b67e1990103cbd38a6",
+      "raw_bytes": 80,
+      "tokens": 49,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 2,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "847160e1aad12de022ff2f9ca146c481c912145c755e66f0f76ac5669272df71"
+    },
+    {
+      "id": "expr_087_0000-O1",
+      "source_sha256": "e62f20b0bd6a86a696908cd57f2988a03eb946d826f847bbc83ed81d54c8b636",
+      "raw_bytes": 86,
+      "tokens": 55,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 5,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "155e7469960300b3646c7594102ffebe18386bf12bff1895f0f4297cc5430ba1"
+    },
+    {
+      "id": "expr_087_0001-O1",
+      "source_sha256": "e62f20b0bd6a86a696908cd57f2988a03eb946d826f847bbc83ed81d54c8b636",
+      "raw_bytes": 86,
+      "tokens": 55,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 5,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "71ec8545d2ccc3ca2021ee590d6d546d4e1d2a30b51d958a56777090a86a4412"
+    },
+    {
+      "id": "expr_087_0002-O1",
+      "source_sha256": "e62f20b0bd6a86a696908cd57f2988a03eb946d826f847bbc83ed81d54c8b636",
+      "raw_bytes": 86,
+      "tokens": 55,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 5,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "1a6789e1756042f6ca2d00aa9f1f6b3577c21861425198ab33faf5cae6be9725"
+    },
+    {
+      "id": "expr_087_0003-O1",
+      "source_sha256": "e62f20b0bd6a86a696908cd57f2988a03eb946d826f847bbc83ed81d54c8b636",
+      "raw_bytes": 86,
+      "tokens": 55,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 5,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "a9823d014c0584b92c3b3e57ded9ab3889e2e5a58d0ec34b6de8d45a88aad8d5"
+    },
+    {
+      "id": "expr_087_0004-O1",
+      "source_sha256": "e62f20b0bd6a86a696908cd57f2988a03eb946d826f847bbc83ed81d54c8b636",
+      "raw_bytes": 86,
+      "tokens": 55,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 5,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "9e7478c74862bc5db41e1602414ed7121b38a6df30e42ef76bdcf65a1d6f9665"
+    },
+    {
+      "id": "expr_087_0005-O1",
+      "source_sha256": "e62f20b0bd6a86a696908cd57f2988a03eb946d826f847bbc83ed81d54c8b636",
+      "raw_bytes": 86,
+      "tokens": 55,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 5,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "0942b5dbf9b7238d56f714baf7db8ae8e09daf408ce956d885af2435aa931483"
+    },
+    {
+      "id": "expr_087_0006-O1",
+      "source_sha256": "e62f20b0bd6a86a696908cd57f2988a03eb946d826f847bbc83ed81d54c8b636",
+      "raw_bytes": 86,
+      "tokens": 55,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 5,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "745ba293c506935bc83eaf40839632c448380f98721998311fb96831fd60e00d"
+    },
+    {
+      "id": "expr_087_0007-O1",
+      "source_sha256": "e62f20b0bd6a86a696908cd57f2988a03eb946d826f847bbc83ed81d54c8b636",
+      "raw_bytes": 86,
+      "tokens": 55,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 5,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "559cbcbce513f791358abac88b7a2956b8c29293ca178b4e6510f7f21236e1e2"
+    },
+    {
+      "id": "expr_087_0008-O1",
+      "source_sha256": "e62f20b0bd6a86a696908cd57f2988a03eb946d826f847bbc83ed81d54c8b636",
+      "raw_bytes": 86,
+      "tokens": 55,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 5,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "bad8ad18fa75c2367cfc097c7862f563736f3b588e04c1b1a98af29daa4edb3d"
+    },
+    {
+      "id": "expr_087_0009-O1",
+      "source_sha256": "e62f20b0bd6a86a696908cd57f2988a03eb946d826f847bbc83ed81d54c8b636",
+      "raw_bytes": 86,
+      "tokens": 55,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 5,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "27f4df8a0b10eac23d9458bc8d6d84601ff18ce5d2827825e42f95ddc5131c9e"
+    },
+    {
+      "id": "expr_087_0010-O1",
+      "source_sha256": "e62f20b0bd6a86a696908cd57f2988a03eb946d826f847bbc83ed81d54c8b636",
+      "raw_bytes": 86,
+      "tokens": 55,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 5,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "1575ee9f067f90306bb4fd9db28622672557abd0724cd15ee966c35df4af6626"
+    },
+    {
+      "id": "expr_087_0011-O1",
+      "source_sha256": "e62f20b0bd6a86a696908cd57f2988a03eb946d826f847bbc83ed81d54c8b636",
+      "raw_bytes": 86,
+      "tokens": 55,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 5,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "ff8383c32b97cae3312474fd3d7f6ef5dcc1f9debfa121a4169172f1c3a5e098"
+    },
+    {
+      "id": "expr_087_0012-O1",
+      "source_sha256": "e62f20b0bd6a86a696908cd57f2988a03eb946d826f847bbc83ed81d54c8b636",
+      "raw_bytes": 86,
+      "tokens": 55,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 5,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "84c7505c0c680c6d3c22bf63754ab44ccf637e786a7c2b712196093717b783da"
+    },
+    {
+      "id": "expr_087_0013-O1",
+      "source_sha256": "e62f20b0bd6a86a696908cd57f2988a03eb946d826f847bbc83ed81d54c8b636",
+      "raw_bytes": 86,
+      "tokens": 55,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 5,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "e0cba849f7d54ad1a78694a209f7033046763744b9748408e1914d127e8e7a8c"
+    },
+    {
+      "id": "expr_087_0014-O1",
+      "source_sha256": "85218f8c2680764847b411149b8db5c6edccad3470a6755b8618a7fe18a6eb24",
+      "raw_bytes": 86,
+      "tokens": 55,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 4,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "043f28050b151fbf0990f24dcfc78bd67746fd0e14b9a804b12cc24b0dc048fe"
+    },
+    {
+      "id": "expr_087_0015-O1",
+      "source_sha256": "85218f8c2680764847b411149b8db5c6edccad3470a6755b8618a7fe18a6eb24",
+      "raw_bytes": 86,
+      "tokens": 55,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 4,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "5fd20bfe5a461ea59663059ec5e7835fb85796922f851610bf7fe4e0d2c627b7"
+    },
+    {
+      "id": "expr_094_0000-O1",
+      "source_sha256": "85218f8c2680764847b411149b8db5c6edccad3470a6755b8618a7fe18a6eb24",
+      "raw_bytes": 86,
+      "tokens": 55,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 4,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "70c6d5877541f8e242ef2943db38820d86f22e5b6da44c421ca96345682bdc86"
+    },
+    {
+      "id": "expr_094_0001-O1",
+      "source_sha256": "efc6947e1c81906b63b001240e45ecbfee500ce514e5e312c2e52d4d486dc58a",
+      "raw_bytes": 113,
+      "tokens": 82,
+      "stop_reason": "eos",
+      "opening_parentheses": 11,
+      "closing_parentheses": 7,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "8761461be7b13403eaa6c60aea767870abafd85b829aeb17d012c20cd3d11565"
+    },
+    {
+      "id": "expr_094_0002-O1",
+      "source_sha256": "85218f8c2680764847b411149b8db5c6edccad3470a6755b8618a7fe18a6eb24",
+      "raw_bytes": 86,
+      "tokens": 55,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 4,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "fe28d493d2952a1f540e0ae50d4328b1f39d0d19a1700e3570c6190c12d60ce8"
+    },
+    {
+      "id": "expr_094_0003-O1",
+      "source_sha256": "efc6947e1c81906b63b001240e45ecbfee500ce514e5e312c2e52d4d486dc58a",
+      "raw_bytes": 113,
+      "tokens": 82,
+      "stop_reason": "eos",
+      "opening_parentheses": 11,
+      "closing_parentheses": 7,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "d8770042038da2e14e7e150334dd4c70fdbce756eb8bacf0798921f4c96e78fb"
+    },
+    {
+      "id": "expr_094_0004-O1",
+      "source_sha256": "efc6947e1c81906b63b001240e45ecbfee500ce514e5e312c2e52d4d486dc58a",
+      "raw_bytes": 113,
+      "tokens": 82,
+      "stop_reason": "eos",
+      "opening_parentheses": 11,
+      "closing_parentheses": 7,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "dfd7b4c66ecadef4ea78ca90ed58e117b5896c82a56d64ccc4b8a2ef8859c292"
+    },
+    {
+      "id": "expr_094_0005-O1",
+      "source_sha256": "54305d1d958a7b2d4f4ae568d07ffa1fd8d54ba34d25d4e235254da36072143c",
+      "raw_bytes": 86,
+      "tokens": 55,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 5,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "9d804a2ab9f6d47ba360d8b61defe8e6c55e9eb86ef5a88623bf70402e0e612a"
+    },
+    {
+      "id": "expr_094_0006-O1",
+      "source_sha256": "85218f8c2680764847b411149b8db5c6edccad3470a6755b8618a7fe18a6eb24",
+      "raw_bytes": 86,
+      "tokens": 55,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 4,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "e506472d45bd0ceaef15d0feb2e56a5eedac344218c0b9ff6d757a4e1f4df5ad"
+    },
+    {
+      "id": "expr_094_0007-O1",
+      "source_sha256": "efc6947e1c81906b63b001240e45ecbfee500ce514e5e312c2e52d4d486dc58a",
+      "raw_bytes": 113,
+      "tokens": 82,
+      "stop_reason": "eos",
+      "opening_parentheses": 11,
+      "closing_parentheses": 7,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "a7539b3c394aeff454cdcbd37d1db8aa7d8573c494633ba36cbd04ce4ef5b7a4"
+    },
+    {
+      "id": "expr_094_0008-O1",
+      "source_sha256": "efc6947e1c81906b63b001240e45ecbfee500ce514e5e312c2e52d4d486dc58a",
+      "raw_bytes": 113,
+      "tokens": 82,
+      "stop_reason": "eos",
+      "opening_parentheses": 11,
+      "closing_parentheses": 7,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "3b566e352e34137a1912c5aa06d1817d9a74412deb8fdd668221251749611f50"
+    },
+    {
+      "id": "expr_094_0009-O1",
+      "source_sha256": "54305d1d958a7b2d4f4ae568d07ffa1fd8d54ba34d25d4e235254da36072143c",
+      "raw_bytes": 86,
+      "tokens": 55,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 5,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "07515ef468e8426da4be0c48ddb848d674aae4a08f7f579d8caf6a9004ad06e5"
+    },
+    {
+      "id": "expr_094_0010-O1",
+      "source_sha256": "efc6947e1c81906b63b001240e45ecbfee500ce514e5e312c2e52d4d486dc58a",
+      "raw_bytes": 113,
+      "tokens": 82,
+      "stop_reason": "eos",
+      "opening_parentheses": 11,
+      "closing_parentheses": 7,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "5bfff3cdd08893613f9bcb0d2667eae9f6f5b603a5d62f79e84456b0160764ff"
+    },
+    {
+      "id": "expr_094_0011-O1",
+      "source_sha256": "2b713ddf5e929456db5899332babb7b9dc8d4b82456d92af690494bdcaaa9fb5",
+      "raw_bytes": 86,
+      "tokens": 55,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 4,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "c525fcff8dc2a3e1e63bd2fd7eee7f66615ef3b2db0da6e55063073f149112e1"
+    },
+    {
+      "id": "expr_094_0012-O1",
+      "source_sha256": "2b713ddf5e929456db5899332babb7b9dc8d4b82456d92af690494bdcaaa9fb5",
+      "raw_bytes": 86,
+      "tokens": 55,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 4,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "fc71ecbd9c239419e2b6ad455cf27a08df857bf87dbe285cbf5d636ea69b9064"
+    },
+    {
+      "id": "expr_094_0013-O1",
+      "source_sha256": "2b713ddf5e929456db5899332babb7b9dc8d4b82456d92af690494bdcaaa9fb5",
+      "raw_bytes": 86,
+      "tokens": 55,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 4,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "ce34997d77f387d94d4467f7d1612e09fee65d82f7409364ae5cfe7166534f9d"
+    },
+    {
+      "id": "expr_094_0014-O1",
+      "source_sha256": "85218f8c2680764847b411149b8db5c6edccad3470a6755b8618a7fe18a6eb24",
+      "raw_bytes": 86,
+      "tokens": 55,
+      "stop_reason": "eos",
+      "opening_parentheses": 10,
+      "closing_parentheses": 4,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "56b33ba63296915ce927f2aac0158ab0efdc0ecb238e72ce20f5349db50c20a9"
+    },
+    {
+      "id": "expr_094_0015-O1",
+      "source_sha256": "efc6947e1c81906b63b001240e45ecbfee500ce514e5e312c2e52d4d486dc58a",
+      "raw_bytes": 113,
+      "tokens": 82,
+      "stop_reason": "eos",
+      "opening_parentheses": 11,
+      "closing_parentheses": 7,
+      "compiler_errors": [
+        "expected ')'",
+        "expected ')'",
+        "expected ')'",
+        "expected ')'"
+      ],
+      "compile_stderr_sha256": "747621bf516718f3ce5bc11c69a7445acefee9659ea1428295770449f3213117"
+    }
+  ]
+}

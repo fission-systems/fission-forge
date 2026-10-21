@@ -29,7 +29,7 @@ but Forge is an independent implementation rather than a fine-tune of its models
 ## Current state
 
 This repository contains a working **training prototype**, with CPU and Colab
-A100 checks. It does not yet ship a generally useful decompiler or a pretrained model release.
+A100/L4 checks. It does not yet ship a generally useful decompiler or a pretrained model release.
 
 | Component | What exists today |
 | --- | --- |
@@ -37,11 +37,11 @@ A100 checks. It does not yet ship a generally useful decompiler or a pretrained 
 | Training | Byte or train-only reversible BPE tokens, completion-only loss, AdamW, deterministic epoch sampling and resumable corpus checkpoints |
 | Long inputs / validation | 8K-context CPU/GPU configurations, tiled causal queries, detached token-weighted validation; test split excluded from model batches |
 | Checkpoints | Embedded BPE specification in schema 5; legacy byte schemas retained; Safetensors weights and optimizer moments; reload and next-update equivalence checks |
-| Model sizes | 61,888-parameter IR probe, 70,512-parameter 8K CPU probe, 5,380,608-parameter byte and 5,604,864-parameter BPE GPU pilots, 3,507,712-parameter RoPE GPU pilot, 148,608-parameter assembly smoke model, and 99,927,552-parameter experimental configuration |
+| Model sizes | 61,888-parameter IR probe, 70,512-parameter 8K CPU probe, 5,380,608-parameter byte and 5,604,864-parameter BPE GPU pilots, 3,507,712-parameter full-SSA and 3,406,336-parameter return-slice RoPE GPU pilots, 148,608-parameter assembly smoke model, and 99,927,552-parameter experimental configuration |
 | CUDA | Complete corpus runs on A100 and L4; full 130-target validation and raw-C scoring; functional all-case matches remain 0/130 |
 | Input data | Owned synthetic frozen corpus; seven pinned HF candidates/evaluation reservations researched, zero external training rows admitted |
 | P-code frontend | Typed raw-dump validation, pinned SLA profile, reproducible owned-C extraction, and explicit unsupported records |
-| P-code+ / SSA | Stable straight-line v0 plus v1 CFG reconstruction, loop phis, instruction-internal merges, and conservative opaque calls |
+| P-code+ / SSA | Stable straight-line v0 plus v1 CFG/loop SSA and opaque calls; experimental effect-preserving low-EAX return slice (calls refused) |
 | Generation | Bounded greedy byte/BPE decoding with detached KV cache, exact bytes, EOS/context/budget reporting and checkpoint lane checks; CPU and 5.38M CUDA paths exercised |
 | DecBench | Static external-kit adapter and pinned packaging format exercised on an owned fixture; benchmark scores pending |
 
@@ -68,6 +68,10 @@ functions), and still matched **0/130**. The functional-success gate is unmet,
 so model scaling remains deferred. A [frozen-checkpoint input-swap diagnostic](evidence/2026-10-22-conditioning/README.md)
 measured NLL 0.531 → 0.610 with wrong inputs (zero updates); input conditioning
 is measurable, while functional generation remains unresolved.
+The [return-slice experiment](evidence/2026-10-22-return-slice/README.md) reduced
+maximum BPE length from 3836 to 935 and L4 training time from 616 to 234 seconds.
+Its selected NLL was 0.453, but raw compilability regressed to **0/130**. All 130
+outputs ended at EOS with unbalanced parentheses; the functional gate remains unmet.
 
 ## Research direction
 

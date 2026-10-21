@@ -1,0 +1,13 @@
+{
+  "inputs_sha256": "d9f50039e93e4e725811ee8caf8ffab8c2cd2b2e9f1e57a15e9a13d15b981244",
+  "references_sha256": "cf0d11b7c8aa577cc9b31989d730662947544dac9f6481398bab12f19513cb69",
+  "reference_comparisons": 8320,
+  "expected_targets": 130,
+  "cases_per_target": 64,
+  "compiler_sha256": "305697d3868243dca6e4aabf4f628df7de135d701eb4fd78f6a5d7528fef4395",
+  "linker_sha256": "fac671d98ef62b8a11d067a2076b8a369bbf6990b54ce6e44f6c4c22be7eda5c",
+  "wasmtime_version": "49.0.0",
+  "worker_sha256": "7f99a5c6204363bdc1520e1667f34089e212060fb31a345e00f11f33f9a49e8d",
+  "ordered_targets_sources_oracles_and_reference_modules_identical": true,
+  "changed_evaluator_routing_only": "freeze uses each verified representation; CPU evaluator lane uses frozen plan; C compilation, execution and assessment unchanged"
+}

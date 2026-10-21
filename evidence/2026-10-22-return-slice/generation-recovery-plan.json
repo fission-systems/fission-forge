@@ -1,0 +1,12 @@
+{
+  "mode": "generate",
+  "representation": "pcode-plus-ssa-return-u32-v1",
+  "generation_max_new_tokens": 512,
+  "corpus_lock_sha256": "7c441e1e67bb093031bcd0bf44fc23016a9c502d0ff63115f7c1d3f23cb72726",
+  "baseline_step": 768,
+  "baseline_checkpoint_sha256": "76cdc73bd84777607185b979e245d5bfb7f6f71baa1c9123d9ab37cc1419915c",
+  "checkpoint_state_sha256": "13ef482762f46613c6f7b105f548adafba4c9e6eed51563cd56a1e7267468060",
+  "optimizer_updates": 0,
+  "expected_validation_examples": 130,
+  "control_rotation": 17
+}

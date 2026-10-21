@@ -1,0 +1,9 @@
+{
+  "policy": "lowest_full_validation_NLL_among_saved_checkpoints_before_functional_scoring",
+  "step": 768,
+  "nll": 0.4532369937519867,
+  "checkpoint_sha256": "76cdc73bd84777607185b979e245d5bfb7f6f71baa1c9123d9ab37cc1419915c",
+  "checkpoint": "/content/forge-corpus-results/fresh/checkpoints/step-00000768",
+  "final_checkpoint": "/content/forge-corpus-results/fresh/checkpoints/step-00007224",
+  "test_model_examples": 0
+}

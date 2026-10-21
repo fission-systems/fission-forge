@@ -130,3 +130,22 @@ Scoring binds both the original training/selection and the explicit recovery
 source, model, corpus, checkpoint state/weights, zero-update plan and full target
 index. Changing the selected step, weights, state, lane or denominator rejects
 the retry. Compilation/execution rules and raw-output treatment stay unchanged.
+
+
+## Recorded result
+
+The L4 run completed 7224 updates. Selected step 768 has validation NLL 0.453237;
+final NLL regresses to 0.841953. Training-command time is 233.85 seconds with a
+sampled whole-device peak of 842 MiB, versus full-SSA RoPE 616.1 seconds and
+4874 MiB. Input, codec and parameter initialization differ between those runs.
+
+After the dispatch fix, all 130 inference requests completed using the same
+selected weights, but **0/130 raw C outputs compiled** and **0/130 functions
+reached functional success**. All 130 terminated at EOS with unbalanced
+parentheses. Compilability regressed from the prior full-SSA run's 16/130, despite
+lower teacher-forced NLL. No source was repaired. The compact input passes its
+IR probe gate and reduces resource use; it has not improved generated C quality.
+[Full evidence](../evidence/2026-10-22-return-slice/README.md) retains the initial
+software failure, complete retry, all raw outputs, compiler diagnostics and
+provenance. Further scaling remains deferred pending a measured syntax and
+conditional-generation baseline.
