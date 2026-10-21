@@ -1,12 +1,12 @@
 use super::*;
 
-fn fixture(name: &str) -> Result<RawDump> {
+pub(super) fn fixture(name: &str) -> Result<RawDump> {
     Ok(serde_json::from_slice(&std::fs::read(
         std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
             .join(format!("../../fixtures/pcode-cfg/{name}.raw.json")),
     )?)?)
 }
-fn profile() -> Profile {
+pub(super) fn profile() -> Profile {
     serde_json::from_str(include_str!(
         "../../../../../configs/lifter/fission-x86_64.json"
     ))

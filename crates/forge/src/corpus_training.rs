@@ -100,21 +100,34 @@ struct Example {
 }
 struct Dataset {
     rows: Vec<Example>,
+    representation: String,
     effective_sha256: String,
 }
 impl Dataset {
     fn load(path: &Path, context: usize, codec: &crate::tokenizer::Codec) -> Result<Self> {
         let mut rows = Vec::new();
         let mut seen = BTreeSet::new();
+        let mut representation = None;
         for line in BufReader::new(File::open(path)?).lines() {
             let line = line?;
             ensure!(!line.trim().is_empty(), "blank corpus row");
             let pair: pcode::Pair = serde_json::from_str(&line)?;
             ensure!(
-                pair.input.representation == pcode::cfg::REPRESENTATION
+                [
+                    pcode::cfg::REPRESENTATION,
+                    pcode::cfg::slice::REPRESENTATION
+                ]
+                .contains(&pair.input.representation.as_str())
                     && seen.insert(pair.id.clone()),
                 "invalid corpus lane or duplicate ID"
             );
+            ensure!(
+                representation
+                    .as_ref()
+                    .is_none_or(|r| r == &pair.input.representation),
+                "mixed corpus representations"
+            );
+            representation = Some(pair.input.representation.clone());
             let prompt = pair.prompt()?;
             ensure!(
                 !prompt.is_empty() && !pair.source.is_empty(),
@@ -137,6 +150,7 @@ impl Dataset {
         let effective_sha256 = pcode::sha256(&serde_json::to_vec(&fingerprints)?);
         Ok(Self {
             rows,
+            representation: representation.context("missing corpus representation")?,
             effective_sha256,
         })
     }
@@ -145,12 +159,7 @@ impl Dataset {
             .iter()
             .map(|i| (self.rows[*i].tokens.clone(), self.rows[*i].start))
             .collect::<Vec<_>>();
-        data::encoded_batch(
-            &encoded,
-            vec![pcode::cfg::REPRESENTATION.into()],
-            context,
-            device,
-        )
+        data::encoded_batch(&encoded, vec![self.representation.clone()], context, device)
     }
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
@@ -224,13 +233,13 @@ fn append(log: &mut File, event: &Value) -> Result<()> {
 fn snapshot(
     output: &Path,
     optimizer: &Adam,
-    architecture: (&ModelConfig, &crate::tokenizer::Codec),
+    architecture: (&ModelConfig, &crate::tokenizer::Codec, &str),
     seed: u64,
     train_sha: &str,
     state: &mut ResumeState,
     validation: Option<&Validation>,
 ) -> Result<PathBuf> {
-    let (config, codec) = architecture;
+    let (config, codec, representation) = architecture;
     let name = format!("step-{:08}", optimizer.step);
     let destination = output.join("checkpoints").join(&name);
     let staging = output.join(format!(".{name}.partial"));
@@ -257,7 +266,7 @@ fn snapshot(
         tokenizer: codec.name().into(),
         tokenizer_spec: codec.spec.clone(),
         input_sha256: Some(state.train_encoded_sha256.clone()),
-        representations: vec![pcode::cfg::REPRESENTATION.into()],
+        representations: vec![representation.into()],
         corpus: Some(state.clone()),
         checkpoint_sha256: Some(weights_sha256),
     };
@@ -321,6 +330,10 @@ pub fn run(
         config.max_seq_len,
         &codec,
     )?;
+    ensure!(
+        train.representation == validation.representation,
+        "split lane mismatch"
+    );
     // No test split is decoded into model batches. The audit only checks its integrity.
     let mut state = ResumeState {
         schema_version: 1,
@@ -353,7 +366,7 @@ pub fn run(
                 && previous.dataset_sha256 == train_sha
                 && (previous.optimizer.lr == options.learning_rate
                     || options.override_learning_rate)
-                && previous.representations == [pcode::cfg::REPRESENTATION]
+                && previous.representations == [train.representation.as_str()]
                 && previous.input_sha256.as_deref() == Some(&state.train_encoded_sha256),
             "corpus checkpoint provenance/configuration mismatch"
         );
@@ -515,7 +528,7 @@ pub fn run(
             final_checkpoint = snapshot(
                 &output,
                 &optimizer,
-                (&config, &codec),
+                (&config, &codec, &train.representation),
                 options.seed,
                 &train_sha,
                 &mut state,
@@ -595,6 +608,7 @@ mod tests {
             })
             .collect();
         let validation = Dataset {
+            representation: pcode::cfg::REPRESENTATION.into(),
             rows,
             effective_sha256: String::new(),
         };

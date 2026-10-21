@@ -27,6 +27,7 @@ class LearningRateResumeTests(unittest.TestCase):
             report=json.loads(changed.stdout);self.assertEqual(report['initial_step'],1);self.assertEqual(report['completed_step'],2)
             self.assertEqual(report['learning_rate_transition']['previous_lr'],0.001);self.assertEqual(report['learning_rate_transition']['new_lr'],0.0001)
             checkpoint=Path(report['final_checkpoint']);state=json.loads((checkpoint/'state.json').read_text());self.assertEqual(state['optimizer']['lr'],0.0001)
+            self.assertEqual(state['representations'],[json.loads((corpus/'manifest.json').read_text())['representation']])
             self.assertEqual({p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in parent.iterdir()},before)
             next_run=train('next',0.0001,checkpoint);self.assertEqual(next_run.returncode,0,next_run.stderr);self.assertEqual(json.loads(next_run.stdout)['completed_step'],3)
             bad=train('settings',0.00001,checkpoint,True,limit=2);self.assertNotEqual(bad.returncode,0);self.assertIn('settings changed',bad.stderr)

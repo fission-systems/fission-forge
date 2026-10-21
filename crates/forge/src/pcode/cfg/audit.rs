@@ -404,7 +404,11 @@ pub fn run(root: &Path, output: &Path) -> Result<serde_json::Value> {
             );
             let expected: Vec<u32> = serde_json::from_value(source["oracle_outputs"].clone())?;
             ensure!(expected.len() == probes.len(), "source probe count changed");
-            let ssa = program(&pair.input.raw, &pair.input.profile)?;
+            let ssa = if pair.input.representation == super::slice::REPRESENTATION {
+                super::slice::program(&pair.input.raw, &pair.input.profile)?
+            } else {
+                program(&pair.input.raw, &pair.input.profile)?
+            };
             ensure!(ssa.opaque_calls == 0, "calls outside audit ABI");
             for op in pair.input.raw.pcode.blocks.iter().flat_map(|b| &b.ops) {
                 for v in op.inputs.iter().chain(op.output.iter()) {
@@ -434,7 +438,7 @@ pub fn run(root: &Path, output: &Path) -> Result<serde_json::Value> {
             rows.push(serde_json::json!({"id":pair.id,"split":split,"prompt_sha256":sha256(pair.prompt()?.as_bytes()),"comparisons":probes.len()*2,"mismatches":mismatches}));
         }
     }
-    let report = serde_json::json!({"schema_version":1,"passed":failures==0,"scope":"owned_pure_u32_x86_sysv_probe_consistency_not_general_emulation_or_equivalence_proof","corpus_lock_sha256":sha256(&fs::read(root.join("release/lock.json"))?),"probes_sha256":sha256(&fs::read(root.join("probes.json"))?),"abi":"RDI_zero_extended_a_RSI_zero_extended_b_RSP_0x1000_return_low_EAX","register_fill_states":[0,165],"mapped_return_target":0xfeedbaadu32,"rows":rows.len(),"comparisons_per_interpreter":comparisons,"failures":failures,"test_model_examples":0,"test_labels_used_only_for_ir_consistency":true,"records":rows});
+    let report = serde_json::json!({"schema_version":1,"representation":serde_json::from_slice::<serde_json::Value>(&fs::read(root.join("config.json"))?)?["representation"],"passed":failures==0,"scope":"owned_pure_u32_x86_sysv_probe_consistency_not_general_emulation_or_equivalence_proof","corpus_lock_sha256":sha256(&fs::read(root.join("release/lock.json"))?),"probes_sha256":sha256(&fs::read(root.join("probes.json"))?),"abi":"RDI_zero_extended_a_RSI_zero_extended_b_RSP_0x1000_return_low_EAX","register_fill_states":[0,165],"mapped_return_target":0xfeedbaadu32,"rows":rows.len(),"comparisons_per_interpreter":comparisons,"failures":failures,"test_model_examples":0,"test_labels_used_only_for_ir_consistency":true,"records":rows});
     fs::create_dir_all(output)?;
     fs::write(
         output.join("report.json"),

@@ -42,9 +42,9 @@ def run(job,root,result,forge,config,corpus,env,train,write,sha,status,start,tot
         if time.monotonic()-start>1500:raise TimeoutError('fresh generation global wall budget exceeded')
         status('selected-generations',completed=i,total=len(pairs));folder=prompts/pair['id'];folder.mkdir()
         write(folder/'raw.json',pair['input']['raw']);write(folder/'profile.json',pair['input']['profile'])
-        subprocess.run([forge,'pcode-compile','--raw',str(folder/'raw.json'),'--profile',str(folder/'profile.json'),'--representation','pcode-plus-ssa-v1','--output',str(folder/'input')],env=env,check=True,stdout=subprocess.DEVNULL,timeout=30)
+        subprocess.run([forge,'pcode-compile','--raw',str(folder/'raw.json'),'--profile',str(folder/'profile.json'),'--representation',job.get('representation','pcode-plus-ssa-v1'),'--output',str(folder/'input')],env=env,check=True,stdout=subprocess.DEVNULL,timeout=30)
         prompt=folder/'input/prompt.txt'
-        command=[forge,'generate','--checkpoint',str(selected),'--prompt',str(prompt),'--representation','pcode-plus-ssa-v1','--max-new-tokens',str(job['generation_max_new_tokens']),'--output',str(output/pair['id']),'--device','cuda']
+        command=[forge,'generate','--checkpoint',str(selected),'--prompt',str(prompt),'--representation',job.get('representation','pcode-plus-ssa-v1'),'--max-new-tokens',str(job['generation_max_new_tokens']),'--output',str(output/pair['id']),'--device','cuda']
         try:
             generated=subprocess.run(command,env=env,capture_output=True,text=True,timeout=30)
             record=dict(id=pair['id'],exit_code=generated.returncode,timed_out=False,diagnostic=generated.stderr[-2000:],prompt_sha256=sha(prompt),checkpoint_sha256=checkpoint_sha)

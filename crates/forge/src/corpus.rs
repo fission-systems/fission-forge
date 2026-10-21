@@ -182,7 +182,11 @@ pub fn run(root: &Path, finalize: bool) -> Result<Value> {
     let cfg = read(&root.join("config.json"))?;
     ensure!(
         cfg["schema_version"] == 1
-            && cfg["representation"] == "pcode-plus-ssa-v1"
+            && [
+                pcode::cfg::REPRESENTATION,
+                pcode::cfg::slice::REPRESENTATION
+            ]
+            .contains(&cfg["representation"].as_str().unwrap_or(""))
             && cfg["representation"] == manifest["representation"],
         "invalid corpus representation"
     );
@@ -325,7 +329,7 @@ pub fn run(root: &Path, finalize: bool) -> Result<Value> {
         ensure!(
             row.pair.source == string(p, "source")?
                 && serde_json::to_value(&row.pair.input.profile)? == profile_value
-                && row.pair.input.representation == "pcode-plus-ssa-v1",
+                && row.pair.input.representation == cfg["representation"].as_str().unwrap_or(""),
             "row label/profile mismatch"
         );
         for (actual, field) in [

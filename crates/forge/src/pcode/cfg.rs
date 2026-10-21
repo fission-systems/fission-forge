@@ -2,6 +2,7 @@
 use super::*;
 
 pub mod audit;
+pub mod slice;
 
 pub const REPRESENTATION: &str = "pcode-plus-ssa-v1";
 
@@ -560,8 +561,11 @@ pub fn program(raw: &RawDump, profile: &Profile) -> Result<Program> {
 
 pub fn compile(raw: &RawDump, profile: &Profile) -> Result<Compiled> {
     let program = program(raw, profile)?;
+    render(&program, raw, REPRESENTATION)
+}
+fn render(program: &Program, raw: &RawDump, representation: &'static str) -> Result<Compiled> {
     let mut lines = vec![format!(
-        "{REPRESENTATION} x86_64 le ptr8 ram_word1 call_contract=opaque_all_regs_ram"
+        "{representation} x86_64 le ptr8 ram_word1 call_contract=opaque_all_regs_ram"
     )];
     lines.extend(program.liveins.iter().cloned());
     let mut phis = 0;
@@ -600,7 +604,7 @@ pub fn compile(raw: &RawDump, profile: &Profile) -> Result<Compiled> {
     }
     let prompt = lines.join("\n") + "\n";
     Ok(Compiled {
-        representation: REPRESENTATION,
+        representation,
         prompt_sha256: sha256(prompt.as_bytes()),
         raw_canonical_sha256: sha256(&serde_json::to_vec(raw)?),
         prompt,

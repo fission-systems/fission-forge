@@ -125,10 +125,11 @@ def freeze(args):
     targets=[]
     for row in rows:
         identifier=row['id']
+        if row['input']['representation']!=plan.get('representation','pcode-plus-ssa-v1'):raise ValueError('plan/input representation mismatch')
         if not re.fullmatch(r'[a-z0-9_]+-O[0-3]',identifier):raise ValueError('invalid target identity')
         folder=output/identifier;folder.mkdir()
         write(folder/'raw.json',row['input']['raw']);write(folder/'profile.json',row['input']['profile'])
-        prompt=command([forge,'pcode-compile','--raw',folder/'raw.json','--profile',folder/'profile.json','--representation','pcode-plus-ssa-v1','--output',folder/'input'],folder,'prompt')
+        prompt=command([forge,'pcode-compile','--raw',folder/'raw.json','--profile',folder/'profile.json','--representation',row['input']['representation'],'--output',folder/'input'],folder,'prompt')
         if prompt['exit_code']!=0:raise ValueError('invalid frozen validation prompt')
         program_id=identifier.rsplit('-',1)[0];p=programs[program_id]
         if p['split']!='validation' or p['source']!=row['source']:raise ValueError('reference program identity mismatch')
@@ -163,7 +164,7 @@ def evaluate(args):
     for target in manifest['targets']:
         identifier=target['id'];folder=output/identifier;folder.mkdir();prompt=frozen/identifier/'input/prompt.txt'
         if sha(prompt.read_bytes())!=target['prompt_sha256'] or sha(canonical(references[identifier]))!=target['oracle_sha256']:raise ValueError('frozen target changed')
-        generation=command([forge,'generate','--checkpoint',checkpoint,'--prompt',prompt,'--representation','pcode-plus-ssa-v1','--max-new-tokens',settings['max_new_tokens'],'--output',folder/'generation','--device','cpu'],folder,'generation',timeout=settings['generation_timeout_seconds'],cpu_seconds=25)
+        generation=command([forge,'generate','--checkpoint',checkpoint,'--prompt',prompt,'--representation',manifest['experiment_plan'].get('representation','pcode-plus-ssa-v1'),'--max-new-tokens',settings['max_new_tokens'],'--output',folder/'generation','--device','cpu'],folder,'generation',timeout=settings['generation_timeout_seconds'],cpu_seconds=25)
         record=dict(id=identifier,family=target['family'],generation=generation,compiled=False,matched_cases=0,all_cases_match=False,expected_cases=manifest['cases_per_target'])
         if generation['timed_out'] or generation['exit_code'] in (-signal.SIGXCPU,-signal.SIGKILL):record['status']='generation_timeout'
         elif generation['exit_code']!=0:record['status']='generation_failure'

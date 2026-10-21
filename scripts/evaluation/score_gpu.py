@@ -81,6 +81,8 @@ def main():
         selected_sha=f.sha((selected/'training.safetensors').read_bytes())
         if state['checkpoint_sha256']!=selected_sha or selected_sha!=selection['checkpoint_sha256']:raise ValueError('selected checkpoint integrity mismatch')
         folder=results/'selected-generations';records=validate_index(f.read(folder/'index.json'),manifest['targets'],selected_sha,max_new_tokens)
+        lane=manifest['experiment_plan'].get('representation','pcode-plus-ssa-v1')
+        if state['representations']!=[lane] or plan.get('representation','pcode-plus-ssa-v1')!=lane:raise ValueError('checkpoint input representation differs from frozen plan')
         spec=state.get('tokenizer_spec')
         if bool(spec)!=bool(plan.get('tokenizer')):raise ValueError('checkpoint codec differs from training plan')
         if spec and (f.sha(json.dumps(spec,separators=(',',':')).encode())!=plan['tokenizer_sha256'] or training['tokenizer_sha256']!=plan['tokenizer_sha256'] or spec['train_split_sha256']!=f.sha((corpus/'release/train.jsonl').read_bytes())):raise ValueError('BPE training provenance changed')

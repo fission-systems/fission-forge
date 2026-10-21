@@ -285,3 +285,8 @@ See [the complete audit and diagnostic record](../evidence/2026-10-22-conditioni
 for all row results, caveats, resource use and hashes. The next representation
 experiment should compact return/control dependencies without using labels,
 recheck transformed-prompt collisions and retain the existing functional gate.
+
+
+The [return-u32 projection experiment](return-slice.md) implements the next input
+reduction while retaining all effects and CFG edges. It re-audits the derived
+corpus and preserves the original target set and functional acceptance gate.
