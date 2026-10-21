@@ -148,7 +148,10 @@ pub fn run(
     ensure!(
         matches!(
             representation,
-            "assembly-v0" | pcode::REPRESENTATION | pcode::cfg::REPRESENTATION
+            "assembly-v0"
+                | pcode::REPRESENTATION
+                | pcode::cfg::REPRESENTATION
+                | pcode::cfg::slice::REPRESENTATION
         ),
         "unknown input representation"
     );
@@ -329,6 +332,82 @@ mod tests {
 mod checkpoint_tests {
     use super::*;
     use crate::training::Options;
+    #[test]
+    fn actual_return_slice_checkpoint_reaches_generation() -> Result<()> {
+        let nonce = std::time::SystemTime::now()
+            .duration_since(std::time::UNIX_EPOCH)?
+            .as_nanos();
+        let root = std::env::temp_dir().join(format!(
+            "forge-slice-generation-{}-{nonce}",
+            std::process::id()
+        ));
+        fs::create_dir(&root)?;
+        let raw: pcode::RawDump = serde_json::from_str(include_str!(
+            "../../../fixtures/pcode-cfg/forge_diamond.raw.json"
+        ))?;
+        let profile: pcode::Profile =
+            serde_json::from_str(include_str!("../../../configs/lifter/fission-x86_64.json"))?;
+        let source = "unsigned int f(unsigned int a, unsigned int b) { return (a > b ? a + 3u : b - 2u) + 1u; }";
+        let pair = pcode::Pair {
+            schema_version: 1,
+            id: "software-generation-probe".into(),
+            input: pcode::Input {
+                representation: pcode::cfg::slice::REPRESENTATION.into(),
+                profile,
+                raw: raw.clone(),
+            },
+            source: source.into(),
+            provenance: pcode::Provenance {
+                binary_sha256: "0".repeat(64),
+                raw_sha256: pcode::sha256(&serde_json::to_vec(&raw)?),
+                source_sha256: pcode::sha256(source.as_bytes()),
+                extraction: "software_test_not_a_functional_score".into(),
+            },
+        };
+        let config = root.join("config.json");
+        let dataset = root.join("pair.jsonl");
+        let checkpoint = root.join("checkpoint");
+        fs::write(
+            &config,
+            r#"{"vocab_size":260,"hidden_size":8,"heads":1,"layers":1,"feed_forward_size":16,"max_seq_len":8192,"rotary_positions":true}"#,
+        )?;
+        fs::write(&dataset, serde_json::to_vec(&pair)?)?;
+        training::run(
+            &config,
+            &dataset,
+            &checkpoint,
+            &Device::Cpu,
+            Options {
+                steps: 1,
+                learning_rate: 0.001,
+                seed: 42,
+                resume: None,
+            },
+        )?;
+        let report = run(
+            &checkpoint,
+            &pair.prompt()?,
+            pcode::cfg::slice::REPRESENTATION,
+            1,
+            &root.join("generation"),
+            &Device::Cpu,
+        )?;
+        assert_eq!(report.representation, pcode::cfg::slice::REPRESENTATION);
+        assert!(root.join("generation/completion.bin").exists());
+        assert!(
+            run(
+                &checkpoint,
+                &pair.prompt()?,
+                pcode::cfg::REPRESENTATION,
+                1,
+                &root.join("wrong-lane"),
+                &Device::Cpu
+            )
+            .is_err()
+        );
+        fs::remove_dir_all(root)?;
+        Ok(())
+    }
     #[test]
     fn real_checkpoint_generates_memorized_c_and_checks_lane_before_loading_weights() -> Result<()>
     {

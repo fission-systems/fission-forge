@@ -76,7 +76,14 @@ def main():
         if override_learning_rate:cmd+=['--override-learning-rate']
         return measure(list(map(str,cmd)),name,env,timeout)
     jobpath=ROOT/'job.json'
-    if jobpath.exists() and json.loads(jobpath.read_text())['mode']=='diagnostic':
+    if jobpath.exists() and json.loads(jobpath.read_text())['mode']=='generate':
+        job=json.loads(jobpath.read_text());resume=ROOT/'resume'
+        if sha(resume/'training.safetensors')!=job['baseline_checkpoint_sha256'] or sha(resume/'state.json')!=job['checkpoint_state_sha256']:raise RuntimeError('generation payload changed')
+        write(RESULT/'generation-plan.json',job)
+        sys.path.insert(0,str(ROOT));import fresh_job
+        fresh_job.generate(job,RESULT,forge,corpus,env,write,sha,status,START,resume)
+        if sha(resume/'training.safetensors')!=job['baseline_checkpoint_sha256']:raise RuntimeError('generation altered weights')
+    elif jobpath.exists() and json.loads(jobpath.read_text())['mode']=='diagnostic':
         job=json.loads(jobpath.read_text());resume=ROOT/'resume'
         if sha(resume/'training.safetensors')!=job['baseline_checkpoint_sha256'] or sha(resume/'state.json')!=job['checkpoint_state_sha256']:raise RuntimeError('diagnostic payload changed')
         write(RESULT/'diagnostic-plan.json',job)

@@ -18,6 +18,13 @@ class GpuScoreTests(unittest.TestCase):
             elif change=='prompt':altered['records'][1]['prompt_sha256']='changed'
             else:altered['records'][1]['checkpoint_sha256']='different'
             with self.assertRaises(ValueError):score_gpu.validate_index(altered,targets,'w')
+    def test_frozen_generation_retry_rejects_weight_step_update_and_denominator_changes(self):
+        recovery=dict(mode='generate',optimizer_updates=0,baseline_step=768,baseline_checkpoint_sha256='weights',checkpoint_state_sha256='state',corpus_lock_sha256='lock',representation='lane',generation_max_new_tokens=512,expected_validation_examples=130)
+        source={'resume/training.safetensors':'weights','resume/state.json':'state'}
+        def check(r):score_gpu.validate_recovery(r,source,dict(step=768),'weights','state',dict(corpus_lock_sha256='lock',targets=[None]*130),'lane',512,dict(vocab_size=500),dict(model=dict(vocab_size=500)))
+        check(recovery)
+        for field,value in [('optimizer_updates',1),('baseline_step',1024),('baseline_checkpoint_sha256','new_weights'),('checkpoint_state_sha256','new_state'),('expected_validation_examples',129),('representation','different_lane')]:
+            with self.subTest(field=field),self.assertRaises(ValueError):check(recovery|{field:value})
     def test_bpe_raw_bytes_are_reconstructed_from_bound_checkpoint_vocabulary(self):
         with tempfile.TemporaryDirectory() as tmp:
             folder=Path(tmp);spec=dict(algorithm='lexical-byte-bpe-v1',train_split_sha256='a'*64,source_weight=8,merges=[[69,70]])

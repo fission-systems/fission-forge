@@ -93,7 +93,7 @@ class ControllerTests(unittest.TestCase):
     def test_diagnostic_packages_exact_model_and_unchanged_checkpoint_without_training(self):
         resume=self.root/'resume';resume.mkdir();weights=b'frozen diagnostic weights'
         (resume/'training.safetensors').write_bytes(weights)
-        state=dict(schema_version=5,step=768,model=dict(vocab_size=698,rotary_positions=True),checkpoint_sha256=hashlib.sha256(weights).hexdigest(),corpus=dict(corpus_lock_sha256=hashlib.sha256(b'{}').hexdigest()))
+        state=dict(schema_version=5,step=768,representations=['pcode-plus-ssa-v1'],model=dict(vocab_size=698,rotary_positions=True),checkpoint_sha256=hashlib.sha256(weights).hexdigest(),corpus=dict(corpus_lock_sha256=hashlib.sha256(b'{}').hexdigest()))
         (resume/'state.json').write_text(json.dumps(state))
         with mock.patch.object(sys,'argv',['run_corpus.py','--corpus',str(self.corpus),'--output',str(self.root/'job'),'--session','unit-gpu','--diagnostic-checkpoint',str(resume),'--package-only']):run_corpus.main()
         with tarfile.open(self.root/'job/source.tar.gz') as tar:
@@ -102,6 +102,19 @@ class ControllerTests(unittest.TestCase):
             self.assertEqual(json.load(tar.extractfile('model.json')),state['model'])
             self.assertEqual(tar.extractfile('resume/training.safetensors').read(),weights)
             self.assertNotIn('fresh_job.py',tar.getnames())
+        self.assertFalse((self.root/'calls.jsonl').exists())
+    def test_generation_only_packages_selected_checkpoint_without_training(self):
+        resume=self.root/'resume';resume.mkdir();weights=b'frozen generation weights'
+        (resume/'training.safetensors').write_bytes(weights)
+        helper=self.root/'scripts/colab/fresh_job.py';helper.parent.mkdir(parents=True);helper.write_text('# generation helper fixture\n')
+        state=dict(schema_version=5,step=768,representations=['pcode-plus-ssa-return-u32-v1'],model=dict(vocab_size=500),checkpoint_sha256=hashlib.sha256(weights).hexdigest(),corpus=dict(corpus_lock_sha256=hashlib.sha256(b'{}').hexdigest()))
+        (resume/'state.json').write_text(json.dumps(state))
+        with mock.patch.object(sys,'argv',['run_corpus.py','--corpus',str(self.corpus),'--output',str(self.root/'job'),'--session','unit-gpu','--generation-checkpoint',str(resume),'--package-only']):run_corpus.main()
+        with tarfile.open(self.root/'job/source.tar.gz') as tar:
+            plan=json.load(tar.extractfile('job.json'))
+            self.assertEqual(plan['mode'],'generate');self.assertEqual(plan['optimizer_updates'],0)
+            self.assertEqual(plan['representation'],state['representations'][0]);self.assertEqual(plan['generation_max_new_tokens'],512)
+            self.assertIn('fresh_job.py',tar.getnames());self.assertNotIn('steps',plan)
         self.assertFalse((self.root/'calls.jsonl').exists())
     def test_corrupt_diagnostic_refused_before_runtime_allocation(self):
         resume=self.root/'resume';resume.mkdir();(resume/'training.safetensors').write_bytes(b'changed')

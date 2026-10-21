@@ -44,14 +44,22 @@ def raw_completion(folder,target,checkpoint_sha256,max_new_tokens=256,tokenizer_
     return data
 
 
+def validate_recovery(recovery,source,selection,selected_sha,state_sha256,manifest,lane,max_new_tokens,generation_model,state):
+    if recovery['mode']!='generate' or recovery['optimizer_updates']!=0 or recovery['baseline_step']!=selection['step'] or recovery['baseline_checkpoint_sha256']!=selected_sha or recovery['checkpoint_state_sha256']!=state_sha256:raise ValueError('generation recovery changed selected checkpoint')
+    if recovery['corpus_lock_sha256']!=manifest['corpus_lock_sha256'] or recovery['representation']!=lane or recovery['generation_max_new_tokens']!=max_new_tokens or recovery['expected_validation_examples']!=len(manifest['targets']):raise ValueError('generation recovery protocol changed')
+    if source['resume/training.safetensors']!=selected_sha or source['resume/state.json']!=recovery['checkpoint_state_sha256'] or generation_model!=state['model']:raise ValueError('generation recovery payload changed')
+
+
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--results',type=Path,required=True)
     parser.add_argument('--reference-evidence',type=Path,default=Path('evidence/2026-10-20-functional-validation'))
     parser.add_argument('--corpus',type=Path,required=True)
+    parser.add_argument('--generation-results',type=Path,help='Explicit frozen-weight generation recovery; original training/selection remain bound')
     parser.add_argument('--output',type=Path,required=True)
     args=parser.parse_args();results=args.results.resolve();e=args.reference_evidence.resolve();corpus=args.corpus.resolve()
     manifest_path=e/'protocol-manifest.json' if (e/'protocol-manifest.json').exists() else e/'manifest.json'
+    generation_results=args.generation_results.resolve() if args.generation_results else results
     manifest=f.read(manifest_path);fresh=(results/'fresh-plan.json').exists()
     plan_path=results/('fresh-plan.json' if fresh else 'continuation-plan.json');plan=f.read(plan_path);training=f.read(results/('fresh' if fresh else 'continuation')/'report.json')
     max_new_tokens=manifest['settings']['max_new_tokens']
@@ -80,9 +88,12 @@ def main():
         selected=results/'fresh/checkpoints'/('step-%08d'%selection['step']);state=f.read(selected/'state.json')
         selected_sha=f.sha((selected/'training.safetensors').read_bytes())
         if state['checkpoint_sha256']!=selected_sha or selected_sha!=selection['checkpoint_sha256']:raise ValueError('selected checkpoint integrity mismatch')
-        folder=results/'selected-generations';records=validate_index(f.read(folder/'index.json'),manifest['targets'],selected_sha,max_new_tokens)
+        folder=generation_results/'selected-generations';records=validate_index(f.read(folder/'index.json'),manifest['targets'],selected_sha,max_new_tokens)
         lane=manifest['experiment_plan'].get('representation','pcode-plus-ssa-v1')
         if state['representations']!=[lane] or plan.get('representation','pcode-plus-ssa-v1')!=lane:raise ValueError('checkpoint input representation differs from frozen plan')
+        if args.generation_results:
+            recovery=f.read(generation_results/'generation-plan.json');source=f.read(generation_results/'source.json')['manifest']['files']
+            validate_recovery(recovery,source,selection,selected_sha,f.sha((selected/'state.json').read_bytes()),manifest,lane,max_new_tokens,f.read(generation_results/'binary.json')['model'],state)
         spec=state.get('tokenizer_spec')
         if bool(spec)!=bool(plan.get('tokenizer')):raise ValueError('checkpoint codec differs from training plan')
         if spec and (f.sha(json.dumps(spec,separators=(',',':')).encode())!=plan['tokenizer_sha256'] or training['tokenizer_sha256']!=plan['tokenizer_sha256'] or spec['train_split_sha256']!=f.sha((corpus/'release/train.jsonl').read_bytes())):raise ValueError('BPE training provenance changed')
@@ -121,7 +132,10 @@ def main():
     for name,total in totals.items():
         total['compile_rate']=total['compiled']/len(manifest['targets']);total['all_case_match_rate']=total['all_cases_match']/len(manifest['targets']);total['case_match_rate']=total['matched_cases']/reference_cases
         (output/(name+'-completions.jsonl')).write_text(''.join(json.dumps(r)+'\n' for r in exported[name]))
-    report=dict(schema_version=1,status='complete',scope='owned_synthetic_validation_not_DecBench',selection=plan['selection'] if fresh else 'fixed_final_step_predeclared_before_training_not_functional_score_search',reference_manifest_sha256=f.sha(manifest_path.read_bytes()),training_plan_sha256=f.sha(plan_path.read_bytes()),generation_driver_sha256=f.read(results/'source.json')['driver_sha256'],scorer_sha256=f.sha(Path(__file__).read_bytes()),checkpoint_sha256={n:a['checkpoint_sha256'] for n,a in arms.items()},reference_comparisons=reference_cases,expected_targets=len(manifest['targets']),arms=totals,test_model_examples=0,raw_output_policy='unchanged_C_no_repairs')
+    report=dict(schema_version=1,status='complete',scope='owned_synthetic_validation_not_DecBench',selection=plan['selection'] if fresh else 'fixed_final_step_predeclared_before_training_not_functional_score_search',reference_manifest_sha256=f.sha(manifest_path.read_bytes()),training_plan_sha256=f.sha(plan_path.read_bytes()),generation_driver_sha256=f.read(generation_results/'source.json')['driver_sha256'],scorer_sha256=f.sha(Path(__file__).read_bytes()),checkpoint_sha256={n:a['checkpoint_sha256'] for n,a in arms.items()},reference_comparisons=reference_cases,expected_targets=len(manifest['targets']),arms=totals,test_model_examples=0,raw_output_policy='unchanged_C_no_repairs')
+    if args.generation_results:
+        if not fresh:raise ValueError('generation recovery requires fresh training selection')
+        report['generation_recovery']=dict(plan_sha256=f.sha((generation_results/'generation-plan.json').read_bytes()),optimizer_updates=0,original_training_driver_sha256=f.read(results/'source.json')['driver_sha256'],original_generation_index_sha256=f.sha((results/'selected-generations/index.json').read_bytes()),scope='software_dispatch_fix_same_selected_weights_full_target_retry')
     if not fresh:report['continuation_plan_sha256']=report['training_plan_sha256']
     f.write(output/'report.json',report);print(json.dumps(report,indent=2))
 

@@ -99,3 +99,34 @@ This changes the input lane, vocabulary, parameter count and seeded parameter
 initialization. It is a measured follow-up, not a single-variable causal ablation.
 The acceptance gate remains at least one nonconstant held-out generated function
 matching all 64 probes, followed by broader repeatability checks before scaling.
+
+## Generation dispatch recovery
+
+The first GPU training run completed, but generation rejected all 130 requests
+because the new lane had not been added to the inference allowlist. This is a
+software dispatch failure, not a measured model syntax/semantic failure. The
+initial index and all 130 failures are retained separately.
+
+The fix adds the new lane to the existing allowlist, retaining checkpoint lane
+matching and all inference math. A CPU regression trains an actual small
+return-slice checkpoint, reaches raw generation, and rejects the wrong lane.
+A generation-only retry uses the same NLL-selected step-768 weights, without
+optimizer updates or selecting another checkpoint. It retries all 130 targets.
+
+```sh
+python3 scripts/colab/run_corpus.py --corpus outputs/corpus-composition-return-v1 \
+  --generation-checkpoint outputs/colab-composition-return-l4-v1/results/fresh/checkpoints/step-00000768 \
+  --output outputs/colab-return-generation-recovery-new \
+  --session forge-return-generate-new --gpu L4
+
+outputs/eval-venv/bin/python scripts/evaluation/score_gpu.py \
+  --results outputs/colab-composition-return-l4-v1/results \
+  --generation-results outputs/colab-return-generation-recovery-new/results \
+  --reference-evidence outputs/composition-return-frozen-v1 \
+  --corpus outputs/corpus-composition-return-v1 --output outputs/return-recovered-score-new
+```
+
+Scoring binds both the original training/selection and the explicit recovery
+source, model, corpus, checkpoint state/weights, zero-update plan and full target
+index. Changing the selected step, weights, state, lane or denominator rejects
+the retry. Compilation/execution rules and raw-output treatment stay unchanged.
