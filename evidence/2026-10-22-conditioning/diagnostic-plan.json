@@ -1,0 +1,9 @@
+{
+  "mode": "diagnostic",
+  "baseline_step": 768,
+  "baseline_checkpoint_sha256": "399863fe1c05373083a537008f390d5fb21f182a552c934fa5fce82a81032b45",
+  "checkpoint_state_sha256": "9bd37efb10bec117e89b2aa3b71763e164d0e6f852250001acd7cc82d8c6a899",
+  "optimizer_updates": 0,
+  "expected_validation_examples": 130,
+  "control_rotation": 17
+}

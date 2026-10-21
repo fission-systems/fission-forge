@@ -76,7 +76,14 @@ def main():
         if override_learning_rate:cmd+=['--override-learning-rate']
         return measure(list(map(str,cmd)),name,env,timeout)
     jobpath=ROOT/'job.json'
-    if jobpath.exists() and json.loads(jobpath.read_text())['mode']=='fresh':
+    if jobpath.exists() and json.loads(jobpath.read_text())['mode']=='diagnostic':
+        job=json.loads(jobpath.read_text());resume=ROOT/'resume'
+        if sha(resume/'training.safetensors')!=job['baseline_checkpoint_sha256'] or sha(resume/'state.json')!=job['checkpoint_state_sha256']:raise RuntimeError('diagnostic payload changed')
+        write(RESULT/'diagnostic-plan.json',job)
+        report=measure([forge,'corpus-diagnose','--corpus',str(corpus),'--checkpoint',str(resume),'--output',str(RESULT/'diagnostics'),'--device','cuda'],'diagnostics',env,timeout=300)
+        if report['optimizer_updates']!=0 or report['examples']!=job['expected_validation_examples']:raise RuntimeError('diagnostic contract changed')
+        if sha(resume/'training.safetensors')!=job['baseline_checkpoint_sha256']:raise RuntimeError('diagnostic altered weights')
+    elif jobpath.exists() and json.loads(jobpath.read_text())['mode']=='fresh':
         sys.path.insert(0,str(ROOT));import fresh_job
         fresh_job.run(json.loads(jobpath.read_text()),ROOT,RESULT,forge,config,corpus,env,train,write,sha,status,START,total_mib)
     elif jobpath.exists():

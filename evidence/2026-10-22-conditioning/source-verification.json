@@ -1,0 +1,25 @@
+{
+  "source_base_revision": "f37e05b4f04bef31fcfb3154f051f9e05a7dcb96",
+  "source_worktree_dirty": true,
+  "rust_and_cargo_files": {
+    "Cargo.lock": "3afc7086226fec89b862067f73cb9b02119c2ac0072d363f9acec978234ee7bb",
+    "Cargo.toml": "659fbe72d7955e5e97efe177e1345349170b0b1dbe340a3f32cf62e938268961",
+    "crates/forge/Cargo.toml": "6b00c23d6024c4822e4c73f7a97aadb5eeaee34d08b134d0d58e248ba49dfaad",
+    "crates/forge/src/corpus.rs": "99f779b2701907eaadeba4b2a4e733235b5894b647159c88a29429a7a9e2b387",
+    "crates/forge/src/corpus_training.rs": "7f5961f963a0d427a657c0a625e2252f2777b963fb439de6f3da9c5715b7fff4",
+    "crates/forge/src/data.rs": "b22791601a550e934f77d54ea77d2b4912173a5f859ad18ebffcfc023a5ccd83",
+    "crates/forge/src/diagnostics.rs": "5e804e520683b344d8b8fc5d79120f37e3c598fc24cee4edc519d958f91fccf5",
+    "crates/forge/src/generation.rs": "08ebe1cf27c72e00a010919bf78db5dde33072d8d76b89fdcb7c7199099f70fc",
+    "crates/forge/src/lib.rs": "256e1c1460ff886f9f61954d635648eff9a9cb5c5f1e6eb128d261b7a00e1480",
+    "crates/forge/src/main.rs": "4af84b6d4cddbd0b3876d72d84d3ef9210d60f014d6e47c20d71367177b3fdb0",
+    "crates/forge/src/model.rs": "24f2a5a3d0faf8558c4c5b19b2dcaeec4a97e4fb7de35379265671e346e0da47",
+    "crates/forge/src/pcode.rs": "a0cb2a191a92321baaeac35d841b1e95df2dcaa18de1d705052541d19198ea62",
+    "crates/forge/src/pcode/cfg.rs": "c01566d8522735a2889952c0d771138c0e610a06f74885658bb8c8d69815db33",
+    "crates/forge/src/pcode/cfg/audit.rs": "c41f5d41c862c48abaf50af047cf95de7c90113c15e2a7ee59dc5a47ccd2490d",
+    "crates/forge/src/pcode/cfg/tests.rs": "06aa20044998879bd5c710b3edb0937d30537c44ebe8f657d1adcd7c81264680",
+    "crates/forge/src/probe.rs": "7b92b0d769e3e424218a0c3b18e5db8eb95ea2647283c580d734fa278499adb9",
+    "crates/forge/src/tokenizer.rs": "6bed4c2bb76e5181a3f59c874256c50a84df334a03a882436af1c311a0fe7a44",
+    "crates/forge/src/training.rs": "c096a6132ff39c3aa2f2e86f82c9163996d48a3048df7a4e22decc2935ba262d"
+  },
+  "all_payload_sources_match_worktree": true
+}

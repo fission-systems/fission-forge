@@ -158,38 +158,7 @@ pub fn run(
     );
     // Check context/budget before loading weights or allocating a decoder.
     prefix(prompt, state.model.max_seq_len, max_new_tokens, &codec)?;
-    let bytes = fs::read(checkpoint.join("training.safetensors"))?;
-    let digest = pcode::sha256(&bytes);
-    if state.schema_version >= 4 {
-        ensure!(
-            state.corpus.is_some() && state.checkpoint_sha256.as_deref() == Some(&digest),
-            "corpus checkpoint integrity mismatch"
-        );
-    }
-    let tensors = candle_core::safetensors::SliceSafetensors::new(&bytes)?;
-    let vars = candle_nn::VarMap::new();
-    let _ = Decoder::new(&state.model, &vars, device)?;
-    let expected = crate::model::named_vars(&vars);
-    let model_names: std::collections::BTreeSet<_> = tensors
-        .tensors()
-        .into_iter()
-        .map(|(n, _)| n)
-        .filter(|n| n.starts_with("model."))
-        .collect();
-    ensure!(
-        model_names.len() == expected.len(),
-        "unexpected inference model tensor count"
-    );
-    for (name, variable) in expected {
-        let tensor = tensors.load(&format!("model.{name}"), device)?;
-        ensure!(
-            tensor.shape() == variable.shape() && tensor.dtype() == variable.dtype(),
-            "inference tensor shape/dtype mismatch: {name}"
-        );
-        variable.set(&tensor)?;
-    }
-    // Drop optimizer payload bytes after loading only model tensors onto the device.
-    drop(bytes);
+    let (vars, digest) = load_weights(checkpoint, &state, device)?;
     let model = Decoder::for_eval(&state.model, &vars, device)?;
     let mut cache: Option<crate::model::DecodeCache> = None;
     let query_chunk = state
@@ -255,6 +224,46 @@ pub fn run(
         serde_json::to_vec_pretty(&report)?,
     )?;
     Ok(report)
+}
+
+pub(crate) fn load_weights(
+    checkpoint: &Path,
+    state: &training::Checkpoint,
+    device: &Device,
+) -> Result<(candle_nn::VarMap, String)> {
+    let bytes = fs::read(checkpoint.join("training.safetensors"))?;
+    let digest = pcode::sha256(&bytes);
+    if state.schema_version >= 4 {
+        ensure!(
+            state.corpus.is_some() && state.checkpoint_sha256.as_deref() == Some(&digest),
+            "corpus checkpoint integrity mismatch"
+        );
+    }
+    let tensors = candle_core::safetensors::SliceSafetensors::new(&bytes)?;
+    let vars = candle_nn::VarMap::new();
+    let _ = Decoder::new(&state.model, &vars, device)?;
+    let expected = crate::model::named_vars(&vars);
+    let model_names: std::collections::BTreeSet<_> = tensors
+        .tensors()
+        .into_iter()
+        .map(|(n, _)| n)
+        .filter(|n| n.starts_with("model."))
+        .collect();
+    ensure!(
+        model_names.len() == expected.len(),
+        "unexpected inference model tensor count"
+    );
+    for (name, variable) in expected {
+        let tensor = tensors.load(&format!("model.{name}"), device)?;
+        ensure!(
+            tensor.shape() == variable.shape() && tensor.dtype() == variable.dtype(),
+            "inference tensor shape/dtype mismatch: {name}"
+        );
+        variable.set(&tensor)?;
+    }
+    // Drop optimizer payload bytes after loading only model tensors onto the device.
+    drop(bytes);
+    Ok((vars, digest))
 }
 
 #[cfg(test)]

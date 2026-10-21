@@ -1,0 +1,14 @@
+{
+  "result_archive_sha256": "d254f879051ebfab296792fe26c229e5c3c1fe5599f587844e960615fd37fa69",
+  "source_archive_sha256": "95384c063b2bd0442df3adc8163048845ab4c6629a7a5c71f2f3f3f400d5f8c3",
+  "selected_weights_sha256": "399863fe1c05373083a537008f390d5fb21f182a552c934fa5fce82a81032b45",
+  "selected_state_sha256": "9bd37efb10bec117e89b2aa3b71763e164d0e6f852250001acd7cc82d8c6a899",
+  "returned_archive_digest_verified": true,
+  "local_checkpoint_unchanged": true,
+  "remote_checkpoint_unchanged_verified_by_driver": true,
+  "record_count": 130,
+  "correct_prompt_lower_sum_nll_rows": 76,
+  "correct_nll_matches_previous_selected_validation_within": 1e-06,
+  "optimizer_updates": 0,
+  "test_model_examples": 0
+}

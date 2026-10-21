@@ -54,7 +54,9 @@ alone is not evidence of decompilation quality.
 The [composition curriculum](docs/composition-corpus.md) expands to 96 owned
 expression templates: the audited release has **903 train / 130 validation /
 188 test rows**, with whole-template split separation. All 98,304 host C/oracle
-checks passed; this does not establish full lifted-IR execution parity. The
+checks passed. The bounded raw-P-code/SSA audit additionally passed **156,288
+source-oracle comparisons per interpreter** over all 1221 release rows; this
+is finite-probe consistency for the owned pure-u32 ABI. The
 new six-epoch byte-codec run still compiled **0/130** raw validation outputs.
 The [BPE follow-up](evidence/2026-10-22-composition-bpe/README.md) compiled
 **12/130** unmodified outputs but matched **0/130** functions across all 64
@@ -63,7 +65,9 @@ in the denominator; this is not functional success.
 The [3.51M RoPE comparison on L4](evidence/2026-10-22-composition-rope/README.md)
 lowered BPE validation NLL to 0.531, compiled **16/130** (only two distinct C
 functions), and still matched **0/130**. The functional-success gate is unmet,
-so model scaling remains deferred.
+so model scaling remains deferred. A [frozen-checkpoint input-swap diagnostic](evidence/2026-10-22-conditioning/README.md)
+measured NLL 0.531 → 0.610 with wrong inputs (zero updates); input conditioning
+is measurable, while functional generation remains unresolved.
 
 ## Research direction
 

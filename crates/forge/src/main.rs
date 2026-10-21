@@ -18,6 +18,24 @@ struct Cli {
 
 #[derive(Subcommand)]
 enum Command {
+    /// Compare frozen validation likelihood under correct and rotated wrong IR prompts.
+    CorpusDiagnose {
+        #[arg(long)]
+        corpus: PathBuf,
+        #[arg(long)]
+        checkpoint: PathBuf,
+        #[arg(long)]
+        output: PathBuf,
+        #[arg(long, value_enum, default_value = "cpu")]
+        device: Backend,
+    },
+    /// Audit raw P-code and SSA against owned pure-u32 corpus reference probes.
+    CorpusSemantics {
+        #[arg(long)]
+        corpus: PathBuf,
+        #[arg(long)]
+        output: PathBuf,
+    },
     /// Learn a reversible BPE vocabulary using only the audited training split.
     TokenizerTrain {
         #[arg(long)]
@@ -157,6 +175,30 @@ fn device(backend: Backend) -> Result<Device> {
 
 fn main() -> Result<()> {
     match Cli::parse().command {
+        Command::CorpusDiagnose {
+            corpus,
+            checkpoint,
+            output,
+            device: backend,
+        } => {
+            println!(
+                "{}",
+                serde_json::to_string_pretty(&fission_forge::diagnostics::run(
+                    &corpus,
+                    &checkpoint,
+                    &output,
+                    &device(backend)?
+                )?)?
+            );
+        }
+        Command::CorpusSemantics { corpus, output } => {
+            let report = pcode::cfg::audit::run(&corpus, &output)?;
+            println!("{}", serde_json::to_string_pretty(&report)?);
+            anyhow::ensure!(
+                report["failures"] == 0,
+                "IR/source parity audit failed; see saved report"
+            );
+        }
         Command::TokenizerTrain {
             corpus,
             output,

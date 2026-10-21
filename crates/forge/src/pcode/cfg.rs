@@ -1,6 +1,8 @@
 //! P-code+ v1: operation-derived CFG, unpruned cell SSA, conservative opaque calls.
 use super::*;
 
+pub mod audit;
+
 pub const REPRESENTATION: &str = "pcode-plus-ssa-v1";
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Serialize)]

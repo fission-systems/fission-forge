@@ -35,9 +35,9 @@ and rejected ambiguous or duplicate rows. The frozen release contains:
 
 Counts describe literal variants, not independent algorithms. Maximum admitted
 training input is 6094 byte tokens; no row is truncated. The grammar primitives
-remain covered in all released splits after filtering. Full x86 IR execution
-parity is **not measured**; the source-label oracle and static lift audit have
-distinct scopes. No benchmark sources or HF rows entered this corpus. Global
+remain covered in all released splits after filtering. The follow-up bounded
+interpreter audit now compares raw P-code and SSA to the source oracle on every
+released row (details below); this is probe consistency, not full x86 equivalence. No benchmark sources or HF rows entered this corpus. Global
 external-evaluation overlap remains unmeasured.
 
 ## Reproduce data and freeze references
@@ -225,3 +225,63 @@ All outputs are preserved unchanged, with failures retained in the denominator.
 The functional-success gate remains **unmet**. Larger-model training is deferred
 until input/label fidelity, syntax and semantic conditioning are investigated;
 repeating the current small corpus does not supply new supervision.
+
+
+## Bounded IR execution consistency
+
+`forge corpus-semantics` first verifies the existing corpus release integrity,
+then executes both raw P-code and its normalized SSA for all 1221 released rows.
+The ABI is explicit: x86 SysV RDI/RSI contain zero-extended u32 inputs, RSP is
+0x1000, the mapped return slot contains 0xfeedbaad, and low EAX is the result.
+Each of the 64 source-oracle probes runs with other register bytes initialized
+to 0 and 0xa5. Both return value and return target are checked. Unmapped RAM
+reads, opaque calls, unsupported operations and exhausted fuel reject the case.
+This VM shares arithmetic helpers between raw and SSA paths; the independently
+computed Python oracle and earlier native-C checks supply the source leg.
+
+```sh
+cargo build --locked --release -p fission-forge
+target/release/forge corpus-semantics --corpus outputs/corpus-composition-v1 \
+  --output outputs/composition-semantic-audit-new
+```
+
+The recorded run passed **156,288 comparisons per interpreter**, with zero
+mismatches. All train/validation/test rows are included for IR consistency only;
+no test label enters model inference, optimization or checkpoint selection.
+The result is restricted to these pure-u32 functions and finite probes. It does
+not validate general memory, arbitrary x86 instructions, calls, or whole-domain
+semantic equivalence. Full per-row evidence is retained in the experiment record.
+
+## Frozen-checkpoint input-conditioning control
+
+`forge corpus-diagnose` measures teacher-forced completion NLL on all 130
+validation targets, once using each target's own input and once replacing only
+the input with row `(i + 17) % 130`. Donors must belong to a different template
+family. The entire target C and EOS remain identical between arms. Header and
+expression-body-plus-EOS losses are reported separately, with token-weighted
+aggregates and per-row sums. It performs zero optimizer updates and uses no
+test model examples. It does not generate C or establish functional accuracy.
+
+```sh
+python3 scripts/colab/run_corpus.py --corpus outputs/corpus-composition-v1 \
+  --diagnostic-checkpoint outputs/colab-composition-bpe-rope-l4-v1/results/fresh/checkpoints/step-00000768 \
+  --output outputs/colab-conditioning-new --session forge-conditioning-new --gpu L4
+```
+
+The controller packages the embedded checkpoint model and codec, verifies state
+and weight hashes before evaluation, and verifies that weights remain unchanged.
+The diagnostic phase has a 300-second limit inside the existing bounded session
+lifecycle. A small wrong-minus-correct loss gap would suggest weak conditioning
+under this particular control; it would not identify the cause by itself.
+
+
+The recorded L4 control gave full-completion NLL **0.531415 → 0.609941** when
+swapping inputs; body-plus-EOS NLL was **0.869144 → 0.998437**. The common header
+NLL was approximately 0.009017 in both arms. Own-input total NLL was lower on
+76/130 rows. This shows some conditioning under the declared control, alongside
+substantial common-header predictability. It does not establish semantic
+generation: previous all-case matches remain **0/130**. No updates were run.
+See [the complete audit and diagnostic record](../evidence/2026-10-22-conditioning/README.md)
+for all row results, caveats, resource use and hashes. The next representation
+experiment should compact return/control dependencies without using labels,
+recheck transformed-prompt collisions and retain the existing functional gate.

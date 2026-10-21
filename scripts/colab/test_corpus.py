@@ -90,6 +90,24 @@ class ControllerTests(unittest.TestCase):
             self.assertEqual(plan['baseline_step'],480);self.assertEqual(plan['additional_steps'],1920)
             self.assertEqual(tar.extractfile('resume/training.safetensors').read(),weights)
         self.assertFalse((self.root/'calls.jsonl').exists())
+    def test_diagnostic_packages_exact_model_and_unchanged_checkpoint_without_training(self):
+        resume=self.root/'resume';resume.mkdir();weights=b'frozen diagnostic weights'
+        (resume/'training.safetensors').write_bytes(weights)
+        state=dict(schema_version=5,step=768,model=dict(vocab_size=698,rotary_positions=True),checkpoint_sha256=hashlib.sha256(weights).hexdigest(),corpus=dict(corpus_lock_sha256=hashlib.sha256(b'{}').hexdigest()))
+        (resume/'state.json').write_text(json.dumps(state))
+        with mock.patch.object(sys,'argv',['run_corpus.py','--corpus',str(self.corpus),'--output',str(self.root/'job'),'--session','unit-gpu','--diagnostic-checkpoint',str(resume),'--package-only']):run_corpus.main()
+        with tarfile.open(self.root/'job/source.tar.gz') as tar:
+            plan=json.load(tar.extractfile('job.json'))
+            self.assertEqual(plan['mode'],'diagnostic');self.assertEqual(plan['optimizer_updates'],0)
+            self.assertEqual(json.load(tar.extractfile('model.json')),state['model'])
+            self.assertEqual(tar.extractfile('resume/training.safetensors').read(),weights)
+            self.assertNotIn('fresh_job.py',tar.getnames())
+        self.assertFalse((self.root/'calls.jsonl').exists())
+    def test_corrupt_diagnostic_refused_before_runtime_allocation(self):
+        resume=self.root/'resume';resume.mkdir();(resume/'training.safetensors').write_bytes(b'changed')
+        (resume/'state.json').write_text(json.dumps(dict(schema_version=5,checkpoint_sha256='0'*64)))
+        with mock.patch.object(sys,'argv',['run_corpus.py','--corpus',str(self.corpus),'--output',str(self.root/'job'),'--session','unit-gpu','--diagnostic-checkpoint',str(resume)]),self.assertRaisesRegex(ValueError,'integrity mismatch'):run_corpus.main()
+        self.assertFalse((self.root/'calls.jsonl').exists())
     def test_corrupt_resume_refused_before_runtime_allocation(self):
         resume=self.root/'resume';resume.mkdir();(resume/'training.safetensors').write_bytes(b'changed')
         (resume/'state.json').write_text(json.dumps(dict(schema_version=4,checkpoint_sha256='0'*64)))
