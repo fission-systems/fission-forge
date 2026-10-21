@@ -1,0 +1,7 @@
+{
+  "rust_and_cargo_files": 16,
+  "uploaded_rust_matches_git_commit": "bd72961",
+  "model_matches_frozen_plan": true,
+  "model_sha256": "fa6f496107a0bc04921056f50c842a2d03d33b93c0989b0ffb694e01c1c39bff",
+  "planned_steps": 7224
+}

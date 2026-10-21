@@ -8,5 +8,7 @@
   "source_label_comparisons": 98304,
   "reference_comparisons": 8320,
   "external_training_rows": 0,
-  "test_model_examples": 0
+  "test_model_examples": 0,
+  "final_checkpoint_sha256": "645cca252896d3c068b945b75288f661b4507c95347013d63b38d659f3b124ec",
+  "final_checkpoint_verified": true
 }

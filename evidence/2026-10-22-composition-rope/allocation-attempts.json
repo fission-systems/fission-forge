@@ -1,0 +1,30 @@
+{
+  "attempts": [
+    {
+      "accelerator": "A100",
+      "attempt": 1,
+      "result": "ColabRequestError_Service_Unavailable",
+      "server_active_assignments_after": 0
+    },
+    {
+      "accelerator": "A100",
+      "attempt": 2,
+      "result": "ColabRequestError_Service_Unavailable",
+      "server_active_assignments_after": 0
+    },
+    {
+      "accelerator": "G4",
+      "attempt": 1,
+      "result": "ColabRequestError_Service_Unavailable",
+      "server_active_assignments_after": 0
+    },
+    {
+      "accelerator": "L4",
+      "attempt": 1,
+      "result": "allocated",
+      "reported_gpu": "NVIDIA L4",
+      "reported_total_mib": 23034
+    }
+  ],
+  "automatic_reauthentication": false
+}

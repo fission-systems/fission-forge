@@ -1,0 +1,10 @@
+{
+  "scope": "posthoc_validation_output_diversity_not_a_causal_input_sensitivity_test",
+  "codec": "bpe",
+  "targets": 130,
+  "distinct_raw_completions": 30,
+  "compiled_targets": 12,
+  "distinct_compiled_completions": 1,
+  "most_common_completion_count": 15,
+  "most_common_compiled_count": 12
+}

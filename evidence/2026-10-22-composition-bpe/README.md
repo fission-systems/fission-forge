@@ -1,7 +1,9 @@
 # Reversible BPE follow-up — 2026-10-22 KST
 
 Raw generated C compiled **12/130 (9.23%)**; **0/130** matched all 64 probes.
-All twelve compiled candidates ran (768 cases); only 8 of 8320 total validation
+All twelve compiled candidates emitted the **same C function** (one distinct
+compilable completion). They ran on their respective targets (768 cases); only
+8 of 8320 total validation
 cases matched. The other 118 outputs failed compilation and remain in the full
 denominator. This establishes some unmodified compilable C, **not successful
 functional decompilation**, and is not a DecBench score.
@@ -44,9 +46,8 @@ resume and changed-codec rejection. Optimized encoding preserves all 903 row
 statistics and the next update's full weights and Adam moments byte for byte.
 
 The result archive, selected weights, source archive and executed driver hashes
-were independently checked (`artifact-verification.json`). Executed helpers and
-the uploaded corpus trainer are preserved because the committed trainer later
-received an argument-only snapshot refactor for Clippy. Weights remain local in
+were independently checked (`artifact-verification.json`). Executed helpers and uploaded model/trainer sources preserve the code before
+the subsequent snapshot refactor and RoPE extension. Weights remain local in
 ignored `outputs/`. The named runtime was stopped and no active server session
 remained before the next experiment.
 
@@ -55,3 +56,8 @@ is not a single-variable causal comparison. The improvement in compilation does
 not establish semantic progress. Function-declaration and parenthesis failures
 remain, motivating a separately declared position-encoding experiment. These
 are development-validation results; a final test evaluation remains reserved.
+
+Timing above is the complete training-command wall time, including corpus loading
+and initial validation, from `training-resources.json`. The training report
+separately records the timed update/periodic-validation loop. Memory is sampled
+whole-device usage and can miss brief peaks.

@@ -1,0 +1,12 @@
+{
+  "archive_sha256": "b22352d4009256629fb09f9afd1fe5d3dcf8348a37e30331b35310cee634c806",
+  "source_archive_sha256": "993bdb219af2445532a8fd90e4de39ed1a28d9e85146dcba36ffe8d2786d5ba9",
+  "source_archive_verified": true,
+  "checkpoint_sha256": {
+    "selected": "399863fe1c05373083a537008f390d5fb21f182a552c934fa5fce82a81032b45",
+    "final": "7b9e08b05a99dc4998b22b2cb71c8457b12c6e25942f3316f429ae11bcd5b72c"
+  },
+  "selected_and_final_weights_verified": true,
+  "all_130_targets_scored": true,
+  "test_model_examples": 0
+}

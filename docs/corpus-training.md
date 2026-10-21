@@ -167,3 +167,8 @@ The recorded [composition trial](composition-corpus.md) produces vocabulary 698.
 No validation/test text participates in vocabulary learning. Token-weighted NLL
 is comparable across checkpoints with the same codec; its units differ between
 byte and BPE runs. Use raw C compilation/probe results for functional comparison.
+
+An explicit `--model-config` in the Colab fresh-job wrapper packages its exact
+contents and hash. The RoPE architecture flag is checkpoint-bound; changing it
+requires fresh weights. The wrapper retains the in-job NLL-best and final
+weights, then evaluates all frozen validation targets with raw unmodified C.

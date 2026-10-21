@@ -1,0 +1,10 @@
+[
+  {
+    "count": 14,
+    "source": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 8u) + (a + 8u)); }"
+  },
+  {
+    "count": 2,
+    "source": "unsigned int f(unsigned int a, unsigned int b) { return ((((b + b) + (b + a) ^ b))); }"
+  }
+]

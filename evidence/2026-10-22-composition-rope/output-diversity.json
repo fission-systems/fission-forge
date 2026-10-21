@@ -1,0 +1,9 @@
+{
+  "scope": "posthoc_validation_output_diversity_not_a_causal_input_sensitivity_test",
+  "targets": 130,
+  "distinct_raw_completions": 25,
+  "compiled_targets": 16,
+  "distinct_compiled_completions": 2,
+  "most_common_completion_count": 17,
+  "most_common_compiled_count": 14
+}

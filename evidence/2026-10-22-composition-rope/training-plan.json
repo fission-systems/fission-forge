@@ -1,0 +1,16 @@
+{
+  "mode": "fresh",
+  "epochs": 8,
+  "steps": 7224,
+  "train_examples": 903,
+  "learning_rate": 0.0003,
+  "evaluate_every": 256,
+  "generation_max_new_tokens": 512,
+  "selection": "lowest_full_validation_NLL_before_functional_scoring",
+  "corpus_lock_sha256": "215606713cc55bde1f5da50291dc7d479edfd01f9eaea4769745d2ddafe6c4b3",
+  "tokenizer": "lexical-byte-bpe-v1",
+  "tokenizer_file_sha256": "d0e4d52bef495883aa39b54390c88f977578132d6bb519df64bd766fe3c65997",
+  "tokenizer_sha256": "5e20f1b14ee820b683f3b80acf2c5cd3ad6cadcc26e308b6ee7a26dee0c6f746",
+  "max_output_bytes": 512,
+  "model_sha256": "fa6f496107a0bc04921056f50c842a2d03d33b93c0989b0ffb694e01c1c39bff"
+}

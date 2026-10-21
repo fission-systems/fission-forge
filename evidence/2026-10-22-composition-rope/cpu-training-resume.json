@@ -1,0 +1,9 @@
+{
+  "actual_cpu_training_and_resume_pass": true,
+  "completed_step": 2,
+  "rotary_positions": true,
+  "test_model_examples": 0,
+  "tokenizer_sha256": "5e20f1b14ee820b683f3b80acf2c5cd3ad6cadcc26e308b6ee7a26dee0c6f746",
+  "model_config_sha256": "14486666b7f9ac93ea6e3f451c022ba47ab107ef12248f4dffb84d64842ef616",
+  "resumed_checkpoint_sha256": "ac546058f34933bb523ab46b0e2967904119ddbcb262e40c2181bd073c819c2c"
+}

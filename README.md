@@ -37,8 +37,8 @@ A100 checks. It does not yet ship a generally useful decompiler or a pretrained 
 | Training | Byte or train-only reversible BPE tokens, completion-only loss, AdamW, deterministic epoch sampling and resumable corpus checkpoints |
 | Long inputs / validation | 8K-context CPU/GPU configurations, tiled causal queries, detached token-weighted validation; test split excluded from model batches |
 | Checkpoints | Embedded BPE specification in schema 5; legacy byte schemas retained; Safetensors weights and optimizer moments; reload and next-update equivalence checks |
-| Model sizes | 61,888-parameter IR probe, 70,512-parameter 8K CPU probe, 5,380,608-parameter 8K GPU pilot, 148,608-parameter assembly smoke model, and 99,927,552-parameter experimental configuration |
-| CUDA | Colab A100: 5.60M BPE model trained for 7224 updates on 903 rows with full 130-row validation; historical byte/148K/100M probes retained below |
+| Model sizes | 61,888-parameter IR probe, 70,512-parameter 8K CPU probe, 5,380,608-parameter byte and 5,604,864-parameter BPE GPU pilots, 3,507,712-parameter RoPE GPU pilot, 148,608-parameter assembly smoke model, and 99,927,552-parameter experimental configuration |
+| CUDA | Complete corpus runs on A100 and L4; full 130-target validation and raw-C scoring; functional all-case matches remain 0/130 |
 | Input data | Owned synthetic frozen corpus; seven pinned HF candidates/evaluation reservations researched, zero external training rows admitted |
 | P-code frontend | Typed raw-dump validation, pinned SLA profile, reproducible owned-C extraction, and explicit unsupported records |
 | P-code+ / SSA | Stable straight-line v0 plus v1 CFG reconstruction, loop phis, instruction-internal merges, and conservative opaque calls |
@@ -58,13 +58,17 @@ checks passed; this does not establish full lifted-IR execution parity. The
 new six-epoch byte-codec run still compiled **0/130** raw validation outputs.
 The [BPE follow-up](evidence/2026-10-22-composition-bpe/README.md) compiled
 **12/130** unmodified outputs but matched **0/130** functions across all 64
-probes. All failures remain in the denominator; this is not functional success.
-A separate optional RoPE configuration tests position encoding before scaling.
+probes. Those twelve compilable outputs were identical. All failures remain
+in the denominator; this is not functional success.
+The [3.51M RoPE comparison on L4](evidence/2026-10-22-composition-rope/README.md)
+lowered BPE validation NLL to 0.531, compiled **16/130** (only two distinct C
+functions), and still matched **0/130**. The functional-success gate is unmet,
+so model scaling remains deferred.
 
 ## Research direction
 
 The user-confirmed long-term objective is **approximately 20B parameters**.
-This is a scaling target; the measured corpus GPU models have 5.38M (bytes) and 5.60M (BPE) parameters.
+This is a scaling target; the measured corpus GPU models range from 3.51M (RoPE) to 5.60M (BPE) parameters.
 The current F32/Adam implementation needs at least 320 GB for four dense arrays
 at 20B, excluding activations, so it cannot train that model on the present
 single A100 40 GB. [Scaling stages and resource gates](docs/scaling.md) separate

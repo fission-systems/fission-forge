@@ -54,3 +54,8 @@ held-out targets. Its NLL or functional rate is not a controlled improvement
 against that earlier experiment. This result motivates the separately frozen
 [BPE follow-up](../../docs/composition-corpus.md); it does not justify scaling to
 20B. Real-project data, full lifted-IR parity and DecBench scoring remain pending.
+
+Timing above is the complete training-command wall time, including corpus loading
+and initial validation, from `training-resources.json`. The training report
+separately records the timed update/periodic-validation loop. Memory is sampled
+whole-device usage and can miss brief peaks.

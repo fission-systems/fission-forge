@@ -161,7 +161,8 @@ results inform development; a future final test needs a separately frozen run.
 ## BPE outcome and position-encoding follow-up
 
 The recorded BPE run compiled **12/130** raw outputs. All twelve reached bounded
-execution (768 cases); eight cases matched, and **0/130 functions matched all
+execution (768 cases), but all twelve emitted the same C function. Eight cases
+matched, and **0/130 functions matched all
 64 probes**. The selected step was 1792 (NLL 1.5548 per BPE token); the final
 step 7224 regressed to 2.0100. Training took 566.2 seconds on the A100, sampled
 whole-device peak 4962 MiB. [Full artifacts](../evidence/2026-10-22-composition-bpe/README.md)
@@ -202,3 +203,25 @@ Freeze `configs/evaluation/composition-bpe-rope-functional-v1.json` and score al
 130 targets through the same unchanged bounded Wasm evaluator. The explicit
 model config, codec, train split and full reference set are hash-bound. No test
 model batches, syntax constraints, source repair or C-prefix insertion are added.
+
+## Recorded RoPE result
+
+The L4 run completed all 7224 updates. It selected step 768 at validation NLL
+0.5314; the final NLL was 0.7361. Training-command wall time was 616.1 seconds,
+sampled whole-device peak 4874 MiB. Raw C compiled **16/130**, but **0/130 matched
+all 64 probes**. The sixteen compilable outputs contained only two distinct C
+functions; the most frequent repeated fourteen times. Four of 8320 total cases
+matched. [Complete record](../evidence/2026-10-22-composition-rope/README.md).
+
+| Trial | Parameters | Selected validation NLL | Compiled raw C | All-case matches |
+| --- | ---: | ---: | ---: | ---: |
+| Byte, A100, six epochs | 5,380,608 | 1.3810 / byte | 0/130 | 0/130 |
+| BPE, A100, eight epochs | 5,604,864 | 1.5548 / BPE token | 12/130 | 0/130 |
+| BPE + RoPE, L4, eight epochs | 3,507,712 | 0.5314 / BPE token | 16/130 | 0/130 |
+
+Byte/BPE NLL units differ. Architecture, parameter set, some initialization and
+hardware also differ; this table is not a causal ablation or a DecBench score.
+All outputs are preserved unchanged, with failures retained in the denominator.
+The functional-success gate remains **unmet**. Larger-model training is deferred
+until input/label fidelity, syntax and semantic conditioning are investigated;
+repeating the current small corpus does not supply new supervision.

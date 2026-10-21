@@ -1,0 +1,10 @@
+{
+  "scope": "posthoc_validation_output_diversity_not_a_causal_input_sensitivity_test",
+  "codec": "byte",
+  "targets": 130,
+  "distinct_raw_completions": 20,
+  "compiled_targets": 0,
+  "distinct_compiled_completions": 0,
+  "most_common_completion_count": 17,
+  "most_common_compiled_count": 0
+}

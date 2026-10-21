@@ -4,5 +4,7 @@
   "selected_checkpoint_verified": true,
   "source_archive_verified": true,
   "source_driver_verified": true,
-  "test_model_examples": 0
+  "test_model_examples": 0,
+  "final_checkpoint_sha256": "5cc05e9b3c20aa9f67946ef15fd2c1ca3ca58d0dda5243d32a93702b630665f1",
+  "final_checkpoint_verified": true
 }
