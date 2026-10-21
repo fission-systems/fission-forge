@@ -13,13 +13,15 @@ pub struct ModelConfig {
     pub layers: usize,
     pub feed_forward_size: usize,
     pub max_seq_len: usize,
+    #[serde(default)]
+    pub rotary_positions: bool,
 }
 
 impl ModelConfig {
     pub fn validate(&self) -> Result<()> {
         ensure!(
-            self.vocab_size == 260,
-            "this baseline requires the 260-token byte codec"
+            (260..=4096).contains(&self.vocab_size),
+            "vocabulary must contain 260..4096 tokens"
         );
         ensure!(
             self.hidden_size > 0 && self.heads > 0 && self.hidden_size.is_multiple_of(self.heads),
@@ -28,6 +30,10 @@ impl ModelConfig {
         ensure!(
             self.layers > 0 && self.feed_forward_size > 0 && self.max_seq_len >= 2,
             "invalid model dimensions"
+        );
+        ensure!(
+            !self.rotary_positions || (self.hidden_size / self.heads).is_multiple_of(2),
+            "RoPE requires even head width"
         );
         Ok(())
     }
@@ -72,6 +78,41 @@ impl DecodeCache {
     }
 }
 
+// Split-half RoPE, theta=10000. Primitive tensor operations retain autodiff.
+struct Rotary {
+    cos: Tensor,
+    sin: Tensor,
+}
+impl Rotary {
+    fn new(c: &ModelConfig, device: &Device) -> candle_core::Result<Self> {
+        let half = c.hidden_size / c.heads / 2;
+        let mut cos = Vec::new();
+        let mut sin = Vec::new();
+        for p in 0..c.max_seq_len {
+            for i in 0..half {
+                let angle = p as f64 / 10000f64.powf(i as f64 / half as f64);
+                cos.push(angle.cos() as f32);
+                sin.push(angle.sin() as f32);
+            }
+        }
+        Ok(Self {
+            cos: Tensor::from_vec(cos, (1, 1, c.max_seq_len, half), device)?,
+            sin: Tensor::from_vec(sin, (1, 1, c.max_seq_len, half), device)?,
+        })
+    }
+    fn apply(&self, x: &Tensor, start: usize) -> candle_core::Result<Tensor> {
+        let (_, _, time, width) = x.dims4()?;
+        let half = width / 2;
+        let cos = self.cos.narrow(2, start, time)?;
+        let sin = self.sin.narrow(2, start, time)?;
+        let left = x.narrow(3, 0, half)?;
+        let right = x.narrow(3, half, half)?;
+        let a = (left.broadcast_mul(&cos)? - right.broadcast_mul(&sin)?)?;
+        let b = (right.broadcast_mul(&cos)? + left.broadcast_mul(&sin)?)?;
+        Tensor::cat(&[a, b], 3)
+    }
+}
+
 struct Block {
     norm1: Norm,
     norm2: Norm,
@@ -97,14 +138,16 @@ impl Block {
         x: &Tensor,
         c: &ModelConfig,
         query_chunk: usize,
+        rotary: Option<&Rotary>,
     ) -> candle_core::Result<Tensor> {
-        Ok(self.prefill(x, c, query_chunk)?.0)
+        Ok(self.prefill(x, c, query_chunk, rotary)?.0)
     }
     fn prefill(
         &self,
         x: &Tensor,
         c: &ModelConfig,
         query_chunk: usize,
+        rotary: Option<&Rotary>,
     ) -> candle_core::Result<(Tensor, LayerCache)> {
         let (batch, time, hidden) = x.dims3()?;
         let width = hidden / c.heads;
@@ -116,6 +159,11 @@ impl Block {
                 .contiguous()
         };
         let (q, k, v) = (split(0)?, split(hidden)?, split(hidden * 2)?);
+        let (q, k) = if let Some(r) = rotary {
+            (r.apply(&q, 0)?, r.apply(&k, 0)?)
+        } else {
+            (q, k)
+        };
         // Query tiling avoids a full T*T mask and skips future key blocks.
         // Backprop still retains attention activations: this is not FlashAttention.
         let chunk = if query_chunk == 0 {
@@ -160,6 +208,7 @@ impl Block {
         x: &Tensor,
         c: &ModelConfig,
         cache: &mut LayerCache,
+        rotary: Option<&Rotary>,
     ) -> candle_core::Result<Tensor> {
         let (batch, _, hidden) = x.dims3()?;
         let width = hidden / c.heads;
@@ -171,6 +220,12 @@ impl Block {
                 .contiguous()
         };
         let (q, k, v) = (split(0)?, split(hidden)?, split(hidden * 2)?);
+        let (q, k) = if let Some(r) = rotary {
+            let start = cache.key.dim(2)?;
+            (r.apply(&q, start)?, r.apply(&k, start)?)
+        } else {
+            (q, k)
+        };
         let key = Tensor::cat(&[&cache.key, &k], 2)?;
         let value = Tensor::cat(&[&cache.value, &v], 2)?;
         let scores = (q.matmul(&key.transpose(2, 3)?)? / (width as f64).sqrt())?;
@@ -192,7 +247,8 @@ impl Block {
 pub struct Decoder {
     config: ModelConfig,
     tokens: Embedding,
-    positions: Embedding,
+    positions: Option<Embedding>,
+    rotary: Option<Rotary>,
     blocks: Vec<Block>,
     norm: Norm,
     head: Linear,
@@ -214,7 +270,16 @@ impl Decoder {
         Ok(Self {
             config: c.clone(),
             tokens: embedding(c.vocab_size, c.hidden_size, vb.pp("tokens"))?,
-            positions: embedding(c.max_seq_len, c.hidden_size, vb.pp("positions"))?,
+            positions: if c.rotary_positions {
+                None
+            } else {
+                Some(embedding(c.max_seq_len, c.hidden_size, vb.pp("positions"))?)
+            },
+            rotary: if c.rotary_positions {
+                Some(Rotary::new(c, vb.device())?)
+            } else {
+                None
+            },
             blocks: (0..c.layers)
                 .map(|i| Block::new(c, vb.pp(format!("blocks.{i}"))))
                 .collect::<candle_core::Result<_>>()?,
@@ -230,13 +295,14 @@ impl Decoder {
             "invalid cached prefix/context"
         );
         let positions = Tensor::arange(0u32, time as u32, ids.device())?;
-        let mut x = self
-            .tokens
-            .forward(ids)?
-            .broadcast_add(&self.positions.forward(&positions)?.unsqueeze(0)?)?;
+        let mut x = self.tokens.forward(ids)?;
+        if let Some(table) = &self.positions {
+            x = x.broadcast_add(&table.forward(&positions)?.unsqueeze(0)?)?;
+        }
         let mut layers = Vec::new();
         for block in &self.blocks {
-            let (next, cache) = block.prefill(&x, &self.config, query_chunk)?;
+            let (next, cache) =
+                block.prefill(&x, &self.config, query_chunk, self.rotary.as_ref())?;
             x = next;
             layers.push(cache);
         }
@@ -262,12 +328,12 @@ impl Decoder {
             "invalid decode cache/token/context"
         );
         let position = Tensor::new(&[cache.position as u32], token.device())?;
-        let mut x = self
-            .tokens
-            .forward(token)?
-            .broadcast_add(&self.positions.forward(&position)?.unsqueeze(0)?)?;
+        let mut x = self.tokens.forward(token)?;
+        if let Some(table) = &self.positions {
+            x = x.broadcast_add(&table.forward(&position)?.unsqueeze(0)?)?;
+        }
         for (block, layer) in self.blocks.iter().zip(&mut cache.layers) {
-            x = block.step(&x, &self.config, layer)?;
+            x = block.step(&x, &self.config, layer, self.rotary.as_ref())?;
         }
         cache.position += 1;
         Ok(self.head.forward(&self.norm.forward(&x)?)?)
@@ -282,12 +348,12 @@ impl Decoder {
             "sequence exceeds model context"
         );
         let positions = Tensor::arange(0u32, time as u32, ids.device())?;
-        let mut x = self
-            .tokens
-            .forward(ids)?
-            .broadcast_add(&self.positions.forward(&positions)?.unsqueeze(0)?)?;
+        let mut x = self.tokens.forward(ids)?;
+        if let Some(table) = &self.positions {
+            x = x.broadcast_add(&table.forward(&positions)?.unsqueeze(0)?)?;
+        }
         for block in &self.blocks {
-            x = block.forward(&x, &self.config, query_chunk)?;
+            x = block.forward(&x, &self.config, query_chunk, self.rotary.as_ref())?;
         }
         Ok(self.head.forward(&self.norm.forward(&x)?)?)
     }
@@ -333,26 +399,62 @@ pub fn named_vars(vars: &VarMap) -> Vec<(String, candle_core::Var)> {
 mod tests {
     use super::*;
     #[test]
-    fn future_tokens_cannot_change_prefix_logits() -> Result<()> {
+    fn rotary_matches_independent_formula_and_relative_dot_products() -> Result<()> {
         let c = ModelConfig {
             vocab_size: 260,
-            hidden_size: 16,
-            heads: 2,
+            hidden_size: 4,
+            heads: 1,
             layers: 1,
-            feed_forward_size: 32,
-            max_seq_len: 8,
+            feed_forward_size: 8,
+            max_seq_len: 16,
+            rotary_positions: true,
         };
-        let vars = VarMap::new();
-        let model = Decoder::new(&c, &vars, &Device::Cpu)?;
-        initialize(&vars, 42)?;
-        let a = model.forward(&Tensor::new(&[[1u32, 5, 6, 7]], &Device::Cpu)?)?;
-        let b = model.forward(&Tensor::new(&[[1u32, 5, 99, 100]], &Device::Cpu)?)?;
-        let delta = (a.narrow(1, 0, 2)? - b.narrow(1, 0, 2)?)?
-            .abs()?
-            .flatten_all()?
-            .max(0)?
+        let r = Rotary::new(&c, &Device::Cpu)?;
+        let x = Tensor::from_vec(vec![1f32, 2., 3., 4.], (1, 1, 1, 4), &Device::Cpu)?;
+        let actual = r.apply(&x, 1)?.flatten_all()?.to_vec1::<f32>()?;
+        let expected = [
+            1f64.cos() - 3. * 1f64.sin(),
+            2. * 0.01f64.cos() - 4. * 0.01f64.sin(),
+            3. * 1f64.cos() + 1f64.sin(),
+            4. * 0.01f64.cos() + 2. * 0.01f64.sin(),
+        ];
+        for (a, b) in actual.iter().zip(expected) {
+            assert!((f64::from(*a) - b).abs() < 1e-6);
+        }
+        let y = Tensor::from_vec(vec![4f32, 3., 2., 1.], (1, 1, 1, 4), &Device::Cpu)?;
+        let a = (r.apply(&x, 0)? * r.apply(&y, 1)?)?
+            .sum_all()?
             .to_scalar::<f32>()?;
-        assert!(delta <= 1e-6, "future-token leakage: {delta}");
+        let b = (r.apply(&x, 5)? * r.apply(&y, 6)?)?
+            .sum_all()?
+            .to_scalar::<f32>()?;
+        assert!((a - b).abs() < 1e-5);
+        Ok(())
+    }
+    #[test]
+    fn future_tokens_cannot_change_prefix_logits() -> Result<()> {
+        for rotary_positions in [false, true] {
+            let c = ModelConfig {
+                vocab_size: 260,
+                hidden_size: 16,
+                heads: 2,
+                layers: 1,
+                feed_forward_size: 32,
+                max_seq_len: 8,
+                rotary_positions,
+            };
+            let vars = VarMap::new();
+            let model = Decoder::new(&c, &vars, &Device::Cpu)?;
+            initialize(&vars, 42)?;
+            let a = model.forward(&Tensor::new(&[[1u32, 5, 6, 7]], &Device::Cpu)?)?;
+            let b = model.forward(&Tensor::new(&[[1u32, 5, 99, 100]], &Device::Cpu)?)?;
+            let delta = (a.narrow(1, 0, 2)? - b.narrow(1, 0, 2)?)?
+                .abs()?
+                .flatten_all()?
+                .max(0)?
+                .to_scalar::<f32>()?;
+            assert!(delta <= 1e-6, "future-token leakage: {delta}");
+        }
         Ok(())
     }
 }
@@ -362,46 +464,49 @@ mod tiled_tests {
     use super::*;
     #[test]
     fn tiled_attention_matches_full_logits_and_parameter_gradients() -> Result<()> {
-        let c = ModelConfig {
-            vocab_size: 260,
-            hidden_size: 8,
-            heads: 2,
-            layers: 1,
-            feed_forward_size: 16,
-            max_seq_len: 32,
-        };
-        let vars = VarMap::new();
-        let model = Decoder::new(&c, &vars, &Device::Cpu)?;
-        initialize(&vars, 42)?;
-        let ids = Tensor::new(&[[1u32, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]], &Device::Cpu)?;
-        let full = model.forward(&ids)?;
-        let tiled = model.forward_chunked(&ids, 3)?;
-        assert!(
-            (&full - &tiled)?
-                .abs()?
-                .flatten_all()?
-                .max(0)?
-                .to_scalar::<f32>()?
-                < 1e-6
-        );
-        let a = full.sqr()?.mean_all()?.backward()?;
-        let b = tiled.sqr()?.mean_all()?.backward()?;
-        for (_, v) in named_vars(&vars) {
-            let delta = (a.get(&v).unwrap() - b.get(&v).unwrap())?
-                .abs()?
-                .flatten_all()?
-                .max(0)?
-                .to_scalar::<f32>()?;
-            assert!(delta < 1e-5, "gradient mismatch {delta}");
-        }
-        let inference = Decoder::for_eval(&c, &vars, &Device::Cpu)?;
-        let loss = inference.forward_chunked(&ids, 3)?.sqr()?.mean_all()?;
-        let detached = loss.backward()?;
-        for (_, v) in named_vars(&vars) {
+        for rotary_positions in [false, true] {
+            let c = ModelConfig {
+                vocab_size: 260,
+                hidden_size: 8,
+                heads: 2,
+                layers: 1,
+                feed_forward_size: 16,
+                max_seq_len: 32,
+                rotary_positions,
+            };
+            let vars = VarMap::new();
+            let model = Decoder::new(&c, &vars, &Device::Cpu)?;
+            initialize(&vars, 42)?;
+            let ids = Tensor::new(&[[1u32, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]], &Device::Cpu)?;
+            let full = model.forward(&ids)?;
+            let tiled = model.forward_chunked(&ids, 3)?;
             assert!(
-                detached.get(&v).is_none(),
-                "validation retains variable graph"
+                (&full - &tiled)?
+                    .abs()?
+                    .flatten_all()?
+                    .max(0)?
+                    .to_scalar::<f32>()?
+                    < 1e-6
             );
+            let a = full.sqr()?.mean_all()?.backward()?;
+            let b = tiled.sqr()?.mean_all()?.backward()?;
+            for (_, v) in named_vars(&vars) {
+                let delta = (a.get(&v).unwrap() - b.get(&v).unwrap())?
+                    .abs()?
+                    .flatten_all()?
+                    .max(0)?
+                    .to_scalar::<f32>()?;
+                assert!(delta < 1e-5, "gradient mismatch {delta}");
+            }
+            let inference = Decoder::for_eval(&c, &vars, &Device::Cpu)?;
+            let loss = inference.forward_chunked(&ids, 3)?.sqr()?.mean_all()?;
+            let detached = loss.backward()?;
+            for (_, v) in named_vars(&vars) {
+                assert!(
+                    detached.get(&v).is_none(),
+                    "validation retains variable graph"
+                );
+            }
         }
         Ok(())
     }
@@ -412,42 +517,26 @@ mod cache_tests {
     use super::*;
     #[test]
     fn cached_logits_match_full_prefix_across_layers_and_stop_at_context() -> Result<()> {
-        let c = ModelConfig {
-            vocab_size: 260,
-            hidden_size: 16,
-            heads: 2,
-            layers: 2,
-            feed_forward_size: 32,
-            max_seq_len: 16,
-        };
-        let vars = VarMap::new();
-        let _ = Decoder::new(&c, &vars, &Device::Cpu)?;
-        initialize(&vars, 42)?;
-        let model = Decoder::for_eval(&c, &vars, &Device::Cpu)?;
-        let mut tokens = vec![1u32, 5, 6, 7, 8];
-        let (prefill, mut cache) = model.prefill(
-            &Tensor::from_slice(&tokens, (1, tokens.len()), &Device::Cpu)?,
-            3,
-        )?;
-        let last = model
-            .forward(&Tensor::from_slice(
-                &tokens,
-                (1, tokens.len()),
-                &Device::Cpu,
-            )?)?
-            .narrow(1, tokens.len() - 1, 1)?;
-        assert!(
-            (&prefill - &last)?
-                .abs()?
-                .flatten_all()?
-                .max(0)?
-                .to_scalar::<f32>()?
-                < 1e-5
-        );
-        for token in 20..31 {
-            tokens.push(token);
-            let step = model.decode_step(&Tensor::new(&[[token]], &Device::Cpu)?, &mut cache)?;
-            let expected = model
+        for rotary_positions in [false, true] {
+            let c = ModelConfig {
+                vocab_size: 260,
+                hidden_size: 16,
+                heads: 2,
+                layers: 2,
+                feed_forward_size: 32,
+                max_seq_len: 16,
+                rotary_positions,
+            };
+            let vars = VarMap::new();
+            let _ = Decoder::new(&c, &vars, &Device::Cpu)?;
+            initialize(&vars, 42)?;
+            let model = Decoder::for_eval(&c, &vars, &Device::Cpu)?;
+            let mut tokens = vec![1u32, 5, 6, 7, 8];
+            let (prefill, mut cache) = model.prefill(
+                &Tensor::from_slice(&tokens, (1, tokens.len()), &Device::Cpu)?,
+                3,
+            )?;
+            let last = model
                 .forward(&Tensor::from_slice(
                     &tokens,
                     (1, tokens.len()),
@@ -455,20 +544,40 @@ mod cache_tests {
                 )?)?
                 .narrow(1, tokens.len() - 1, 1)?;
             assert!(
-                (&step - &expected)?
+                (&prefill - &last)?
                     .abs()?
                     .flatten_all()?
                     .max(0)?
                     .to_scalar::<f32>()?
                     < 1e-5
             );
+            for token in 20..31 {
+                tokens.push(token);
+                let step =
+                    model.decode_step(&Tensor::new(&[[token]], &Device::Cpu)?, &mut cache)?;
+                let expected = model
+                    .forward(&Tensor::from_slice(
+                        &tokens,
+                        (1, tokens.len()),
+                        &Device::Cpu,
+                    )?)?
+                    .narrow(1, tokens.len() - 1, 1)?;
+                assert!(
+                    (&step - &expected)?
+                        .abs()?
+                        .flatten_all()?
+                        .max(0)?
+                        .to_scalar::<f32>()?
+                        < 1e-5
+                );
+            }
+            assert_eq!(cache.position(), 16);
+            assert!(
+                model
+                    .decode_step(&Tensor::new(&[[42u32]], &Device::Cpu)?, &mut cache)
+                    .is_err()
+            );
         }
-        assert_eq!(cache.position(), 16);
-        assert!(
-            model
-                .decode_step(&Tensor::new(&[[42u32]], &Device::Cpu)?, &mut cache)
-                .is_err()
-        );
         Ok(())
     }
 }

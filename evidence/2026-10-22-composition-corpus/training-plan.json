@@ -1,0 +1,11 @@
+{
+  "mode": "fresh",
+  "epochs": 6,
+  "steps": 5418,
+  "train_examples": 903,
+  "learning_rate": 0.0003,
+  "evaluate_every": 256,
+  "generation_max_new_tokens": 512,
+  "selection": "lowest_full_validation_NLL_before_functional_scoring",
+  "corpus_lock_sha256": "215606713cc55bde1f5da50291dc7d479edfd01f9eaea4769745d2ddafe6c4b3"
+}

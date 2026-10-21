@@ -1,0 +1,21 @@
+{
+  "expected_targets": 130,
+  "scope": "fixed_input_independent_uint32_function_guesses_not_model_inference",
+  "all_case_matches": {
+    "zero": [],
+    "one": [],
+    "a": [],
+    "b": [],
+    "add": [],
+    "sub": [],
+    "xor": [],
+    "and": [],
+    "or": [
+      "expr_025_0006-O1"
+    ],
+    "mul": []
+  },
+  "constant_reference_targets": [],
+  "nonconstant_targets": 130,
+  "policy": "retain_full_denominator_and_report_model_matches_outside_union_of_these_baselines"
+}

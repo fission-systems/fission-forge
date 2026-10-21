@@ -71,3 +71,25 @@ cargo run --locked -p fission-forge -- pcode-compile \
 
 Then run `generate` above. Training loss is recorded separately from generation
 success. Reports and the generated fixture C are in [the evidence record](../evidence/2026-10-20-cfg-generation/README.md).
+
+## Learned BPE corpus checkpoints
+
+`train-corpus --tokenizer PATH` accepts the train-only reversible lexical BPE
+codec described in [the composition experiment](composition-corpus.md). Schema 5
+embeds its complete merge list and training-split hash; schemas 1–4 retain the
+byte codec. The vocabulary must exactly match the model. `generate` loads the
+embedded codec and records its canonical SHA, piece IDs and exact output bytes.
+For both codecs, `--max-new-tokens N` also bounds raw output to N bytes; BPE
+stops before a complete piece would cross that cap (`byte_limit`). A special
+ID other than EOS is masked. Outputs receive no repairs or generated wrappers.
+
+BPE NLL is measured per BPE completion token and cannot be compared directly
+with the historical per-byte NLL. Compilation and probe matching on a common
+frozen validation set remain separate measures.
+
+`ModelConfig.rotary_positions` defaults to false for legacy configurations.
+When true, RoPE replaces the learned absolute-position table; every layer
+rotates Q/K with theta 10000 and cache offsets match full-prefix inference.
+The model flag and parameter set are checkpoint-bound. An explicit config
+change requires fresh weights and cannot silently resume the old architecture.
+See the [declared position comparison](composition-corpus.md) and its scope.

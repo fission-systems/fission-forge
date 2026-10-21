@@ -33,16 +33,16 @@ A100 checks. It does not yet ship a generally useful decompiler or a pretrained 
 
 | Component | What exists today |
 | --- | --- |
-| Rust causal decoder | Multi-head causal attention, learned positions, pre-layer normalization, GELU feed-forward layers |
-| Training | Byte tokens, completion-only loss, AdamW, deterministic epoch sampling and resumable corpus checkpoints |
+| Rust causal decoder | Multi-head causal attention, learned positions or optional RoPE, pre-layer normalization, GELU feed-forward layers |
+| Training | Byte or train-only reversible BPE tokens, completion-only loss, AdamW, deterministic epoch sampling and resumable corpus checkpoints |
 | Long inputs / validation | 8K-context CPU/GPU configurations, tiled causal queries, detached token-weighted validation; test split excluded from model batches |
-| Checkpoints | Safetensors weights and optimizer moments; reload and next-update equivalence checks |
+| Checkpoints | Embedded BPE specification in schema 5; legacy byte schemas retained; Safetensors weights and optimizer moments; reload and next-update equivalence checks |
 | Model sizes | 61,888-parameter IR probe, 70,512-parameter 8K CPU probe, 5,380,608-parameter 8K GPU pilot, 148,608-parameter assembly smoke model, and 99,927,552-parameter experimental configuration |
-| CUDA | Colab A100: 5.38M P-code+ SSA model trained for one 480-example epoch with full 160-example validation; earlier 148K / 100M short assembly probes |
+| CUDA | Colab A100: 5.60M BPE model trained for 7224 updates on 903 rows with full 130-row validation; historical byte/148K/100M probes retained below |
 | Input data | Owned synthetic frozen corpus; seven pinned HF candidates/evaluation reservations researched, zero external training rows admitted |
 | P-code frontend | Typed raw-dump validation, pinned SLA profile, reproducible owned-C extraction, and explicit unsupported records |
 | P-code+ / SSA | Stable straight-line v0 plus v1 CFG reconstruction, loop phis, instruction-internal merges, and conservative opaque calls |
-| Generation | Bounded greedy byte decoding with detached KV cache, exact bytes, EOS/context/budget reporting and checkpoint lane checks; CPU and 5.38M CUDA paths exercised |
+| Generation | Bounded greedy byte/BPE decoding with detached KV cache, exact bytes, EOS/context/budget reporting and checkpoint lane checks; CPU and 5.38M CUDA paths exercised |
 | DecBench | Static external-kit adapter and pinned packaging format exercised on an owned fixture; benchmark scores pending |
 
 The fixed-batch probe accepts at most 32 examples. The new corpus trainer samples
@@ -51,10 +51,20 @@ host, and rejects truncation. Out-of-core streaming, mixed precision, and
 real-project functional generalization evaluation remain ahead. Loss reduction
 alone is not evidence of decompilation quality.
 
+The [composition curriculum](docs/composition-corpus.md) expands to 96 owned
+expression templates: the audited release has **903 train / 130 validation /
+188 test rows**, with whole-template split separation. All 98,304 host C/oracle
+checks passed; this does not establish full lifted-IR execution parity. The
+new six-epoch byte-codec run still compiled **0/130** raw validation outputs.
+The [BPE follow-up](evidence/2026-10-22-composition-bpe/README.md) compiled
+**12/130** unmodified outputs but matched **0/130** functions across all 64
+probes. All failures remain in the denominator; this is not functional success.
+A separate optional RoPE configuration tests position encoding before scaling.
+
 ## Research direction
 
 The user-confirmed long-term objective is **approximately 20B parameters**.
-This is a scaling target; the current corpus GPU model has 5.38M parameters.
+This is a scaling target; the measured corpus GPU models have 5.38M (bytes) and 5.60M (BPE) parameters.
 The current F32/Adam implementation needs at least 320 GB for four dense arrays
 at 20B, excluding activations, so it cannot train that model on the present
 single A100 40 GB. [Scaling stages and resource gates](docs/scaling.md) separate
@@ -209,7 +219,7 @@ No DecBench score is claimed here. See
 
 | Path | Purpose |
 | --- | --- |
-| [`crates/forge/`](crates/forge/) | Rust model, byte codec, loss, optimizer, checkpoint checks, and CLI |
+| [`crates/forge/`](crates/forge/) | Rust model, byte/BPE codecs, loss, optimizer, checkpoint checks, and CLI |
 | [`configs/model/`](configs/model/) | Tiny and approximately 100M model configurations |
 | [`fixtures/smoke/`](fixtures/smoke/) | Hand-authored assembly fixtures |
 | [`fixtures/pcode/`](fixtures/pcode/) | Stable v0 fixtures and negative cases |

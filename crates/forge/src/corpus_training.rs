@@ -91,6 +91,7 @@ pub struct Options {
     pub seed: u64,
     pub resume: Option<PathBuf>,
     pub settings: Settings,
+    pub tokenizer: Option<PathBuf>,
 }
 struct Example {
     id: String,
@@ -102,7 +103,7 @@ struct Dataset {
     effective_sha256: String,
 }
 impl Dataset {
-    fn load(path: &Path, context: usize) -> Result<Self> {
+    fn load(path: &Path, context: usize, codec: &crate::tokenizer::Codec) -> Result<Self> {
         let mut rows = Vec::new();
         let mut seen = BTreeSet::new();
         for line in BufReader::new(File::open(path)?).lines() {
@@ -119,7 +120,7 @@ impl Dataset {
                 !prompt.is_empty() && !pair.source.is_empty(),
                 "empty corpus example"
             );
-            let (tokens, start) = data::encode(&prompt, &pair.source);
+            let (tokens, start) = codec.pair(&prompt, &pair.source);
             ensure!(
                 tokens.len() - 1 <= context,
                 "corpus row {} exceeds context; truncation is forbidden",
@@ -223,12 +224,13 @@ fn append(log: &mut File, event: &Value) -> Result<()> {
 fn snapshot(
     output: &Path,
     optimizer: &Adam,
-    config: &ModelConfig,
+    architecture: (&ModelConfig, &crate::tokenizer::Codec),
     seed: u64,
     train_sha: &str,
     state: &mut ResumeState,
     validation: Option<&Validation>,
 ) -> Result<PathBuf> {
+    let (config, codec) = architecture;
     let name = format!("step-{:08}", optimizer.step);
     let destination = output.join("checkpoints").join(&name);
     let staging = output.join(format!(".{name}.partial"));
@@ -246,13 +248,14 @@ fn snapshot(
         });
     }
     let checkpoint = Checkpoint {
-        schema_version: 4,
+        schema_version: if codec.spec.is_some() { 5 } else { 4 },
         model: config.clone(),
         optimizer: optimizer.config.clone(),
         step: optimizer.step,
         seed,
         dataset_sha256: train_sha.into(),
-        tokenizer: "byte-v1-260".into(),
+        tokenizer: codec.name().into(),
+        tokenizer_spec: codec.spec.clone(),
         input_sha256: Some(state.train_encoded_sha256.clone()),
         representations: vec![pcode::cfg::REPRESENTATION.into()],
         corpus: Some(state.clone()),
@@ -298,11 +301,26 @@ pub fn run(
     let audit = corpus::run(root, false).context("corpus release audit failed")?;
     let config: ModelConfig = serde_json::from_slice(&fs::read(config_path)?)?;
     config.validate()?;
+    let codec = crate::tokenizer::Codec::read(options.tokenizer.as_deref())?;
+    ensure!(
+        config.vocab_size == codec.vocab_size(),
+        "model/tokenizer vocabulary mismatch"
+    );
+    if let Some(spec) = &codec.spec {
+        ensure!(
+            spec.train_split_sha256 == pcode::sha256(&fs::read(root.join("release/train.jsonl"))?),
+            "tokenizer train split mismatch"
+        );
+    }
     let release = root.join("release");
     let lock_sha = pcode::sha256(&fs::read(release.join("lock.json"))?);
     let train_sha = pcode::sha256(&fs::read(release.join("train.jsonl"))?);
-    let train = Dataset::load(&release.join("train.jsonl"), config.max_seq_len)?;
-    let validation = Dataset::load(&release.join("validation.jsonl"), config.max_seq_len)?;
+    let train = Dataset::load(&release.join("train.jsonl"), config.max_seq_len, &codec)?;
+    let validation = Dataset::load(
+        &release.join("validation.jsonl"),
+        config.max_seq_len,
+        &codec,
+    )?;
     // No test split is decoded into model batches. The audit only checks its integrity.
     let mut state = ResumeState {
         schema_version: 1,
@@ -327,10 +345,11 @@ pub fn run(
             .as_ref()
             .context("resume requires corpus checkpoint schema 4")?;
         ensure!(
-            previous.schema_version == 4
+            previous.schema_version == (if codec.spec.is_some() { 5 } else { 4 })
                 && previous.model == config
                 && previous.seed == options.seed
-                && previous.tokenizer == "byte-v1-260"
+                && previous.tokenizer == codec.name()
+                && previous.tokenizer_spec == codec.spec
                 && previous.dataset_sha256 == train_sha
                 && (previous.optimizer.lr == options.learning_rate
                     || options.override_learning_rate)
@@ -496,7 +515,7 @@ pub fn run(
             final_checkpoint = snapshot(
                 &output,
                 &optimizer,
-                &config,
+                (&config, &codec),
                 options.seed,
                 &train_sha,
                 &mut state,
@@ -513,7 +532,7 @@ pub fn run(
         }
     }
     let seconds = timer.elapsed().as_secs_f64();
-    let report = json!({"schema_version":1,"learning_rate_transition":learning_rate_transition,"evidence_scope":"bounded_corpus_training_and_teacher_forced_validation_not_decompilation_accuracy","backend":format!("{:?}",device.location()),"dtype":"f32","model":config,"parameters":model::named_vars(&vars).iter().map(|(_,v)|v.elem_count()).sum::<usize>(),"settings":settings,"initial_step":initial_step,"completed_step":optimizer.step,"measured_updates":options.steps,"train_examples":train.rows.len(),"validation_examples":validation.rows.len(),"test_model_examples":0,"trained_examples":trained_examples,"trained_completion_tokens":trained_tokens,"max_training_sequence":max_sequence,"training_and_periodic_validation_seconds":seconds,"completion_tokens_per_second_including_periodic_validation":trained_tokens as f64/seconds,"initial_validation":initial_validation,"final_validation":last_validation,"best_validation":state.best,"sampler":state.sampler,"corpus_lock_sha256":state.corpus_lock_sha256,"train_encoded_sha256":train.effective_sha256,"validation_encoded_sha256":validation.effective_sha256,"corpus_audit":audit["splits"],"final_checkpoint":final_checkpoint,"attention_memory":"query_tiled_exact_causal_attention_still_quadratic_training_activations"});
+    let report = json!({"schema_version":1,"tokenizer":codec.name(),"tokenizer_sha256":codec.sha256()?,"learning_rate_transition":learning_rate_transition,"evidence_scope":"bounded_corpus_training_and_teacher_forced_validation_not_decompilation_accuracy","backend":format!("{:?}",device.location()),"dtype":"f32","model":config,"parameters":model::named_vars(&vars).iter().map(|(_,v)|v.elem_count()).sum::<usize>(),"settings":settings,"initial_step":initial_step,"completed_step":optimizer.step,"measured_updates":options.steps,"train_examples":train.rows.len(),"validation_examples":validation.rows.len(),"test_model_examples":0,"trained_examples":trained_examples,"trained_completion_tokens":trained_tokens,"max_training_sequence":max_sequence,"training_and_periodic_validation_seconds":seconds,"completion_tokens_per_second_including_periodic_validation":trained_tokens as f64/seconds,"initial_validation":initial_validation,"final_validation":last_validation,"best_validation":state.best,"sampler":state.sampler,"corpus_lock_sha256":state.corpus_lock_sha256,"train_encoded_sha256":train.effective_sha256,"validation_encoded_sha256":validation.effective_sha256,"corpus_audit":audit["splits"],"final_checkpoint":final_checkpoint,"attention_memory":"query_tiled_exact_causal_attention_still_quadratic_training_activations"});
     fs::write(
         output.join("report.json"),
         serde_json::to_vec_pretty(&report)?,
@@ -559,6 +578,7 @@ mod tests {
             layers: 1,
             feed_forward_size: 16,
             max_seq_len: 64,
+            rotary_positions: false,
         };
         let vars = VarMap::new();
         let model = Decoder::new(&config, &vars, &Device::Cpu)?;

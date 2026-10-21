@@ -3,7 +3,7 @@ use std::path::PathBuf;
 use anyhow::{Result, bail};
 use candle_core::Device;
 use clap::{Parser, Subcommand, ValueEnum};
-use fission_forge::{corpus, corpus_training, generation, pcode, probe, training};
+use fission_forge::{corpus, corpus_training, generation, pcode, probe, tokenizer, training};
 
 #[derive(Parser)]
 #[command(
@@ -18,8 +18,26 @@ struct Cli {
 
 #[derive(Subcommand)]
 enum Command {
+    /// Learn a reversible BPE vocabulary using only the audited training split.
+    TokenizerTrain {
+        #[arg(long)]
+        corpus: PathBuf,
+        #[arg(long)]
+        output: PathBuf,
+        #[arg(long, default_value_t = 772)]
+        vocab_size: usize,
+    },
+    /// Measure training row lengths under a selected codec without allocating a model.
+    TokenizerStats {
+        #[arg(long)]
+        corpus: PathBuf,
+        #[arg(long)]
+        tokenizer: Option<PathBuf>,
+    },
     /// Train on a frozen corpus release, with separate validation and resumable epoch sampling.
     TrainCorpus {
+        #[arg(long)]
+        tokenizer: Option<PathBuf>,
         #[arg(long)]
         config: PathBuf,
         #[arg(long)]
@@ -139,7 +157,25 @@ fn device(backend: Backend) -> Result<Device> {
 
 fn main() -> Result<()> {
     match Cli::parse().command {
+        Command::TokenizerTrain {
+            corpus,
+            output,
+            vocab_size,
+        } => {
+            println!(
+                "{}",
+                serde_json::to_string_pretty(&tokenizer::train(&corpus, vocab_size, &output)?)?
+            );
+        }
+        Command::TokenizerStats { corpus, tokenizer } => {
+            let codec = tokenizer::Codec::read(tokenizer.as_deref())?;
+            println!(
+                "{}",
+                serde_json::to_string_pretty(&tokenizer::stats(&corpus, &codec)?)?
+            );
+        }
         Command::TrainCorpus {
+            tokenizer,
             config,
             corpus,
             output,
@@ -161,6 +197,7 @@ fn main() -> Result<()> {
                 &output,
                 &device(backend)?,
                 corpus_training::Options {
+                    tokenizer,
                     steps,
                     learning_rate,
                     override_learning_rate,

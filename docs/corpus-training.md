@@ -151,3 +151,19 @@ a Colab A100, using the 5.38M 8K configuration. It now records a complete
 480-update epoch, full validation, CUDA resume equivalence and GPU generation.
 See [measured evidence](../evidence/2026-10-20-colab-corpus/README.md).
 External Hugging Face datasets remain [staged research candidates](hf-datasets.md).
+
+## Corpus-specific learned codec
+
+`tokenizer-train --corpus ROOT --vocab-size 772 --output NEW_DIR` reads only
+the audited training split to learn the reversible lexical BPE codec. The output
+contains `tokenizer.json` and training-only row lengths. `tokenizer-stats` reports
+lengths without allocating a model. The requested size is a cap: training stops
+when no pair appears twice. `train-corpus --tokenizer PATH` requires model
+vocabulary size `260 + merges.len()`, pins the train split, and embeds the codec
+in schema-5 checkpoints. Resume requires identical codec, model, sampler and
+validation settings. Omitting the option retains byte codec and schema 4.
+
+The recorded [composition trial](composition-corpus.md) produces vocabulary 698.
+No validation/test text participates in vocabulary learning. Token-weighted NLL
+is comparable across checkpoints with the same codec; its units differ between
+byte and BPE runs. Use raw C compilation/probe results for functional comparison.

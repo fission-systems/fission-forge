@@ -1,0 +1,31 @@
+{
+  "planned_templates": 96,
+  "planned_functions": 1536,
+  "native_source_comparisons": 98304,
+  "supported_static_lifts": 1536,
+  "split_rows": {
+    "train": 903,
+    "validation": 130,
+    "test": 188
+  },
+  "split_unique_C_labels": {
+    "train": 903,
+    "validation": 130,
+    "test": 188
+  },
+  "retained_template_families": {
+    "train": 65,
+    "validation": 11,
+    "test": 12
+  },
+  "train_completion_byte_tokens": 85877,
+  "max_training_sequence": 6094,
+  "all_primitives_present_in_every_released_split": true,
+  "ambiguous_rows_excluded": 267,
+  "cross_split_family_rows_excluded": 48,
+  "reference_wasm_comparisons": 8320,
+  "x86_IR_execution_parity": "not_measured",
+  "external_benchmark_overlap": "not_measured",
+  "external_training_rows": 0,
+  "legacy_corpus_modified": false
+}

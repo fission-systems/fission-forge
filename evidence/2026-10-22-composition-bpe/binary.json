@@ -1,0 +1,11 @@
+{
+  "sha256": "2581519e31f73cb523de0a52e49decb9e4a647b0a6c28db6c66fc3bbf8e71ef3",
+  "model": {
+    "vocab_size": 698,
+    "hidden_size": 256,
+    "heads": 4,
+    "layers": 4,
+    "feed_forward_size": 1024,
+    "max_seq_len": 8192
+  }
+}

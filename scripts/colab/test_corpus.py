@@ -112,6 +112,27 @@ class ControllerTests(unittest.TestCase):
         launch=next(i for i,c in enumerate(calls) if c[0]=='exec' and c[-1].endswith('launch.py'))
         self.assertLess(assemble,launch)
         self.assertIn(hashlib.sha256(archive.read_bytes()).hexdigest(),(self.root/'job/assemble.py').read_text())
+    def test_fresh_plan_binds_release_count_without_old_checkpoint(self):
+        (self.corpus/'release/train.jsonl').write_text('{}\n{}\n{}\n')
+        helper=self.root/'scripts/colab/fresh_job.py';helper.parent.mkdir(parents=True);helper.write_text('# fixture helper\n')
+        with mock.patch.object(sys,'argv',['run_corpus.py','--corpus',str(self.corpus),'--output',str(self.root/'job'),'--session','unit-gpu','--fresh-epochs','6','--package-only']):run_corpus.main()
+        with tarfile.open(self.root/'job/source.tar.gz') as tar:
+            plan=json.load(tar.extractfile('job.json'));self.assertEqual(plan['steps'],18);self.assertEqual(plan['mode'],'fresh');self.assertEqual(plan['generation_max_new_tokens'],512)
+            self.assertIn('fresh_job.py',tar.getnames());self.assertNotIn('resume/state.json',tar.getnames())
+        self.assertFalse((self.root/'calls.jsonl').exists())
+    def test_bpe_package_binds_train_split_and_adapts_model_vocabulary(self):
+        (self.corpus/'release/train.jsonl').write_text('{}\n')
+        helper=self.root/'scripts/colab/fresh_job.py';helper.parent.mkdir(parents=True);helper.write_text('# fixture\n')
+        spec=dict(algorithm='lexical-byte-bpe-v1',train_split_sha256=run_corpus.sha(self.corpus/'release/train.jsonl'),source_weight=8,merges=[[4,5]])
+        tokenizer=self.root/'tokenizer.json';tokenizer.write_text(json.dumps(spec))
+        config=self.root/'rope.json';config.write_text(json.dumps(dict(vocab_size=260,rotary_positions=True)))
+        with mock.patch.object(sys,'argv',['run_corpus.py','--corpus',str(self.corpus),'--output',str(self.root/'job'),'--session','unit-gpu','--fresh-epochs','8','--tokenizer',str(tokenizer),'--model-config',str(config),'--package-only']):run_corpus.main()
+        with tarfile.open(self.root/'job/source.tar.gz') as tar:
+            plan=json.load(tar.extractfile('job.json'));model=json.load(tar.extractfile('model.json'))
+            self.assertEqual(plan['max_output_bytes'],512);self.assertEqual(plan['tokenizer_file_sha256'],run_corpus.sha(tokenizer))
+            self.assertEqual(model['vocab_size'],261);self.assertEqual(plan['steps'],8)
+            self.assertTrue(model['rotary_positions']);self.assertEqual(plan['model_sha256'],hashlib.sha256(tar.extractfile('model.json').read()).hexdigest())
+        self.assertFalse((self.root/'calls.jsonl').exists())
     def test_launch_failure_still_releases_runtime(self):
         with self.assertRaisesRegex(RuntimeError,'confirm idempotent'):self.invoke({'FORGE_LAUNCH_FAIL':'1'})
         self.assertEqual(sum(c[0]=='stop' for c in self.calls()),1)

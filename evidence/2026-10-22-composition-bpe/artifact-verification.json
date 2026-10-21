@@ -1,0 +1,8 @@
+{
+  "archive_sha256": "0715e1182c5b12381ada257f96eff5e83ac68e155d41341169274b1340b1f327",
+  "selected_checkpoint_sha256": "42bfd44204eac90e511068d00a1b5d8bad6b26681d9169f1111c9802d94a6a30",
+  "selected_checkpoint_verified": true,
+  "source_archive_verified": true,
+  "source_driver_verified": true,
+  "test_model_examples": 0
+}

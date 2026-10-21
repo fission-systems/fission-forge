@@ -151,3 +151,26 @@ functional plan with its own lock/checkpoint hashes and a fresh
 copy its `manifest.json` to `protocol-manifest.json` inside the same new freeze
 directory; keep its generated `inputs.json` and `references.json`. Do not edit
 an old frozen manifest to make a new corpus appear compatible.
+
+## Fresh corpus and BPE trials
+
+For a newly frozen corpus, `--fresh-epochs 1..8` initializes seed-42 weights
+and trains complete shuffled epochs at `--fresh-learning-rate` (default 0.0003).
+It refuses an old resume checkpoint. Full validation and saved checkpoints run
+every 256 updates and at the final update; the in-job NLL best is selected before
+all validation prompts are generated. A longest-encoded-row one-update preflight
+checks actual sampler identity and the 85% whole-device memory gate. Final and
+NLL-best weights are downloaded; other intermediate tensor payloads are omitted.
+
+`--tokenizer PATH` adds an explicitly trained lexical BPE specification to a
+fresh job, validates its training-split hash and adapts the model vocabulary.
+The Rust trainer independently checks codec identity and context fit. Generation
+uses the checkpoint's embedded codec and caps both newly emitted tokens and
+raw bytes at 512. The original bootstrap resume pilot still uses its byte codec.
+See the [composition corpus and frozen evaluation plans](composition-corpus.md)
+for exact data counts, restrictions, failure records and reproduction commands.
+
+The local wrapper accepts schema-4 byte checkpoints for the historical
+continuation mode. Schema-5 BPE training can resume directly through the Rust
+`train-corpus --tokenizer ... --resume ...` interface; the wrapper's
+`--resume` mode is not yet a BPE continuation interface.

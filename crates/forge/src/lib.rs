@@ -5,4 +5,5 @@ pub mod generation;
 pub mod model;
 pub mod pcode;
 pub mod probe;
+pub mod tokenizer;
 pub mod training;

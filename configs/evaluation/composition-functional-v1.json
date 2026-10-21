@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "name": "forge-composition-functional-v1",
+  "scope": "owned_composition_template_disjoint_validation_only",
+  "corpus_lock_sha256": "215606713cc55bde1f5da50291dc7d479edfd01f9eaea4769745d2ddafe6c4b3",
+  "baseline": {
+    "step": 0,
+    "checkpoint_sha256": "not_applicable_random_initialization_no_baseline_generation"
+  },
+  "improvement": {
+    "kind": "fresh_six_epochs_lowest_full_validation_NLL_before_functional_scoring",
+    "additional_updates": 5418,
+    "final_step": 5418,
+    "selection": "validation_NLL_only_before_functional_scoring",
+    "learning_rate": 0.0003,
+    "seed": 42,
+    "batch_size": 1,
+    "attention_chunk": 256,
+    "validation_limit": 0,
+    "evaluate_every": 256,
+    "checkpoint_every": 256
+  },
+  "evaluation": {
+    "max_new_tokens": 512,
+    "generation_timeout_seconds": 30,
+    "execution_timeout_seconds": 10,
+    "fuel_per_case": 100000,
+    "memory_bytes": 1048576,
+    "decoding": "greedy_eos_and_bytes_only_kv_cache",
+    "device": "cuda"
+  },
+  "test_policy": "never_pass_test_examples_to_model_or_select_checkpoint_against_test"
+}

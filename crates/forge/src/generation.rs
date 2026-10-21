@@ -16,14 +16,19 @@ pub struct Completion {
     pub stop_reason: &'static str,
 }
 
-fn prefix(prompt: &str, context: usize, max_new_tokens: usize) -> Result<Vec<u32>> {
+fn prefix(
+    prompt: &str,
+    context: usize,
+    max_new_tokens: usize,
+    codec: &crate::tokenizer::Codec,
+) -> Result<Vec<u32>> {
     ensure!(!prompt.is_empty(), "empty generation prompt");
     ensure!(
         max_new_tokens > 0 && max_new_tokens <= 4096,
         "generation budget must be 1..4096 tokens"
     );
     let mut ids = vec![data::BOS];
-    ids.extend(prompt.bytes().map(|b| u32::from(b) + 4));
+    ids.extend(codec.encode(prompt.as_bytes()));
     ids.push(data::SEP);
     ensure!(
         ids.len() <= context,
@@ -36,9 +41,24 @@ pub fn decode(
     prompt: &str,
     context: usize,
     max_new_tokens: usize,
+    logits: impl FnMut(&[u32]) -> Result<Vec<f32>>,
+) -> Result<Completion> {
+    decode_with_codec(
+        prompt,
+        context,
+        max_new_tokens,
+        &crate::tokenizer::Codec::new(None)?,
+        logits,
+    )
+}
+fn decode_with_codec(
+    prompt: &str,
+    context: usize,
+    max_new_tokens: usize,
+    codec: &crate::tokenizer::Codec,
     mut logits: impl FnMut(&[u32]) -> Result<Vec<f32>>,
 ) -> Result<Completion> {
-    let mut ids = prefix(prompt, context, max_new_tokens)?;
+    let mut ids = prefix(prompt, context, max_new_tokens, codec)?;
     let mut result = Completion {
         tokens: Vec::new(),
         bytes: Vec::new(),
@@ -51,23 +71,29 @@ pub fn decode(
         }
         let scores = logits(&ids)?;
         ensure!(
-            scores.len() == 260 && scores.iter().all(|v| v.is_finite()),
+            scores.len() == codec.vocab_size() && scores.iter().all(|v| v.is_finite()),
             "invalid generation logits"
         );
         // Only EOS and byte tokens are legal in a completion. Stable low-ID tie break.
         let mut best = data::EOS as usize;
-        for candidate in 4..260 {
+        for candidate in 4..codec.vocab_size() {
             if scores[candidate] > scores[best] {
                 best = candidate;
             }
         }
         let token = best as u32;
-        result.tokens.push(token);
         if token == data::EOS {
+            result.tokens.push(token);
             result.stop_reason = "eos";
             break;
         }
-        result.bytes.push((token - 4) as u8);
+        let piece = codec.piece(token)?;
+        if result.bytes.len() + piece.len() > max_new_tokens {
+            result.stop_reason = "byte_limit";
+            break;
+        }
+        result.tokens.push(token);
+        result.bytes.extend_from_slice(piece);
         ids.push(token);
     }
     Ok(result)
@@ -83,6 +109,9 @@ pub struct Report {
     pub prompt_sha256: String,
     pub prompt_bytes: usize,
     pub max_new_tokens: usize,
+    pub tokenizer: String,
+    pub tokenizer_sha256: Option<String>,
+    pub max_output_bytes: usize,
     pub decoding: &'static str,
     pub model: ModelConfig,
     pub backend: String,
@@ -106,8 +135,15 @@ pub fn run(
     let state_bytes = fs::read(checkpoint.join("state.json"))?;
     let state: training::Checkpoint = serde_json::from_slice(&state_bytes)?;
     ensure!(
-        (1..=4).contains(&state.schema_version) && state.tokenizer == "byte-v1-260",
+        (1..=5).contains(&state.schema_version),
         "unsupported checkpoint schema/tokenizer"
+    );
+    let codec = crate::tokenizer::Codec::new(state.tokenizer_spec.clone())?;
+    ensure!(
+        state.tokenizer == codec.name()
+            && state.model.vocab_size == codec.vocab_size()
+            && ((state.schema_version == 5) == codec.spec.is_some()),
+        "checkpoint codec mismatch"
     );
     ensure!(
         matches!(
@@ -121,10 +157,10 @@ pub fn run(
         "checkpoint was not trained on requested input representation"
     );
     // Check context/budget before loading weights or allocating a decoder.
-    prefix(prompt, state.model.max_seq_len, max_new_tokens)?;
+    prefix(prompt, state.model.max_seq_len, max_new_tokens, &codec)?;
     let bytes = fs::read(checkpoint.join("training.safetensors"))?;
     let digest = pcode::sha256(&bytes);
-    if state.schema_version == 4 {
+    if state.schema_version >= 4 {
         ensure!(
             state.corpus.is_some() && state.checkpoint_sha256.as_deref() == Some(&digest),
             "corpus checkpoint integrity mismatch"
@@ -160,23 +196,29 @@ pub fn run(
         .corpus
         .as_ref()
         .map_or(256, |s| s.settings.attention_chunk);
-    let completion = decode(prompt, state.model.max_seq_len, max_new_tokens, |ids| {
-        let logits = if let Some(cache) = &mut cache {
-            ensure!(
-                cache.position() + 1 == ids.len(),
-                "generation cache length mismatch"
-            );
-            model.decode_step(&Tensor::new(&[[*ids.last().unwrap()]], device)?, cache)?
-        } else {
-            let (logits, prefix_cache) = model.prefill(
-                &Tensor::from_slice(ids, (1, ids.len()), device)?,
-                query_chunk,
-            )?;
-            cache = Some(prefix_cache);
-            logits
-        };
-        Ok(logits.get(0)?.get(0)?.to_vec1::<f32>()?)
-    })?;
+    let completion = decode_with_codec(
+        prompt,
+        state.model.max_seq_len,
+        max_new_tokens,
+        &codec,
+        |ids| {
+            let logits = if let Some(cache) = &mut cache {
+                ensure!(
+                    cache.position() + 1 == ids.len(),
+                    "generation cache length mismatch"
+                );
+                model.decode_step(&Tensor::new(&[[*ids.last().unwrap()]], device)?, cache)?
+            } else {
+                let (logits, prefix_cache) = model.prefill(
+                    &Tensor::from_slice(ids, (1, ids.len()), device)?,
+                    query_chunk,
+                )?;
+                cache = Some(prefix_cache);
+                logits
+            };
+            Ok(logits.get(0)?.get(0)?.to_vec1::<f32>()?)
+        },
+    )?;
     let text = String::from_utf8(completion.bytes.clone()).ok();
     let report = Report {
         evidence_scope: "bounded_model_generation_only",
@@ -187,7 +229,14 @@ pub fn run(
         prompt_sha256: pcode::sha256(prompt.as_bytes()),
         prompt_bytes: prompt.len(),
         max_new_tokens,
-        decoding: "greedy_eos_and_bytes_only_kv_cache",
+        tokenizer: codec.name().into(),
+        tokenizer_sha256: codec.sha256()?,
+        max_output_bytes: max_new_tokens,
+        decoding: if codec.spec.is_some() {
+            "greedy_eos_and_bpe_tokens_kv_cache_byte_budget"
+        } else {
+            "greedy_eos_and_bytes_only_kv_cache"
+        },
         model: state.model,
         backend: format!("{:?}", device.location()),
         completion,
@@ -211,6 +260,34 @@ pub fn run(
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn bpe_generation_preserves_pieces_and_stops_before_byte_budget() -> Result<()> {
+        let codec = crate::tokenizer::Codec::new(Some(crate::tokenizer::Spec {
+            algorithm: "lexical-byte-bpe-v1".into(),
+            train_split_sha256: "a".repeat(64),
+            source_weight: 8,
+            merges: vec![[b'A' as u32 + 4, b'B' as u32 + 4]],
+        }))?;
+        let result = decode_with_codec("x", 16, 3, &codec, |_| {
+            let mut scores = vec![0.; 261];
+            scores[260] = 1.;
+            Ok(scores)
+        })?;
+        assert_eq!(result.bytes, b"AB");
+        assert_eq!(result.tokens, vec![260]);
+        assert_eq!(result.stop_reason, "byte_limit");
+        let mut step = 0;
+        let result = decode_with_codec("x", 16, 4, &codec, |_| {
+            let mut scores = vec![0.; 261];
+            scores[if step == 0 { 260 } else { 3 }] = 1.;
+            step += 1;
+            Ok(scores)
+        })?;
+        assert_eq!(result.bytes, b"AB");
+        assert_eq!(result.tokens, vec![260, 3]);
+        assert_eq!(result.stop_reason, "eos");
+        Ok(())
+    }
     #[test]
     fn decoding_preserves_bytes_masks_prompt_tokens_and_reports_limits() -> Result<()> {
         let mut count = 0;

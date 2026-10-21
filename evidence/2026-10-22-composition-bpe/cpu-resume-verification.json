@@ -1,0 +1,8 @@
+{
+  "schema_version": 5,
+  "codec": "lexical-byte-bpe-v1",
+  "optimized_903_train_row_stats_identical": true,
+  "resumed_step2_weights_and_adam_sha256": "bdf16efa1ac50e348e032d805b4ed6926a6498de6aa1edf34a7f39f0f72f82e1",
+  "optimized_resume_byte_identical": true,
+  "changed_codec_rejected_before_output_creation": true
+}

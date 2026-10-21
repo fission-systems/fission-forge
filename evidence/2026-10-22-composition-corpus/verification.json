@@ -1,0 +1,12 @@
+{
+  "archive_sha256": "2dddc97ab5214fb01dfee7a04efef3dade0ef0594ee1a68af960b3b007103e2f",
+  "selected_checkpoint_sha256": "932da52489de640a64b20e06e2f0d1beeb3a77240ec629096f9582385efdcea3",
+  "selected_step": 1792,
+  "selected_checkpoint_digest_verified": true,
+  "source_archive_sha256": "d2ad9cad5c9f9d34cd0542a7ff87a47849bdb4c56d2e4ac27d96e7831d3e7414",
+  "all_130_outputs_in_denominator": true,
+  "source_label_comparisons": 98304,
+  "reference_comparisons": 8320,
+  "external_training_rows": 0,
+  "test_model_examples": 0
+}

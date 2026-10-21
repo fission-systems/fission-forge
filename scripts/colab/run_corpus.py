@@ -32,8 +32,11 @@ def source_files(root,corpus):
 
 
 def main():
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--corpus',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--session',required=True);p.add_argument('--gpu',choices=['A100','L4','T4','G4'],default='A100');p.add_argument('--resume',type=Path,help='Continue a verified schema-4 local corpus checkpoint');p.add_argument('--additional-steps',type=int,default=1920);p.add_argument('--resume-learning-rate',type=float,help='Explicitly fork the resume LR while preserving Adam history');p.add_argument('--package-only',action='store_true');p.add_argument('--attach',action='store_true',help='Reuse this explicitly named existing session; it will still be stopped when done')
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--corpus',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--session',required=True);p.add_argument('--gpu',choices=['A100','L4','T4','G4'],default='A100');p.add_argument('--fresh-epochs',type=int,help='Train a new model on this frozen corpus (1..8 epochs)');p.add_argument('--model-config',type=Path,help='Explicit model configuration for a fresh corpus job');p.add_argument('--tokenizer',type=Path,help='Train-only learned BPE specification for a fresh model');p.add_argument('--fresh-learning-rate',type=float,default=0.0003);p.add_argument('--resume',type=Path,help='Continue a verified schema-4 local corpus checkpoint');p.add_argument('--additional-steps',type=int,default=1920);p.add_argument('--resume-learning-rate',type=float,help='Explicitly fork the resume LR while preserving Adam history');p.add_argument('--package-only',action='store_true');p.add_argument('--attach',action='store_true',help='Reuse this explicitly named existing session; it will still be stopped when done')
     args=p.parse_args();root=Path.cwd();corpus=args.corpus.resolve();output=args.output.resolve();output.mkdir(parents=True,exist_ok=False)
+    if args.fresh_epochs is not None and args.resume is not None:raise ValueError('fresh training cannot resume an old corpus checkpoint')
+    if args.model_config and args.fresh_epochs is None:raise ValueError('model config override requires a fresh job')
+    if args.tokenizer and args.fresh_epochs is None:raise ValueError('BPE requires a fresh training job')
     if args.resume_learning_rate is not None and args.resume is None:raise ValueError('resume LR requires --resume')
     files=source_files(root,corpus)
     if args.resume:
@@ -44,6 +47,22 @@ def main():
         if args.resume_learning_rate is not None and not 0<args.resume_learning_rate<=0.001:raise ValueError('resume LR must be >0 and <=0.001')
         for name in ['state.json','training.safetensors']:files['resume/'+name]=resume/name
         job=output/'job.json';job.write_text(json.dumps(dict(mode='continue',additional_steps=args.additional_steps,baseline_step=state['step'],baseline_checkpoint_sha256=state['checkpoint_sha256'],generation_max_new_tokens=256,functional_targets='all_validation',resume_learning_rate=args.resume_learning_rate),indent=2)+'\n');files['job.json']=job
+    if args.fresh_epochs is not None:
+        if not 1<=args.fresh_epochs<=8 or not 0<args.fresh_learning_rate<=0.001:raise ValueError('fresh epochs/LR out of bounded range')
+        train_count=len((corpus/'release/train.jsonl').read_text().splitlines())
+        job=output/'job.json';job.write_text(json.dumps(dict(mode='fresh',epochs=args.fresh_epochs,steps=train_count*args.fresh_epochs,train_examples=train_count,learning_rate=args.fresh_learning_rate,evaluate_every=256,generation_max_new_tokens=512,selection='lowest_full_validation_NLL_before_functional_scoring',corpus_lock_sha256=sha(corpus/'release/lock.json')),indent=2)+'\n');files['job.json']=job
+        files['fresh_job.py']=root/'scripts/colab/fresh_job.py'
+        if args.tokenizer:
+            tokenizer=args.tokenizer.resolve();spec=json.loads(tokenizer.read_text())
+            if spec['train_split_sha256']!=sha(corpus/'release/train.jsonl'):raise ValueError('BPE train split changed')
+            job_data=json.loads(job.read_text());job_data.update(tokenizer='lexical-byte-bpe-v1',tokenizer_file_sha256=sha(tokenizer),tokenizer_sha256=hashlib.sha256(json.dumps(spec,separators=(',',':')).encode()).hexdigest(),max_output_bytes=512)
+            job.write_text(json.dumps(job_data,indent=2)+'\n');files['tokenizer.json']=tokenizer
+            config=json.loads((args.model_config or root/'configs/model/gpu-pilot-5m-8k.json').read_text());config['vocab_size']=260+len(spec['merges'])
+            model=output/'model.json';model.write_text(json.dumps(config,indent=2)+'\n');files['model.json']=model
+
+    if args.model_config and not args.tokenizer:files['model.json']=args.model_config.resolve()
+    if args.fresh_epochs is not None and 'model.json' in files:
+        job_data=json.loads(job.read_text());job_data['model_sha256']=sha(files['model.json']);job.write_text(json.dumps(job_data,indent=2)+'\n')
     metadata=dict(source_revision=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),source_worktree_dirty=bool(subprocess.check_output(['git','status','--porcelain'],text=True).strip()),files={name:sha(path) for name,path in files.items()},corpus_lock_sha256=sha(corpus/'release/lock.json'),credentials_uploaded=False)
     metadata_path=output/'payload.json';metadata_path.write_text(json.dumps(metadata,indent=2)+'\n')
     archive=output/'source.tar.gz'

@@ -1,0 +1,52 @@
+{
+  "schema_version": 4,
+  "model": {
+    "vocab_size": 260,
+    "hidden_size": 256,
+    "heads": 4,
+    "layers": 4,
+    "feed_forward_size": 1024,
+    "max_seq_len": 8192
+  },
+  "optimizer": {
+    "lr": 0.0003,
+    "beta1": 0.9,
+    "beta2": 0.999,
+    "eps": 1e-8,
+    "weight_decay": 0.01
+  },
+  "step": 1792,
+  "seed": 42,
+  "dataset_sha256": "e3f9abccda894597c23f27b59f0b9c220e2383a3a00875d0ab93d9ce65487efc",
+  "tokenizer": "byte-v1-260",
+  "input_sha256": "61b2cbdc9e2c254837c4c3c545026c4f982788d8f6daf6e03242c1f2b63489fd",
+  "representations": [
+    "pcode-plus-ssa-v1"
+  ],
+  "corpus": {
+    "schema_version": 1,
+    "sampler_algorithm": "forge-fisher-yates-v1",
+    "sampler": {
+      "seed": 42,
+      "epoch": 1,
+      "cursor": 889
+    },
+    "settings": {
+      "batch_size": 1,
+      "attention_chunk": 256,
+      "validation_limit": 0,
+      "evaluate_every": 256,
+      "checkpoint_every": 256
+    },
+    "corpus_lock_sha256": "215606713cc55bde1f5da50291dc7d479edfd01f9eaea4769745d2ddafe6c4b3",
+    "train_encoded_sha256": "61b2cbdc9e2c254837c4c3c545026c4f982788d8f6daf6e03242c1f2b63489fd",
+    "validation_encoded_sha256": "57d916551093d64d78f41d17ffe24c9f909fb6719b4e6597b35662f6e4a41a18",
+    "best": {
+      "step": 1792,
+      "nll": 1.381006990390054,
+      "checkpoint": "/content/forge-corpus-results/fresh/checkpoints/step-00001792",
+      "weights_sha256": "932da52489de640a64b20e06e2f0d1beeb3a77240ec629096f9582385efdcea3"
+    }
+  },
+  "checkpoint_sha256": "932da52489de640a64b20e06e2f0d1beeb3a77240ec629096f9582385efdcea3"
+}

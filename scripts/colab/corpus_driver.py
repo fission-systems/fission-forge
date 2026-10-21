@@ -10,6 +10,7 @@ from pathlib import Path
 import shutil
 import signal
 import subprocess
+import sys
 import tarfile
 import time
 import traceback
@@ -65,15 +66,20 @@ def main():
     status('cargo-build-cuda')
     with (RESULT/'build.log').open('w') as log:run(['cargo','build','--locked','--release','-p','fission-forge','--features','cuda'],env=env,cwd=ROOT,stdout=log,stderr=subprocess.STDOUT,timeout=1200)
     forge=str(ROOT/'target/release/forge');config=ROOT/'configs/model/gpu-pilot-5m-8k.json';corpus=ROOT/'data/corpus'
+    if (ROOT/'model.json').exists():config=ROOT/'model.json'
     write(RESULT/'binary.json',dict(sha256=sha(Path(forge)),model=json.loads(config.read_text())))
     def train(name,steps,seed=619,limit=2,resume=None,every=100,timeout=180,learning_rate=0.001,override_learning_rate=False):
         output=RESULT/name
         cmd=[forge,'train-corpus','--config',config,'--corpus',corpus,'--output',output,'--device','cuda','--steps',str(steps),'--learning-rate',str(learning_rate),'--seed',str(seed),'--batch-size','1','--attention-chunk','256','--validation-limit',str(limit),'--evaluate-every',str(every),'--checkpoint-every',str(every)]
+        if (ROOT/'tokenizer.json').exists():cmd+=['--tokenizer',ROOT/'tokenizer.json']
         if resume:cmd+=['--resume',resume]
         if override_learning_rate:cmd+=['--override-learning-rate']
         return measure(list(map(str,cmd)),name,env,timeout)
     jobpath=ROOT/'job.json'
-    if jobpath.exists():
+    if jobpath.exists() and json.loads(jobpath.read_text())['mode']=='fresh':
+        sys.path.insert(0,str(ROOT));import fresh_job
+        fresh_job.run(json.loads(jobpath.read_text()),ROOT,RESULT,forge,config,corpus,env,train,write,sha,status,START,total_mib)
+    elif jobpath.exists():
         job=json.loads(jobpath.read_text());resume=ROOT/'resume'
         if sha(resume/'training.safetensors')!=job['baseline_checkpoint_sha256']:raise RuntimeError('resume payload changed')
         write(RESULT/'continuation-plan.json',job)
@@ -134,7 +140,7 @@ if __name__=='__main__':
         if RESULT.exists():
             status('packaging')
             keep_weights=set()
-            report=RESULT/'continuation/report.json'
+            report=RESULT/'fresh/report.json' if (RESULT/'fresh/report.json').exists() else RESULT/'continuation/report.json'
             if report.exists():
                 info=json.loads(report.read_text());keep_weights.add(Path(info['final_checkpoint']).name)
                 if info.get('best_validation'):keep_weights.add('step-%08d'%info['best_validation']['step'])

@@ -13,10 +13,12 @@ import re
 import shutil
 import struct
 import subprocess
+import expressions
 
 MASK = 2**32 - 1
 FAMILIES = {'affine', 'bitmask', 'rotate_mix', 'select', 'bounded_loop', 'carry',
             'remainder', 'xor_fold', 'clamp', 'quotient_round'}
+FAMILIES |= set(expressions.TEMPLATES)
 SPLITS = {'train', 'validation', 'test'}
 
 
@@ -75,12 +77,15 @@ def program(family, index, seed, split):
         'quotient_round': f'unsigned int d = (b & 255u) + 1u; return (a / d) + ((a % d) != 0u) + {c}u;',
     }
     identifier = f'{family}_{index:04d}'
-    source = f'unsigned int f(unsigned int a, unsigned int b) {{ {bodies[family]} }}'
+    expression = expressions.instantiate(family,index,seed) if family in expressions.TEMPLATES else None
+    body = 'return '+expressions.render(expression)+';' if expression is not None else bodies[family]
+    source = f'unsigned int f(unsigned int a, unsigned int b) {{ {body} }}'
     return dict(id=identifier, family=family, split=split, compiled_name='corpus_' + identifier,
-                source=source, parameters=dict(c=c, k=k, m=m, shift=shift, lo=lo, hi=hi))
+                source=source, parameters=dict(c=c, k=k, m=m, shift=shift, lo=lo, hi=hi), **(dict(expression_ast=expression) if expression is not None else {}))
 
 
 def oracle(p, a, b):
+    if 'expression_ast' in p:return expressions.evaluate(p['expression_ast'],a,b)
     q = p['parameters']; c, k, m, s = q['c'], q['k'], q['m'], q['shift']
     kind = p['family']
     if kind == 'affine': result = ((a*k+b) & MASK) ^ c
@@ -224,7 +229,7 @@ def build(args):
                     compiler=run([args.cc, '--version']).splitlines()[0], fission_commit=profile['fission_commit'],
                     fission_cli_sha256=sha(cli.read_bytes()), forge_binary_sha256=sha(forge.read_bytes()),
                     forge_revision=run(['git','rev-parse','HEAD']).strip(), forge_worktree_dirty=bool(run(['git','status','--porcelain']).strip()),
-                    python_version=run(['python3','--version']).strip(), generator_sha256=sha(Path(__file__).read_bytes()),
+                    python_version=run(['python3','--version']).strip(), generator_sha256=sha(Path(__file__).read_bytes()), expression_generator_sha256=sha(Path(expressions.__file__).read_bytes()),
                     compiler_flags=['--target=x86_64-unknown-linux-gnu','-std=c11','-g0','-fno-inline','-fno-builtin','-fno-stack-protector','-fno-vectorize','-fno-slp-vectorize','-fno-unroll-loops','-nostdlib','-fuse-ld=lld'],
                     external_evaluation_overlap='not_measured', benchmark_sources_used=False)
     write(output/'manifest.json', manifest)

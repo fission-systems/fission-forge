@@ -149,6 +149,8 @@ pub(crate) struct Checkpoint {
     pub(crate) seed: u64,
     pub(crate) dataset_sha256: String,
     pub(crate) tokenizer: String,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub(crate) tokenizer_spec: Option<crate::tokenizer::Spec>,
     #[serde(default)]
     pub(crate) input_sha256: Option<String>,
     #[serde(default)]
@@ -213,6 +215,10 @@ pub fn run(
     );
     let config: ModelConfig = serde_json::from_slice(&fs::read(config)?)?;
     config.validate()?;
+    ensure!(
+        config.vocab_size == 260,
+        "smoke trainer requires byte codec"
+    );
     let dataset_bytes = fs::read(dataset)?;
     let digest = format!("{:x}", Sha256::digest(&dataset_bytes));
     let batch = data::batch(
@@ -287,6 +293,7 @@ pub fn run(
         seed: options.seed,
         dataset_sha256: digest.clone(),
         tokenizer: "byte-v1-260".into(),
+        tokenizer_spec: None,
     };
     optimizer.save(&output.join("training.safetensors"))?;
     fs::write(

@@ -87,7 +87,7 @@ class IntegrityTests(unittest.TestCase):
     def test_cross_split_clones_refuse_empty_holdout(self):
         path=self.root/'programs.jsonl'
         programs=[json.loads(line) for line in path.read_text().splitlines()]
-        reference=next(p for p in programs if p['family']=='affine')
+        reference=next(p for p in programs if p['split']=='train')
         for p in programs:
             if p['split']=='test':
                 p['shape_ast']=reference['shape_ast']; p['shape_sha256']=reference['shape_sha256']

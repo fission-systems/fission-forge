@@ -1,0 +1,204 @@
+# Composition curriculum: expand structures before model size
+
+The bootstrap corpus varied constants within ten fixed C templates. This owned
+curriculum generates 96 distinct expression templates and keeps an entire
+template family in one split. It is a new, narrower experimental task, **not a
+controlled score improvement on the old bootstrap validation or DecBench**.
+
+The target remains raw C: `unsigned int f(unsigned int a, unsigned int b)`.
+The grammar composes addition, subtraction, multiplication, bitwise AND/OR/XOR,
+literal shifts and unsigned conditional expressions. Constants are small
+(2..15); shifts are literal counts 1..7. Arithmetic is defined modulo 2^32.
+It does not add pointers, calls, division, general loops or real-project C.
+The previous loop/division corpus remains unchanged as a separate challenge.
+
+## Split and admission
+
+A deterministic hash partition stratifies conditional/nonconditional templates
+at 25% in each split: 72 train, 12 validation and 12 test families before audit.
+Literal variants of a template never cross splits. Every primitive appears in
+all three partitions, unlike withholding a primitive exclusively for validation.
+Clang-derived canonical AST, erased-literal structure, native probe behavior,
+machine bytes and normalized prompt fingerprints pass the existing Rust audit.
+No cross-split fingerprint or ambiguous-label policy is relaxed.
+
+On the recorded compiler/lifter, 1536 generated source functions (16 variants of
+96 templates) passed **98,304 host-C versus independent Python-oracle cases**.
+All 1536 statically lifted and normalized. The audit quarantined three families
+and rejected ambiguous or duplicate rows. The frozen release contains:
+
+| Split | Rows / unique C labels | Remaining template families | Completion byte tokens |
+| --- | ---: | ---: | ---: |
+| Training | 903 / 903 | 65 | 85,877 |
+| Validation | 130 / 130 | 11 | 12,154 |
+| Test | 188 / 188 | 12 | 17,524 |
+
+Counts describe literal variants, not independent algorithms. Maximum admitted
+training input is 6094 byte tokens; no row is truncated. The grammar primitives
+remain covered in all released splits after filtering. Full x86 IR execution
+parity is **not measured**; the source-label oracle and static lift audit have
+distinct scopes. No benchmark sources or HF rows entered this corpus. Global
+external-evaluation overlap remains unmeasured.
+
+## Reproduce data and freeze references
+
+Use the recorded LLVM and pinned Fission/SLA profile; compiler changes produce
+a new corpus identity. Choose fresh output directories:
+
+```sh
+cargo build --locked -p fission-forge
+python3 scripts/corpus/build.py --config configs/corpus/composition-v1.json \
+  --output outputs/corpus-composition-new \
+  --cc /opt/homebrew/opt/llvm/bin/clang --nm /opt/homebrew/opt/llvm/bin/llvm-nm
+```
+
+The committed evaluation plan binds the recorded corpus lock. A freshly rebuilt
+corpus can differ in provenance hashes; declare a new plan containing its actual
+lock instead of editing recorded evidence. `functional.py freeze` recompiles
+all 130 original validation sources to bounded freestanding Wasm and verifies
+all **8320 reference cases** before training results are scored.
+
+```sh
+outputs/eval-venv/bin/python scripts/evaluation/functional.py freeze \
+  --corpus outputs/corpus-composition-v1 \
+  --plan configs/evaluation/composition-functional-v1.json \
+  --forge target/debug/forge --cc /opt/homebrew/opt/llvm/bin/clang \
+  --output outputs/composition-frozen-new
+```
+
+## Bounded fresh CUDA experiment
+
+```sh
+python3 scripts/colab/run_corpus.py --corpus outputs/corpus-composition-v1 \
+  --fresh-epochs 6 --fresh-learning-rate 0.0003 \
+  --output outputs/colab-composition-new --session forge-composition-new --gpu A100
+
+outputs/eval-venv/bin/python scripts/evaluation/score_gpu.py \
+  --results outputs/colab-composition-new/results \
+  --reference-evidence outputs/composition-frozen-new \
+  --corpus outputs/corpus-composition-v1 --output outputs/composition-score-new
+```
+
+This initializes the 5,380,608-parameter model from scratch (seed 42), rather
+than resuming a checkpoint from another corpus. Six epochs are 5418 updates at
+batch 1, LR 0.0003, query chunk 256, with full validation and checkpointing every
+256 updates plus the final update. A separate one-update preflight deliberately
+selects the longest training row. The Python seed selector is checked against
+the actual Rust sample ID; memory must remain below 85% of the allocated GPU.
+
+The checkpoint with lowest full-validation NLL among saved snapshots is chosen
+**before functional scoring**. All 130 validation prompts are generated on CUDA
+with a 512-byte-token limit. No syntax constraints, C repair, wrappers, Markdown
+stripping or reference-source insertion are applied. Failed generations remain
+in the denominator. The scorer checks source/prompt/checkpoint identity and
+rechecks original references using the existing bounded Wasm execution contract.
+The test split never enters model batches or checkpoint selection.
+
+The source/helper hashes and job plan travel with the payload. Final and in-job
+NLL-best weights are downloaded and verified; other intermediate weight tensors
+are omitted from the result archive. The controller releases its named runtime.
+Training/inference budgets remain bounded; failed runs retain partial artifacts.
+
+A first functional feasibility signal requires at least one nonconstant held-out
+reference matching all 64 probes through unchanged generated C. Compilation
+alone, lower NLL, or software-test success does not satisfy that signal. Even a
+positive result remains scoped to this small synthetic grammar; it does not
+establish real-project or general C decompilation quality or readiness for 20B.
+
+## Recorded byte-codec result
+
+The six-epoch A100 run completed all 5418 updates. NLL-based selection retained
+step 1792 (validation NLL 1.381); the final checkpoint regressed to 1.946.
+The selected model compiled **0/130** unchanged C outputs, so no candidate reached
+execution. The training phase took 770.1 seconds with a sampled whole-device peak
+of 10,530 MiB. All raw outputs and the full denominator are retained in
+[the experiment record](../evidence/2026-10-22-composition-corpus/README.md).
+
+## Reversible BPE follow-up
+
+The corrective experiment learns a lexical byte-pair codec from **training rows
+only**. ASCII identifiers, digits and horizontal whitespace form separate runs;
+other bytes are individual segments. Frequency-weighted adjacent pairs merge
+within those segments, with deterministic ties. Training prompt weight is 1 and
+C-source weight is 8. Special IDs remain PAD/BOS/SEP/EOS = 0/1/2/3. Every byte
+retains a base token, so arbitrary output bytes round-trip without UTF-8 repair.
+The recorded vocabulary contains 698 tokens (no remaining pair has frequency
+at least 2); this is a project codec, not the Hugging Face tokenizer library.
+
+```sh
+target/debug/forge tokenizer-train --corpus outputs/corpus-composition-v1 \
+  --vocab-size 772 --output outputs/tokenizer-composition-new
+
+python3 scripts/colab/run_corpus.py --corpus outputs/corpus-composition-v1 \
+  --fresh-epochs 8 --fresh-learning-rate 0.0003 \
+  --tokenizer outputs/tokenizer-composition-new/tokenizer.json \
+  --output outputs/colab-composition-bpe-new \
+  --session forge-composition-bpe-new --gpu A100
+```
+
+The controller adapts the model vocabulary and packages the exact codec. Schema-5
+corpus checkpoints embed its specification and training-split hash. Generation
+uses the embedded codec; resume rejects changed codec rules. The longest
+training row is 3836 BPE positions, compared with 6094 byte positions, and the
+GPU preflight selects the actual longest **encoded** row. Train completion tokens
+per epoch are 56,639. No row is truncated.
+
+This follow-up changes tokenization, parameter count and update count; it is not
+a single-variable causal comparison. Its NLL units differ from byte-codec NLL.
+The plan remains seed 42, LR 0.0003, batch 1, full validation every 256 updates,
+NLL-only selection before functional scoring, and all 130 validation targets.
+The **raw output cap is still 512 bytes**, with at most 512 newly generated
+tokens. A whole piece that would exceed the byte budget is not emitted, and the
+stop reason is `byte_limit`. The scorer independently reconstructs bytes from
+the bound checkpoint pieces. No C prefix, label, grammar constraint, syntax
+repair or formatting conversion is supplied to inference.
+
+Use `configs/evaluation/composition-bpe-functional-v1.json` to freeze the BPE
+protocol, then the same `score_gpu.py` command with its fresh result/reference
+folders. External data and test model batches remain zero. These validation
+results inform development; a future final test needs a separately frozen run.
+
+## BPE outcome and position-encoding follow-up
+
+The recorded BPE run compiled **12/130** raw outputs. All twelve reached bounded
+execution (768 cases); eight cases matched, and **0/130 functions matched all
+64 probes**. The selected step was 1792 (NLL 1.5548 per BPE token); the final
+step 7224 regressed to 2.0100. Training took 566.2 seconds on the A100, sampled
+whole-device peak 4962 MiB. [Full artifacts](../evidence/2026-10-22-composition-bpe/README.md)
+retain all 130 raw outputs and failures. This improves compilability, not proven
+semantic decompilation.
+
+The next declared hypothesis replaces learned absolute position embeddings with
+[RoPE](https://arxiv.org/abs/2104.09864), retaining the same BPE, corpus, hidden
+width, layers, optimizer, update count and functional protocol. Sequence lengths
+vary substantially, including where the C completion begins; position encoding
+is a hypothesis to test, not an established explanation for the failures.
+
+`configs/model/composition-bpe-rope.json` sets `rotary_positions: true`. RoPE
+rotates queries/keys in every layer (split-half convention, theta 10000), using
+primitive differentiable operations and precomputed tables. Values stay
+unrotated; incremental cache offsets match full-prefix positions. The old
+learned-position mode remains the default for historical configurations. The
+parameter count falls to **3,507,712** after removing the 8192×256 table. Changing
+the parameter set also changes parts of seeded initialization; this is an
+architecture comparison, not a one-variable proof of causality.
+
+CPU tests check an independent trigonometric formula, relative dot-product
+invariance, causal masking, tiled/full logits and gradients, detached validation
+and cached/full-prefix logits for both position modes. A real corpus update and
+resume are checked separately. A GPU run must still pass its longest-row
+memory preflight before training.
+
+```sh
+python3 scripts/colab/run_corpus.py --corpus outputs/corpus-composition-v1 \
+  --fresh-epochs 8 --fresh-learning-rate 0.0003 \
+  --tokenizer outputs/tokenizer-composition-bpe-v1/tokenizer.json \
+  --model-config configs/model/composition-bpe-rope.json \
+  --output outputs/colab-composition-rope-new \
+  --session forge-composition-rope-new --gpu A100
+```
+
+Freeze `configs/evaluation/composition-bpe-rope-functional-v1.json` and score all
+130 targets through the same unchanged bounded Wasm evaluator. The explicit
+model config, codec, train split and full reference set are hash-bound. No test
+model batches, syntax constraints, source repair or C-prefix insertion are added.
