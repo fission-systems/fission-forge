@@ -20,6 +20,16 @@ class ShallowTests(unittest.TestCase):
             self.assertEqual(len(nodes),count)
             self.assertEqual(set().union(*(e.operators(n) for n in nodes)),set(shallow.OPS))
         cfg=build.config_read(Path('configs/corpus/shallow-v1.json'));self.assertEqual(cfg['families'],shallow.SPLITS)
+    def test_extra_training_contexts_keep_original_holdout_templates_disjoint(self):
+        self.assertEqual(len(shallow.EXTRA_TEMPLATES),8)
+        old_shapes={json.dumps(e.shape(n),sort_keys=True) for n in shallow.TEMPLATES.values()}
+        for family,node in shallow.EXTRA_TEMPLATES.items():
+            self.assertNotIn(json.dumps(e.shape(node),sort_keys=True),old_shapes)
+            source=build.program(family,0,314159,'train')['source']
+            self.assertIn('return ((b ',source)
+        first=build.config_read(Path('configs/corpus/shallow-v1.json'))
+        second=build.config_read(Path('configs/corpus/shallow-balanced-v2.json'))
+        self.assertEqual({f:s for f,s in first['families'].items() if s!='train'},{f:s for f,s in second['families'].items() if s!='train'})
     def test_literal_variants_unsigned_edges_and_builder_labels(self):
         for family in shallow.TEMPLATES:
             sources=set()

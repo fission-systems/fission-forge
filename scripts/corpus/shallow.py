@@ -27,4 +27,11 @@ def instantiate(family,index,seed):
     def walk(n):
         if isinstance(n,str):return 2+index%14 if n=='k0' else n
         return [n[0],*[walk(x) if isinstance(x,(list,str)) else x for x in n[1:]]]
-    return walk(TEMPLATES[family])
+    return walk((TEMPLATES|EXTRA_TEMPLATES)[family])
+
+# Additional training contexts cover body-first b without admitting any original
+# validation/test template. Existing 40 template definitions/splits stay intact.
+EXTRA_TEMPLATES={}
+for op in OPS:
+    inner={'add':'and','sub':'or','mul':'or','and':'xor','or':'xor','xor':'and','shl':'add','shr':'add'}[op]
+    EXTRA_TEMPLATES['shallow_extra_'+op+'_b']=[op,[inner,'b','k0'],3 if op in ('shl','shr') else 'a']

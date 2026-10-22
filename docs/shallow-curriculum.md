@@ -103,3 +103,46 @@ outputs/eval-venv/bin/python scripts/evaluation/score_gpu.py \
 The session has phase/global budgets and always terminates. Sanity weights are
 retained separately alongside the fresh model's selected/final checkpoints.
 Candle implements all model/training math; Python orchestrates data and evaluation.
+
+## Initial outcome and fixed-holdout role-coverage follow-up
+
+The eight-example diagnostic compiled **8/8** raw outputs and matched **512/512**
+probes. The separate shallow model compiled **205/205** held-out C outputs, but
+matched **0/205** functions on all probes (868/13,120 individual cases). Its
+NLL-selected step was 512, NLL 0.702667. All training target bodies started with
+`a`, all validation bodies with `b`, and all generated bodies with `a`. This
+post-hoc observation suggests a coverage limitation; it is not a causal proof.
+
+`configs/corpus/shallow-balanced-v2.json` keeps the original 40 templates/splits
+and adds eight **training-only** two-operation templates starting with `b`.
+Their operator combinations differ from every original validation/test template.
+No reference function is moved into training. Strict re-audit admits **317 train /
+205 validation / 112 test** rows. The term balanced in the experiment name means
+role coverage is expanded, not that examples are split 50/50 between roles.
+
+The original validation/test releases are **byte-identical**. All 205 frozen
+prompt/source/reference-module/oracle identities and all 13,120 cases match the
+initial freeze. The new data contains 672 source functions, all 43,008 native
+source probes pass, and all 634 admitted rows pass 81,152 comparisons per IR
+interpreter. No leakage/ambiguity rule is weakened.
+
+The follow-up relearns a 424-token BPE on the new training split and uses the
+same model dimensions, seed, LR and eight epochs, now **2536 updates**. The codec
+IDs, dataset and update count differ, so an improvement is not a one-variable
+causal ablation. A fresh model is trained; neither prior model is resumed. The
+reserved test remains excluded from generation/selection. This is iterative
+development on the same validation set, not a final performance estimate.
+
+```sh
+python3 scripts/colab/run_corpus.py --corpus outputs/corpus-shallow-balanced-return-v2 \
+  --fresh-epochs 8 --fresh-learning-rate 0.0003 \
+  --tokenizer outputs/tokenizer-shallow-balanced-v2/tokenizer.json \
+  --model-config configs/model/shallow-rope.json \
+  --output outputs/colab-shallow-balanced-new --session forge-shallow-balanced-new --gpu L4
+```
+
+Freeze `configs/evaluation/shallow-balanced-functional-v2.json` against the actual
+new lock/codec before learning, and score every raw output with the unchanged
+functional evaluator. A successful shallow case remains scoped to this tiny
+grammar and finite probes; the original nested task and DecBench need separate
+frozen runs.
