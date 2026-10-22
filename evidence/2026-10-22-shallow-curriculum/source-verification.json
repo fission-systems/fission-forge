@@ -1,0 +1,26 @@
+{
+  "source_base_revision": "1a3b27092ac096ba3bab863ba1bd14053b516f00",
+  "matching_public_commit": "e881f349d83ec207a2371bcd0ea36341d9e5b98f",
+  "uploaded_rust_cargo_and_job_helpers_match": true,
+  "files": {
+    "Cargo.lock": "3afc7086226fec89b862067f73cb9b02119c2ac0072d363f9acec978234ee7bb",
+    "Cargo.toml": "659fbe72d7955e5e97efe177e1345349170b0b1dbe340a3f32cf62e938268961",
+    "crates/forge/Cargo.toml": "6b00c23d6024c4822e4c73f7a97aadb5eeaee34d08b134d0d58e248ba49dfaad",
+    "crates/forge/src/corpus.rs": "f548c55a096f794c1c558160716e622247f00275260b682ba8571821ead928a0",
+    "crates/forge/src/corpus_training.rs": "a9aee691d3529ee3e3c9ebee4a9dbd2ad320e5c5c5938761188ca9b5f285a3c9",
+    "crates/forge/src/data.rs": "b22791601a550e934f77d54ea77d2b4912173a5f859ad18ebffcfc023a5ccd83",
+    "crates/forge/src/diagnostics.rs": "5e804e520683b344d8b8fc5d79120f37e3c598fc24cee4edc519d958f91fccf5",
+    "crates/forge/src/generation.rs": "9322fb0ffe48b68627a7ea038ab1388ae061bcdb639263737e0f00f1fbe38439",
+    "crates/forge/src/lib.rs": "256e1c1460ff886f9f61954d635648eff9a9cb5c5f1e6eb128d261b7a00e1480",
+    "crates/forge/src/main.rs": "4af84b6d4cddbd0b3876d72d84d3ef9210d60f014d6e47c20d71367177b3fdb0",
+    "crates/forge/src/model.rs": "24f2a5a3d0faf8558c4c5b19b2dcaeec4a97e4fb7de35379265671e346e0da47",
+    "crates/forge/src/pcode.rs": "fdb4832728abe9c9c858b4cb935358c1fc38ee838097507ce638ff7eb9522d05",
+    "crates/forge/src/pcode/cfg.rs": "bb26e1f8a1bcd65449a748a7e968629cce5277e883e99adc74c675b3143970f1",
+    "crates/forge/src/pcode/cfg/audit.rs": "d7a8d12c2bbe94585ff3ab5b4c7ec454366ab9b0ff8e276bbcc9647c3d79a0de",
+    "crates/forge/src/pcode/cfg/slice.rs": "39557104b7724dc4a585d329f843293eea3a94f9916d1ad34bdc593fc4b75b65",
+    "crates/forge/src/pcode/cfg/tests.rs": "c0b6ce86d56ca670a5ba94be7618a9d4ec0efe4d212ad1b28d5680e81367548c",
+    "crates/forge/src/probe.rs": "7b92b0d769e3e424218a0c3b18e5db8eb95ea2647283c580d734fa278499adb9",
+    "crates/forge/src/tokenizer.rs": "6bed4c2bb76e5181a3f59c874256c50a84df334a03a882436af1c311a0fe7a44",
+    "crates/forge/src/training.rs": "c096a6132ff39c3aa2f2e86f82c9163996d48a3048df7a4e22decc2935ba262d"
+  }
+}

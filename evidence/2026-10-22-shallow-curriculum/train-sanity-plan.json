@@ -1,0 +1,31 @@
+{
+  "scope": "eight_training_examples_memorization_not_heldout_accuracy",
+  "ids": [
+    "shallow_one_add_a_0000-O1",
+    "shallow_one_sub_a_0000-O1",
+    "shallow_one_mul_a_0000-O1",
+    "shallow_one_and_a_0000-O1",
+    "shallow_one_or_a_0000-O1",
+    "shallow_one_xor_a_0000-O1",
+    "shallow_one_shl_a_0002-O1",
+    "shallow_one_shr_a_0000-O1"
+  ],
+  "dataset_sha256": "25722b7491639ec41a87ec61e878972a99b60a61464932da75d8c0162683a03f",
+  "train_split_sha256": "f1f98866d6b50bb45568dcb97ab5d5c24241fc2f131977106faeda7941bdc861",
+  "steps": 600,
+  "learning_rate": 0.003,
+  "seed": 42,
+  "max_new_tokens": 128,
+  "model": {
+    "vocab_size": 260,
+    "hidden_size": 128,
+    "heads": 4,
+    "layers": 2,
+    "feed_forward_size": 512,
+    "max_seq_len": 2048,
+    "rotary_positions": true
+  },
+  "test_model_examples": 0,
+  "validation_model_examples": 0,
+  "selection": "fixed_final_step_before_functional_scoring"
+}

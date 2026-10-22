@@ -1,0 +1,11 @@
+{
+  "source_archive_sha256": "4f50593cdfdce9434e5e32da3445b19db88414b09ecbf3e7150d07ebc73745c0",
+  "result_archive_sha256": "b71881560ffafbf0ffbc2c7d662e882bb20ee6370608cf02a9bf88702a343e3c",
+  "returned_archive_digest_verified": true,
+  "weights": {
+    "syntax-sanity/checkpoint": "10ae4f8f57c34a81c299fec14e95f7969c3cad3ec85ea5ca996aa122a64e0581",
+    "fresh/checkpoints/step-00000512": "7922bb36bc35cdc09f7630870786b50a88ce188cf855437bb1bf6e08b53d1973",
+    "fresh/checkpoints/step-00001640": "9be58818100b55f4876f4da561281b57ace150b4e4661f4021715ab3116e11f5"
+  },
+  "all_corpus_checkpoint_hashes_verified": true
+}

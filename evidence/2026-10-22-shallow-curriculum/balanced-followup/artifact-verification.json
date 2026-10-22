@@ -1,0 +1,10 @@
+{
+  "source_archive_sha256": "69d4543a27b8293b4df40430cf0d8da9030bf468bc18f41363a0bb575c2df5e6",
+  "result_archive_sha256": "7dd9b468d498324b4e8e0d83a188690d605df1236e6af862d15db6e6a43b21e9",
+  "selected_and_final_checkpoint_hashes_verified": true,
+  "all_205_exported_raw_byte_hashes_verified": true,
+  "weights": {
+    "00001280": "e431fdf7dad04004b98471cbd1ebc1bfd57b6d9567dd04386f3b9f18f8ec7228",
+    "00002536": "9217f46f49066debd837a29d3847b363c4d21e16cb0fb9032aab931a425434f8"
+  }
+}

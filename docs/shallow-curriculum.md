@@ -146,3 +146,21 @@ new lock/codec before learning, and score every raw output with the unchanged
 functional evaluator. A successful shallow case remains scoped to this tiny
 grammar and finite probes; the original nested task and DecBench need separate
 frozen runs.
+
+
+## Recorded role-coverage outcome
+
+The role-coverage follow-up completes all 2536 updates. NLL-only selection chooses
+step 1280 at 0.225932; final NLL is 0.286931. The same 205 validation targets give
+**201/205 raw compilations and 0/205 all-case matches**, with 635/13,120 individual
+matches. Four syntax failures remain in the denominator. This does not improve
+functional generation despite lower NLL.
+
+Generated body starts shift from 205 `a` / 0 `b` to 135 `a` / 70 `b`, but correct
+argument/operator/literal binding is still not established. The positive result
+from this curriculum remains **8/8 training-example memorization**, separately
+measured, plus basic C syntax acquisition. Neither independent model is promoted.
+[Complete follow-up evidence](../evidence/2026-10-22-shallow-curriculum/balanced-followup/README.md)
+retains all raw outputs, failures, source/archive/weight hashes and the unchanged
+holdout proof. Next isolate binding through explicit training-only auxiliary
+tasks before further repetitions or model-size increases.

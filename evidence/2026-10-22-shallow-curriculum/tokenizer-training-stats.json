@@ -1,0 +1,1239 @@
+{
+  "records": [
+    {
+      "byte_sequence_length": 475,
+      "completion_tokens": 36,
+      "id": "shallow_one_add_a_0000-O1",
+      "sequence_length": 255
+    },
+    {
+      "byte_sequence_length": 475,
+      "completion_tokens": 36,
+      "id": "shallow_one_add_a_0001-O1",
+      "sequence_length": 255
+    },
+    {
+      "byte_sequence_length": 475,
+      "completion_tokens": 36,
+      "id": "shallow_one_add_a_0002-O1",
+      "sequence_length": 255
+    },
+    {
+      "byte_sequence_length": 475,
+      "completion_tokens": 36,
+      "id": "shallow_one_add_a_0003-O1",
+      "sequence_length": 255
+    },
+    {
+      "byte_sequence_length": 475,
+      "completion_tokens": 36,
+      "id": "shallow_one_add_a_0004-O1",
+      "sequence_length": 255
+    },
+    {
+      "byte_sequence_length": 475,
+      "completion_tokens": 36,
+      "id": "shallow_one_add_a_0005-O1",
+      "sequence_length": 255
+    },
+    {
+      "byte_sequence_length": 475,
+      "completion_tokens": 36,
+      "id": "shallow_one_add_a_0006-O1",
+      "sequence_length": 255
+    },
+    {
+      "byte_sequence_length": 475,
+      "completion_tokens": 36,
+      "id": "shallow_one_add_a_0007-O1",
+      "sequence_length": 255
+    },
+    {
+      "byte_sequence_length": 476,
+      "completion_tokens": 36,
+      "id": "shallow_one_add_a_0008-O1",
+      "sequence_length": 255
+    },
+    {
+      "byte_sequence_length": 476,
+      "completion_tokens": 36,
+      "id": "shallow_one_add_a_0009-O1",
+      "sequence_length": 255
+    },
+    {
+      "byte_sequence_length": 476,
+      "completion_tokens": 36,
+      "id": "shallow_one_add_a_0010-O1",
+      "sequence_length": 255
+    },
+    {
+      "byte_sequence_length": 476,
+      "completion_tokens": 36,
+      "id": "shallow_one_add_a_0011-O1",
+      "sequence_length": 255
+    },
+    {
+      "byte_sequence_length": 476,
+      "completion_tokens": 36,
+      "id": "shallow_one_add_a_0012-O1",
+      "sequence_length": 255
+    },
+    {
+      "byte_sequence_length": 476,
+      "completion_tokens": 36,
+      "id": "shallow_one_add_a_0013-O1",
+      "sequence_length": 255
+    },
+    {
+      "byte_sequence_length": 488,
+      "completion_tokens": 36,
+      "id": "shallow_one_and_a_0000-O1",
+      "sequence_length": 266
+    },
+    {
+      "byte_sequence_length": 488,
+      "completion_tokens": 36,
+      "id": "shallow_one_and_a_0001-O1",
+      "sequence_length": 266
+    },
+    {
+      "byte_sequence_length": 488,
+      "completion_tokens": 36,
+      "id": "shallow_one_and_a_0002-O1",
+      "sequence_length": 266
+    },
+    {
+      "byte_sequence_length": 488,
+      "completion_tokens": 36,
+      "id": "shallow_one_and_a_0003-O1",
+      "sequence_length": 266
+    },
+    {
+      "byte_sequence_length": 488,
+      "completion_tokens": 36,
+      "id": "shallow_one_and_a_0004-O1",
+      "sequence_length": 266
+    },
+    {
+      "byte_sequence_length": 488,
+      "completion_tokens": 36,
+      "id": "shallow_one_and_a_0005-O1",
+      "sequence_length": 266
+    },
+    {
+      "byte_sequence_length": 488,
+      "completion_tokens": 36,
+      "id": "shallow_one_and_a_0006-O1",
+      "sequence_length": 266
+    },
+    {
+      "byte_sequence_length": 488,
+      "completion_tokens": 36,
+      "id": "shallow_one_and_a_0007-O1",
+      "sequence_length": 266
+    },
+    {
+      "byte_sequence_length": 489,
+      "completion_tokens": 36,
+      "id": "shallow_one_and_a_0008-O1",
+      "sequence_length": 266
+    },
+    {
+      "byte_sequence_length": 489,
+      "completion_tokens": 36,
+      "id": "shallow_one_and_a_0009-O1",
+      "sequence_length": 266
+    },
+    {
+      "byte_sequence_length": 489,
+      "completion_tokens": 36,
+      "id": "shallow_one_and_a_0010-O1",
+      "sequence_length": 266
+    },
+    {
+      "byte_sequence_length": 489,
+      "completion_tokens": 36,
+      "id": "shallow_one_and_a_0011-O1",
+      "sequence_length": 266
+    },
+    {
+      "byte_sequence_length": 489,
+      "completion_tokens": 36,
+      "id": "shallow_one_and_a_0012-O1",
+      "sequence_length": 266
+    },
+    {
+      "byte_sequence_length": 489,
+      "completion_tokens": 36,
+      "id": "shallow_one_and_a_0013-O1",
+      "sequence_length": 266
+    },
+    {
+      "byte_sequence_length": 495,
+      "completion_tokens": 36,
+      "id": "shallow_one_mul_a_0000-O1",
+      "sequence_length": 269
+    },
+    {
+      "byte_sequence_length": 495,
+      "completion_tokens": 36,
+      "id": "shallow_one_mul_a_0001-O1",
+      "sequence_length": 269
+    },
+    {
+      "byte_sequence_length": 495,
+      "completion_tokens": 36,
+      "id": "shallow_one_mul_a_0003-O1",
+      "sequence_length": 269
+    },
+    {
+      "byte_sequence_length": 533,
+      "completion_tokens": 36,
+      "id": "shallow_one_mul_a_0004-O1",
+      "sequence_length": 294
+    },
+    {
+      "byte_sequence_length": 566,
+      "completion_tokens": 36,
+      "id": "shallow_one_mul_a_0005-O1",
+      "sequence_length": 318
+    },
+    {
+      "byte_sequence_length": 495,
+      "completion_tokens": 36,
+      "id": "shallow_one_mul_a_0007-O1",
+      "sequence_length": 269
+    },
+    {
+      "byte_sequence_length": 534,
+      "completion_tokens": 36,
+      "id": "shallow_one_mul_a_0008-O1",
+      "sequence_length": 294
+    },
+    {
+      "byte_sequence_length": 583,
+      "completion_tokens": 36,
+      "id": "shallow_one_mul_a_0009-O1",
+      "sequence_length": 326
+    },
+    {
+      "byte_sequence_length": 561,
+      "completion_tokens": 36,
+      "id": "shallow_one_mul_a_0010-O1",
+      "sequence_length": 313
+    },
+    {
+      "byte_sequence_length": 583,
+      "completion_tokens": 36,
+      "id": "shallow_one_mul_a_0011-O1",
+      "sequence_length": 326
+    },
+    {
+      "byte_sequence_length": 651,
+      "completion_tokens": 36,
+      "id": "shallow_one_mul_a_0012-O1",
+      "sequence_length": 375
+    },
+    {
+      "byte_sequence_length": 583,
+      "completion_tokens": 36,
+      "id": "shallow_one_mul_a_0013-O1",
+      "sequence_length": 326
+    },
+    {
+      "byte_sequence_length": 487,
+      "completion_tokens": 36,
+      "id": "shallow_one_or_a_0000-O1",
+      "sequence_length": 266
+    },
+    {
+      "byte_sequence_length": 487,
+      "completion_tokens": 36,
+      "id": "shallow_one_or_a_0001-O1",
+      "sequence_length": 266
+    },
+    {
+      "byte_sequence_length": 487,
+      "completion_tokens": 36,
+      "id": "shallow_one_or_a_0002-O1",
+      "sequence_length": 266
+    },
+    {
+      "byte_sequence_length": 487,
+      "completion_tokens": 36,
+      "id": "shallow_one_or_a_0003-O1",
+      "sequence_length": 266
+    },
+    {
+      "byte_sequence_length": 487,
+      "completion_tokens": 36,
+      "id": "shallow_one_or_a_0004-O1",
+      "sequence_length": 266
+    },
+    {
+      "byte_sequence_length": 487,
+      "completion_tokens": 36,
+      "id": "shallow_one_or_a_0005-O1",
+      "sequence_length": 266
+    },
+    {
+      "byte_sequence_length": 487,
+      "completion_tokens": 36,
+      "id": "shallow_one_or_a_0006-O1",
+      "sequence_length": 266
+    },
+    {
+      "byte_sequence_length": 487,
+      "completion_tokens": 36,
+      "id": "shallow_one_or_a_0007-O1",
+      "sequence_length": 266
+    },
+    {
+      "byte_sequence_length": 488,
+      "completion_tokens": 36,
+      "id": "shallow_one_or_a_0008-O1",
+      "sequence_length": 266
+    },
+    {
+      "byte_sequence_length": 488,
+      "completion_tokens": 36,
+      "id": "shallow_one_or_a_0009-O1",
+      "sequence_length": 266
+    },
+    {
+      "byte_sequence_length": 488,
+      "completion_tokens": 36,
+      "id": "shallow_one_or_a_0010-O1",
+      "sequence_length": 266
+    },
+    {
+      "byte_sequence_length": 488,
+      "completion_tokens": 36,
+      "id": "shallow_one_or_a_0011-O1",
+      "sequence_length": 266
+    },
+    {
+      "byte_sequence_length": 488,
+      "completion_tokens": 36,
+      "id": "shallow_one_or_a_0012-O1",
+      "sequence_length": 266
+    },
+    {
+      "byte_sequence_length": 488,
+      "completion_tokens": 36,
+      "id": "shallow_one_or_a_0013-O1",
+      "sequence_length": 266
+    },
+    {
+      "byte_sequence_length": 512,
+      "completion_tokens": 37,
+      "id": "shallow_one_shl_a_0002-O1",
+      "sequence_length": 284
+    },
+    {
+      "byte_sequence_length": 512,
+      "completion_tokens": 37,
+      "id": "shallow_one_shl_a_0003-O1",
+      "sequence_length": 284
+    },
+    {
+      "byte_sequence_length": 512,
+      "completion_tokens": 37,
+      "id": "shallow_one_shl_a_0004-O1",
+      "sequence_length": 284
+    },
+    {
+      "byte_sequence_length": 512,
+      "completion_tokens": 37,
+      "id": "shallow_one_shl_a_0005-O1",
+      "sequence_length": 284
+    },
+    {
+      "byte_sequence_length": 512,
+      "completion_tokens": 37,
+      "id": "shallow_one_shl_a_0006-O1",
+      "sequence_length": 284
+    },
+    {
+      "byte_sequence_length": 512,
+      "completion_tokens": 37,
+      "id": "shallow_one_shl_a_0007-O1",
+      "sequence_length": 284
+    },
+    {
+      "byte_sequence_length": 513,
+      "completion_tokens": 37,
+      "id": "shallow_one_shl_a_0008-O1",
+      "sequence_length": 284
+    },
+    {
+      "byte_sequence_length": 513,
+      "completion_tokens": 37,
+      "id": "shallow_one_shl_a_0009-O1",
+      "sequence_length": 284
+    },
+    {
+      "byte_sequence_length": 513,
+      "completion_tokens": 37,
+      "id": "shallow_one_shl_a_0010-O1",
+      "sequence_length": 284
+    },
+    {
+      "byte_sequence_length": 513,
+      "completion_tokens": 37,
+      "id": "shallow_one_shl_a_0011-O1",
+      "sequence_length": 284
+    },
+    {
+      "byte_sequence_length": 513,
+      "completion_tokens": 37,
+      "id": "shallow_one_shl_a_0012-O1",
+      "sequence_length": 284
+    },
+    {
+      "byte_sequence_length": 513,
+      "completion_tokens": 37,
+      "id": "shallow_one_shl_a_0013-O1",
+      "sequence_length": 284
+    },
+    {
+      "byte_sequence_length": 513,
+      "completion_tokens": 37,
+      "id": "shallow_one_shr_a_0000-O1",
+      "sequence_length": 284
+    },
+    {
+      "byte_sequence_length": 513,
+      "completion_tokens": 37,
+      "id": "shallow_one_shr_a_0002-O1",
+      "sequence_length": 284
+    },
+    {
+      "byte_sequence_length": 513,
+      "completion_tokens": 37,
+      "id": "shallow_one_shr_a_0003-O1",
+      "sequence_length": 284
+    },
+    {
+      "byte_sequence_length": 513,
+      "completion_tokens": 37,
+      "id": "shallow_one_shr_a_0004-O1",
+      "sequence_length": 284
+    },
+    {
+      "byte_sequence_length": 513,
+      "completion_tokens": 37,
+      "id": "shallow_one_shr_a_0005-O1",
+      "sequence_length": 284
+    },
+    {
+      "byte_sequence_length": 513,
+      "completion_tokens": 37,
+      "id": "shallow_one_shr_a_0006-O1",
+      "sequence_length": 284
+    },
+    {
+      "byte_sequence_length": 513,
+      "completion_tokens": 37,
+      "id": "shallow_one_shr_a_0007-O1",
+      "sequence_length": 284
+    },
+    {
+      "byte_sequence_length": 514,
+      "completion_tokens": 37,
+      "id": "shallow_one_shr_a_0008-O1",
+      "sequence_length": 284
+    },
+    {
+      "byte_sequence_length": 514,
+      "completion_tokens": 37,
+      "id": "shallow_one_shr_a_0009-O1",
+      "sequence_length": 284
+    },
+    {
+      "byte_sequence_length": 514,
+      "completion_tokens": 37,
+      "id": "shallow_one_shr_a_0010-O1",
+      "sequence_length": 284
+    },
+    {
+      "byte_sequence_length": 514,
+      "completion_tokens": 37,
+      "id": "shallow_one_shr_a_0011-O1",
+      "sequence_length": 284
+    },
+    {
+      "byte_sequence_length": 514,
+      "completion_tokens": 37,
+      "id": "shallow_one_shr_a_0012-O1",
+      "sequence_length": 284
+    },
+    {
+      "byte_sequence_length": 514,
+      "completion_tokens": 37,
+      "id": "shallow_one_shr_a_0013-O1",
+      "sequence_length": 284
+    },
+    {
+      "byte_sequence_length": 490,
+      "completion_tokens": 36,
+      "id": "shallow_one_sub_a_0000-O1",
+      "sequence_length": 256
+    },
+    {
+      "byte_sequence_length": 490,
+      "completion_tokens": 36,
+      "id": "shallow_one_sub_a_0001-O1",
+      "sequence_length": 256
+    },
+    {
+      "byte_sequence_length": 490,
+      "completion_tokens": 36,
+      "id": "shallow_one_sub_a_0002-O1",
+      "sequence_length": 256
+    },
+    {
+      "byte_sequence_length": 490,
+      "completion_tokens": 36,
+      "id": "shallow_one_sub_a_0003-O1",
+      "sequence_length": 256
+    },
+    {
+      "byte_sequence_length": 490,
+      "completion_tokens": 36,
+      "id": "shallow_one_sub_a_0004-O1",
+      "sequence_length": 256
+    },
+    {
+      "byte_sequence_length": 490,
+      "completion_tokens": 36,
+      "id": "shallow_one_sub_a_0005-O1",
+      "sequence_length": 256
+    },
+    {
+      "byte_sequence_length": 490,
+      "completion_tokens": 36,
+      "id": "shallow_one_sub_a_0006-O1",
+      "sequence_length": 256
+    },
+    {
+      "byte_sequence_length": 490,
+      "completion_tokens": 36,
+      "id": "shallow_one_sub_a_0007-O1",
+      "sequence_length": 256
+    },
+    {
+      "byte_sequence_length": 491,
+      "completion_tokens": 36,
+      "id": "shallow_one_sub_a_0008-O1",
+      "sequence_length": 256
+    },
+    {
+      "byte_sequence_length": 491,
+      "completion_tokens": 36,
+      "id": "shallow_one_sub_a_0009-O1",
+      "sequence_length": 256
+    },
+    {
+      "byte_sequence_length": 491,
+      "completion_tokens": 36,
+      "id": "shallow_one_sub_a_0010-O1",
+      "sequence_length": 256
+    },
+    {
+      "byte_sequence_length": 491,
+      "completion_tokens": 36,
+      "id": "shallow_one_sub_a_0011-O1",
+      "sequence_length": 256
+    },
+    {
+      "byte_sequence_length": 491,
+      "completion_tokens": 36,
+      "id": "shallow_one_sub_a_0012-O1",
+      "sequence_length": 256
+    },
+    {
+      "byte_sequence_length": 491,
+      "completion_tokens": 36,
+      "id": "shallow_one_sub_a_0013-O1",
+      "sequence_length": 256
+    },
+    {
+      "byte_sequence_length": 488,
+      "completion_tokens": 36,
+      "id": "shallow_one_xor_a_0000-O1",
+      "sequence_length": 266
+    },
+    {
+      "byte_sequence_length": 488,
+      "completion_tokens": 36,
+      "id": "shallow_one_xor_a_0001-O1",
+      "sequence_length": 266
+    },
+    {
+      "byte_sequence_length": 488,
+      "completion_tokens": 36,
+      "id": "shallow_one_xor_a_0002-O1",
+      "sequence_length": 266
+    },
+    {
+      "byte_sequence_length": 488,
+      "completion_tokens": 36,
+      "id": "shallow_one_xor_a_0003-O1",
+      "sequence_length": 266
+    },
+    {
+      "byte_sequence_length": 488,
+      "completion_tokens": 36,
+      "id": "shallow_one_xor_a_0004-O1",
+      "sequence_length": 266
+    },
+    {
+      "byte_sequence_length": 488,
+      "completion_tokens": 36,
+      "id": "shallow_one_xor_a_0005-O1",
+      "sequence_length": 266
+    },
+    {
+      "byte_sequence_length": 488,
+      "completion_tokens": 36,
+      "id": "shallow_one_xor_a_0006-O1",
+      "sequence_length": 266
+    },
+    {
+      "byte_sequence_length": 488,
+      "completion_tokens": 36,
+      "id": "shallow_one_xor_a_0007-O1",
+      "sequence_length": 266
+    },
+    {
+      "byte_sequence_length": 489,
+      "completion_tokens": 36,
+      "id": "shallow_one_xor_a_0008-O1",
+      "sequence_length": 266
+    },
+    {
+      "byte_sequence_length": 489,
+      "completion_tokens": 36,
+      "id": "shallow_one_xor_a_0009-O1",
+      "sequence_length": 266
+    },
+    {
+      "byte_sequence_length": 489,
+      "completion_tokens": 36,
+      "id": "shallow_one_xor_a_0010-O1",
+      "sequence_length": 266
+    },
+    {
+      "byte_sequence_length": 489,
+      "completion_tokens": 36,
+      "id": "shallow_one_xor_a_0011-O1",
+      "sequence_length": 266
+    },
+    {
+      "byte_sequence_length": 489,
+      "completion_tokens": 36,
+      "id": "shallow_one_xor_a_0012-O1",
+      "sequence_length": 266
+    },
+    {
+      "byte_sequence_length": 489,
+      "completion_tokens": 36,
+      "id": "shallow_one_xor_a_0013-O1",
+      "sequence_length": 266
+    },
+    {
+      "byte_sequence_length": 583,
+      "completion_tokens": 42,
+      "id": "shallow_two_add_a_0000-O1",
+      "sequence_length": 328
+    },
+    {
+      "byte_sequence_length": 583,
+      "completion_tokens": 42,
+      "id": "shallow_two_add_a_0001-O1",
+      "sequence_length": 328
+    },
+    {
+      "byte_sequence_length": 583,
+      "completion_tokens": 42,
+      "id": "shallow_two_add_a_0002-O1",
+      "sequence_length": 328
+    },
+    {
+      "byte_sequence_length": 583,
+      "completion_tokens": 42,
+      "id": "shallow_two_add_a_0003-O1",
+      "sequence_length": 328
+    },
+    {
+      "byte_sequence_length": 583,
+      "completion_tokens": 42,
+      "id": "shallow_two_add_a_0004-O1",
+      "sequence_length": 328
+    },
+    {
+      "byte_sequence_length": 583,
+      "completion_tokens": 42,
+      "id": "shallow_two_add_a_0005-O1",
+      "sequence_length": 328
+    },
+    {
+      "byte_sequence_length": 583,
+      "completion_tokens": 42,
+      "id": "shallow_two_add_a_0006-O1",
+      "sequence_length": 328
+    },
+    {
+      "byte_sequence_length": 583,
+      "completion_tokens": 42,
+      "id": "shallow_two_add_a_0007-O1",
+      "sequence_length": 328
+    },
+    {
+      "byte_sequence_length": 584,
+      "completion_tokens": 42,
+      "id": "shallow_two_add_a_0008-O1",
+      "sequence_length": 328
+    },
+    {
+      "byte_sequence_length": 584,
+      "completion_tokens": 42,
+      "id": "shallow_two_add_a_0009-O1",
+      "sequence_length": 328
+    },
+    {
+      "byte_sequence_length": 584,
+      "completion_tokens": 42,
+      "id": "shallow_two_add_a_0010-O1",
+      "sequence_length": 328
+    },
+    {
+      "byte_sequence_length": 584,
+      "completion_tokens": 42,
+      "id": "shallow_two_add_a_0011-O1",
+      "sequence_length": 328
+    },
+    {
+      "byte_sequence_length": 584,
+      "completion_tokens": 42,
+      "id": "shallow_two_add_a_0012-O1",
+      "sequence_length": 328
+    },
+    {
+      "byte_sequence_length": 584,
+      "completion_tokens": 42,
+      "id": "shallow_two_add_a_0013-O1",
+      "sequence_length": 328
+    },
+    {
+      "byte_sequence_length": 564,
+      "completion_tokens": 42,
+      "id": "shallow_two_and_a_0000-O1",
+      "sequence_length": 317
+    },
+    {
+      "byte_sequence_length": 564,
+      "completion_tokens": 42,
+      "id": "shallow_two_and_a_0001-O1",
+      "sequence_length": 317
+    },
+    {
+      "byte_sequence_length": 564,
+      "completion_tokens": 42,
+      "id": "shallow_two_and_a_0002-O1",
+      "sequence_length": 317
+    },
+    {
+      "byte_sequence_length": 564,
+      "completion_tokens": 42,
+      "id": "shallow_two_and_a_0003-O1",
+      "sequence_length": 317
+    },
+    {
+      "byte_sequence_length": 564,
+      "completion_tokens": 42,
+      "id": "shallow_two_and_a_0004-O1",
+      "sequence_length": 317
+    },
+    {
+      "byte_sequence_length": 564,
+      "completion_tokens": 42,
+      "id": "shallow_two_and_a_0005-O1",
+      "sequence_length": 317
+    },
+    {
+      "byte_sequence_length": 564,
+      "completion_tokens": 42,
+      "id": "shallow_two_and_a_0006-O1",
+      "sequence_length": 317
+    },
+    {
+      "byte_sequence_length": 564,
+      "completion_tokens": 42,
+      "id": "shallow_two_and_a_0007-O1",
+      "sequence_length": 317
+    },
+    {
+      "byte_sequence_length": 565,
+      "completion_tokens": 42,
+      "id": "shallow_two_and_a_0008-O1",
+      "sequence_length": 317
+    },
+    {
+      "byte_sequence_length": 565,
+      "completion_tokens": 42,
+      "id": "shallow_two_and_a_0009-O1",
+      "sequence_length": 317
+    },
+    {
+      "byte_sequence_length": 565,
+      "completion_tokens": 42,
+      "id": "shallow_two_and_a_0010-O1",
+      "sequence_length": 317
+    },
+    {
+      "byte_sequence_length": 565,
+      "completion_tokens": 42,
+      "id": "shallow_two_and_a_0011-O1",
+      "sequence_length": 317
+    },
+    {
+      "byte_sequence_length": 565,
+      "completion_tokens": 42,
+      "id": "shallow_two_and_a_0012-O1",
+      "sequence_length": 317
+    },
+    {
+      "byte_sequence_length": 565,
+      "completion_tokens": 42,
+      "id": "shallow_two_and_a_0013-O1",
+      "sequence_length": 317
+    },
+    {
+      "byte_sequence_length": 643,
+      "completion_tokens": 42,
+      "id": "shallow_two_mul_a_0000-O1",
+      "sequence_length": 366
+    },
+    {
+      "byte_sequence_length": 643,
+      "completion_tokens": 42,
+      "id": "shallow_two_mul_a_0001-O1",
+      "sequence_length": 366
+    },
+    {
+      "byte_sequence_length": 643,
+      "completion_tokens": 42,
+      "id": "shallow_two_mul_a_0002-O1",
+      "sequence_length": 366
+    },
+    {
+      "byte_sequence_length": 643,
+      "completion_tokens": 42,
+      "id": "shallow_two_mul_a_0003-O1",
+      "sequence_length": 366
+    },
+    {
+      "byte_sequence_length": 643,
+      "completion_tokens": 42,
+      "id": "shallow_two_mul_a_0004-O1",
+      "sequence_length": 366
+    },
+    {
+      "byte_sequence_length": 643,
+      "completion_tokens": 42,
+      "id": "shallow_two_mul_a_0005-O1",
+      "sequence_length": 366
+    },
+    {
+      "byte_sequence_length": 643,
+      "completion_tokens": 42,
+      "id": "shallow_two_mul_a_0006-O1",
+      "sequence_length": 366
+    },
+    {
+      "byte_sequence_length": 643,
+      "completion_tokens": 42,
+      "id": "shallow_two_mul_a_0007-O1",
+      "sequence_length": 366
+    },
+    {
+      "byte_sequence_length": 644,
+      "completion_tokens": 42,
+      "id": "shallow_two_mul_a_0008-O1",
+      "sequence_length": 366
+    },
+    {
+      "byte_sequence_length": 644,
+      "completion_tokens": 42,
+      "id": "shallow_two_mul_a_0009-O1",
+      "sequence_length": 366
+    },
+    {
+      "byte_sequence_length": 644,
+      "completion_tokens": 42,
+      "id": "shallow_two_mul_a_0010-O1",
+      "sequence_length": 366
+    },
+    {
+      "byte_sequence_length": 644,
+      "completion_tokens": 42,
+      "id": "shallow_two_mul_a_0011-O1",
+      "sequence_length": 366
+    },
+    {
+      "byte_sequence_length": 644,
+      "completion_tokens": 42,
+      "id": "shallow_two_mul_a_0012-O1",
+      "sequence_length": 366
+    },
+    {
+      "byte_sequence_length": 644,
+      "completion_tokens": 42,
+      "id": "shallow_two_mul_a_0013-O1",
+      "sequence_length": 366
+    },
+    {
+      "byte_sequence_length": 563,
+      "completion_tokens": 42,
+      "id": "shallow_two_or_a_0000-O1",
+      "sequence_length": 317
+    },
+    {
+      "byte_sequence_length": 563,
+      "completion_tokens": 42,
+      "id": "shallow_two_or_a_0001-O1",
+      "sequence_length": 317
+    },
+    {
+      "byte_sequence_length": 563,
+      "completion_tokens": 42,
+      "id": "shallow_two_or_a_0002-O1",
+      "sequence_length": 317
+    },
+    {
+      "byte_sequence_length": 563,
+      "completion_tokens": 42,
+      "id": "shallow_two_or_a_0003-O1",
+      "sequence_length": 317
+    },
+    {
+      "byte_sequence_length": 563,
+      "completion_tokens": 42,
+      "id": "shallow_two_or_a_0004-O1",
+      "sequence_length": 317
+    },
+    {
+      "byte_sequence_length": 563,
+      "completion_tokens": 42,
+      "id": "shallow_two_or_a_0005-O1",
+      "sequence_length": 317
+    },
+    {
+      "byte_sequence_length": 563,
+      "completion_tokens": 42,
+      "id": "shallow_two_or_a_0006-O1",
+      "sequence_length": 317
+    },
+    {
+      "byte_sequence_length": 563,
+      "completion_tokens": 42,
+      "id": "shallow_two_or_a_0007-O1",
+      "sequence_length": 317
+    },
+    {
+      "byte_sequence_length": 564,
+      "completion_tokens": 42,
+      "id": "shallow_two_or_a_0008-O1",
+      "sequence_length": 317
+    },
+    {
+      "byte_sequence_length": 564,
+      "completion_tokens": 42,
+      "id": "shallow_two_or_a_0009-O1",
+      "sequence_length": 317
+    },
+    {
+      "byte_sequence_length": 564,
+      "completion_tokens": 42,
+      "id": "shallow_two_or_a_0010-O1",
+      "sequence_length": 317
+    },
+    {
+      "byte_sequence_length": 564,
+      "completion_tokens": 42,
+      "id": "shallow_two_or_a_0011-O1",
+      "sequence_length": 317
+    },
+    {
+      "byte_sequence_length": 564,
+      "completion_tokens": 42,
+      "id": "shallow_two_or_a_0012-O1",
+      "sequence_length": 317
+    },
+    {
+      "byte_sequence_length": 564,
+      "completion_tokens": 42,
+      "id": "shallow_two_or_a_0013-O1",
+      "sequence_length": 317
+    },
+    {
+      "byte_sequence_length": 528,
+      "completion_tokens": 44,
+      "id": "shallow_two_shl_a_0000-O1",
+      "sequence_length": 295
+    },
+    {
+      "byte_sequence_length": 528,
+      "completion_tokens": 44,
+      "id": "shallow_two_shl_a_0001-O1",
+      "sequence_length": 296
+    },
+    {
+      "byte_sequence_length": 528,
+      "completion_tokens": 44,
+      "id": "shallow_two_shl_a_0002-O1",
+      "sequence_length": 295
+    },
+    {
+      "byte_sequence_length": 528,
+      "completion_tokens": 44,
+      "id": "shallow_two_shl_a_0003-O1",
+      "sequence_length": 296
+    },
+    {
+      "byte_sequence_length": 528,
+      "completion_tokens": 44,
+      "id": "shallow_two_shl_a_0004-O1",
+      "sequence_length": 295
+    },
+    {
+      "byte_sequence_length": 528,
+      "completion_tokens": 44,
+      "id": "shallow_two_shl_a_0005-O1",
+      "sequence_length": 295
+    },
+    {
+      "byte_sequence_length": 528,
+      "completion_tokens": 44,
+      "id": "shallow_two_shl_a_0006-O1",
+      "sequence_length": 296
+    },
+    {
+      "byte_sequence_length": 528,
+      "completion_tokens": 44,
+      "id": "shallow_two_shl_a_0007-O1",
+      "sequence_length": 296
+    },
+    {
+      "byte_sequence_length": 529,
+      "completion_tokens": 44,
+      "id": "shallow_two_shl_a_0008-O1",
+      "sequence_length": 296
+    },
+    {
+      "byte_sequence_length": 529,
+      "completion_tokens": 44,
+      "id": "shallow_two_shl_a_0009-O1",
+      "sequence_length": 296
+    },
+    {
+      "byte_sequence_length": 529,
+      "completion_tokens": 44,
+      "id": "shallow_two_shl_a_0010-O1",
+      "sequence_length": 296
+    },
+    {
+      "byte_sequence_length": 529,
+      "completion_tokens": 44,
+      "id": "shallow_two_shl_a_0011-O1",
+      "sequence_length": 296
+    },
+    {
+      "byte_sequence_length": 529,
+      "completion_tokens": 44,
+      "id": "shallow_two_shl_a_0012-O1",
+      "sequence_length": 296
+    },
+    {
+      "byte_sequence_length": 529,
+      "completion_tokens": 44,
+      "id": "shallow_two_shl_a_0013-O1",
+      "sequence_length": 296
+    },
+    {
+      "byte_sequence_length": 579,
+      "completion_tokens": 42,
+      "id": "shallow_two_sub_a_0000-O1",
+      "sequence_length": 328
+    },
+    {
+      "byte_sequence_length": 579,
+      "completion_tokens": 42,
+      "id": "shallow_two_sub_a_0001-O1",
+      "sequence_length": 328
+    },
+    {
+      "byte_sequence_length": 579,
+      "completion_tokens": 42,
+      "id": "shallow_two_sub_a_0002-O1",
+      "sequence_length": 328
+    },
+    {
+      "byte_sequence_length": 579,
+      "completion_tokens": 42,
+      "id": "shallow_two_sub_a_0003-O1",
+      "sequence_length": 328
+    },
+    {
+      "byte_sequence_length": 579,
+      "completion_tokens": 42,
+      "id": "shallow_two_sub_a_0004-O1",
+      "sequence_length": 328
+    },
+    {
+      "byte_sequence_length": 579,
+      "completion_tokens": 42,
+      "id": "shallow_two_sub_a_0005-O1",
+      "sequence_length": 328
+    },
+    {
+      "byte_sequence_length": 579,
+      "completion_tokens": 42,
+      "id": "shallow_two_sub_a_0006-O1",
+      "sequence_length": 328
+    },
+    {
+      "byte_sequence_length": 579,
+      "completion_tokens": 42,
+      "id": "shallow_two_sub_a_0007-O1",
+      "sequence_length": 328
+    },
+    {
+      "byte_sequence_length": 580,
+      "completion_tokens": 42,
+      "id": "shallow_two_sub_a_0008-O1",
+      "sequence_length": 328
+    },
+    {
+      "byte_sequence_length": 580,
+      "completion_tokens": 42,
+      "id": "shallow_two_sub_a_0009-O1",
+      "sequence_length": 328
+    },
+    {
+      "byte_sequence_length": 580,
+      "completion_tokens": 42,
+      "id": "shallow_two_sub_a_0010-O1",
+      "sequence_length": 328
+    },
+    {
+      "byte_sequence_length": 580,
+      "completion_tokens": 42,
+      "id": "shallow_two_sub_a_0011-O1",
+      "sequence_length": 328
+    },
+    {
+      "byte_sequence_length": 580,
+      "completion_tokens": 42,
+      "id": "shallow_two_sub_a_0012-O1",
+      "sequence_length": 328
+    },
+    {
+      "byte_sequence_length": 580,
+      "completion_tokens": 42,
+      "id": "shallow_two_sub_a_0013-O1",
+      "sequence_length": 328
+    },
+    {
+      "byte_sequence_length": 564,
+      "completion_tokens": 42,
+      "id": "shallow_two_xor_a_0000-O1",
+      "sequence_length": 317
+    },
+    {
+      "byte_sequence_length": 564,
+      "completion_tokens": 42,
+      "id": "shallow_two_xor_a_0001-O1",
+      "sequence_length": 317
+    },
+    {
+      "byte_sequence_length": 564,
+      "completion_tokens": 42,
+      "id": "shallow_two_xor_a_0002-O1",
+      "sequence_length": 317
+    },
+    {
+      "byte_sequence_length": 564,
+      "completion_tokens": 42,
+      "id": "shallow_two_xor_a_0003-O1",
+      "sequence_length": 317
+    },
+    {
+      "byte_sequence_length": 564,
+      "completion_tokens": 42,
+      "id": "shallow_two_xor_a_0004-O1",
+      "sequence_length": 317
+    },
+    {
+      "byte_sequence_length": 564,
+      "completion_tokens": 42,
+      "id": "shallow_two_xor_a_0005-O1",
+      "sequence_length": 317
+    },
+    {
+      "byte_sequence_length": 564,
+      "completion_tokens": 42,
+      "id": "shallow_two_xor_a_0006-O1",
+      "sequence_length": 317
+    },
+    {
+      "byte_sequence_length": 564,
+      "completion_tokens": 42,
+      "id": "shallow_two_xor_a_0007-O1",
+      "sequence_length": 317
+    },
+    {
+      "byte_sequence_length": 565,
+      "completion_tokens": 42,
+      "id": "shallow_two_xor_a_0008-O1",
+      "sequence_length": 317
+    },
+    {
+      "byte_sequence_length": 565,
+      "completion_tokens": 42,
+      "id": "shallow_two_xor_a_0009-O1",
+      "sequence_length": 317
+    },
+    {
+      "byte_sequence_length": 565,
+      "completion_tokens": 42,
+      "id": "shallow_two_xor_a_0010-O1",
+      "sequence_length": 317
+    },
+    {
+      "byte_sequence_length": 565,
+      "completion_tokens": 42,
+      "id": "shallow_two_xor_a_0011-O1",
+      "sequence_length": 317
+    },
+    {
+      "byte_sequence_length": 565,
+      "completion_tokens": 42,
+      "id": "shallow_two_xor_a_0012-O1",
+      "sequence_length": 317
+    },
+    {
+      "byte_sequence_length": 565,
+      "completion_tokens": 42,
+      "id": "shallow_two_xor_a_0013-O1",
+      "sequence_length": 317
+    }
+  ],
+  "source_weight": 8,
+  "tokenizer": "lexical-byte-bpe-v1",
+  "tokenizer_sha256": "9af5c84e1d5ab483720ed34150ebbce58ec495eedcd8c49b6cd1c205702542d9",
+  "training_only": true,
+  "vocab_size": 424
+}

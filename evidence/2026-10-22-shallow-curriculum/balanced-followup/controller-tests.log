@@ -1,0 +1,53 @@
+ok
+ok
+ok
+{"pid": 1234}
+
+{"state": "complete", "phase": "done"}
+ok
+.......ok
+ok
+ok
+ok
+ok
+ready
+/private/var/folders/65/l9m02xg91b11jdfch2cycz9m0000gn/T/tmpb3jr3w6f/job/source.tar.gz
+/private/var/folders/65/l9m02xg91b11jdfch2cycz9m0000gn/T/tmpq1bu86ev/job/source.tar.gz
+/private/var/folders/65/l9m02xg91b11jdfch2cycz9m0000gn/T/tmp1izaeuyg/job/source.tar.gz
+/private/var/folders/65/l9m02xg91b11jdfch2cycz9m0000gn/T/tmpglfi9hav/job/source.tar.gz
+{"pid": 1234}
+
+{"state": "complete", "phase": "done"}
+ok
+.ok
+ok
+ok
+ok
+.ok
+ok
+ok
+{"pid": 1234}
+
+{"state": "complete", "phase": "done"}
+ok
+..ok
+ok
+ok
+/private/var/folders/65/l9m02xg91b11jdfch2cycz9m0000gn/T/tmp8r3k0_8w/job/source.tar.gz
+{"pid": 1234}
+
+{"state": "complete", "phase": "done"}
+ok
+.ok
+ok
+ok
+{"pid": 1234}
+
+Status unavailable repeatedly; retaining session observation until budget expires
+{"state": "complete", "phase": "done"}
+ok
+.s.
+----------------------------------------------------------------------
+Ran 14 tests in 4.824s
+
+OK (skipped=1)

@@ -1,0 +1,13 @@
+{
+  "train_first_body_argument": {
+    "a": 205
+  },
+  "validation_first_body_argument": {
+    "b": 205
+  },
+  "generated_first_body_argument": {
+    "a": 205
+  },
+  "distinct_raw_completions": 11,
+  "scope": "posthoc_argument_role_bias_diagnostic_not_causal_proof"
+}

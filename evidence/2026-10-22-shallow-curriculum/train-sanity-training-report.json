@@ -1,0 +1,33 @@
+{
+  "evidence_scope": "fixed_batch_transformer_training_probe_only",
+  "backend": "Cuda { gpu_id: 0 }",
+  "dtype": "f32",
+  "model": {
+    "vocab_size": 260,
+    "hidden_size": 128,
+    "heads": 4,
+    "layers": 2,
+    "feed_forward_size": 512,
+    "max_seq_len": 2048,
+    "rotary_positions": true
+  },
+  "parameters": 461056,
+  "initialization": "seeded_from_scratch",
+  "dataset_sha256": "25722b7491639ec41a87ec61e878972a99b60a61464932da75d8c0162683a03f",
+  "input_sha256": "d9a9c5a7abd1e56f99ba7d2392429e1c4376e3434bb3be84fdf9d9a9206d5e4b",
+  "representations": [
+    "pcode-plus-ssa-return-u32-v1"
+  ],
+  "examples": 8,
+  "sequence_length": 513,
+  "initial_step": 0,
+  "completed_steps": 600,
+  "measured_steps": 600,
+  "initial_loss": 5.5551715,
+  "final_loss": 0.0005775639,
+  "training_seconds": 24.346479415,
+  "padded_tokens_per_second": 101139.87973484585,
+  "completion_tokens_per_second": 13455.74423372949,
+  "checkpoint_logit_max_error": 0.0,
+  "resumed_adamw_step_max_error": 0.0
+}

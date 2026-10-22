@@ -1,0 +1,29 @@
+{
+  "schema_version": 3,
+  "model": {
+    "vocab_size": 260,
+    "hidden_size": 128,
+    "heads": 4,
+    "layers": 2,
+    "feed_forward_size": 512,
+    "max_seq_len": 2048,
+    "rotary_positions": true
+  },
+  "optimizer": {
+    "lr": 0.003,
+    "beta1": 0.9,
+    "beta2": 0.999,
+    "eps": 1e-8,
+    "weight_decay": 0.01
+  },
+  "step": 600,
+  "seed": 42,
+  "dataset_sha256": "25722b7491639ec41a87ec61e878972a99b60a61464932da75d8c0162683a03f",
+  "tokenizer": "byte-v1-260",
+  "input_sha256": "d9a9c5a7abd1e56f99ba7d2392429e1c4376e3434bb3be84fdf9d9a9206d5e4b",
+  "representations": [
+    "pcode-plus-ssa-return-u32-v1"
+  ],
+  "corpus": null,
+  "checkpoint_sha256": null
+}

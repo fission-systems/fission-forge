@@ -1,0 +1,66 @@
+{
+  "scope": "eight_training_examples_memorization_not_heldout_accuracy",
+  "records": [
+    {
+      "id": "shallow_one_add_a_0000-O1",
+      "exit_code": 0,
+      "diagnostic": "",
+      "prompt_sha256": "5afbd2a82701c84c49258fb18e61d455738ae15b4ecf352ca4093074447b7f5e",
+      "checkpoint_sha256": "10ae4f8f57c34a81c299fec14e95f7969c3cad3ec85ea5ca996aa122a64e0581"
+    },
+    {
+      "id": "shallow_one_sub_a_0000-O1",
+      "exit_code": 0,
+      "diagnostic": "",
+      "prompt_sha256": "d023e41dacf12a8387981ac39ef5249b8adcd85c9d6d294f29986271bdcb0b15",
+      "checkpoint_sha256": "10ae4f8f57c34a81c299fec14e95f7969c3cad3ec85ea5ca996aa122a64e0581"
+    },
+    {
+      "id": "shallow_one_mul_a_0000-O1",
+      "exit_code": 0,
+      "diagnostic": "",
+      "prompt_sha256": "d327281b736a451e1d7e37129b8492af411c5d78a4cf281c914c4c2790ade660",
+      "checkpoint_sha256": "10ae4f8f57c34a81c299fec14e95f7969c3cad3ec85ea5ca996aa122a64e0581"
+    },
+    {
+      "id": "shallow_one_and_a_0000-O1",
+      "exit_code": 0,
+      "diagnostic": "",
+      "prompt_sha256": "3ba28c24e245fe86e8d360917642f30699a6f95c19d817661f69cf8b3eccd67d",
+      "checkpoint_sha256": "10ae4f8f57c34a81c299fec14e95f7969c3cad3ec85ea5ca996aa122a64e0581"
+    },
+    {
+      "id": "shallow_one_or_a_0000-O1",
+      "exit_code": 0,
+      "diagnostic": "",
+      "prompt_sha256": "3e836b7f099e43ef3d342d88e1209a1f672a01587956bf34dbee53c858060cc7",
+      "checkpoint_sha256": "10ae4f8f57c34a81c299fec14e95f7969c3cad3ec85ea5ca996aa122a64e0581"
+    },
+    {
+      "id": "shallow_one_xor_a_0000-O1",
+      "exit_code": 0,
+      "diagnostic": "",
+      "prompt_sha256": "3d364f1f75b9d0146c3caf09ba8846aa1d41cea366ca44a6d62c8be1cc3f02e6",
+      "checkpoint_sha256": "10ae4f8f57c34a81c299fec14e95f7969c3cad3ec85ea5ca996aa122a64e0581"
+    },
+    {
+      "id": "shallow_one_shl_a_0002-O1",
+      "exit_code": 0,
+      "diagnostic": "",
+      "prompt_sha256": "c2b880dbed46b3ad6f96882f420b521e3e13b9d997340953dbda3c95a1ca165f",
+      "checkpoint_sha256": "10ae4f8f57c34a81c299fec14e95f7969c3cad3ec85ea5ca996aa122a64e0581"
+    },
+    {
+      "id": "shallow_one_shr_a_0000-O1",
+      "exit_code": 0,
+      "diagnostic": "",
+      "prompt_sha256": "a7cb6a8d461dafbd714f44ea3d0345ab9d3986fd590c37ef95f2e1c4aac7af48",
+      "checkpoint_sha256": "10ae4f8f57c34a81c299fec14e95f7969c3cad3ec85ea5ca996aa122a64e0581"
+    }
+  ],
+  "expected_targets": 8,
+  "checkpoint_sha256": "10ae4f8f57c34a81c299fec14e95f7969c3cad3ec85ea5ca996aa122a64e0581",
+  "checkpoint_state_sha256": "30a7167dbfdbceba31204bdc6e459fa7339fd9f397e9ad19b68e8e8f27931963",
+  "test_model_examples": 0,
+  "validation_model_examples": 0
+}

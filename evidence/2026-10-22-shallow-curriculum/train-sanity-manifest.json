@@ -1,0 +1,100 @@
+{
+  "scope": "eight_training_examples_memorization_not_heldout_accuracy",
+  "plan": {
+    "scope": "eight_training_examples_memorization_not_heldout_accuracy",
+    "ids": [
+      "shallow_one_add_a_0000-O1",
+      "shallow_one_sub_a_0000-O1",
+      "shallow_one_mul_a_0000-O1",
+      "shallow_one_and_a_0000-O1",
+      "shallow_one_or_a_0000-O1",
+      "shallow_one_xor_a_0000-O1",
+      "shallow_one_shl_a_0002-O1",
+      "shallow_one_shr_a_0000-O1"
+    ],
+    "dataset_sha256": "25722b7491639ec41a87ec61e878972a99b60a61464932da75d8c0162683a03f",
+    "train_split_sha256": "f1f98866d6b50bb45568dcb97ab5d5c24241fc2f131977106faeda7941bdc861",
+    "steps": 600,
+    "learning_rate": 0.003,
+    "seed": 42,
+    "max_new_tokens": 128,
+    "model": {
+      "vocab_size": 260,
+      "hidden_size": 128,
+      "heads": 4,
+      "layers": 2,
+      "feed_forward_size": 512,
+      "max_seq_len": 2048,
+      "rotary_positions": true
+    },
+    "test_model_examples": 0,
+    "validation_model_examples": 0,
+    "selection": "fixed_final_step_before_functional_scoring"
+  },
+  "targets": [
+    {
+      "id": "shallow_one_add_a_0000-O1",
+      "prompt_sha256": "5afbd2a82701c84c49258fb18e61d455738ae15b4ecf352ca4093074447b7f5e",
+      "source_sha256": "937ead4790c1696bd626c1e87848159c4738ac1edf5e62046fd9e33da2f26dfb",
+      "reference_module_sha256": "218cca446b29fb099ec433179c8ddcbb522ea031ecb28e158f2b29a7c9947d78"
+    },
+    {
+      "id": "shallow_one_sub_a_0000-O1",
+      "prompt_sha256": "d023e41dacf12a8387981ac39ef5249b8adcd85c9d6d294f29986271bdcb0b15",
+      "source_sha256": "e60b00cb49c71d4b373881e4ce83f24b99d9eb628f9d1d27162107efa90631a5",
+      "reference_module_sha256": "9f790bfb9ef4ec7337857323d01e45711fd5c659a56b509c6f79009a0d0b91f5"
+    },
+    {
+      "id": "shallow_one_mul_a_0000-O1",
+      "prompt_sha256": "d327281b736a451e1d7e37129b8492af411c5d78a4cf281c914c4c2790ade660",
+      "source_sha256": "b5a71dd7d8afea8166dbcc742c745e82ac8529ec04e1f5d22fd5a08f79efc9af",
+      "reference_module_sha256": "fe70f3122b36e13b1c4ed11c1af33c326599505c85b165bc4ba4fa88aa36f882"
+    },
+    {
+      "id": "shallow_one_and_a_0000-O1",
+      "prompt_sha256": "3ba28c24e245fe86e8d360917642f30699a6f95c19d817661f69cf8b3eccd67d",
+      "source_sha256": "4e8e4aeb05fbe384922d635396e20ae38fedca535ac942686e686308d7c4aa73",
+      "reference_module_sha256": "f40facceef1ed8ceb7326955b682693c1b223d84e155ccd35410f7ac6e7d657c"
+    },
+    {
+      "id": "shallow_one_or_a_0000-O1",
+      "prompt_sha256": "3e836b7f099e43ef3d342d88e1209a1f672a01587956bf34dbee53c858060cc7",
+      "source_sha256": "ea7e3ae5177f03989ec86e065fb2a9a634e6cdd4dcc879f56afe63bf53825645",
+      "reference_module_sha256": "aaf7527ac61cb74bc1a526b790927422da7d1acecdf817b8c638e5d09b7521fb"
+    },
+    {
+      "id": "shallow_one_xor_a_0000-O1",
+      "prompt_sha256": "3d364f1f75b9d0146c3caf09ba8846aa1d41cea366ca44a6d62c8be1cc3f02e6",
+      "source_sha256": "1000a4099de33d838946933677514110a2eee056e34cf01c823822df1ab6a8b8",
+      "reference_module_sha256": "c5db238ef1123edf8770dcc0514a838b50938301eaea3076aa42b5f47281dd85"
+    },
+    {
+      "id": "shallow_one_shl_a_0002-O1",
+      "prompt_sha256": "c2b880dbed46b3ad6f96882f420b521e3e13b9d997340953dbda3c95a1ca165f",
+      "source_sha256": "f01cf20392ca3a4a78052bc7c0b4cfae0a7a6483752c996eb87da543350bafec",
+      "reference_module_sha256": "b01a532e7b4ea810a30c6bc2763cabadd39e6b163bd30e9e1cdbae4c3ecaebe8"
+    },
+    {
+      "id": "shallow_one_shr_a_0000-O1",
+      "prompt_sha256": "a7cb6a8d461dafbd714f44ea3d0345ab9d3986fd590c37ef95f2e1c4aac7af48",
+      "source_sha256": "7acdba327564628e63f5d3ee12b6808c841a26fbeb5357f52295b43b2b23c581",
+      "reference_module_sha256": "24aabd41be332861c1cacbf2e26272527837febf5487c10955b23719d933114a"
+    }
+  ],
+  "settings": {
+    "execution_timeout_seconds": 10,
+    "fuel_per_case": 100000,
+    "memory_bytes": 1048576
+  },
+  "corpus_lock_sha256": "14d3a16bc2b0a03fdfa0c536c5896d9635423ca7530fd90a0009cc914f3d633a",
+  "inputs_sha256": "d9f50039e93e4e725811ee8caf8ffab8c2cd2b2e9f1e57a15e9a13d15b981244",
+  "references_sha256": "e59bfe474869f91ad22128a14b200f5028ae4a9d9b47344aa7361ca3c34932ed",
+  "compiler": "/opt/homebrew/Cellar/llvm/22.1.8/bin/clang-22",
+  "compiler_sha256": "305697d3868243dca6e4aabf4f628df7de135d701eb4fd78f6a5d7528fef4395",
+  "linker_sha256": "fac671d98ef62b8a11d067a2076b8a369bbf6990b54ce6e44f6c4c22be7eda5c",
+  "worker_sha256": "7f99a5c6204363bdc1520e1667f34089e212060fb31a345e00f11f33f9a49e8d",
+  "evaluator_sha256": "7bb4d601e6f8a537ea7a2f3014741428e81d79f24521c9a5406ad5f9d629f5f9",
+  "reference_comparisons": 512,
+  "test_model_examples": 0,
+  "validation_model_examples": 0
+}

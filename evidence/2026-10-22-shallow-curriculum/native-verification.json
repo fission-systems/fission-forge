@@ -1,0 +1,7 @@
+{
+  "status": "passed",
+  "programs": 560,
+  "probes_per_program": 64,
+  "comparisons": 35840,
+  "scope": "owned_host_C_vs_generator_oracle_only_not_x86_IR_parity"
+}

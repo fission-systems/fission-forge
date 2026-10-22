@@ -1,0 +1,7 @@
+{
+  "source_base_revision": "e881f349d83ec207a2371bcd0ea36341d9e5b98f",
+  "matching_public_commit": "291aacd1579af948cfa738c08f869cb2ed051e09",
+  "all_uploaded_rust_cargo_files_match": true,
+  "uploaded_job_helper_hash_verified": true,
+  "executed_driver_hash_verified": true
+}

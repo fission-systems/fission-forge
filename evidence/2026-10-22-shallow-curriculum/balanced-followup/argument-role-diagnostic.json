@@ -1,0 +1,15 @@
+{
+  "train_first_body_argument": {
+    "b": 112,
+    "a": 205
+  },
+  "validation_first_body_argument": {
+    "b": 205
+  },
+  "generated_first_body_argument": {
+    "a": 135,
+    "b": 70
+  },
+  "distinct_raw_completions": 18,
+  "scope": "posthoc_diagnostic_not_causal_proof"
+}

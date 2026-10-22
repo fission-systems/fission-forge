@@ -1,0 +1,6 @@
+{
+  "all_targets_prompts_sources_modules_and_oracles_identical": true,
+  "reference_comparisons": 13120,
+  "inputs_sha256": "d9f50039e93e4e725811ee8caf8ffab8c2cd2b2e9f1e57a15e9a13d15b981244",
+  "references_sha256": "57fb16a46153152174df206857ef82692bc89953e9cdaa3ea6e8a6431b60c0f1"
+}
