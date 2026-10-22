@@ -92,7 +92,7 @@ def main():
         if sha(resume/'training.safetensors')!=job['baseline_checkpoint_sha256']:raise RuntimeError('diagnostic altered weights')
     elif jobpath.exists() and json.loads(jobpath.read_text())['mode']=='fresh':
         sys.path.insert(0,str(ROOT));import fresh_job
-        fresh_job.run(json.loads(jobpath.read_text()),ROOT,RESULT,forge,config,corpus,env,train,write,sha,status,START,total_mib)
+        fresh_job.run(json.loads(jobpath.read_text()),ROOT,RESULT,forge,config,corpus,env,train,write,sha,status,START,total_mib,measure)
     elif jobpath.exists():
         job=json.loads(jobpath.read_text());resume=ROOT/'resume'
         if sha(resume/'training.safetensors')!=job['baseline_checkpoint_sha256']:raise RuntimeError('resume payload changed')
@@ -159,6 +159,7 @@ if __name__=='__main__':
                 info=json.loads(report.read_text());keep_weights.add(Path(info['final_checkpoint']).name)
                 if info.get('best_validation'):keep_weights.add('step-%08d'%info['best_validation']['step'])
             def select(item):
+                if item.name.startswith('results/syntax-sanity/'):return item
                 if keep_weights and item.name.endswith('/training.safetensors') and Path(item.name).parent.name not in keep_weights:return None
                 return item
             with tarfile.open(ARCHIVE,'w:gz') as archive:archive.add(RESULT,arcname='results',filter=select)

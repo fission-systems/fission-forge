@@ -14,11 +14,12 @@ import shutil
 import struct
 import subprocess
 import expressions
+import shallow
 
 MASK = 2**32 - 1
 FAMILIES = {'affine', 'bitmask', 'rotate_mix', 'select', 'bounded_loop', 'carry',
             'remainder', 'xor_fold', 'clamp', 'quotient_round'}
-FAMILIES |= set(expressions.TEMPLATES)
+FAMILIES |= set(expressions.TEMPLATES) | set(shallow.TEMPLATES)
 SPLITS = {'train', 'validation', 'test'}
 
 
@@ -77,7 +78,7 @@ def program(family, index, seed, split):
         'quotient_round': f'unsigned int d = (b & 255u) + 1u; return (a / d) + ((a % d) != 0u) + {c}u;',
     }
     identifier = f'{family}_{index:04d}'
-    expression = expressions.instantiate(family,index,seed) if family in expressions.TEMPLATES else None
+    expression = (expressions.instantiate(family,index,seed) if family in expressions.TEMPLATES else shallow.instantiate(family,index,seed) if family in shallow.TEMPLATES else None)
     body = 'return '+expressions.render(expression)+';' if expression is not None else bodies[family]
     source = f'unsigned int f(unsigned int a, unsigned int b) {{ {body} }}'
     return dict(id=identifier, family=family, split=split, compiled_name='corpus_' + identifier,
@@ -232,6 +233,7 @@ def build(args):
                     python_version=run(['python3','--version']).strip(), generator_sha256=sha(Path(__file__).read_bytes()), expression_generator_sha256=sha(Path(expressions.__file__).read_bytes()),
                     compiler_flags=['--target=x86_64-unknown-linux-gnu','-std=c11','-g0','-fno-inline','-fno-builtin','-fno-stack-protector','-fno-vectorize','-fno-slp-vectorize','-fno-unroll-loops','-nostdlib','-fuse-ld=lld'],
                     external_evaluation_overlap='not_measured', benchmark_sources_used=False)
+    if any(f in shallow.TEMPLATES for f in cfg['families']):manifest['shallow_generator_sha256']=sha(Path(shallow.__file__).read_bytes())
     write(output/'manifest.json', manifest)
     with (output/'pool.jsonl').open('w') as pool:
         for family, (path, items) in families.items():

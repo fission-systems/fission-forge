@@ -15,8 +15,11 @@ def first_index(seed,count):
     return order[0]
 
 
-def run(job,root,result,forge,config,corpus,env,train,write,sha,status,start,total_mib):
+def run(job,root,result,forge,config,corpus,env,train,write,sha,status,start,total_mib,measure=None):
     write(result/'fresh-plan.json',job)
+    if job.get('syntax_sanity'):
+        import syntax_sanity
+        syntax_sanity.run(job['syntax_sanity'],result,forge,corpus,env,measure,write,sha)
     training=[json.loads(line) for line in (corpus/'release/train.jsonl').read_text().splitlines()]
     sizes={json.loads(line)['metadata']['id']:json.loads(line)['metadata']['sequence_length'] for line in (corpus/'pool.jsonl').read_text().splitlines()}
     if job.get('tokenizer'):
