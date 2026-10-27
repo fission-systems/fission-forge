@@ -187,3 +187,13 @@ keeping the same 1367 / 205 / 112 rows. With the same model and updates it compi
 3/205 functions, but those three coincide with a fixed literal 7 the model emits
 in 156/205 outputs. Literal copying and argument-role binding remain unsolved.
 See [evidence](../evidence/2026-10-28-compact-lane/README.md).
+
+## Pretrained-model comparison
+
+Fine-tuning `Qwen/Qwen2.5-Coder-0.5B` (Apache-2.0) for 3 epochs on the same
+compact-lane rows compiles **205/205** validation outputs and matches **79/205**
+functions with the NLL-selected checkpoint (97/205 at the final step; scratch
+model: 3/205, coincidental). It copies literals and composes held-out argument
+roles for two-operation functions (76-97 of 98) but wraps one-operation functions in
+the training prior `<< 3u`. See
+[evidence](../evidence/2026-10-28-pretrained-finetune/README.md).

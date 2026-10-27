@@ -1,0 +1,14 @@
+{
+  "torch": "2.11.0+cu130",
+  "transformers": "5.20.2",
+  "gpu": "NVIDIA L4",
+  "parameters": 494032768,
+  "model": "Qwen/Qwen2.5-Coder-0.5B",
+  "revision": "8123ea2e9354afb7ffcc6c8641d1b2f5ecf18301",
+  "eos_token_id": 151643,
+  "data": {
+    "train.jsonl": "518573530b32ed9c2ae7bca381236b0a1cda2d2fbb4563b0b3b6594f62bc886c",
+    "validation.jsonl": "aa42180d16c382eb8528dcc42c3e102ea11a652263efe6c14c29c2b10ead8327",
+    "train-probe.jsonl": "ee7aca7928729bde675ade56899d0f3cf28ddce7737993b2613505663fd73873"
+  }
+}

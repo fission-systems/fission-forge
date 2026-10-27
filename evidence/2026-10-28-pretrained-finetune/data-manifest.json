@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "lane": "pcode-ssa-return-u32-compact-v1",
+  "corpus_lock_sha256": "f6a04c77cea05d64006e5928748f1fcfd9b49120d1dfd8fd0c7295b2538bc1a4",
+  "files": {
+    "train.jsonl": {
+      "rows": 1367,
+      "sha256": "518573530b32ed9c2ae7bca381236b0a1cda2d2fbb4563b0b3b6594f62bc886c"
+    },
+    "validation.jsonl": {
+      "rows": 205,
+      "sha256": "aa42180d16c382eb8528dcc42c3e102ea11a652263efe6c14c29c2b10ead8327"
+    },
+    "train-probe.jsonl": {
+      "rows": 456,
+      "sha256": "ee7aca7928729bde675ade56899d0f3cf28ddce7737993b2613505663fd73873"
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "job": {
+    "model": "Qwen/Qwen2.5-Coder-0.5B",
+    "revision": "8123ea2e9354afb7ffcc6c8641d1b2f5ecf18301",
+    "seed": 42,
+    "learning_rate": 2e-05,
+    "epochs": 3,
+    "batch_size": 8,
+    "warmup_steps": 20,
+    "evaluate_every": 25,
+    "max_new_tokens": 128
+  },
+  "parameters": 494032768,
+  "steps_per_epoch": 171,
+  "total_steps": 513,
+  "initial_validation_nll": 2.055861726130765,
+  "best_validation": {
+    "nll": 0.17032575277912088,
+    "step": 50
+  },
+  "final_step": 513,
+  "train_wall_seconds": 182.802953237,
+  "longest_sequence": 225,
+  "test_model_examples": 0
+}

@@ -1,0 +1,456 @@
+{"id": "shallow_extra_add_b_0000-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b & 2u) + a); }", "ended_with_eos": true, "tokens": 24}
+{"id": "shallow_extra_add_b_0003-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 5u) << 3u); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_extra_add_b_0006-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 8u) << 3u); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_extra_add_b_0009-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b & 11u) + a); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_extra_add_b_0012-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 14u) << 3u); }", "ended_with_eos": true, "tokens": 27}
+{"id": "shallow_extra_add_b_0015-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 24u) << 3u); }", "ended_with_eos": true, "tokens": 27}
+{"id": "shallow_extra_add_b_0018-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 223u) << 3u); }", "ended_with_eos": true, "tokens": 28}
+{"id": "shallow_extra_add_b_0021-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 84u) << 3u); }", "ended_with_eos": true, "tokens": 27}
+{"id": "shallow_extra_add_b_0024-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 136u) << 3u); }", "ended_with_eos": true, "tokens": 28}
+{"id": "shallow_extra_add_b_0027-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 226u) << 3u); }", "ended_with_eos": true, "tokens": 28}
+{"id": "shallow_extra_add_b_0030-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 103u) << 3u); }", "ended_with_eos": true, "tokens": 28}
+{"id": "shallow_extra_add_b_0033-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 173u) << 3u); }", "ended_with_eos": true, "tokens": 28}
+{"id": "shallow_extra_add_b_0036-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b & 193u) + a); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_extra_add_b_0039-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 226u) << 3u); }", "ended_with_eos": true, "tokens": 28}
+{"id": "shallow_extra_add_b_0042-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b & 119u) + a); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_extra_add_b_0045-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b & 167u) + a); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_extra_add_b_0048-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 63u) << 3u); }", "ended_with_eos": true, "tokens": 27}
+{"id": "shallow_extra_add_b_0051-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 42u) << 3u); }", "ended_with_eos": true, "tokens": 27}
+{"id": "shallow_extra_add_b_0054-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 6u) << 3u); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_extra_add_b_0057-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 22u) << 3u); }", "ended_with_eos": true, "tokens": 27}
+{"id": "shallow_extra_add_b_0060-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 61u) << 3u); }", "ended_with_eos": true, "tokens": 27}
+{"id": "shallow_extra_and_b_0001-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b ^ 3u) & a); }", "ended_with_eos": true, "tokens": 24}
+{"id": "shallow_extra_and_b_0004-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b ^ 6u) & a); }", "ended_with_eos": true, "tokens": 24}
+{"id": "shallow_extra_and_b_0007-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b ^ 9u) & a); }", "ended_with_eos": true, "tokens": 24}
+{"id": "shallow_extra_and_b_0010-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b ^ 12u) & a); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_extra_and_b_0013-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b ^ 15u) & a); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_extra_and_b_0016-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b ^ 81u) & a); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_extra_and_b_0019-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b ^ 194u) & a); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_extra_and_b_0022-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b ^ 165u) & a); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_extra_and_b_0025-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b ^ 73u) & a); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_extra_and_b_0028-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b ^ 173u) & a); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_extra_and_b_0031-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b ^ 106u) & a); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_extra_and_b_0034-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b ^ 143u) & a); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_extra_and_b_0037-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b ^ 53u) & a); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_extra_and_b_0040-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b ^ 6u) & a); }", "ended_with_eos": true, "tokens": 24}
+{"id": "shallow_extra_and_b_0043-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b ^ 103u) & a); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_extra_and_b_0046-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b ^ 213u) & a); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_extra_and_b_0049-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b ^ 103u) & a); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_extra_and_b_0052-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b ^ 16u) & a); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_extra_and_b_0055-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b ^ 43u) & a); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_extra_and_b_0058-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b ^ 176u) & a); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_extra_and_b_0061-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b ^ 10u) & a); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_extra_mul_b_0002-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b | 4u) * a); }", "ended_with_eos": true, "tokens": 24}
+{"id": "shallow_extra_mul_b_0005-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b | 7u) * a); }", "ended_with_eos": true, "tokens": 24}
+{"id": "shallow_extra_mul_b_0008-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b | 16u) * a); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_extra_mul_b_0011-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b | 13u) * a); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_extra_mul_b_0014-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b | 133u) * a); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_extra_mul_b_0017-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b | 85u) * a); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_extra_mul_b_0020-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b | 89u) * a); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_extra_mul_b_0023-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b | 213u) * a); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_extra_mul_b_0026-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b | 84u) * a); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_extra_mul_b_0029-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b | 173u) * a); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_extra_mul_b_0032-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b | 136u) * a); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_extra_mul_b_0035-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b | 183u) * a); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_extra_mul_b_0038-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b | 73u) * a); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_extra_mul_b_0041-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b | 86u) * a); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_extra_mul_b_0044-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b | 79u) * a); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_extra_mul_b_0047-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b | 161u) * a); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_extra_mul_b_0050-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b | 6u) * a); }", "ended_with_eos": true, "tokens": 24}
+{"id": "shallow_extra_mul_b_0053-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b | 52u) * a); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_extra_mul_b_0056-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b | 192u) * a); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_extra_mul_b_0059-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b | 32u) * a); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_extra_or_b_0000-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b ^ 2u) | a); }", "ended_with_eos": true, "tokens": 24}
+{"id": "shallow_extra_or_b_0003-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b ^ 5u) | a); }", "ended_with_eos": true, "tokens": 24}
+{"id": "shallow_extra_or_b_0006-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b ^ 8u) | a); }", "ended_with_eos": true, "tokens": 24}
+{"id": "shallow_extra_or_b_0009-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b ^ 11u) | a); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_extra_or_b_0012-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b ^ 14u) | a); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_extra_or_b_0015-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b ^ 10u) | a); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_extra_or_b_0018-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b ^ 167u) | a); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_extra_or_b_0021-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b ^ 70u) | a); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_extra_or_b_0024-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b ^ 173u) | a); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_extra_or_b_0027-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b ^ 66u) | a); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_extra_or_b_0030-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b ^ 136u) | a); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_extra_or_b_0033-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b ^ 213u) | a); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_extra_or_b_0036-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b ^ 240u) | a); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_extra_or_b_0039-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b ^ 183u) | a); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_extra_or_b_0042-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b ^ 146u) | a); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_extra_or_b_0045-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b ^ 136u) | a); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_extra_or_b_0048-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b ^ 50u) | a); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_extra_or_b_0051-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b ^ 252u) | a); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_extra_or_b_0054-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b ^ 102u) | a); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_extra_or_b_0057-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b ^ 53u) | a); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_extra_or_b_0060-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b ^ 18u) | a); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_extra_shl_b_0001-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 24u) << 3u); }", "ended_with_eos": true, "tokens": 27}
+{"id": "shallow_extra_shl_b_0004-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 12u) << 3u); }", "ended_with_eos": true, "tokens": 27}
+{"id": "shallow_extra_shl_b_0007-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 13u) << 3u); }", "ended_with_eos": true, "tokens": 27}
+{"id": "shallow_extra_shl_b_0010-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 12u) << 3u); }", "ended_with_eos": true, "tokens": 27}
+{"id": "shallow_extra_shl_b_0013-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 12u) << 3u); }", "ended_with_eos": true, "tokens": 27}
+{"id": "shallow_extra_shl_b_0016-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 12u) << 3u); }", "ended_with_eos": true, "tokens": 27}
+{"id": "shallow_extra_shl_b_0019-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 13u) << 3u); }", "ended_with_eos": true, "tokens": 27}
+{"id": "shallow_extra_shl_b_0022-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 12u) << 3u); }", "ended_with_eos": true, "tokens": 27}
+{"id": "shallow_extra_shl_b_0025-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 12u) << 3u); }", "ended_with_eos": true, "tokens": 27}
+{"id": "shallow_extra_shl_b_0028-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 12u) << 3u); }", "ended_with_eos": true, "tokens": 27}
+{"id": "shallow_extra_shl_b_0031-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 12u) << 3u); }", "ended_with_eos": true, "tokens": 27}
+{"id": "shallow_extra_shl_b_0034-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 13u) << 3u); }", "ended_with_eos": true, "tokens": 27}
+{"id": "shallow_extra_shl_b_0037-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 12u) << 3u); }", "ended_with_eos": true, "tokens": 27}
+{"id": "shallow_extra_shl_b_0040-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 12u) << 3u); }", "ended_with_eos": true, "tokens": 27}
+{"id": "shallow_extra_shl_b_0043-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 216u) << 3u); }", "ended_with_eos": true, "tokens": 28}
+{"id": "shallow_extra_shl_b_0046-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 13u) << 3u); }", "ended_with_eos": true, "tokens": 27}
+{"id": "shallow_extra_shl_b_0049-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 12u) << 3u); }", "ended_with_eos": true, "tokens": 27}
+{"id": "shallow_extra_shl_b_0052-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 254u) << 3u); }", "ended_with_eos": true, "tokens": 28}
+{"id": "shallow_extra_shl_b_0055-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 12u) << 3u); }", "ended_with_eos": true, "tokens": 27}
+{"id": "shallow_extra_shl_b_0058-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 216u) << 3u); }", "ended_with_eos": true, "tokens": 28}
+{"id": "shallow_extra_shl_b_0061-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 13u) << 3u); }", "ended_with_eos": true, "tokens": 27}
+{"id": "shallow_extra_shr_b_0002-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 4u) >> 3u); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_extra_shr_b_0005-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 7u) >> 3u); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_extra_shr_b_0008-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 16u) >> 3u); }", "ended_with_eos": true, "tokens": 27}
+{"id": "shallow_extra_shr_b_0011-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 13u) >> 3u); }", "ended_with_eos": true, "tokens": 27}
+{"id": "shallow_extra_shr_b_0014-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 214u) >> 3u); }", "ended_with_eos": true, "tokens": 28}
+{"id": "shallow_extra_shr_b_0017-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 113u) >> 3u); }", "ended_with_eos": true, "tokens": 28}
+{"id": "shallow_extra_shr_b_0020-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 14u) >> 3u); }", "ended_with_eos": true, "tokens": 27}
+{"id": "shallow_extra_shr_b_0023-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 136u) >> 3u); }", "ended_with_eos": true, "tokens": 28}
+{"id": "shallow_extra_shr_b_0026-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 61u) >> 3u); }", "ended_with_eos": true, "tokens": 27}
+{"id": "shallow_extra_shr_b_0029-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 223u) >> 3u); }", "ended_with_eos": true, "tokens": 28}
+{"id": "shallow_extra_shr_b_0032-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 192u) >> 3u); }", "ended_with_eos": true, "tokens": 28}
+{"id": "shallow_extra_shr_b_0035-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 53u) >> 3u); }", "ended_with_eos": true, "tokens": 27}
+{"id": "shallow_extra_shr_b_0038-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 176u) >> 3u); }", "ended_with_eos": true, "tokens": 28}
+{"id": "shallow_extra_shr_b_0041-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 43u) >> 3u); }", "ended_with_eos": true, "tokens": 27}
+{"id": "shallow_extra_shr_b_0044-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 43u) >> 3u); }", "ended_with_eos": true, "tokens": 27}
+{"id": "shallow_extra_shr_b_0047-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 226u) >> 3u); }", "ended_with_eos": true, "tokens": 28}
+{"id": "shallow_extra_shr_b_0050-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 116u) >> 3u); }", "ended_with_eos": true, "tokens": 28}
+{"id": "shallow_extra_shr_b_0053-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 93u) >> 3u); }", "ended_with_eos": true, "tokens": 27}
+{"id": "shallow_extra_shr_b_0056-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 153u) >> 3u); }", "ended_with_eos": true, "tokens": 28}
+{"id": "shallow_extra_shr_b_0059-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 30u) >> 3u); }", "ended_with_eos": true, "tokens": 27}
+{"id": "shallow_extra_sub_b_0000-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b | 2u) - a); }", "ended_with_eos": true, "tokens": 24}
+{"id": "shallow_extra_sub_b_0003-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b | 5u) - a); }", "ended_with_eos": true, "tokens": 24}
+{"id": "shallow_extra_sub_b_0006-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b | 8u) - a); }", "ended_with_eos": true, "tokens": 24}
+{"id": "shallow_extra_sub_b_0009-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b | 11u) - a); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_extra_sub_b_0012-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b | 14u) - a); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_extra_sub_b_0015-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b | 133u) - a); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_extra_sub_b_0018-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b | 173u) - a); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_extra_sub_b_0021-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b | 46u) - a); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_extra_sub_b_0024-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b | 14u) - a); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_extra_sub_b_0027-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b | 25u) - a); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_extra_sub_b_0030-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b | 50u) - a); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_extra_sub_b_0033-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b | 30u) - a); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_extra_sub_b_0036-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b | 83u) - a); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_extra_sub_b_0039-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b | 93u) - a); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_extra_sub_b_0042-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b | 94u) - a); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_extra_sub_b_0045-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b | 233u) - a); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_extra_sub_b_0048-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b | 212u) - a); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_extra_sub_b_0051-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b | 214u) - a); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_extra_sub_b_0054-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b | 183u) - a); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_extra_sub_b_0057-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b | 107u) - a); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_extra_sub_b_0060-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b | 31u) - a); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_extra_xor_b_0001-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b & 3u) ^ a); }", "ended_with_eos": true, "tokens": 24}
+{"id": "shallow_extra_xor_b_0004-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b & 6u) ^ a); }", "ended_with_eos": true, "tokens": 24}
+{"id": "shallow_extra_xor_b_0007-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b & 9u) ^ a); }", "ended_with_eos": true, "tokens": 24}
+{"id": "shallow_extra_xor_b_0010-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b & 12u) ^ a); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_extra_xor_b_0013-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b & 15u) ^ a); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_extra_xor_b_0016-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b & 112u) ^ a); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_extra_xor_b_0019-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b & 176u) ^ a); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_extra_xor_b_0022-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b & 6u) ^ a); }", "ended_with_eos": true, "tokens": 24}
+{"id": "shallow_extra_xor_b_0025-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b & 167u) ^ a); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_extra_xor_b_0028-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b & 186u) ^ a); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_extra_xor_b_0031-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b & 106u) ^ a); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_extra_xor_b_0034-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b & 126u) ^ a); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_extra_xor_b_0037-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b & 240u) ^ a); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_extra_xor_b_0040-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b & 223u) ^ a); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_extra_xor_b_0043-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b & 79u) ^ a); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_extra_xor_b_0046-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b & 245u) ^ a); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_extra_xor_b_0049-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b & 52u) ^ a); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_extra_xor_b_0052-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b & 183u) ^ a); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_extra_xor_b_0055-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b & 223u) ^ a); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_extra_xor_b_0058-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b & 103u) ^ a); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_extra_xor_b_0061-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b & 73u) ^ a); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_one_add_a_0002-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a + 4u); }", "ended_with_eos": true, "tokens": 21}
+{"id": "shallow_one_add_a_0005-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a + 7u); }", "ended_with_eos": true, "tokens": 21}
+{"id": "shallow_one_add_a_0008-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a + 16u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_add_a_0011-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a + 13u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_add_a_0014-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a + 42u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_add_a_0017-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a * 133u); }", "ended_with_eos": true, "tokens": 23}
+{"id": "shallow_one_add_a_0020-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a + 103u); }", "ended_with_eos": true, "tokens": 23}
+{"id": "shallow_one_add_a_0023-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a + 73u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_add_a_0026-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a + 62u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_add_a_0029-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a + 53u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_add_a_0032-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a + 119u); }", "ended_with_eos": true, "tokens": 23}
+{"id": "shallow_one_add_a_0035-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a + 85u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_add_a_0038-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a + 126u); }", "ended_with_eos": true, "tokens": 23}
+{"id": "shallow_one_add_a_0041-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a + 119u); }", "ended_with_eos": true, "tokens": 23}
+{"id": "shallow_one_add_a_0044-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a + 76u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_add_a_0047-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a + 73u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_add_a_0050-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a * 126u); }", "ended_with_eos": true, "tokens": 23}
+{"id": "shallow_one_add_a_0053-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a + 22u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_add_a_0056-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a * 137u); }", "ended_with_eos": true, "tokens": 23}
+{"id": "shallow_one_add_a_0059-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a + 192u); }", "ended_with_eos": true, "tokens": 23}
+{"id": "shallow_one_and_a_0000-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 2u); }", "ended_with_eos": true, "tokens": 21}
+{"id": "shallow_one_and_a_0003-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 5u); }", "ended_with_eos": true, "tokens": 21}
+{"id": "shallow_one_and_a_0006-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 8u); }", "ended_with_eos": true, "tokens": 21}
+{"id": "shallow_one_and_a_0009-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 11u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_and_a_0012-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 14u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_and_a_0015-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 176u); }", "ended_with_eos": true, "tokens": 23}
+{"id": "shallow_one_and_a_0018-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 160u); }", "ended_with_eos": true, "tokens": 23}
+{"id": "shallow_one_and_a_0021-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 85u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_and_a_0024-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 166u); }", "ended_with_eos": true, "tokens": 23}
+{"id": "shallow_one_and_a_0027-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 23u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_and_a_0030-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 136u); }", "ended_with_eos": true, "tokens": 23}
+{"id": "shallow_one_and_a_0033-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 127u); }", "ended_with_eos": true, "tokens": 23}
+{"id": "shallow_one_and_a_0036-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 163u); }", "ended_with_eos": true, "tokens": 23}
+{"id": "shallow_one_and_a_0039-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 86u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_and_a_0042-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 54u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_and_a_0045-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 184u); }", "ended_with_eos": true, "tokens": 23}
+{"id": "shallow_one_and_a_0048-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 216u); }", "ended_with_eos": true, "tokens": 23}
+{"id": "shallow_one_and_a_0051-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 144u); }", "ended_with_eos": true, "tokens": 23}
+{"id": "shallow_one_and_a_0054-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 212u); }", "ended_with_eos": true, "tokens": 23}
+{"id": "shallow_one_and_a_0057-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 193u); }", "ended_with_eos": true, "tokens": 23}
+{"id": "shallow_one_and_a_0060-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 213u); }", "ended_with_eos": true, "tokens": 23}
+{"id": "shallow_one_mul_a_0003-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a * 4u); }", "ended_with_eos": true, "tokens": 21}
+{"id": "shallow_one_mul_a_0007-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a * 13u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_mul_a_0010-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a * 2u) + b); }", "ended_with_eos": true, "tokens": 24}
+{"id": "shallow_one_mul_a_0013-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a * 4u) + b); }", "ended_with_eos": true, "tokens": 24}
+{"id": "shallow_one_mul_a_0016-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a * 216u); }", "ended_with_eos": true, "tokens": 23}
+{"id": "shallow_one_mul_a_0019-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a * 113u); }", "ended_with_eos": true, "tokens": 23}
+{"id": "shallow_one_mul_a_0022-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a * 16u) + b); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_one_mul_a_0025-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a * 11u) + b); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_one_mul_a_0028-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a * 186u); }", "ended_with_eos": true, "tokens": 23}
+{"id": "shallow_one_mul_a_0031-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a * 103u); }", "ended_with_eos": true, "tokens": 23}
+{"id": "shallow_one_mul_a_0034-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a * 196u); }", "ended_with_eos": true, "tokens": 23}
+{"id": "shallow_one_mul_a_0037-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a * 173u); }", "ended_with_eos": true, "tokens": 23}
+{"id": "shallow_one_mul_a_0040-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a * 146u); }", "ended_with_eos": true, "tokens": 23}
+{"id": "shallow_one_mul_a_0043-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a * 100u); }", "ended_with_eos": true, "tokens": 23}
+{"id": "shallow_one_mul_a_0046-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a * 206u); }", "ended_with_eos": true, "tokens": 23}
+{"id": "shallow_one_mul_a_0049-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a * 46u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_mul_a_0052-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a * 176u); }", "ended_with_eos": true, "tokens": 23}
+{"id": "shallow_one_mul_a_0055-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a * 176u); }", "ended_with_eos": true, "tokens": 23}
+{"id": "shallow_one_mul_a_0058-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a * 186u); }", "ended_with_eos": true, "tokens": 23}
+{"id": "shallow_one_mul_a_0061-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a * 176u); }", "ended_with_eos": true, "tokens": 23}
+{"id": "shallow_one_or_a_0002-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a | 4u); }", "ended_with_eos": true, "tokens": 21}
+{"id": "shallow_one_or_a_0005-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a | 7u); }", "ended_with_eos": true, "tokens": 21}
+{"id": "shallow_one_or_a_0008-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a | 16u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_or_a_0011-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a | 13u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_or_a_0014-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a | 18u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_or_a_0017-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a | 153u); }", "ended_with_eos": true, "tokens": 23}
+{"id": "shallow_one_or_a_0020-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a | 173u); }", "ended_with_eos": true, "tokens": 23}
+{"id": "shallow_one_or_a_0023-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a | 106u); }", "ended_with_eos": true, "tokens": 23}
+{"id": "shallow_one_or_a_0026-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a | 183u); }", "ended_with_eos": true, "tokens": 23}
+{"id": "shallow_one_or_a_0029-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a | 213u); }", "ended_with_eos": true, "tokens": 23}
+{"id": "shallow_one_or_a_0032-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a | 64u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_or_a_0035-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a | 15u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_or_a_0038-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a | 143u); }", "ended_with_eos": true, "tokens": 23}
+{"id": "shallow_one_or_a_0041-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a | 113u); }", "ended_with_eos": true, "tokens": 23}
+{"id": "shallow_one_or_a_0044-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a | 162u); }", "ended_with_eos": true, "tokens": 23}
+{"id": "shallow_one_or_a_0047-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a | 86u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_or_a_0050-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a | 106u); }", "ended_with_eos": true, "tokens": 23}
+{"id": "shallow_one_or_a_0053-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a | 126u); }", "ended_with_eos": true, "tokens": 23}
+{"id": "shallow_one_or_a_0056-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a | 234u); }", "ended_with_eos": true, "tokens": 23}
+{"id": "shallow_one_or_a_0059-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a | 27u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_shl_a_0002-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a * 16u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_shl_a_0005-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a * 113u); }", "ended_with_eos": true, "tokens": 23}
+{"id": "shallow_one_shl_a_0008-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a * 16u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_shl_a_0011-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a * 13u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_shl_a_0014-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a * 31u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_shl_a_0018-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a * 171u); }", "ended_with_eos": true, "tokens": 23}
+{"id": "shallow_one_shl_a_0021-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a * 26u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_shl_a_0024-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a * 16u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_shl_a_0027-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a * 27u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_shl_a_0030-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a * 18u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_shr_a_0003-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a * 5u); }", "ended_with_eos": true, "tokens": 21}
+{"id": "shallow_one_shr_a_0006-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a * 16u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_shr_a_0009-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a * 173u); }", "ended_with_eos": true, "tokens": 23}
+{"id": "shallow_one_shr_a_0012-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a * 18u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_shr_a_0015-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a * 26u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_shr_a_0018-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a * 1u); }", "ended_with_eos": true, "tokens": 21}
+{"id": "shallow_one_shr_a_0021-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a * 15u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_shr_a_0024-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a * 19u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_shr_a_0027-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a * 22u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_shr_a_0030-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a * 30u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_sub_a_0002-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a - 10u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_sub_a_0005-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a - 10u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_sub_a_0008-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a - 10u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_sub_a_0011-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a - 10u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_sub_a_0014-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a - 10u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_sub_a_0017-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a - 10u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_sub_a_0020-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a - 10u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_sub_a_0023-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a - 10u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_sub_a_0026-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a - 10u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_sub_a_0029-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a - 10u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_sub_a_0032-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a - 10u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_sub_a_0035-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a - 10u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_sub_a_0038-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a - 10u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_sub_a_0041-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a - 10u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_sub_a_0044-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a - 11u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_sub_a_0047-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a - 11u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_sub_a_0050-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a - 10u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_sub_a_0053-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a - 10u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_sub_a_0056-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a - 11u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_sub_a_0059-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a - 10u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_xor_a_0000-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a ^ 2u); }", "ended_with_eos": true, "tokens": 21}
+{"id": "shallow_one_xor_a_0003-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a ^ 5u); }", "ended_with_eos": true, "tokens": 21}
+{"id": "shallow_one_xor_a_0006-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a ^ 8u); }", "ended_with_eos": true, "tokens": 21}
+{"id": "shallow_one_xor_a_0009-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a ^ 11u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_xor_a_0012-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a ^ 14u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_xor_a_0015-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a ^ 192u); }", "ended_with_eos": true, "tokens": 23}
+{"id": "shallow_one_xor_a_0018-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a ^ 163u); }", "ended_with_eos": true, "tokens": 23}
+{"id": "shallow_one_xor_a_0021-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a ^ 173u); }", "ended_with_eos": true, "tokens": 23}
+{"id": "shallow_one_xor_a_0024-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a ^ 94u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_xor_a_0027-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a ^ 166u); }", "ended_with_eos": true, "tokens": 23}
+{"id": "shallow_one_xor_a_0030-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a ^ 213u); }", "ended_with_eos": true, "tokens": 23}
+{"id": "shallow_one_xor_a_0033-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a ^ 144u); }", "ended_with_eos": true, "tokens": 23}
+{"id": "shallow_one_xor_a_0036-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a ^ 10u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_xor_a_0039-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a ^ 112u); }", "ended_with_eos": true, "tokens": 23}
+{"id": "shallow_one_xor_a_0042-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a ^ 93u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_xor_a_0045-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a ^ 254u); }", "ended_with_eos": true, "tokens": 23}
+{"id": "shallow_one_xor_a_0048-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a ^ 216u); }", "ended_with_eos": true, "tokens": 23}
+{"id": "shallow_one_xor_a_0051-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a ^ 240u); }", "ended_with_eos": true, "tokens": 23}
+{"id": "shallow_one_xor_a_0054-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a ^ 50u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_xor_a_0057-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a ^ 16u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_one_xor_a_0060-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a ^ 54u); }", "ended_with_eos": true, "tokens": 22}
+{"id": "shallow_two_add_a_0001-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 1u) + b); }", "ended_with_eos": true, "tokens": 24}
+{"id": "shallow_two_add_a_0004-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 6u) + b); }", "ended_with_eos": true, "tokens": 24}
+{"id": "shallow_two_add_a_0007-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 9u) + b); }", "ended_with_eos": true, "tokens": 24}
+{"id": "shallow_two_add_a_0010-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 13u) + b); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_two_add_a_0013-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 13u) + b); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_two_add_a_0016-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 143u) + b); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_add_a_0019-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 93u) + b); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_two_add_a_0022-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 85u) + b); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_two_add_a_0025-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 193u) + b); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_add_a_0028-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 31u) + b); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_two_add_a_0031-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 216u) + b); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_add_a_0034-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 62u) + b); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_two_add_a_0037-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 14u) + b); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_two_add_a_0040-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 13u) + b); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_two_add_a_0043-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 17u) + b); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_two_add_a_0046-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 212u) + b); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_add_a_0049-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 19u) + b); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_two_add_a_0052-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 31u) + b); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_two_add_a_0055-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 216u) + b); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_add_a_0058-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 16u) + b); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_two_add_a_0061-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 103u) + b); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_and_a_0002-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 4u) & b); }", "ended_with_eos": true, "tokens": 24}
+{"id": "shallow_two_and_a_0005-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 7u) & b); }", "ended_with_eos": true, "tokens": 24}
+{"id": "shallow_two_and_a_0008-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 16u) & b); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_two_and_a_0011-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 13u) & b); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_two_and_a_0014-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 73u) & b); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_two_and_a_0017-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 116u) & b); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_and_a_0020-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 193u) & b); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_and_a_0023-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 203u) & b); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_and_a_0026-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 86u) & b); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_two_and_a_0029-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 103u) & b); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_and_a_0032-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 206u) & b); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_and_a_0035-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 203u) & b); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_and_a_0038-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 82u) & b); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_two_and_a_0041-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 135u) & b); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_and_a_0044-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 84u) & b); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_two_and_a_0047-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 193u) & b); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_and_a_0050-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 39u) & b); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_two_and_a_0053-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 32u) & b); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_two_and_a_0056-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 186u) & b); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_and_a_0059-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 104u) & b); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_mul_a_0000-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 2u) * b); }", "ended_with_eos": true, "tokens": 24}
+{"id": "shallow_two_mul_a_0003-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 5u) * b); }", "ended_with_eos": true, "tokens": 24}
+{"id": "shallow_two_mul_a_0006-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 8u) * b); }", "ended_with_eos": true, "tokens": 24}
+{"id": "shallow_two_mul_a_0009-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 11u) * b); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_two_mul_a_0012-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 14u) * b); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_two_mul_a_0015-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 173u) * b); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_mul_a_0018-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 213u) * b); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_mul_a_0021-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 50u) * b); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_two_mul_a_0024-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 164u) * b); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_mul_a_0027-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 176u) * b); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_mul_a_0030-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 193u) * b); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_mul_a_0033-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 34u) * b); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_two_mul_a_0036-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 43u) * b); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_two_mul_a_0039-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 216u) * b); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_mul_a_0042-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 83u) * b); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_two_mul_a_0045-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 70u) * b); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_two_mul_a_0048-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 31u) * b); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_two_mul_a_0051-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 213u) * b); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_mul_a_0054-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 245u) * b); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_mul_a_0057-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 156u) * b); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_mul_a_0060-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 146u) * b); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_or_a_0001-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 3u) | b); }", "ended_with_eos": true, "tokens": 24}
+{"id": "shallow_two_or_a_0004-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 6u) | b); }", "ended_with_eos": true, "tokens": 24}
+{"id": "shallow_two_or_a_0007-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 9u) | b); }", "ended_with_eos": true, "tokens": 24}
+{"id": "shallow_two_or_a_0010-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 12u) | b); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_two_or_a_0013-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 15u) | b); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_two_or_a_0016-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 248u) | b); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_or_a_0019-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 223u) | b); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_or_a_0022-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 173u) | b); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_or_a_0025-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 73u) | b); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_two_or_a_0028-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 103u) | b); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_or_a_0031-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 134u) | b); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_or_a_0034-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 52u) | b); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_two_or_a_0037-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 106u) | b); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_or_a_0040-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 22u) | b); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_two_or_a_0043-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 89u) | b); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_two_or_a_0046-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 176u) | b); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_or_a_0049-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 79u) | b); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_two_or_a_0052-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 143u) | b); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_or_a_0055-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 212u) | b); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_or_a_0058-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 216u) | b); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_or_a_0061-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 132u) | b); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_shl_a_0002-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 24u) ^ 10u); }", "ended_with_eos": true, "tokens": 28}
+{"id": "shallow_two_shl_a_0005-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 13u) ^ 13u); }", "ended_with_eos": true, "tokens": 28}
+{"id": "shallow_two_shl_a_0008-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 12u) ^ 10u); }", "ended_with_eos": true, "tokens": 28}
+{"id": "shallow_two_shl_a_0011-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 13u) ^ 16u); }", "ended_with_eos": true, "tokens": 28}
+{"id": "shallow_two_shl_a_0014-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 123u) ^ 10u); }", "ended_with_eos": true, "tokens": 29}
+{"id": "shallow_two_shl_a_0017-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 12u) ^ 13u); }", "ended_with_eos": true, "tokens": 28}
+{"id": "shallow_two_shl_a_0020-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 10u) * b); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_two_shl_a_0023-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 119u) * b); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_shl_a_0026-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 103u) * b); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_shl_a_0029-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 6u) * b); }", "ended_with_eos": true, "tokens": 24}
+{"id": "shallow_two_shl_a_0032-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 12u) ^ 6u); }", "ended_with_eos": true, "tokens": 27}
+{"id": "shallow_two_shl_a_0035-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 80u) * b); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_two_shl_a_0038-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 12u) ^ 6u); }", "ended_with_eos": true, "tokens": 27}
+{"id": "shallow_two_shl_a_0041-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 113u) * b); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_shl_a_0044-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 42u) * b); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_two_shl_a_0047-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 8u) * b); }", "ended_with_eos": true, "tokens": 24}
+{"id": "shallow_two_shl_a_0050-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 127u) << 3u); }", "ended_with_eos": true, "tokens": 28}
+{"id": "shallow_two_shl_a_0053-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 136u) ^ 10u); }", "ended_with_eos": true, "tokens": 29}
+{"id": "shallow_two_shl_a_0056-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 120u) ^ 10u); }", "ended_with_eos": true, "tokens": 29}
+{"id": "shallow_two_shl_a_0059-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 113u) * b); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_shr_a_0022-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 15u) >> 3u); }", "ended_with_eos": true, "tokens": 27}
+{"id": "shallow_two_shr_a_0031-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 4u) >> 3u); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_shr_a_0039-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 6u) >> 3u); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_shr_a_0060-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 213u) >> 3u); }", "ended_with_eos": true, "tokens": 28}
+{"id": "shallow_two_sub_a_0002-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 4u) - b); }", "ended_with_eos": true, "tokens": 24}
+{"id": "shallow_two_sub_a_0005-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 7u) - b); }", "ended_with_eos": true, "tokens": 24}
+{"id": "shallow_two_sub_a_0008-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 16u) - b); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_two_sub_a_0011-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 13u) - b); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_two_sub_a_0014-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 130u) - b); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_sub_a_0017-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 119u) - b); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_sub_a_0020-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 216u) - b); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_sub_a_0023-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 66u) - b); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_two_sub_a_0026-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 183u) - b); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_sub_a_0029-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 136u) - b); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_sub_a_0032-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 12u) - b); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_two_sub_a_0035-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 50u) - b); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_two_sub_a_0038-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 136u) - b); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_sub_a_0041-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 61u) - b); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_two_sub_a_0044-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 6u) - b); }", "ended_with_eos": true, "tokens": 24}
+{"id": "shallow_two_sub_a_0047-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 174u) - b); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_sub_a_0050-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 144u) - b); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_sub_a_0053-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 53u) - b); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_two_sub_a_0056-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 194u) - b); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_sub_a_0059-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a ^ 234u) - b); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_xor_a_0000-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 2u) ^ b); }", "ended_with_eos": true, "tokens": 24}
+{"id": "shallow_two_xor_a_0003-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 5u) ^ b); }", "ended_with_eos": true, "tokens": 24}
+{"id": "shallow_two_xor_a_0006-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 8u) ^ b); }", "ended_with_eos": true, "tokens": 24}
+{"id": "shallow_two_xor_a_0009-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 11u) ^ b); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_two_xor_a_0012-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 14u) ^ b); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_two_xor_a_0015-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 254u) ^ b); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_xor_a_0018-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 112u) ^ b); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_xor_a_0021-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 83u) ^ b); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_two_xor_a_0024-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 133u) ^ b); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_xor_a_0027-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 246u) ^ b); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_xor_a_0030-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 53u) ^ b); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_two_xor_a_0033-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 176u) ^ b); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_xor_a_0036-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 93u) ^ b); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_two_xor_a_0039-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 30u) ^ b); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_two_xor_a_0042-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 116u) ^ b); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_xor_a_0045-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 87u) ^ b); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_two_xor_a_0048-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 73u) ^ b); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_two_xor_a_0051-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 106u) ^ b); }", "ended_with_eos": true, "tokens": 26}
+{"id": "shallow_two_xor_a_0054-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 31u) ^ b); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_two_xor_a_0057-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 84u) ^ b); }", "ended_with_eos": true, "tokens": 25}
+{"id": "shallow_two_xor_a_0060-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 153u) ^ b); }", "ended_with_eos": true, "tokens": 26}
