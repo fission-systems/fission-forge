@@ -1,0 +1,10 @@
+{
+  "files": {
+    "audit.json": "74e893ca0fff3a730c80641629a129777913d07b0fbe1a7be1f6b3387fa1ca78",
+    "test.jsonl": "8c3467370cc5ffc010c170483c89bff118687d08c7aa943625bd7f2fa22560f6",
+    "train.jsonl": "ffbed72f933a927d993ab2b268bc1d1f637809ef04ed7d9cc4621bb19a746ad6",
+    "validation.jsonl": "0a66f67441751258119fb2ba18775755daa69cb9830021f2abbe34ba5e656fe2"
+  },
+  "manifest_sha256": "e07e38b382b497b6f2a518736dbe6bf27960e4f7f924036065438b5eba661fa0",
+  "schema_version": 1
+}

@@ -116,6 +116,9 @@ impl Input {
             cfg::REPRESENTATION => cfg::compile(&self.raw, &self.profile),
             cfg::slice::REPRESENTATION => cfg::slice::compile(&self.raw, &self.profile),
             cfg::slice::COMPACT => cfg::slice::compile_compact(&self.raw, &self.profile),
+            cfg::slice::COMPACT_DECIMAL => {
+                cfg::slice::compile_compact_decimal(&self.raw, &self.profile)
+            }
             _ => bail!("unsupported input representation"),
         }
     }

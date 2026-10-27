@@ -11,6 +11,13 @@ pub struct Spec {
     pub train_split_sha256: String,
     pub source_weight: usize,
     pub merges: Vec<[u32; 2]>,
+    /// Every ASCII digit is its own segment, so merges can never join digits.
+    /// Omitted from serialization when false to keep older codec hashes stable.
+    #[serde(default, skip_serializing_if = "is_false")]
+    pub isolate_digits: bool,
+}
+fn is_false(value: &bool) -> bool {
+    !*value
 }
 #[derive(Clone)]
 pub struct Codec {
@@ -18,7 +25,7 @@ pub struct Codec {
     pieces: Vec<Vec<u8>>,
     ranks: BTreeMap<[u32; 2], u32>,
 }
-fn segments(text: &[u8]) -> Vec<Vec<u32>> {
+fn segments(text: &[u8], isolate_digits: bool) -> Vec<Vec<u32>> {
     fn class(b: u8) -> u8 {
         if b.is_ascii_alphabetic() || b == b'_' {
             1
@@ -35,7 +42,7 @@ fn segments(text: &[u8]) -> Vec<Vec<u32>> {
     while start < text.len() {
         let kind = class(text[start]);
         let mut end = start + 1;
-        if kind != 0 {
+        if kind != 0 && !(isolate_digits && kind == 2) {
             while end < text.len() && class(text[end]) == kind {
                 end += 1;
             }
@@ -141,7 +148,7 @@ impl Codec {
     }
     pub fn encode(&self, bytes: &[u8]) -> Vec<u32> {
         if self.spec.is_some() {
-            segments(bytes)
+            segments(bytes, self.spec.as_ref().is_some_and(|s| s.isolate_digits))
                 .into_iter()
                 .flat_map(|mut ids| {
                     while let Some((token, pair)) = ids
@@ -168,7 +175,12 @@ impl Codec {
         (ids, start)
     }
 }
-pub fn train(corpus: &Path, vocab_size: usize, output: &Path) -> Result<serde_json::Value> {
+pub fn train(
+    corpus: &Path,
+    vocab_size: usize,
+    output: &Path,
+    isolate_digits: bool,
+) -> Result<serde_json::Value> {
     ensure!(
         (260..=4096).contains(&vocab_size) && !output.exists(),
         "invalid vocabulary/output"
@@ -179,7 +191,7 @@ pub fn train(corpus: &Path, vocab_size: usize, output: &Path) -> Result<serde_js
     for line in std::str::from_utf8(&bytes)?.lines() {
         let row: pcode::Pair = serde_json::from_str(line)?;
         for (text, weight) in [(row.prompt()?, 1), (row.source, 8)] {
-            for word in segments(text.as_bytes()) {
+            for word in segments(text.as_bytes(), isolate_digits) {
                 *words.entry(word).or_default() += weight;
             }
         }
@@ -214,6 +226,7 @@ pub fn train(corpus: &Path, vocab_size: usize, output: &Path) -> Result<serde_js
         train_split_sha256: pcode::sha256(&bytes),
         source_weight: 8,
         merges,
+        isolate_digits,
     }))?;
     fs::create_dir_all(output)?;
     fs::write(
@@ -256,6 +269,7 @@ mod tests {
             train_split_sha256: "a".repeat(64),
             source_weight: 8,
             merges: vec![[b'u' as u32 + 4, b'n' as u32 + 4], [260, b's' as u32 + 4]],
+            isolate_digits: false,
         };
         let codec = Codec::new(Some(s.clone()))?;
         let raw: Vec<u8> = (0..=255).chain(*b"unsigned 123\n").collect();
@@ -273,6 +287,39 @@ mod tests {
         bad.merges.push([262, 4]);
         assert!(Codec::new(Some(bad)).is_err());
         assert!(codec.piece(3).is_err());
+        Ok(())
+    }
+
+    #[test]
+    fn isolated_digits_never_merge_and_keep_old_hashes_stable() -> Result<()> {
+        let digit = |c: u8| u32::from(c) + 4;
+        let base = Spec {
+            algorithm: "lexical-byte-bpe-v1".into(),
+            train_split_sha256: "b".repeat(64),
+            source_weight: 8,
+            merges: vec![[digit(b'1'), digit(b'2')]],
+            isolate_digits: false,
+        };
+        let merged = Codec::new(Some(base.clone()))?;
+        assert_eq!(merged.encode(b"12u"), vec![260, digit(b'u')]);
+        assert!(!String::from_utf8(serde_json::to_vec(&base)?)?.contains("isolate_digits"));
+        let isolated = Spec {
+            isolate_digits: true,
+            ..base
+        };
+        let codec = Codec::new(Some(isolated.clone()))?;
+        assert_eq!(
+            codec.encode(b"12u"),
+            vec![digit(b'1'), digit(b'2'), digit(b'u')]
+        );
+        assert!(
+            String::from_utf8(serde_json::to_vec(&isolated)?)?.contains("\"isolate_digits\":true")
+        );
+        assert_ne!(merged.sha256()?, codec.sha256()?);
+        let restored = Codec::new(Some(serde_json::from_slice(&serde_json::to_vec(
+            &isolated,
+        )?)?))?;
+        assert_eq!(restored.encode(b"907"), codec.encode(b"907"));
         Ok(())
     }
 }

@@ -116,7 +116,8 @@ impl Dataset {
                 [
                     pcode::cfg::REPRESENTATION,
                     pcode::cfg::slice::REPRESENTATION,
-                    pcode::cfg::slice::COMPACT
+                    pcode::cfg::slice::COMPACT,
+                    pcode::cfg::slice::COMPACT_DECIMAL
                 ]
                 .contains(&pair.input.representation.as_str())
                     && seen.insert(pair.id.clone()),

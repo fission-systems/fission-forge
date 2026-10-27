@@ -4,6 +4,8 @@ use super::*;
 pub const REPRESENTATION: &str = "pcode-plus-ssa-return-u32-v1";
 /// Straight-line pure low-EAX functions only; drops the constant stack-return epilogue.
 pub const COMPACT: &str = "pcode-ssa-return-u32-compact-v1";
+/// Compact lane with every `#hex:size` literal rendered as decimal; see `decimal_literals`.
+pub const COMPACT_DECIMAL: &str = "pcode-ssa-return-u32-compact-dec-v1";
 
 pub fn program(raw: &RawDump, profile: &Profile) -> Result<Program> {
     project(super::program(raw, profile)?)
@@ -212,6 +214,44 @@ pub fn compile_compact(raw: &RawDump, profile: &Profile) -> Result<Compiled> {
     Ok(compiled)
 }
 
+/// Rewrite `#<hex>:<size>` constants as decimal. A constant whose sign bit is set
+/// and whose two's-complement magnitude is at most 65535 prints as a negative
+/// decimal; everything else prints unsigned. The size suffix keeps it lossless.
+fn decimal_literals(text: &str) -> Result<String> {
+    let mut out = String::new();
+    let mut rest = text;
+    while let Some(pos) = rest.find('#') {
+        out.push_str(&rest[..=pos]);
+        rest = &rest[pos + 1..];
+        let digits = rest.bytes().take_while(u8::is_ascii_hexdigit).count();
+        let value = u128::from_str_radix(&rest[..digits], 16).context("literal digits")?;
+        let tail = rest[digits..].strip_prefix(':').context("literal size")?;
+        let size_digits = tail.bytes().take_while(u8::is_ascii_digit).count();
+        let size: u32 = tail[..size_digits].parse().context("literal size")?;
+        ensure!((1..=8).contains(&size), "unsupported literal width");
+        let bits = size * 8;
+        ensure!(value >> bits == 0, "literal exceeds its width");
+        let magnitude = (1u128 << bits) - value;
+        if value >> (bits - 1) == 1 && magnitude <= 65535 {
+            out.push_str(&format!("-{magnitude}"));
+        } else {
+            out.push_str(&value.to_string());
+        }
+        rest = &rest[digits..];
+    }
+    out.push_str(rest);
+    Ok(out)
+}
+
+/// The compact lane with decimal literals: the label's number format, no hex.
+pub fn compile_compact_decimal(raw: &RawDump, profile: &Profile) -> Result<Compiled> {
+    let mut compiled = compile_compact(raw, profile)?;
+    compiled.prompt = decimal_literals(&compiled.prompt.replacen(COMPACT, COMPACT_DECIMAL, 1))?;
+    compiled.prompt_sha256 = sha256(compiled.prompt.as_bytes());
+    compiled.representation = COMPACT_DECIMAL;
+    Ok(compiled)
+}
+
 #[cfg(test)]
 mod tests {
     use super::super::{
@@ -284,6 +324,29 @@ mod tests {
         for name in ["forge_diamond", "forge_loop", "forge_direct_call"] {
             assert!(compile_compact(&fixture(name)?, &profile()).is_err());
         }
+        Ok(())
+    }
+
+    #[test]
+    fn decimal_literals_are_lossless_signed_for_small_negatives_only() -> Result<()> {
+        let cases = [
+            ("IntAdd(r30,#fffffffffffffffe:8)", "IntAdd(r30,#-2:8)"),
+            ("IntXor(%1[0:4],#7:4)", "IntXor(%1[0:4],#7:4)"),
+            ("IntAnd(#6:4,#1f:4)", "IntAnd(#6:4,#31:4)"),
+            ("IntAnd(%0,#ffffffff:8)", "IntAnd(%0,#4294967295:8)"),
+            ("IntAdd(%0,#fffffffe:4)", "IntAdd(%0,#-2:4)"),
+            ("IntAdd(%0,#80000000:4)", "IntAdd(%0,#2147483648:4)"),
+            ("IntAdd(%0,#ffff0000:4)", "IntAdd(%0,#4294901760:4)"),
+        ];
+        for (hex, decimal) in cases {
+            assert_eq!(decimal_literals(hex)?, decimal);
+        }
+        assert!(decimal_literals("#100:1").is_err());
+        let raw = fixture("forge_callee")?;
+        let c = compile_compact_decimal(&raw, &profile())?;
+        assert_eq!(c.representation, COMPACT_DECIMAL);
+        assert!(c.prompt.starts_with(COMPACT_DECIMAL) && c.prompt.contains("#2:8"));
+        assert!(compile_compact_decimal(&fixture("forge_diamond")?, &profile()).is_err());
         Ok(())
     }
 }

@@ -1,0 +1,15 @@
+{
+  "rows": 1762,
+  "lanes": {
+    "pcode-ssa-return-u32-compact-v1": {
+      "identical_prompt": 1762
+    },
+    "pcode-ssa-return-u32-compact-dec-v1": {
+      "identical_prompt": 1762
+    },
+    "pcode-plus-ssa-return-u32-v1": {
+      "identical_prompt": 1762
+    }
+  },
+  "examples": {}
+}

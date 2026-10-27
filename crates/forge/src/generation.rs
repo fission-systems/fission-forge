@@ -153,6 +153,7 @@ pub fn run(
                 | pcode::cfg::REPRESENTATION
                 | pcode::cfg::slice::REPRESENTATION
                 | pcode::cfg::slice::COMPACT
+                | pcode::cfg::slice::COMPACT_DECIMAL
         ),
         "unknown input representation"
     );
@@ -280,6 +281,7 @@ mod tests {
             train_split_sha256: "a".repeat(64),
             source_weight: 8,
             merges: vec![[b'A' as u32 + 4, b'B' as u32 + 4]],
+            isolate_digits: false,
         }))?;
         let result = decode_with_codec("x", 16, 3, &codec, |_| {
             let mut scores = vec![0.; 261];

@@ -66,3 +66,12 @@ updates), and 2x epochs. Report train-row literal match and the 0.101 floor.
 * L2: `tokenizer-train --isolate-digits`; the tokenizer spec and its SHA-256
   must record the flag so checkpoints cannot be decoded with the wrong codec.
 * None of these touch validation/test row bytes; re-freeze references per lane.
+
+## Outcome of L3 (run 2026-10-28)
+
+L3 (decimal literals plus digit-isolated tokens) did not help: 0/205 functions,
+152/205 compiled, literals right in 14/205, and the final checkpoint still copies
+only 10/456 training literals. See
+[evidence](../evidence/2026-10-28-decimal-digit-literals/README.md). Remaining
+candidates: the P0 interpolation probe and the P1 optimization controls (batch
+size, step count); number formatting is no longer the leading explanation.

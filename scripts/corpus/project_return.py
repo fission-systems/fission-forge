@@ -13,10 +13,12 @@ import tempfile
 
 LANE='pcode-plus-ssa-return-u32-v1'
 COMPACT='pcode-ssa-return-u32-compact-v1'
+COMPACT_DECIMAL='pcode-ssa-return-u32-compact-dec-v1'
+SUFFIX={LANE:'',COMPACT:'-compact',COMPACT_DECIMAL:'-compact-dec'}
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def write(p,v):p.write_text(json.dumps(v,indent=2)+'\n')
 def main():
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--corpus',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--forge',type=Path,required=True);p.add_argument('--lane',choices=[LANE,COMPACT],default=LANE,help='Return-u32 prompt lane; compact drops ABI plumbing');a=p.parse_args();lane=a.lane
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--corpus',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--forge',type=Path,required=True);p.add_argument('--lane',choices=[LANE,COMPACT,COMPACT_DECIMAL],default=LANE,help='Return-u32 prompt lane; compact drops ABI plumbing, compact-dec also prints decimal literals');a=p.parse_args();lane=a.lane
     src=a.corpus.resolve();out=a.output.resolve();forge=a.forge.resolve()
     subprocess.run([forge,'corpus-audit','--root',src],check=True,stdout=subprocess.DEVNULL)
     manifest=json.loads((src/'manifest.json').read_text())
@@ -26,7 +28,7 @@ def main():
         source=(src/name).resolve()
         if not source.is_relative_to(src) or not source.is_file():raise ValueError('unsafe source artifact')
         target=out/name;target.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(source,target)
-    cfg=json.loads((out/'config.json').read_text());cfg['name']+='-return-u32'+('-compact' if lane==COMPACT else '');cfg['representation']=lane;write(out/'config.json',cfg)
+    cfg=json.loads((out/'config.json').read_text());cfg['name']+='-return-u32'+SUFFIX[lane];cfg['representation']=lane;write(out/'config.json',cfg)
     records=[];rows=[]
     with tempfile.TemporaryDirectory() as temp:
         temp=Path(temp)

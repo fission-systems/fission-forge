@@ -44,6 +44,9 @@ enum Command {
         output: PathBuf,
         #[arg(long, default_value_t = 772)]
         vocab_size: usize,
+        /// Keep every ASCII digit as its own token (digits are never merged).
+        #[arg(long)]
+        isolate_digits: bool,
     },
     /// Measure training row lengths under a selected codec without allocating a model.
     TokenizerStats {
@@ -203,10 +206,16 @@ fn main() -> Result<()> {
             corpus,
             output,
             vocab_size,
+            isolate_digits,
         } => {
             println!(
                 "{}",
-                serde_json::to_string_pretty(&tokenizer::train(&corpus, vocab_size, &output)?)?
+                serde_json::to_string_pretty(&tokenizer::train(
+                    &corpus,
+                    vocab_size,
+                    &output,
+                    isolate_digits
+                )?)?
             );
         }
         Command::TokenizerStats { corpus, tokenizer } => {

@@ -1,0 +1,45 @@
+{
+  "split": "train",
+  "rows": 456,
+  "exact": 2,
+  "skeleton_match": 132,
+  "literals_match": 8,
+  "literals_match_by_variant_group": {
+    "base_2_15": {
+      "match": 8,
+      "rows": 104
+    },
+    "wide": {
+      "match": 0,
+      "rows": 352
+    }
+  },
+  "distinct_generated_expressions": 18,
+  "most_common_generated_literals": [
+    [
+      [
+        "13"
+      ],
+      309
+    ],
+    [
+      [
+        "111"
+      ],
+      67
+    ],
+    [
+      [
+        "13",
+        "3"
+      ],
+      58
+    ],
+    [
+      [
+        "113"
+      ],
+      22
+    ]
+  ]
+}
