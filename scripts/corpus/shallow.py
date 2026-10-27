@@ -4,6 +4,7 @@ Only unsigned arithmetic/bitwise operations and bounded literal shifts. No sourc
 from evaluation benchmarks or external datasets. Parameters vary only in train-
 independent deterministic literal slots; a complete template owns one split.
 """
+import hashlib
 import expressions as e
 
 OPS=['add','sub','mul','and','or','xor','shl','shr']
@@ -22,12 +23,25 @@ for op in OPS:
         node=[op,[inner,arg,'k0'],3 if op in ('shl','shr') else other]
         add('shallow_two_'+op+'_'+arg,node,split,2)
 
+BASE_VARIANTS=14
+BASE_CONSTANTS=range(2,2+BASE_VARIANTS)
+def wide_constant(family,index,seed,shift):
+    """Distinct deterministic train-only literals outside the base 2..15; shifts stay below 32."""
+    pool=range(1,32) if shift else range(2,256)
+    order=sorted((v for v in pool if v not in BASE_CONSTANTS),key=lambda v:hashlib.sha256(f'{seed}:{family}:{v}'.encode()).digest())
+    if index-BASE_VARIANTS>=len(order):raise ValueError('wide literal pool exhausted')
+    return order[index-BASE_VARIANTS]
+
 def instantiate(family,index,seed):
-    del seed
-    def walk(n):
-        if isinstance(n,str):return 2+index%14 if n=='k0' else n
-        return [n[0],*[walk(x) if isinstance(x,(list,str)) else x for x in n[1:]]]
-    return walk((TEMPLATES|EXTRA_TEMPLATES)[family])
+    nodes=TEMPLATES|EXTRA_TEMPLATES
+    if index>=BASE_VARIANTS and (family in TEMPLATES and SPLITS[family]!='train' or family not in nodes):
+        raise ValueError('wide literal variants are train-only')
+    def walk(n,parent=None):
+        if isinstance(n,str):
+            if n!='k0':return n
+            return 2+index%BASE_VARIANTS if index<BASE_VARIANTS else wide_constant(family,index,seed,parent in ('shl','shr'))
+        return [n[0],*[walk(x,n[0]) if isinstance(x,(list,str)) else x for x in n[1:]]]
+    return walk(nodes[family])
 
 # Additional training contexts cover body-first b without admitting any original
 # validation/test template. Existing 40 template definitions/splits stay intact.

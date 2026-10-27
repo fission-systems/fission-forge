@@ -208,6 +208,17 @@ pub fn run(root: &Path, finalize: bool) -> Result<Value> {
     );
     let variants = number(&cfg, "variants_per_family")?;
     ensure!((1..=256).contains(&variants), "invalid family size");
+    let extra: BTreeMap<String, usize> = match cfg.get("extra_variants") {
+        Some(v) => serde_json::from_value(v.clone())?,
+        None => BTreeMap::new(),
+    };
+    ensure!(
+        extra.iter().all(|(family, n)| {
+            assignments.get(family).map(String::as_str) == Some("train")
+                && (1..=256 - variants).contains(n)
+        }),
+        "extra variants are limited to explicit train families"
+    );
     let opts: Vec<String> = serde_json::from_value(cfg["optimizations"].clone())?;
     ensure!(
         !opts.is_empty()
@@ -257,7 +268,8 @@ pub fn run(root: &Path, finalize: bool) -> Result<Value> {
     }
     for family in assignments.keys() {
         ensure!(
-            programs.iter().filter(|p| p["family"] == *family).count() == variants,
+            programs.iter().filter(|p| p["family"] == *family).count()
+                == variants + extra.get(family).copied().unwrap_or(0),
             "family program count mismatch"
         );
     }

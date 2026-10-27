@@ -58,7 +58,7 @@ def main():
         for name in ['state.json','training.safetensors']:files['resume/'+name]=resume/name
         job=output/'job.json';job.write_text(json.dumps(dict(mode='continue',additional_steps=args.additional_steps,baseline_step=state['step'],baseline_checkpoint_sha256=state['checkpoint_sha256'],generation_max_new_tokens=256,functional_targets='all_validation',resume_learning_rate=args.resume_learning_rate),indent=2)+'\n');files['job.json']=job
     if args.fresh_epochs is not None:
-        if not 1<=args.fresh_epochs<=8 or not 0<args.fresh_learning_rate<=0.001:raise ValueError('fresh epochs/LR out of bounded range')
+        if not 1<=args.fresh_epochs<=8 or not 0<args.fresh_learning_rate<=0.003:raise ValueError('fresh epochs/LR out of bounded range')
         train_count=len((corpus/'release/train.jsonl').read_text().splitlines())
         job=output/'job.json';job.write_text(json.dumps(dict(mode='fresh',representation=json.loads((corpus/'manifest.json').read_text()).get('representation','pcode-plus-ssa-v1'),epochs=args.fresh_epochs,steps=train_count*args.fresh_epochs,train_examples=train_count,learning_rate=args.fresh_learning_rate,evaluate_every=256,generation_max_new_tokens=512,selection='lowest_full_validation_NLL_before_functional_scoring',corpus_lock_sha256=sha(corpus/'release/lock.json')),indent=2)+'\n');files['job.json']=job
         files['fresh_job.py']=root/'scripts/colab/fresh_job.py'

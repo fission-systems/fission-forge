@@ -42,7 +42,8 @@ def write(path, value):
 
 def config_read(path):
     cfg = json.loads(path.read_text())
-    if set(cfg) != {'schema_version', 'name', 'seed', 'variants_per_family', 'optimizations', 'representation', 'families'}:
+    required = {'schema_version', 'name', 'seed', 'variants_per_family', 'optimizations', 'representation', 'families'}
+    if not required <= set(cfg) <= required | {'extra_variants'}:
         raise ValueError('unsupported corpus configuration fields')
     if type(cfg['schema_version']) is not int or cfg['schema_version'] != 1 or cfg['representation'] != 'pcode-plus-ssa-v1':
         raise ValueError('unsupported corpus schema/representation')
@@ -54,6 +55,11 @@ def config_read(path):
         raise ValueError('unsupported or repeated optimization')
     if not set(cfg['families']) <= FAMILIES or set(cfg['families'].values()) != SPLITS:
         raise ValueError('requires known families and all three explicit splits')
+    extra = cfg.get('extra_variants', {})
+    if type(extra) is not dict or not set(extra) <= {f for f, split in cfg['families'].items() if split == 'train'}:
+        raise ValueError('extra variants are limited to explicit train families')
+    if any(type(n) is not int or not 1 <= n <= 256 - cfg['variants_per_family'] for n in extra.values()):
+        raise ValueError('invalid extra variant count')
     return cfg
 
 
@@ -178,7 +184,7 @@ def build(args):
     for folder in ['sources', 'binaries', 'attempts']: (output/folder).mkdir()
     shutil.copyfile(args.config, output/'config.json')
     (output/'profile.json').write_bytes(profile_bytes)
-    programs = [program(f, i, cfg['seed'], split) for f, split in sorted(cfg['families'].items()) for i in range(cfg['variants_per_family'])]
+    programs = [program(f, i, cfg['seed'], split) for f, split in sorted(cfg['families'].items()) for i in range(cfg['variants_per_family'] + cfg.get('extra_variants', {}).get(f, 0))]
     inputs = probes()
     for p in programs:
         p['oracle_outputs'] = [oracle(p, a, b) for a, b in inputs]

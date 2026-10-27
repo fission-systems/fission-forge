@@ -164,3 +164,16 @@ measured, plus basic C syntax acquisition. Neither independent model is promoted
 retains all raw outputs, failures, source/archive/weight hashes and the unchanged
 holdout proof. Next isolate binding through explicit training-only auxiliary
 tasks before further repetitions or model-size increases.
+
+## Wide-literal follow-up (not supported)
+
+`configs/corpus/shallow-wide-v3.json` adds 1,090 training-only variants with
+distinct constants outside 2..15 while keeping validation/test bytes identical
+(1367 / 205 / 112 rows). A fresh 3.37M model trained for 10,936 updates compiled
+**188/205** and matched **1/205** functions (904/13,120 cases); constants agree
+with the reference in only 15/205 outputs and 9 of 15 validation families still
+emit one output for every constant. The hypothesis that constant diversity alone
+fixes input copying is not supported, and the one match is not promoted. See
+[evidence](../evidence/2026-10-26-wide-constant/README.md).
+
+A same-corpus re-run at LR 0.003 compiled 86/205 and matched 0/205 (constants 7/205), so a higher LR does not recover input copying; see the same evidence directory.
