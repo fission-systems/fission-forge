@@ -12,6 +12,7 @@ The pinned registry is [`hf-candidates-v1.json`](../configs/data/hf-candidates-v
 | 3 | [Ghidra 100k](https://huggingface.co/datasets/LLM4Binary/decompile-ghidra-100k) | Viewer HEAD: 100,000 `instruction/output` pairs | Pseudo-C refinement data, not raw P-code or SSA |
 | 3 | [ExeBench IO derivative](https://huggingface.co/datasets/mistral0105/exebench_io_validated_full) | Viewer HEAD: 17,238 rows; source, dependencies, IO, path and ref | Convenient Parquet, but preserve original provenance; no explicit card license observed |
 | Reserved | [Noelo DecBench](https://huggingface.co/datasets/noelo-lab/decbench-dataset) | Metadata and card only | Evaluation only; no examples sampled for training research |
+| Reserved | [Owner DecBench C++ raw corpus](https://huggingface.co/datasets/sjkim1127/decbench-cpp-raw-corpus), [qualification](https://huggingface.co/datasets/sjkim1127/decbench-cpp-qualification), [multilang corpus](https://huggingface.co/datasets/sjkim1127/decbench-multilang-corpus), [unofficial suite](https://huggingface.co/datasets/sjkim1127/decbench-cpp-dataset-unofficial) | Public metadata only, pinned revisions; nothing downloaded | Evaluation context for DecBench; excluded from training, and projects that appear in them are excluded from any training source |
 | Reserved | [LLM4Binary evaluation](https://huggingface.co/datasets/LLM4Binary/decompile-eval) | Metadata and card only | Evaluation only, even if a viewer uses the split name `train` |
 
 LLM4Binary's **Decompile-Bench is distinct from Noelo DecBench**. A dataset-card

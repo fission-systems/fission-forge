@@ -43,7 +43,7 @@ class IntakeTests(unittest.TestCase):
             self.assertFalse(output.exists())
     def test_candidate_registry_reserves_both_external_evaluations(self):
         cfg=json.loads(Path('configs/data/hf-candidates-v1.json').read_text());sources={s['repo']:s for s in cfg['sources']}
-        for repo in ['noelo-lab/decbench-dataset','LLM4Binary/decompile-eval']:
+        for repo in ['noelo-lab/decbench-dataset','LLM4Binary/decompile-eval','sjkim1127/decbench-cpp-raw-corpus','sjkim1127/decbench-cpp-qualification','sjkim1127/decbench-multilang-corpus','sjkim1127/decbench-cpp-dataset-unofficial']:
             self.assertEqual(sources[repo]['policy'],'evaluation_reserved')
         self.assertFalse(cfg['training_admission']['approved'])
 
