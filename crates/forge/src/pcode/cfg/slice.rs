@@ -2,6 +2,8 @@
 //! No source labels, ASTs, probe outputs or guessed call contracts enter this pass.
 use super::*;
 pub const REPRESENTATION: &str = "pcode-plus-ssa-return-u32-v1";
+/// Straight-line pure low-EAX functions only; drops the constant stack-return epilogue.
+pub const COMPACT: &str = "pcode-ssa-return-u32-compact-v1";
 
 pub fn program(raw: &RawDump, profile: &Profile) -> Result<Program> {
     project(super::program(raw, profile)?)
@@ -114,6 +116,102 @@ pub fn compile(raw: &RawDump, profile: &Profile) -> Result<Compiled> {
     Ok(compiled)
 }
 
+fn replace_values(text: &str, names: &BTreeMap<usize, String>) -> Result<String> {
+    let mut out = String::new();
+    let mut rest = text;
+    while let Some(pos) = rest.find('%') {
+        out.push_str(&rest[..pos]);
+        rest = &rest[pos + 1..];
+        let end = rest.bytes().take_while(u8::is_ascii_digit).count();
+        let id: usize = rest[..end].parse()?;
+        out.push_str(names.get(&id).context("unbound compact value")?);
+        rest = &rest[end..];
+    }
+    out.push_str(rest);
+    Ok(out)
+}
+
+/// Remove ABI plumbing from the return-u32 prompt without changing the dataflow.
+/// Accepted shape: one block; live-in registers, single-entry phis, pure
+/// operations, one load of the return address from the entry stack register,
+/// the return of that load, and the low-EAX exit. Anything else is rejected.
+pub fn compile_compact(raw: &RawDump, profile: &Profile) -> Result<Compiled> {
+    let mut compiled = compile(raw, profile)?;
+    let mut names = BTreeMap::<usize, String>::new();
+    let mut body = Vec::new();
+    let mut exit = None;
+    let mut blocks = 0;
+    let mut stack_load = None;
+    let mut returned = false;
+    for line in compiled.prompt.lines().skip(1) {
+        if line.starts_with("block") {
+            blocks += 1;
+        } else if line.starts_with("e0_0=effect_phi(entry:effect0)") {
+        } else if let Some((id, rhs)) = definition(line)? {
+            if let Some(register) = rhs
+                .strip_prefix("livein(")
+                .and_then(|r| r.strip_suffix(')'))
+            {
+                // Full-width registers keep the bare name; narrower views keep their size.
+                names.insert(
+                    id,
+                    register.strip_suffix(":8").unwrap_or(register).to_owned(),
+                );
+            } else if let Some(source) = rhs
+                .strip_prefix("phi(entry:")
+                .and_then(|r| r.strip_suffix(')'))
+                .filter(|r| !r.contains(','))
+            {
+                names.insert(id, replace_values(source, &names)?);
+            } else if rhs.starts_with("Load(") && rhs.contains(" !read_ram_may_trap") {
+                let address = rhs.split(',').nth(1).and_then(|a| a.split(')').next());
+                ensure!(
+                    stack_load.is_none()
+                        && address.map(|a| replace_values(a, &names)).transpose()?
+                            == Some("r20".into()),
+                    "compact lane allows only the return-address load"
+                );
+                stack_load = Some(id);
+            } else if !rhs.contains('!') {
+                let next = body.len();
+                let text = replace_values(rhs, &names)?;
+                let size = line[1..].split('=').next().context("SSA size")?;
+                let size = size.split_once(':').context("SSA size")?.1;
+                body.push(format!("%{next}:{size}={text}"));
+                names.insert(id, format!("%{next}"));
+            } else {
+                anyhow::bail!("compact lane rejects effectful operation");
+            }
+        } else if let Some(value) = line
+            .strip_prefix("Return(%")
+            .and_then(|r| r.split(')').next())
+        {
+            ensure!(
+                !returned && value.parse::<usize>().ok() == stack_load,
+                "compact lane must return the stack load"
+            );
+            returned = true;
+        } else if line.starts_with("exit_regs(") {
+            ensure!(exit.is_none(), "duplicate exit map");
+            exit = Some(replace_values(line, &names)?);
+        } else {
+            anyhow::bail!("compact lane rejects control flow or memory effects");
+        }
+    }
+    ensure!(
+        blocks == 1 && returned && !body.is_empty(),
+        "compact lane requires one straight-line returning block"
+    );
+    compiled.prompt = format!(
+        "{COMPACT} x86_64 le observe=low_EAX\n{}\n{}\n",
+        body.join("\n"),
+        exit.context("missing exit map")?
+    );
+    compiled.prompt_sha256 = sha256(compiled.prompt.as_bytes());
+    compiled.representation = COMPACT;
+    Ok(compiled)
+}
+
 #[cfg(test)]
 mod tests {
     use super::super::{
@@ -168,6 +266,23 @@ mod tests {
         }
         for name in ["forge_direct_call", "forge_indirect_call"] {
             assert!(program(&fixture(name)?, &profile()).is_err());
+        }
+        Ok(())
+    }
+
+    #[test]
+    fn compact_lane_is_pure_straight_line_dataflow_only() -> Result<()> {
+        let raw = fixture("forge_callee")?;
+        let full = compile(&raw, &profile())?;
+        let c = compile_compact(&raw, &profile())?;
+        assert_eq!(c.representation, COMPACT);
+        assert!(c.prompt.len() < full.prompt.len() / 2);
+        assert!(c.prompt.starts_with(COMPACT) && c.prompt.contains("exit_regs("));
+        for forbidden in ["phi", "livein", "block", "Load", "Return", "effect", "!"] {
+            assert!(!c.prompt.contains(forbidden), "{forbidden}");
+        }
+        for name in ["forge_diamond", "forge_loop", "forge_direct_call"] {
+            assert!(compile_compact(&fixture(name)?, &profile()).is_err());
         }
         Ok(())
     }

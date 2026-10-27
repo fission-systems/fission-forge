@@ -404,7 +404,9 @@ pub fn run(root: &Path, output: &Path) -> Result<serde_json::Value> {
             );
             let expected: Vec<u32> = serde_json::from_value(source["oracle_outputs"].clone())?;
             ensure!(expected.len() == probes.len(), "source probe count changed");
-            let ssa = if pair.input.representation == super::slice::REPRESENTATION {
+            let ssa = if [super::slice::REPRESENTATION, super::slice::COMPACT]
+                .contains(&pair.input.representation.as_str())
+            {
                 super::slice::program(&pair.input.raw, &pair.input.profile)?
             } else {
                 program(&pair.input.raw, &pair.input.profile)?

@@ -177,3 +177,13 @@ fixes input copying is not supported, and the one match is not promoted. See
 [evidence](../evidence/2026-10-26-wide-constant/README.md).
 
 A same-corpus re-run at LR 0.003 compiled 86/205 and matched 0/205 (constants 7/205), so a higher LR does not recover input copying; see the same evidence directory.
+
+## Compact-lane follow-up (partial improvement)
+
+`pcode-ssa-return-u32-compact-v1` drops the constant ABI plumbing of the
+return-u32 prompt for straight-line pure functions (810 to 497 max tokens) while
+keeping the same 1367 / 205 / 112 rows. With the same model and updates it compiles
+**203/205** (was 188), reads the operator in **174/205** (was 87) and matches
+3/205 functions, but those three coincide with a fixed literal 7 the model emits
+in 156/205 outputs. Literal copying and argument-role binding remain unsolved.
+See [evidence](../evidence/2026-10-28-compact-lane/README.md).

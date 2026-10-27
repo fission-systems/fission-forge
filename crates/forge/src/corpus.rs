@@ -184,7 +184,8 @@ pub fn run(root: &Path, finalize: bool) -> Result<Value> {
         cfg["schema_version"] == 1
             && [
                 pcode::cfg::REPRESENTATION,
-                pcode::cfg::slice::REPRESENTATION
+                pcode::cfg::slice::REPRESENTATION,
+                pcode::cfg::slice::COMPACT
             ]
             .contains(&cfg["representation"].as_str().unwrap_or(""))
             && cfg["representation"] == manifest["representation"],

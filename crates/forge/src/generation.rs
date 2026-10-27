@@ -152,6 +152,7 @@ pub fn run(
                 | pcode::REPRESENTATION
                 | pcode::cfg::REPRESENTATION
                 | pcode::cfg::slice::REPRESENTATION
+                | pcode::cfg::slice::COMPACT
         ),
         "unknown input representation"
     );
