@@ -127,4 +127,40 @@ class ShallowTests(unittest.TestCase):
             left,right=shallow.RB_TEMPLATES[stem+'_a'],shallow.RB_TEMPLATES[stem+'_b']
             self.assertTrue(any(value(stem+'_a',a,b)!=value(stem+'_b',a,b) for a,b in probes),stem)
 
+    def test_operator_pair_split_is_role_balanced_compositional_and_audit_safe(self):
+        pairs=shallow.rd_split_pairs()
+        flat=[p for v in pairs.values() for p in v]
+        self.assertEqual(len(flat),len(set(flat)),'a pair appears in two splits')
+        self.assertEqual(set(flat),set(shallow.rd_pairs()))
+        self.assertNotIn(('add','sub'),flat,'symmetric pair must be excluded')
+        for absorbed in [('shr','or'),('shr','xor'),('shr','and')]:self.assertNotIn(absorbed,flat,'shift-absorbed pair must be excluded')
+        for split in ('validation','test'):self.assertGreaterEqual(len(pairs[split]),8)
+        cls=shallow.RD_CLASS
+        where={(cls[o],cls[i]):split for split,v in pairs.items() for o,i in v}
+        for split,v in pairs.items():
+            for o,i in v:self.assertEqual(where[(cls[o],cls[i])],split,'mul/shl class split across splits')
+        for op in shallow.OPS:
+            self.assertGreaterEqual(sum(1 for o,_ in pairs['train'] if o==op),2,op)
+            self.assertGreaterEqual(sum(1 for _,i in pairs['train'] if i==op),2,op)
+        roles={}
+        for name,node in shallow.RD_TEMPLATES.items():
+            letters=''.join(x for x in json.dumps(node) if x in 'ab' and False) or ''
+            def walk(n,out):
+                if isinstance(n,str) and n in ('a','b'):out.append(n)
+                elif isinstance(n,list):[walk(x,out) for x in n[1:]]
+            out=[];walk(node,out)
+            roles.setdefault(name.rsplit('_',1)[0],set()).add(out[0])
+        for stem,first in roles.items():self.assertEqual(first,{'a','b'},stem)
+        probes=[(a,b) for a in (0,1,2,7,0xffffffff,0x80000000) for b in (0,1,3,5,0xfffffff0)]
+        def value(name,a,b):return e.evaluate(shallow.instantiate(name,0,314159),a,b)
+        for stem in roles:
+            def distinct(i):
+                x,y=shallow.instantiate(stem+'_a',i,314159),shallow.instantiate(stem+'_b',i,314159)
+                return any(e.evaluate(x,a,b)!=e.evaluate(y,a,b) for a,b in probes)
+            self.assertGreaterEqual(sum(distinct(i) for i in range(14)),10,stem)
+        cfg=build.config_read(Path('configs/corpus/shallow-opairs-v1.json'))
+        self.assertEqual(cfg['families'],shallow.RD_SPLITS)
+        for family,count in cfg['extra_variants'].items():
+            self.assertEqual(len({build.program(family,i,cfg['seed'],'train')['source'] for i in range(14+count)}),14+count,family)
+
 if __name__=='__main__':unittest.main()

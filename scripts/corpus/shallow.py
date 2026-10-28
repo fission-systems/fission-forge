@@ -34,8 +34,8 @@ def wide_constant(family,index,seed,shift):
 
 def instantiate(family,index,seed):
     if family in P0_TEMPLATES:return instantiate_p0(family,index,seed)
-    nodes=TEMPLATES|EXTRA_TEMPLATES|RB_TEMPLATES
-    if index>=BASE_VARIANTS and (family in TEMPLATES and SPLITS[family]!='train' or family in RB_SPLITS and RB_SPLITS[family]!='train' or family not in nodes):
+    nodes=TEMPLATES|EXTRA_TEMPLATES|RB_TEMPLATES|RD_TEMPLATES
+    if index>=BASE_VARIANTS and (family in TEMPLATES and SPLITS[family]!='train' or family in RB_SPLITS and RB_SPLITS[family]!='train' or family in RD_SPLITS and RD_SPLITS[family]!='train' or family not in nodes):
         raise ValueError('wide literal variants are train-only')
     def walk(n,parent=None):
         if isinstance(n,str):
@@ -92,3 +92,57 @@ for split,ones,twos in [('train',['add','and','mul','shl'],[('and','sub'),('add'
     for outer,inner in twos:
         for arg in ('a','b'):
             _rb(f'rb_two_{outer}_{arg}' if split!='test' else f'rb_test_{outer}_{arg}',[outer,[inner,arg,'k0'],3 if outer in ('shl','shr') else _other(arg)],split)
+
+
+# Operator-pair diversity: almost every (outer, inner) pair is trained, with both argument roles; a
+# few whole pairs are held out for validation and test, so a held-out structure is a NEW combination of
+# operators that each occur in training as both an outer and an inner operator. Rules:
+#  * a pair whose role swap is the same function (for example (x - k) + y) is excluded: the audit drops
+#    it as an ambiguous prompt and it could not teach the register-to-letter binding;
+#  * mul and shl form one class and always share a split (x*4 and x<<2 are the same behavior, and the
+#    audit quarantines behavior clones across splits);
+#  * every operator is an outer and an inner operator of at least two training pairs.
+import random as _random
+RD_CLASS={'add':'add','sub':'sub','and':'and','or':'or','xor':'xor','mul':'M','shl':'M','shr':'shr'}
+RD_SEED=271828
+def _rd_symmetric(outer,inner):
+    """True when the two role assignments are indistinguishable at k=5: a role swap that leaves the
+    function unchanged (for example (x - k) + y) or a degenerate one (for example (x & k) >> 3 is always 0)."""
+    probes=[(a,b) for a in (0,1,2,7,0xffffffff,0x80000000) for b in (0,1,3,5,0xfffffff0)]
+    def node(arg):return [outer,[inner,arg,5],3 if outer in ('shl','shr') else _other(arg)]
+    return all(e.evaluate(node('a'),a,b)==e.evaluate(node('b'),a,b) for a,b in probes)
+def _rd_absorbed(outer,inner):
+    """(x | k) >> 3 and (x ^ k) >> 3 equal x >> 3 for k < 8: the shift discards what the inner operator
+    changed, so the pair is a behavior clone of a different structure and would be quarantined."""
+    return outer=='shr' and inner in ('or','xor','and')
+def rd_pairs():
+    return [(o,i) for o in OPS for i in OPS if o!=i and not _rd_symmetric(o,i) and not _rd_absorbed(o,i)]
+def rd_split_pairs():
+    groups={}
+    for o,i in rd_pairs():groups.setdefault((RD_CLASS[o],RD_CLASS[i]),[]).append((o,i))
+    keys=sorted(groups);_random.Random(RD_SEED).shuffle(keys)
+    held={'validation':[],'test':[]};count={'validation':0,'test':0}
+    def covered(taken):
+        train=[p for k in keys if k not in taken for p in groups[k]]
+        return all(sum(1 for o,_ in train if o==op)>=2 and sum(1 for _,i in train if i==op)>=2 for op in OPS)
+    taken=set()
+    for k in keys:
+        for split in ('validation','test'):
+            if count[split]<8 and covered(taken|{k}):
+                taken.add(k);held[split].append(k);count[split]+=len(groups[k]);break
+    out={'train':[],'validation':[],'test':[]}
+    for k in keys:
+        split='validation' if k in held['validation'] else 'test' if k in held['test'] else 'train'
+        out[split].extend(groups[k])
+    return {k:sorted(v) for k,v in out.items()}
+RD_TEMPLATES={}
+RD_SPLITS={}
+def _rd(name,node,split):
+    RD_TEMPLATES[name]=node;RD_SPLITS[name]=split
+for _split,_pairs in rd_split_pairs().items():
+    for _o,_i in _pairs:
+        for _arg in ('a','b'):
+            _rd(f'rd_two_{_o}_{_i}_{_arg}' if _split=='train' else f'rd_{_split[:3]}_{_o}_{_i}_{_arg}',
+                [_o,[_i,_arg,'k0'],3 if _o in ('shl','shr') else _other(_arg)],_split)
+for _op in OPS:
+    for _arg in ('a','b'):_rd(f'rd_one_{_op}_{_arg}',[_op,_arg,'k0'],'train')
