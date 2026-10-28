@@ -1,0 +1,68 @@
+{
+  "split": "train",
+  "rows": 456,
+  "exact": 423,
+  "skeleton_match": 456,
+  "literals_match": 423,
+  "literals_match_by_variant_group": {
+    "base_2_15": {
+      "match": 98,
+      "rows": 104
+    },
+    "wide": {
+      "match": 325,
+      "rows": 352
+    }
+  },
+  "distinct_generated_expressions": 443,
+  "most_common_generated_literals": [
+    [
+      [
+        "5"
+      ],
+      10
+    ],
+    [
+      [
+        "2"
+      ],
+      8
+    ],
+    [
+      [
+        "8"
+      ],
+      8
+    ],
+    [
+      [
+        "11"
+      ],
+      8
+    ],
+    [
+      [
+        "14"
+      ],
+      8
+    ],
+    [
+      [
+        "4"
+      ],
+      7
+    ],
+    [
+      [
+        "7"
+      ],
+      7
+    ],
+    [
+      [
+        "10"
+      ],
+      7
+    ]
+  ]
+}

@@ -34,8 +34,8 @@ def wide_constant(family,index,seed,shift):
 
 def instantiate(family,index,seed):
     if family in P0_TEMPLATES:return instantiate_p0(family,index,seed)
-    nodes=TEMPLATES|EXTRA_TEMPLATES
-    if index>=BASE_VARIANTS and (family in TEMPLATES and SPLITS[family]!='train' or family not in nodes):
+    nodes=TEMPLATES|EXTRA_TEMPLATES|RB_TEMPLATES
+    if index>=BASE_VARIANTS and (family in TEMPLATES and SPLITS[family]!='train' or family in RB_SPLITS and RB_SPLITS[family]!='train' or family not in nodes):
         raise ValueError('wide literal variants are train-only')
     def walk(n,parent=None):
         if isinstance(n,str):
@@ -69,3 +69,26 @@ def instantiate_p0(family,index,seed):
     constants=p0_constants(seed)[split]
     if not 0<=index<len(constants):raise ValueError('P0 variant index out of range')
     return ['add','a',constants[index]]
+
+
+# Role-balanced split: every training structure appears with BOTH argument assignments, so the
+# structure no longer predicts which letter is written and the register must be read. Validation
+# and test use unseen operator structures (also with both roles). Validation operators occur in
+# training only as inner operators; mul and shl stay in the same split because x*4 and x<<2 are
+# the same behavior and the audit quarantines behavior clones across splits.
+RB_TEMPLATES={}
+RB_SPLITS={}
+def _rb(name,node,split):
+    RB_TEMPLATES[name]=node;RB_SPLITS[name]=split
+def _other(arg):return 'b' if arg=='a' else 'a'
+# Pairs are (outer, inner). Each must be ASYMMETRIC in its two arguments: ((x - k) + y) equals
+# ((y - k) + x), so a role swap would be the same function (and the audit would drop it as
+# ambiguous). Test pairs are unseen in training and validation and also asymmetric.
+for split,ones,twos in [('train',['add','and','mul','shl'],[('and','sub'),('add','or'),('mul','xor'),('shl','shr')]),
+                        ('validation',['sub','or','xor','shr'],[('sub','and'),('or','add'),('xor','mul'),('shr','shl')]),
+                        ('test',[],[('add','xor'),('sub','or'),('or','mul'),('xor','sub')])]:
+    for op in ones:
+        for arg in ('a','b'):_rb(f'rb_one_{op}_{arg}',[op,arg,'k0'],split)
+    for outer,inner in twos:
+        for arg in ('a','b'):
+            _rb(f'rb_two_{outer}_{arg}' if split!='test' else f'rb_test_{outer}_{arg}',[outer,[inner,arg,'k0'],3 if outer in ('shl','shr') else _other(arg)],split)

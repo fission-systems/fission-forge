@@ -1,0 +1,397 @@
+{
+  "schema_version": 1,
+  "name": "forge-rolebal-v2-compactdec-isolated-b8-functional",
+  "scope": "owned_synthetic_role_balanced_unseen_operator_structures_validation_only",
+  "corpus_lock_sha256": "93ab0ede85efa6c80abdb037a36d3311fc33a1ccf72f4a4c88ee491f9068a52c",
+  "baseline": {
+    "step": 0,
+    "checkpoint_sha256": "not_applicable_random_initialization_no_baseline_generation"
+  },
+  "improvement": {
+    "kind": "fresh_64_epochs_batch_8_role_balanced_training_split",
+    "additional_updates": 6784,
+    "final_step": 6784,
+    "selection": "validation_NLL_only_before_functional_scoring",
+    "learning_rate": 0.0003,
+    "seed": 42,
+    "batch_size": 8,
+    "attention_chunk": 256,
+    "validation_limit": 0,
+    "evaluate_every": 256,
+    "checkpoint_every": 256
+  },
+  "evaluation": {
+    "max_new_tokens": 512,
+    "generation_timeout_seconds": 30,
+    "execution_timeout_seconds": 10,
+    "fuel_per_case": 100000,
+    "memory_bytes": 1048576,
+    "decoding": "greedy_eos_and_bpe_tokens_kv_cache_byte_budget",
+    "device": "cuda",
+    "max_output_bytes": 512
+  },
+  "test_policy": "never_pass_test_examples_to_model_or_select_checkpoint_against_test",
+  "tokenizer": {
+    "algorithm": "lexical-byte-bpe-v1",
+    "train_split_sha256": "29ad08bfaa568eb76eaad280ad0e954eef60f67b5b30067264d1a96ff0e26455",
+    "source_weight": 8,
+    "merges": [
+      [
+        114,
+        120
+      ],
+      [
+        109,
+        107
+      ],
+      [
+        105,
+        104
+      ],
+      [
+        109,
+        260
+      ],
+      [
+        114,
+        119
+      ],
+      [
+        114,
+        262
+      ],
+      [
+        121,
+        264
+      ],
+      [
+        261,
+        265
+      ],
+      [
+        266,
+        267
+      ],
+      [
+        118,
+        105
+      ],
+      [
+        118,
+        114
+      ],
+      [
+        120,
+        121
+      ],
+      [
+        269,
+        271
+      ],
+      [
+        272,
+        270
+      ],
+      [
+        77,
+        260
+      ],
+      [
+        73,
+        124
+      ],
+      [
+        275,
+        120
+      ],
+      [
+        103,
+        115
+      ],
+      [
+        104,
+        105
+      ],
+      [
+        94,
+        276
+      ],
+      [
+        274,
+        279
+      ],
+      [
+        274,
+        69
+      ],
+      [
+        112,
+        105
+      ],
+      [
+        69,
+        92
+      ],
+      [
+        73,
+        283
+      ],
+      [
+        99,
+        269
+      ],
+      [
+        99,
+        284
+      ],
+      [
+        101,
+        103
+      ],
+      [
+        102,
+        119
+      ],
+      [
+        105,
+        118
+      ],
+      [
+        105,
+        124
+      ],
+      [
+        107,
+        119
+      ],
+      [
+        109,
+        120
+      ],
+      [
+        112,
+        115
+      ],
+      [
+        113,
+        116
+      ],
+      [
+        115,
+        288
+      ],
+      [
+        116,
+        277
+      ],
+      [
+        119,
+        101
+      ],
+      [
+        119,
+        297
+      ],
+      [
+        122,
+        105
+      ],
+      [
+        123,
+        286
+      ],
+      [
+        277,
+        294
+      ],
+      [
+        278,
+        103
+      ],
+      [
+        285,
+        291
+      ],
+      [
+        287,
+        120
+      ],
+      [
+        289,
+        299
+      ],
+      [
+        290,
+        292
+      ],
+      [
+        293,
+        300
+      ],
+      [
+        295,
+        305
+      ],
+      [
+        296,
+        278
+      ],
+      [
+        301,
+        304
+      ],
+      [
+        306,
+        303
+      ],
+      [
+        87,
+        121
+      ],
+      [
+        312,
+        102
+      ],
+      [
+        84,
+        109
+      ],
+      [
+        103,
+        105
+      ],
+      [
+        105,
+        315
+      ],
+      [
+        313,
+        314
+      ],
+      [
+        317,
+        316
+      ],
+      [
+        104,
+        104
+      ],
+      [
+        281,
+        319
+      ],
+      [
+        114,
+        104
+      ],
+      [
+        281,
+        321
+      ],
+      [
+        87,
+        276
+      ],
+      [
+        274,
+        323
+      ],
+      [
+        81,
+        121
+      ],
+      [
+        112,
+        120
+      ],
+      [
+        274,
+        325
+      ],
+      [
+        327,
+        326
+      ],
+      [
+        71,
+        115
+      ],
+      [
+        116,
+        125
+      ],
+      [
+        329,
+        330
+      ],
+      [
+        83,
+        118
+      ],
+      [
+        92,
+        115
+      ],
+      [
+        274,
+        332
+      ],
+      [
+        274,
+        333
+      ],
+      [
+        335,
+        118
+      ],
+      [
+        80,
+        105
+      ],
+      [
+        106,
+        120
+      ],
+      [
+        274,
+        337
+      ],
+      [
+        339,
+        338
+      ],
+      [
+        86,
+        261
+      ],
+      [
+        108,
+        120
+      ],
+      [
+        274,
+        341
+      ],
+      [
+        343,
+        342
+      ],
+      [
+        274,
+        313
+      ]
+    ],
+    "isolate_digits": true
+  },
+  "model": {
+    "vocab_size": 346,
+    "hidden_size": 256,
+    "heads": 4,
+    "layers": 4,
+    "feed_forward_size": 1024,
+    "max_seq_len": 8192,
+    "rotary_positions": true
+  },
+  "representation": "pcode-ssa-return-u32-compact-dec-v1",
+  "curriculum_policy": "train_has_both_argument_roles_for_every_structure_validation_and_test_use_unseen_asymmetric_structures"
+}

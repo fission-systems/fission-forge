@@ -82,4 +82,49 @@ class ShallowTests(unittest.TestCase):
             p=build.program(family,0,cfg['seed'],split);self.assertIn(f'a + {parts[split][0]}u',p['source'])
         with self.assertRaises(ValueError):shallow.instantiate('p0_add_test',34,cfg['seed'])
 
+    def test_role_balanced_split_breaks_the_structure_to_letters_confound(self):
+        def erase(n):
+            if isinstance(n,str):return 'v' if n in ('a','b') else n
+            if isinstance(n,int):return 'K'
+            return [n[0],*[erase(x) for x in n[1:]]]
+        def key(n):return json.dumps(erase(n))
+        def roles(n):
+            out=[]
+            def walk(x):
+                if isinstance(x,str) and x in ('a','b'):out.append(x)
+                elif isinstance(x,list):[walk(y) for y in x[1:]]
+            walk(n);return ''.join(out)
+        by={'train':{},'validation':{},'test':{}}
+        for name,node in shallow.RB_TEMPLATES.items():
+            by[shallow.RB_SPLITS[name]].setdefault(key(node),set()).add(roles(node))
+        # every structure in every split occurs with both argument assignments
+        for split,structures in by.items():
+            for structure,assignments in structures.items():
+                self.assertEqual(len(assignments),2,(split,structure,assignments))
+        # no structure is shared across splits
+        for left,right in [('train','validation'),('train','test'),('validation','test')]:
+            self.assertFalse(set(by[left])&set(by[right]),(left,right))
+        # every operator is seen in training, and behavior-equivalent mul/shl share a split
+        ops=lambda n:{n[0]} if isinstance(n,list) else set()
+        def operators(n):
+            return set() if not isinstance(n,list) else {n[0]}.union(*[operators(x) for x in n[1:]])
+        train_ops=set().union(*[operators(n) for f,n in shallow.RB_TEMPLATES.items() if shallow.RB_SPLITS[f]=='train'])
+        self.assertEqual(train_ops,set(shallow.OPS))
+        self.assertEqual(shallow.RB_SPLITS['rb_one_mul_a'],shallow.RB_SPLITS['rb_one_shl_a'])
+        cfg=build.config_read(Path('configs/corpus/shallow-rolebal-v2.json'))
+        self.assertEqual(cfg['families'],shallow.RB_SPLITS)
+        self.assertTrue(set(cfg['extra_variants'])<={f for f,sp in shallow.RB_SPLITS.items() if sp=='train'})
+        for family,count in cfg['extra_variants'].items():
+            sources={build.program(family,i,cfg['seed'],'train')['source'] for i in range(14+count)}
+            self.assertEqual(len(sources),14+count,family)
+        with self.assertRaises(ValueError):shallow.instantiate('rb_two_sub_a',14,cfg['seed'])
+
+    def test_role_pairs_are_distinct_functions_so_the_audit_cannot_merge_them(self):
+        probes=[(a,b) for a in (0,1,2,7,0xffffffff,0x80000000) for b in (0,1,3,5,0xfffffff0)]
+        def value(name,a,b):return e.evaluate(shallow.instantiate(name,0,314159),a,b)
+        names={n.rsplit('_',1)[0] for n in shallow.RB_TEMPLATES}
+        for stem in names:
+            left,right=shallow.RB_TEMPLATES[stem+'_a'],shallow.RB_TEMPLATES[stem+'_b']
+            self.assertTrue(any(value(stem+'_a',a,b)!=value(stem+'_b',a,b) for a,b in probes),stem)
+
 if __name__=='__main__':unittest.main()
