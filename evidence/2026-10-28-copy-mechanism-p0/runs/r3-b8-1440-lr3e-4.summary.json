@@ -1,0 +1,183 @@
+{
+  "spec": {
+    "name": "r3-b8-1440-lr3e-4",
+    "batch": 8,
+    "steps": 1440,
+    "lr": 0.0003
+  },
+  "validation_nll_by_step": [
+    [
+      120,
+      0.249
+    ],
+    [
+      240,
+      0.1579
+    ],
+    [
+      360,
+      0.1448
+    ],
+    [
+      480,
+      0.096
+    ],
+    [
+      600,
+      0.0195
+    ],
+    [
+      720,
+      0.0051
+    ],
+    [
+      840,
+      0.0033
+    ],
+    [
+      960,
+      0.0024
+    ],
+    [
+      1080,
+      0.0019
+    ],
+    [
+      1200,
+      0.0015
+    ],
+    [
+      1320,
+      0.0013
+    ],
+    [
+      1440,
+      0.0011
+    ]
+  ],
+  "selected_step": 1440,
+  "arms": {
+    "selected": {
+      "validation": {
+        "rows": 34,
+        "literals_match": 34,
+        "skeleton_match": 34,
+        "exact": 34,
+        "distinct": 34,
+        "top_literals": [
+          [
+            [
+              "219"
+            ],
+            1
+          ],
+          [
+            [
+              "249"
+            ],
+            1
+          ],
+          [
+            [
+              "34"
+            ],
+            1
+          ]
+        ]
+      },
+      "train": {
+        "rows": 30,
+        "literals_match": 30,
+        "skeleton_match": 30,
+        "exact": 30,
+        "distinct": 30,
+        "top_literals": [
+          [
+            [
+              "225"
+            ],
+            1
+          ],
+          [
+            [
+              "214"
+            ],
+            1
+          ],
+          [
+            [
+              "180"
+            ],
+            1
+          ]
+        ]
+      },
+      "functional": {
+        "compiled": 34,
+        "matched": 34,
+        "cases": 2176
+      }
+    },
+    "final": {
+      "validation": {
+        "rows": 34,
+        "literals_match": 34,
+        "skeleton_match": 34,
+        "exact": 34,
+        "distinct": 34,
+        "top_literals": [
+          [
+            [
+              "219"
+            ],
+            1
+          ],
+          [
+            [
+              "249"
+            ],
+            1
+          ],
+          [
+            [
+              "34"
+            ],
+            1
+          ]
+        ]
+      },
+      "train": {
+        "rows": 30,
+        "literals_match": 30,
+        "skeleton_match": 30,
+        "exact": 30,
+        "distinct": 30,
+        "top_literals": [
+          [
+            [
+              "225"
+            ],
+            1
+          ],
+          [
+            [
+              "214"
+            ],
+            1
+          ],
+          [
+            [
+              "180"
+            ],
+            1
+          ]
+        ]
+      },
+      "functional": {
+        "compiled": 34,
+        "matched": 34,
+        "cases": 2176
+      }
+    }
+  }
+}

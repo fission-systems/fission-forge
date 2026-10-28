@@ -1,0 +1,64 @@
+{
+  "attempted": 248,
+  "exclusions": [],
+  "external_evaluation_overlap": "not_measured",
+  "native_source_comparisons": 15872,
+  "quarantined_families": [],
+  "schema_version": 1,
+  "scope": "constant_interpolation_diagnostic_shapes_shared_across_splits",
+  "splits": {
+    "test": {
+      "context_eligible": {
+        "1024": 34,
+        "16384": 34,
+        "2048": 34,
+        "4096": 34,
+        "8192": 34
+      },
+      "families": [
+        "p0_add_test"
+      ],
+      "max_sequence": 219,
+      "min_sequence": 215,
+      "programs": 34,
+      "rows": 34
+    },
+    "train": {
+      "context_eligible": {
+        "1024": 180,
+        "16384": 180,
+        "2048": 180,
+        "4096": 180,
+        "8192": 180
+      },
+      "families": [
+        "p0_add_train"
+      ],
+      "max_sequence": 219,
+      "min_sequence": 215,
+      "programs": 180,
+      "rows": 180
+    },
+    "validation": {
+      "context_eligible": {
+        "1024": 34,
+        "16384": 34,
+        "2048": 34,
+        "4096": 34,
+        "8192": 34
+      },
+      "families": [
+        "p0_add_validation"
+      ],
+      "max_sequence": 219,
+      "min_sequence": 217,
+      "programs": 34,
+      "rows": 34
+    }
+  },
+  "supported": 248,
+  "truncation": false,
+  "unsupported": 0,
+  "unsupported_by_split": {},
+  "x86_ir_execution_parity": "not_measured"
+}

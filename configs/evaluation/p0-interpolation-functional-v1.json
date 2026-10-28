@@ -1,0 +1,297 @@
+{
+  "schema_version": 1,
+  "name": "forge-p0-interpolation-functional-v1",
+  "scope": "constant_interpolation_diagnostic_one_template_disjoint_literals_not_a_benchmark",
+  "corpus_lock_sha256": "79ef59715bfe9b5d7084947f8a937fbc039c793ac311308a3f32da8ad9301e52",
+  "baseline": {
+    "step": 0,
+    "checkpoint_sha256": "not_applicable_random_initialization_no_baseline_generation"
+  },
+  "improvement": {
+    "kind": "diagnostic_local_cpu_runs_see_evidence",
+    "additional_updates": 1440,
+    "final_step": 1440,
+    "selection": "validation_NLL_only_before_functional_scoring",
+    "learning_rate": 0.0003,
+    "seed": 42,
+    "batch_size": 1,
+    "attention_chunk": 256,
+    "validation_limit": 0,
+    "evaluate_every": 256,
+    "checkpoint_every": 256
+  },
+  "evaluation": {
+    "max_new_tokens": 512,
+    "generation_timeout_seconds": 30,
+    "execution_timeout_seconds": 10,
+    "fuel_per_case": 100000,
+    "memory_bytes": 1048576,
+    "decoding": "greedy_eos_and_bpe_tokens_kv_cache_byte_budget",
+    "device": "cuda",
+    "max_output_bytes": 512
+  },
+  "test_policy": "never_pass_test_examples_to_model_or_select_checkpoint_against_test",
+  "tokenizer": {
+    "algorithm": "lexical-byte-bpe-v1",
+    "train_split_sha256": "bd35253647775cfae28affad2ae92757148ead60a8b1ba558b858e4d1c7864e3",
+    "source_weight": 8,
+    "merges": [
+      [
+        114,
+        120
+      ],
+      [
+        105,
+        104
+      ],
+      [
+        107,
+        114
+      ],
+      [
+        109,
+        260
+      ],
+      [
+        109,
+        262
+      ],
+      [
+        114,
+        119
+      ],
+      [
+        121,
+        265
+      ],
+      [
+        264,
+        261
+      ],
+      [
+        266,
+        267
+      ],
+      [
+        118,
+        105
+      ],
+      [
+        118,
+        114
+      ],
+      [
+        120,
+        121
+      ],
+      [
+        269,
+        271
+      ],
+      [
+        272,
+        270
+      ],
+      [
+        77,
+        260
+      ],
+      [
+        103,
+        115
+      ],
+      [
+        104,
+        105
+      ],
+      [
+        69,
+        92
+      ],
+      [
+        69,
+        104
+      ],
+      [
+        73,
+        124
+      ],
+      [
+        73,
+        277
+      ],
+      [
+        84,
+        109
+      ],
+      [
+        87,
+        121
+      ],
+      [
+        94,
+        279
+      ],
+      [
+        99,
+        269
+      ],
+      [
+        99,
+        280
+      ],
+      [
+        101,
+        103
+      ],
+      [
+        102,
+        119
+      ],
+      [
+        102,
+        281
+      ],
+      [
+        103,
+        105
+      ],
+      [
+        105,
+        118
+      ],
+      [
+        105,
+        124
+      ],
+      [
+        105,
+        289
+      ],
+      [
+        107,
+        119
+      ],
+      [
+        109,
+        120
+      ],
+      [
+        112,
+        105
+      ],
+      [
+        112,
+        115
+      ],
+      [
+        113,
+        116
+      ],
+      [
+        115,
+        287
+      ],
+      [
+        116,
+        275
+      ],
+      [
+        119,
+        101
+      ],
+      [
+        119,
+        300
+      ],
+      [
+        122,
+        105
+      ],
+      [
+        123,
+        285
+      ],
+      [
+        274,
+        278
+      ],
+      [
+        274,
+        283
+      ],
+      [
+        275,
+        297
+      ],
+      [
+        276,
+        103
+      ],
+      [
+        282,
+        288
+      ],
+      [
+        284,
+        293
+      ],
+      [
+        286,
+        120
+      ],
+      [
+        290,
+        302
+      ],
+      [
+        291,
+        294
+      ],
+      [
+        296,
+        303
+      ],
+      [
+        298,
+        311
+      ],
+      [
+        299,
+        276
+      ],
+      [
+        304,
+        104
+      ],
+      [
+        305,
+        120
+      ],
+      [
+        306,
+        310
+      ],
+      [
+        308,
+        292
+      ],
+      [
+        312,
+        309
+      ]
+    ],
+    "isolate_digits": true
+  },
+  "model": {
+    "vocab_size": 321,
+    "hidden_size": 256,
+    "heads": 4,
+    "layers": 4,
+    "feed_forward_size": 1024,
+    "max_seq_len": 8192,
+    "rotary_positions": true
+  },
+  "representation": "pcode-ssa-return-u32-compact-dec-v1",
+  "curriculum_policy": "single_template_a_plus_k_train_validation_test_disjoint_literals"
+}

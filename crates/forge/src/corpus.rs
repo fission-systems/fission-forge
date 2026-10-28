@@ -210,6 +210,10 @@ pub fn run(root: &Path, finalize: bool) -> Result<Value> {
     );
     let variants = number(&cfg, "variants_per_family")?;
     ensure!((1..=256).contains(&variants), "invalid family size");
+    // Diagnostic corpora may share an erased expression shape across splits (same
+    // template, disjoint literals). Only the shape fingerprint is skipped; every other
+    // fingerprint still quarantines, and the report scope says so.
+    let shared_shapes = cfg.get("diagnostic_shared_shapes") == Some(&Value::Bool(true));
     let extra: BTreeMap<String, usize> = match cfg.get("extra_variants") {
         Some(v) => serde_json::from_value(v.clone())?,
         None => BTreeMap::new(),
@@ -261,6 +265,9 @@ pub fn run(root: &Path, finalize: bool) -> Result<Value> {
                 !p[value].is_null() && digest(&p[value])? == string(p, hash)?,
                 "program fingerprint mismatch"
             );
+            if shared_shapes && hash == "shape_sha256" {
+                continue;
+            }
             keys.push((format!("{hash}:{}", string(p, hash)?), family.to_owned()));
         }
         keys.push((
@@ -450,7 +457,7 @@ pub fn run(root: &Path, finalize: bool) -> Result<Value> {
             .collect();
         statistics.insert(*split,json!({"rows":items.len(),"programs":items.iter().map(|r|&r.metadata.program_id).collect::<BTreeSet<_>>().len(),"families":items.iter().map(|r|&r.metadata.family).collect::<BTreeSet<_>>(),"context_eligible":eligible,"min_sequence":items.iter().map(|r|r.metadata.sequence_length).min(),"max_sequence":items.iter().map(|r|r.metadata.sequence_length).max()}));
     }
-    let report = json!({"schema_version":1,"scope":"owned_synthetic_family_disjoint_not_real_project_generalization","attempted":attempts.len(),"supported":rows.len(),"unsupported":attempts.len()-rows.len(),"unsupported_by_split":failures,"quarantined_families":quarantined,"exclusions":exclusions,"splits":statistics,"native_source_comparisons":programs.len()*probe_count,"x86_ir_execution_parity":"not_measured","external_evaluation_overlap":"not_measured","truncation":false});
+    let report = json!({"schema_version":1,"scope":if shared_shapes {"constant_interpolation_diagnostic_shapes_shared_across_splits"} else {"owned_synthetic_family_disjoint_not_real_project_generalization"},"attempted":attempts.len(),"supported":rows.len(),"unsupported":attempts.len()-rows.len(),"unsupported_by_split":failures,"quarantined_families":quarantined,"exclusions":exclusions,"splits":statistics,"native_source_comparisons":programs.len()*probe_count,"x86_ir_execution_parity":"not_measured","external_evaluation_overlap":"not_measured","truncation":false});
     release.insert("audit.json".into(), serde_json::to_vec_pretty(&report)?);
     let hashes: BTreeMap<String, String> = release
         .iter()

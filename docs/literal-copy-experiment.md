@@ -75,3 +75,10 @@ only 10/456 training literals. See
 [evidence](../evidence/2026-10-28-decimal-digit-literals/README.md). Remaining
 candidates: the P0 interpolation probe and the P1 optimization controls (batch
 size, step count); number formatting is no longer the leading explanation.
+
+## Outcome of P0/P1 (run 2026-10-28)
+
+On a one-template interpolation task a scratch 3.4M model **does** learn to copy held-out
+literals (33/34 and 34/34), but only after roughly 40 or more passes over the data; 8 and 16 epochs
+fail at batch 1 and batch 8 alike. The main-task runs used 8 epochs. See
+[evidence](../evidence/2026-10-28-copy-mechanism-p0/README.md).

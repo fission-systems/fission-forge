@@ -33,6 +33,7 @@ def wide_constant(family,index,seed,shift):
     return order[index-BASE_VARIANTS]
 
 def instantiate(family,index,seed):
+    if family in P0_TEMPLATES:return instantiate_p0(family,index,seed)
     nodes=TEMPLATES|EXTRA_TEMPLATES
     if index>=BASE_VARIANTS and (family in TEMPLATES and SPLITS[family]!='train' or family not in nodes):
         raise ValueError('wide literal variants are train-only')
@@ -49,3 +50,22 @@ EXTRA_TEMPLATES={}
 for op in OPS:
     inner={'add':'and','sub':'or','mul':'or','and':'xor','or':'xor','xor':'and','shl':'add','shr':'add'}[op]
     EXTRA_TEMPLATES['shallow_extra_'+op+'_b']=[op,[inner,'b','k0'],3 if op in ('shl','shr') else 'a']
+
+
+# P0 constant-interpolation diagnostic: ONE template (a + k) in all three splits with
+# disjoint literals drawn from a seeded partition of 2..255. Only valid with a corpus
+# configuration that sets `diagnostic_shared_shapes`; it is never a headline benchmark.
+P0_TEMPLATES={f'p0_add_{split}':['add','a','k0'] for split in ('train','validation','test')}
+P0_SIZES={'train':180,'validation':34,'test':34}
+def p0_constants(seed):
+    order=sorted(range(2,256),key=lambda v:hashlib.sha256(f'p0:{seed}:{v}'.encode()).digest())
+    start=0;out={}
+    for split in ('train','validation','test'):
+        out[split]=order[start:start+P0_SIZES[split]];start+=P0_SIZES[split]
+    return out
+
+def instantiate_p0(family,index,seed):
+    split=family.rsplit('_',1)[1]
+    constants=p0_constants(seed)[split]
+    if not 0<=index<len(constants):raise ValueError('P0 variant index out of range')
+    return ['add','a',constants[index]]

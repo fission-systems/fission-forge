@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "name": "forge-p0-interpolation-v1",
+  "seed": 271828,
+  "variants_per_family": 34,
+  "optimizations": [
+    "O1"
+  ],
+  "representation": "pcode-plus-ssa-v1",
+  "diagnostic_shared_shapes": true,
+  "families": {
+    "p0_add_train": "train",
+    "p0_add_validation": "validation",
+    "p0_add_test": "test"
+  },
+  "extra_variants": {
+    "p0_add_train": 146
+  }
+}

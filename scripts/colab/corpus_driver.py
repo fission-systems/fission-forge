@@ -68,9 +68,9 @@ def main():
     forge=str(ROOT/'target/release/forge');config=ROOT/'configs/model/gpu-pilot-5m-8k.json';corpus=ROOT/'data/corpus'
     if (ROOT/'model.json').exists():config=ROOT/'model.json'
     write(RESULT/'binary.json',dict(sha256=sha(Path(forge)),model=json.loads(config.read_text())))
-    def train(name,steps,seed=619,limit=2,resume=None,every=100,timeout=180,learning_rate=0.001,override_learning_rate=False):
+    def train(name,steps,seed=619,limit=2,resume=None,every=100,timeout=180,learning_rate=0.001,override_learning_rate=False,batch_size=1):
         output=RESULT/name
-        cmd=[forge,'train-corpus','--config',config,'--corpus',corpus,'--output',output,'--device','cuda','--steps',str(steps),'--learning-rate',str(learning_rate),'--seed',str(seed),'--batch-size','1','--attention-chunk','256','--validation-limit',str(limit),'--evaluate-every',str(every),'--checkpoint-every',str(every)]
+        cmd=[forge,'train-corpus','--config',config,'--corpus',corpus,'--output',output,'--device','cuda','--steps',str(steps),'--learning-rate',str(learning_rate),'--seed',str(seed),'--batch-size',str(batch_size),'--attention-chunk','256','--validation-limit',str(limit),'--evaluate-every',str(every),'--checkpoint-every',str(every)]
         if (ROOT/'tokenizer.json').exists():cmd+=['--tokenizer',ROOT/'tokenizer.json']
         if resume:cmd+=['--resume',resume]
         if override_learning_rate:cmd+=['--override-learning-rate']

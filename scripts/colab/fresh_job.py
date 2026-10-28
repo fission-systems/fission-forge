@@ -36,7 +36,7 @@ def run(job,root,result,forge,config,corpus,env,train,write,sha,status,start,tot
     resources=json.loads((result/'fresh-preflight-resources.json').read_text())
     if resources['observed_whole_device_peak_mib']>total_mib*0.85:raise RuntimeError('longest input exceeds safe GPU memory budget')
     write(result/'fresh-preflight-verification.json',dict(seed=seed,longest_train_id=training[longest]['id'],sequence_length=probe['max_training_sequence'],model_parameters=probe['parameters'],sampler_first_index_verified=True))
-    report=train('fresh',job['steps'],seed=42,limit=0,every=job['evaluate_every'],timeout=900,learning_rate=job['learning_rate'])
+    report=train('fresh',job['steps'],seed=42,limit=0,every=job['evaluate_every'],timeout=job.get('train_timeout',900),learning_rate=job['learning_rate'],batch_size=job.get('batch_size',1))
     selected=Path(report['best_validation']['checkpoint'])
     write(result/'selection.json',dict(policy='lowest_full_validation_NLL_among_saved_checkpoints_before_functional_scoring',step=report['best_validation']['step'],nll=report['best_validation']['nll'],checkpoint_sha256=sha(selected/'training.safetensors'),checkpoint= str(selected),final_checkpoint=report['final_checkpoint'],test_model_examples=0))
     generate(job,result,forge,corpus,env,write,sha,status,start,selected)

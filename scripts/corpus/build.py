@@ -19,7 +19,7 @@ import shallow
 MASK = 2**32 - 1
 FAMILIES = {'affine', 'bitmask', 'rotate_mix', 'select', 'bounded_loop', 'carry',
             'remainder', 'xor_fold', 'clamp', 'quotient_round'}
-FAMILIES |= set(expressions.TEMPLATES) | set(shallow.TEMPLATES) | set(shallow.EXTRA_TEMPLATES)
+FAMILIES |= set(expressions.TEMPLATES) | set(shallow.TEMPLATES) | set(shallow.EXTRA_TEMPLATES) | set(shallow.P0_TEMPLATES)
 SPLITS = {'train', 'validation', 'test'}
 
 
@@ -43,7 +43,7 @@ def write(path, value):
 def config_read(path):
     cfg = json.loads(path.read_text())
     required = {'schema_version', 'name', 'seed', 'variants_per_family', 'optimizations', 'representation', 'families'}
-    if not required <= set(cfg) <= required | {'extra_variants'}:
+    if not required <= set(cfg) <= required | {'extra_variants', 'diagnostic_shared_shapes'}:
         raise ValueError('unsupported corpus configuration fields')
     if type(cfg['schema_version']) is not int or cfg['schema_version'] != 1 or cfg['representation'] != 'pcode-plus-ssa-v1':
         raise ValueError('unsupported corpus schema/representation')
@@ -55,6 +55,8 @@ def config_read(path):
         raise ValueError('unsupported or repeated optimization')
     if not set(cfg['families']) <= FAMILIES or set(cfg['families'].values()) != SPLITS:
         raise ValueError('requires known families and all three explicit splits')
+    if type(cfg.get('diagnostic_shared_shapes', False)) is not bool:
+        raise ValueError('diagnostic_shared_shapes must be a boolean')
     extra = cfg.get('extra_variants', {})
     if type(extra) is not dict or not set(extra) <= {f for f, split in cfg['families'].items() if split == 'train'}:
         raise ValueError('extra variants are limited to explicit train families')
@@ -84,7 +86,7 @@ def program(family, index, seed, split):
         'quotient_round': f'unsigned int d = (b & 255u) + 1u; return (a / d) + ((a % d) != 0u) + {c}u;',
     }
     identifier = f'{family}_{index:04d}'
-    expression = (expressions.instantiate(family,index,seed) if family in expressions.TEMPLATES else shallow.instantiate(family,index,seed) if family in (shallow.TEMPLATES|shallow.EXTRA_TEMPLATES) else None)
+    expression = (expressions.instantiate(family,index,seed) if family in expressions.TEMPLATES else shallow.instantiate(family,index,seed) if family in (shallow.TEMPLATES|shallow.EXTRA_TEMPLATES|shallow.P0_TEMPLATES) else None)
     body = 'return '+expressions.render(expression)+';' if expression is not None else bodies[family]
     source = f'unsigned int f(unsigned int a, unsigned int b) {{ {body} }}'
     return dict(id=identifier, family=family, split=split, compiled_name='corpus_' + identifier,

@@ -46,11 +46,13 @@ def main():
     p.add_argument('--forge', type=Path, default=Path('target/release/forge'))
     p.add_argument('--stride', type=int, default=1, help='Use every Nth row, deterministically')
     p.add_argument('--max-new-tokens', type=int, default=128)
+    p.add_argument('--completions-out', type=Path, help='Also write {id,text} completions for score_external.py')
     p.add_argument('--output', type=Path, required=True)
     a = p.parse_args()
     lane = json.loads((a.corpus / 'config.json').read_text())['representation']
     rows = [json.loads(l) for l in (a.corpus / 'release' / f'{a.split}.jsonl').read_text().splitlines()][::a.stride]
     records = []
+    texts = []
     for row in rows:
         with tempfile.TemporaryDirectory() as temp:
             text = generate(a.forge.resolve(), a.checkpoint.resolve(), lane, row, Path(temp), a.max_new_tokens)
@@ -59,6 +61,7 @@ def main():
                             exact=text.strip() == row['source'].strip(),
                             skeleton_match=skeleton(text) == skeleton(row['source']),
                             literals_match=sorted(want) == sorted(got), generated_literals=got, true_literals=want))
+        texts.append(dict(id=row['id'], text=text))
     n = len(records)
     by_variant = collections.defaultdict(lambda: [0, 0])
     for r in records:
@@ -75,6 +78,8 @@ def main():
     a.output.mkdir(parents=True, exist_ok=False)
     (a.output / 'summary.json').write_text(json.dumps(summary, indent=2) + '\n')
     (a.output / 'records.jsonl').write_text(''.join(json.dumps(r) + '\n' for r in records))
+    if a.completions_out:
+        a.completions_out.write_text(''.join(json.dumps(t) + '\n' for t in texts))
     print(json.dumps(summary, indent=2))
 
 

@@ -1,0 +1,183 @@
+{
+  "spec": {
+    "name": "r1-b1-1440-lr3e-4",
+    "batch": 1,
+    "steps": 1440,
+    "lr": 0.0003
+  },
+  "validation_nll_by_step": [
+    [
+      120,
+      0.2981
+    ],
+    [
+      240,
+      0.2058
+    ],
+    [
+      360,
+      0.1544
+    ],
+    [
+      480,
+      0.16
+    ],
+    [
+      600,
+      0.1437
+    ],
+    [
+      720,
+      0.1451
+    ],
+    [
+      840,
+      0.1377
+    ],
+    [
+      960,
+      0.1305
+    ],
+    [
+      1080,
+      0.1333
+    ],
+    [
+      1200,
+      0.1441
+    ],
+    [
+      1320,
+      0.1348
+    ],
+    [
+      1440,
+      0.1274
+    ]
+  ],
+  "selected_step": 1440,
+  "arms": {
+    "selected": {
+      "validation": {
+        "rows": 34,
+        "literals_match": 0,
+        "skeleton_match": 34,
+        "exact": 0,
+        "distinct": 5,
+        "top_literals": [
+          [
+            [
+              "111"
+            ],
+            13
+          ],
+          [
+            [
+              "24"
+            ],
+            11
+          ],
+          [
+            [
+              "211"
+            ],
+            8
+          ]
+        ]
+      },
+      "train": {
+        "rows": 30,
+        "literals_match": 0,
+        "skeleton_match": 30,
+        "exact": 0,
+        "distinct": 5,
+        "top_literals": [
+          [
+            [
+              "24"
+            ],
+            12
+          ],
+          [
+            [
+              "111"
+            ],
+            11
+          ],
+          [
+            [
+              "211"
+            ],
+            5
+          ]
+        ]
+      },
+      "functional": {
+        "compiled": 34,
+        "matched": 0,
+        "cases": 0
+      }
+    },
+    "final": {
+      "validation": {
+        "rows": 34,
+        "literals_match": 0,
+        "skeleton_match": 34,
+        "exact": 0,
+        "distinct": 5,
+        "top_literals": [
+          [
+            [
+              "111"
+            ],
+            13
+          ],
+          [
+            [
+              "24"
+            ],
+            11
+          ],
+          [
+            [
+              "211"
+            ],
+            8
+          ]
+        ]
+      },
+      "train": {
+        "rows": 30,
+        "literals_match": 0,
+        "skeleton_match": 30,
+        "exact": 0,
+        "distinct": 5,
+        "top_literals": [
+          [
+            [
+              "24"
+            ],
+            12
+          ],
+          [
+            [
+              "111"
+            ],
+            11
+          ],
+          [
+            [
+              "211"
+            ],
+            5
+          ]
+        ]
+      },
+      "functional": {
+        "compiled": 34,
+        "matched": 0,
+        "cases": 0
+      }
+    }
+  }
+}

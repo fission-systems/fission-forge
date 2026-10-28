@@ -67,4 +67,19 @@ class ShallowTests(unittest.TestCase):
                 path=Path(d)/'c.json';path.write_text(json.dumps(base|{'extra_variants':bad}))
                 with self.assertRaises(ValueError):build.config_read(path)
 
+    def test_p0_interpolation_splits_share_one_template_with_disjoint_literals(self):
+        cfg=build.config_read(Path('configs/corpus/p0-interpolation-v1.json'))
+        self.assertTrue(cfg['diagnostic_shared_shapes'])
+        parts=shallow.p0_constants(cfg['seed'])
+        self.assertEqual({k:len(v) for k,v in parts.items()},shallow.P0_SIZES)
+        everything=[v for vs in parts.values() for v in vs]
+        self.assertEqual(len(everything),len(set(everything)));self.assertTrue(all(2<=v<=255 for v in everything))
+        for split,family in [(s,f'p0_add_{s}') for s in parts]:
+            count=cfg['variants_per_family']+cfg.get('extra_variants',{}).get(family,0)
+            self.assertEqual(count,len(parts[split]))
+            literals=[shallow.instantiate(family,i,cfg['seed'])[2] for i in range(count)]
+            self.assertEqual(literals,parts[split])
+            p=build.program(family,0,cfg['seed'],split);self.assertIn(f'a + {parts[split][0]}u',p['source'])
+        with self.assertRaises(ValueError):shallow.instantiate('p0_add_test',34,cfg['seed'])
+
 if __name__=='__main__':unittest.main()

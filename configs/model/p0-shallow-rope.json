@@ -1,0 +1,9 @@
+{
+  "vocab_size": 321,
+  "hidden_size": 256,
+  "heads": 4,
+  "layers": 4,
+  "feed_forward_size": 1024,
+  "max_seq_len": 8192,
+  "rotary_positions": true
+}
