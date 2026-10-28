@@ -215,3 +215,12 @@ multiply with an add/sub score 0. The reserved 224-row test split, evaluated onc
 validation score was not optimistic, but the effective sample is eight pairs. See
 [evidence](../evidence/2026-10-28-operator-pair-split/README.md) and
 [test evaluation](../evidence/2026-10-28-operator-pair-test/README.md).
+
+## Focus split (the pairs that scored 0)
+
+`configs/corpus/shallow-focus-v1-{uniform,weighted}.json` hold out the nine zero-score pairs as validation and train on
+34 pairs with every operator an outer and inner operator of at least three of them (weighted: double extra variants for
+the weak pair kinds). On those pairs the earlier split scored 0/252; the weighted arm (NLL-selected) now matches
+**53/244** and the uniform arm's final checkpoint 28/244 (its NLL-selected step 512 scores 0). Two of nine pairs flip to
+about 100%, six stay at 0. Single seed, test split (216 rows) unused. See
+[evidence](../evidence/2026-10-29-focus-split/README.md).

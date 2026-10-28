@@ -1,0 +1,244 @@
+{"id": "rf_val_add_mul_a_0000-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a * 3u); }"}
+{"id": "rf_val_add_mul_a_0001-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a * 3u) & b); }"}
+{"id": "rf_val_add_mul_a_0003-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a * 5u) & b); }"}
+{"id": "rf_val_add_mul_a_0004-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a * 13u); }"}
+{"id": "rf_val_add_mul_a_0005-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a * 7u) - b); }"}
+{"id": "rf_val_add_mul_a_0007-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a * 9u) & b); }"}
+{"id": "rf_val_add_mul_a_0008-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a * 15u); }"}
+{"id": "rf_val_add_mul_a_0009-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a * 11u) & b); }"}
+{"id": "rf_val_add_mul_a_0010-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a * 13u); }"}
+{"id": "rf_val_add_mul_a_0011-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a * 13u) & b); }"}
+{"id": "rf_val_add_mul_a_0012-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a * 15u) >> 3u); }"}
+{"id": "rf_val_add_mul_a_0013-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a * 15u) & b); }"}
+{"id": "rf_val_add_mul_b_0000-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b * 3u); }"}
+{"id": "rf_val_add_mul_b_0001-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b * 3u) & a); }"}
+{"id": "rf_val_add_mul_b_0003-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b * 5u) & a); }"}
+{"id": "rf_val_add_mul_b_0004-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b * 13u); }"}
+{"id": "rf_val_add_mul_b_0005-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b * 4u) - - a); }"}
+{"id": "rf_val_add_mul_b_0007-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b * 9u) & a); }"}
+{"id": "rf_val_add_mul_b_0008-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b * 15u); }"}
+{"id": "rf_val_add_mul_b_0009-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b * 11u) & a); }"}
+{"id": "rf_val_add_mul_b_0010-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b * 13u); }"}
+{"id": "rf_val_add_mul_b_0011-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b * 13u) & a); }"}
+{"id": "rf_val_add_mul_b_0012-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b * 15u) >> 3u); }"}
+{"id": "rf_val_add_mul_b_0013-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b * 15u) & a); }"}
+{"id": "rf_val_add_shl_a_0002-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a << 4u) + b); }"}
+{"id": "rf_val_add_shl_a_0003-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a << 8u) + b); }"}
+{"id": "rf_val_add_shl_a_0004-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a << 6u) + b); }"}
+{"id": "rf_val_add_shl_a_0005-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a << 7u) + b); }"}
+{"id": "rf_val_add_shl_a_0006-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a << 8u) + b); }"}
+{"id": "rf_val_add_shl_a_0007-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a << 9u) + b); }"}
+{"id": "rf_val_add_shl_a_0008-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a << 10u) + b); }"}
+{"id": "rf_val_add_shl_a_0009-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a << 11u) + b); }"}
+{"id": "rf_val_add_shl_a_0010-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a << 12u) + b); }"}
+{"id": "rf_val_add_shl_a_0011-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a << 13u) + b); }"}
+{"id": "rf_val_add_shl_a_0012-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a << 14u) + b); }"}
+{"id": "rf_val_add_shl_a_0013-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a << 18u) + b); }"}
+{"id": "rf_val_add_shl_b_0002-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b << 4u) + a); }"}
+{"id": "rf_val_add_shl_b_0003-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b << 8u) + a); }"}
+{"id": "rf_val_add_shl_b_0004-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b << 6u) + a); }"}
+{"id": "rf_val_add_shl_b_0005-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b << 7u) + a); }"}
+{"id": "rf_val_add_shl_b_0006-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b << 8u) + a); }"}
+{"id": "rf_val_add_shl_b_0007-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b << 9u) + a); }"}
+{"id": "rf_val_add_shl_b_0008-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b << 10u) + a); }"}
+{"id": "rf_val_add_shl_b_0009-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b << 11u) + a); }"}
+{"id": "rf_val_add_shl_b_0010-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b << 12u) + a); }"}
+{"id": "rf_val_add_shl_b_0011-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b << 13u) + a); }"}
+{"id": "rf_val_add_shl_b_0012-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b << 14u) + a); }"}
+{"id": "rf_val_add_shl_b_0013-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b << 18u) + a); }"}
+{"id": "rf_val_mul_add_a_0000-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a - 2u) * b); }"}
+{"id": "rf_val_mul_add_a_0001-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a - 3u) * b); }"}
+{"id": "rf_val_mul_add_a_0002-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a - 4u) * b); }"}
+{"id": "rf_val_mul_add_a_0003-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a - 5u) * b); }"}
+{"id": "rf_val_mul_add_a_0004-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a - 6u) * b); }"}
+{"id": "rf_val_mul_add_a_0005-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a - 7u) * b); }"}
+{"id": "rf_val_mul_add_a_0006-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a - 8u) * b); }"}
+{"id": "rf_val_mul_add_a_0007-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a - 9u) * b); }"}
+{"id": "rf_val_mul_add_a_0008-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a - 10u) * b); }"}
+{"id": "rf_val_mul_add_a_0009-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a - 11u) * b); }"}
+{"id": "rf_val_mul_add_a_0010-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a - 12u) * b); }"}
+{"id": "rf_val_mul_add_a_0011-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a - 13u) * b); }"}
+{"id": "rf_val_mul_add_a_0012-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a - 4u) * b); }"}
+{"id": "rf_val_mul_add_a_0013-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a - 15u) * b); }"}
+{"id": "rf_val_mul_add_b_0000-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 2u) * a); }"}
+{"id": "rf_val_mul_add_b_0001-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 3u) * a); }"}
+{"id": "rf_val_mul_add_b_0002-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 4u) * a); }"}
+{"id": "rf_val_mul_add_b_0003-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 5u) * a); }"}
+{"id": "rf_val_mul_add_b_0004-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 6u) * a); }"}
+{"id": "rf_val_mul_add_b_0005-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 7u) * a); }"}
+{"id": "rf_val_mul_add_b_0006-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 8u) * a); }"}
+{"id": "rf_val_mul_add_b_0007-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 9u) * a); }"}
+{"id": "rf_val_mul_add_b_0008-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 10u) * a); }"}
+{"id": "rf_val_mul_add_b_0009-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 11u) * a); }"}
+{"id": "rf_val_mul_add_b_0010-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 12u) * a); }"}
+{"id": "rf_val_mul_add_b_0011-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 13u) * a); }"}
+{"id": "rf_val_mul_add_b_0012-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 14u) * a); }"}
+{"id": "rf_val_mul_add_b_0013-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 15u) * a); }"}
+{"id": "rf_val_mul_or_a_0000-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a & 2u) * b); }"}
+{"id": "rf_val_mul_or_a_0001-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a & 3u) * b); }"}
+{"id": "rf_val_mul_or_a_0002-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a & 4u) * b); }"}
+{"id": "rf_val_mul_or_a_0003-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a & 5u) * b); }"}
+{"id": "rf_val_mul_or_a_0004-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a & 6u) * b); }"}
+{"id": "rf_val_mul_or_a_0005-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a & 7u) * b); }"}
+{"id": "rf_val_mul_or_a_0006-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a & 8u) * b); }"}
+{"id": "rf_val_mul_or_a_0007-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a & 9u) * b); }"}
+{"id": "rf_val_mul_or_a_0008-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a & 10u) * b); }"}
+{"id": "rf_val_mul_or_a_0009-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a & 11u) * b); }"}
+{"id": "rf_val_mul_or_a_0010-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a & 12u) * b); }"}
+{"id": "rf_val_mul_or_a_0011-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a & 13u) * b); }"}
+{"id": "rf_val_mul_or_a_0012-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a & 14u) * b); }"}
+{"id": "rf_val_mul_or_a_0013-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a & 15u) * b); }"}
+{"id": "rf_val_mul_or_b_0000-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b & 2u) * a); }"}
+{"id": "rf_val_mul_or_b_0001-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b & 3u) * a); }"}
+{"id": "rf_val_mul_or_b_0002-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b & 4u) * a); }"}
+{"id": "rf_val_mul_or_b_0003-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b & 5u) * a); }"}
+{"id": "rf_val_mul_or_b_0004-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b & 6u) * a); }"}
+{"id": "rf_val_mul_or_b_0005-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b & 7u) * a); }"}
+{"id": "rf_val_mul_or_b_0006-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b & 8u) * a); }"}
+{"id": "rf_val_mul_or_b_0007-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b & 9u) * a); }"}
+{"id": "rf_val_mul_or_b_0008-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b & 10u) * a); }"}
+{"id": "rf_val_mul_or_b_0009-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b & 11u) * a); }"}
+{"id": "rf_val_mul_or_b_0010-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b & 12u) * a); }"}
+{"id": "rf_val_mul_or_b_0011-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b & 13u) * a); }"}
+{"id": "rf_val_mul_or_b_0012-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b & 14u) * a); }"}
+{"id": "rf_val_mul_or_b_0013-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b & 15u) * a); }"}
+{"id": "rf_val_or_sub_a_0000-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a - 2u) | b); }"}
+{"id": "rf_val_or_sub_a_0001-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a - 3u) | b); }"}
+{"id": "rf_val_or_sub_a_0002-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a - 4u) | b); }"}
+{"id": "rf_val_or_sub_a_0003-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a - 5u) | b); }"}
+{"id": "rf_val_or_sub_a_0004-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a - 6u) | b); }"}
+{"id": "rf_val_or_sub_a_0005-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a - 7u) | b); }"}
+{"id": "rf_val_or_sub_a_0006-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a - 8u) | b); }"}
+{"id": "rf_val_or_sub_a_0007-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a - 9u) | b); }"}
+{"id": "rf_val_or_sub_a_0008-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a - 10u) | b); }"}
+{"id": "rf_val_or_sub_a_0009-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a - 11u) | b); }"}
+{"id": "rf_val_or_sub_a_0010-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a - 126u) | b); }"}
+{"id": "rf_val_or_sub_a_0011-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a - 13u) | b); }"}
+{"id": "rf_val_or_sub_a_0012-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a - 14u) | b); }"}
+{"id": "rf_val_or_sub_a_0013-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a - 15u) | b); }"}
+{"id": "rf_val_or_sub_b_0000-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 2u) | a); }"}
+{"id": "rf_val_or_sub_b_0001-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 3u) | a); }"}
+{"id": "rf_val_or_sub_b_0002-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 4u) | a); }"}
+{"id": "rf_val_or_sub_b_0003-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 5u) | a); }"}
+{"id": "rf_val_or_sub_b_0004-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 6u) | a); }"}
+{"id": "rf_val_or_sub_b_0005-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 7u) | a); }"}
+{"id": "rf_val_or_sub_b_0006-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 8u) | a); }"}
+{"id": "rf_val_or_sub_b_0007-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 9u) | a); }"}
+{"id": "rf_val_or_sub_b_0008-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 10u) | a); }"}
+{"id": "rf_val_or_sub_b_0009-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 11u) | a); }"}
+{"id": "rf_val_or_sub_b_0010-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 126u) | a); }"}
+{"id": "rf_val_or_sub_b_0011-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 13u) | a); }"}
+{"id": "rf_val_or_sub_b_0012-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 14u) | a); }"}
+{"id": "rf_val_or_sub_b_0013-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 15u) | a); }"}
+{"id": "rf_val_shl_add_a_0000-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a * 2u); }"}
+{"id": "rf_val_shl_add_a_0001-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a * 3u); }"}
+{"id": "rf_val_shl_add_a_0002-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a * 3u); }"}
+{"id": "rf_val_shl_add_a_0003-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a * 4u); }"}
+{"id": "rf_val_shl_add_a_0004-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a * 4u); }"}
+{"id": "rf_val_shl_add_a_0005-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 5u) << 3u); }"}
+{"id": "rf_val_shl_add_a_0006-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a * 6u); }"}
+{"id": "rf_val_shl_add_a_0007-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a * 3u); }"}
+{"id": "rf_val_shl_add_a_0008-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a * 8u); }"}
+{"id": "rf_val_shl_add_a_0009-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a * 8u); }"}
+{"id": "rf_val_shl_add_a_0010-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a + 9u); }"}
+{"id": "rf_val_shl_add_a_0011-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 10u) << 3u); }"}
+{"id": "rf_val_shl_add_a_0012-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 14u) << 3u); }"}
+{"id": "rf_val_shl_add_a_0013-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a + 12u) << 3u); }"}
+{"id": "rf_val_shl_add_b_0000-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b * 2u); }"}
+{"id": "rf_val_shl_add_b_0001-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b * 3u); }"}
+{"id": "rf_val_shl_add_b_0002-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b * 3u); }"}
+{"id": "rf_val_shl_add_b_0003-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b * 4u); }"}
+{"id": "rf_val_shl_add_b_0004-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 6u) << 3u); }"}
+{"id": "rf_val_shl_add_b_0005-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b * 5u); }"}
+{"id": "rf_val_shl_add_b_0006-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 6u) << 3u); }"}
+{"id": "rf_val_shl_add_b_0007-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b * 2u); }"}
+{"id": "rf_val_shl_add_b_0008-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b * 8u); }"}
+{"id": "rf_val_shl_add_b_0009-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b * 8u); }"}
+{"id": "rf_val_shl_add_b_0010-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b * 9u); }"}
+{"id": "rf_val_shl_add_b_0011-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 10u) << 3u); }"}
+{"id": "rf_val_shl_add_b_0012-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 14u) << 3u); }"}
+{"id": "rf_val_shl_add_b_0013-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b + 12u) << 3u); }"}
+{"id": "rf_val_shl_or_a_0000-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a & 2u) | b); }"}
+{"id": "rf_val_shl_or_a_0001-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a & 3u) | b); }"}
+{"id": "rf_val_shl_or_a_0002-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a & 3u) | b); }"}
+{"id": "rf_val_shl_or_a_0003-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a & 5u) | b); }"}
+{"id": "rf_val_shl_or_a_0004-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a & 6u) | b); }"}
+{"id": "rf_val_shl_or_a_0005-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a & 7u) | b); }"}
+{"id": "rf_val_shl_or_a_0006-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a & 7u) | b); }"}
+{"id": "rf_val_shl_or_a_0007-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a & 9u) | b); }"}
+{"id": "rf_val_shl_or_a_0008-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a & 8u) | b); }"}
+{"id": "rf_val_shl_or_a_0009-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a & 12u) | b); }"}
+{"id": "rf_val_shl_or_a_0010-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a & 9u) | b); }"}
+{"id": "rf_val_shl_or_a_0011-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a & 13u) | b); }"}
+{"id": "rf_val_shl_or_a_0012-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a & 14u) | b); }"}
+{"id": "rf_val_shl_or_a_0013-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a & 15u) | b); }"}
+{"id": "rf_val_shl_or_b_0000-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b & 2u) | a); }"}
+{"id": "rf_val_shl_or_b_0001-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b & 3u) | a); }"}
+{"id": "rf_val_shl_or_b_0002-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b & 3u) | a); }"}
+{"id": "rf_val_shl_or_b_0003-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b & 5u) | a); }"}
+{"id": "rf_val_shl_or_b_0004-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b & 6u) | a); }"}
+{"id": "rf_val_shl_or_b_0005-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b & 7u) | a); }"}
+{"id": "rf_val_shl_or_b_0006-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b & 7u) | a); }"}
+{"id": "rf_val_shl_or_b_0007-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b & 9u) | a); }"}
+{"id": "rf_val_shl_or_b_0008-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b & 10u) | a); }"}
+{"id": "rf_val_shl_or_b_0009-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b & 12u) | a); }"}
+{"id": "rf_val_shl_or_b_0010-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b & 12u) | a); }"}
+{"id": "rf_val_shl_or_b_0011-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b & 13u) | a); }"}
+{"id": "rf_val_shl_or_b_0012-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b & 14u) | a); }"}
+{"id": "rf_val_shl_or_b_0013-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b & 15u) | a); }"}
+{"id": "rf_val_shr_add_a_0000-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a * 28u) >> 3u); }"}
+{"id": "rf_val_shr_add_a_0001-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a * 3u) >> 3u); }"}
+{"id": "rf_val_shr_add_a_0002-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a * 4u) >> 3u); }"}
+{"id": "rf_val_shr_add_a_0003-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a * 58u) >> 3u); }"}
+{"id": "rf_val_shr_add_a_0004-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a * 6u) >> 3u); }"}
+{"id": "rf_val_shr_add_a_0005-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a * 7u) >> 3u); }"}
+{"id": "rf_val_shr_add_a_0006-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a * 8u) >> 3u); }"}
+{"id": "rf_val_shr_add_a_0007-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a * 98u) >> 3u); }"}
+{"id": "rf_val_shr_add_a_0008-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a * 10u) >> 3u); }"}
+{"id": "rf_val_shr_add_a_0009-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a * 11u) >> 3u); }"}
+{"id": "rf_val_shr_add_a_0010-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a * 12u) >> 3u); }"}
+{"id": "rf_val_shr_add_a_0011-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a * 13u) >> 3u); }"}
+{"id": "rf_val_shr_add_a_0012-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a * 14u) >> 3u); }"}
+{"id": "rf_val_shr_add_a_0013-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a * 15u) >> 3u); }"}
+{"id": "rf_val_shr_add_b_0000-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b * 28u) >> 3u); }"}
+{"id": "rf_val_shr_add_b_0001-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b * 3u) >> 3u); }"}
+{"id": "rf_val_shr_add_b_0002-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b * 4u) >> 3u); }"}
+{"id": "rf_val_shr_add_b_0003-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b * 5u) >> 3u); }"}
+{"id": "rf_val_shr_add_b_0004-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b * 6u) >> 3u); }"}
+{"id": "rf_val_shr_add_b_0005-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b * 7u) >> 3u); }"}
+{"id": "rf_val_shr_add_b_0006-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b * 8u) >> 3u); }"}
+{"id": "rf_val_shr_add_b_0007-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b * 98u) >> 3u); }"}
+{"id": "rf_val_shr_add_b_0008-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b * 10u) >> 3u); }"}
+{"id": "rf_val_shr_add_b_0009-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b * 11u) >> 3u); }"}
+{"id": "rf_val_shr_add_b_0010-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b * 12u) >> 3u); }"}
+{"id": "rf_val_shr_add_b_0011-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b * 13u) >> 3u); }"}
+{"id": "rf_val_shr_add_b_0012-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b * 14u) >> 3u); }"}
+{"id": "rf_val_shr_add_b_0013-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b * 15u) >> 3u); }"}
+{"id": "rf_val_shr_sub_a_0000-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a * 2u) >> 3u); }"}
+{"id": "rf_val_shr_sub_a_0001-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a * 3u) >> 3u); }"}
+{"id": "rf_val_shr_sub_a_0002-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a * 4u) >> 3u); }"}
+{"id": "rf_val_shr_sub_a_0003-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a * 5u) >> 3u); }"}
+{"id": "rf_val_shr_sub_a_0004-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a * 6u) >> 3u); }"}
+{"id": "rf_val_shr_sub_a_0005-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a * 7u) >> 3u); }"}
+{"id": "rf_val_shr_sub_a_0006-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a * 8) >> 3u); }"}
+{"id": "rf_val_shr_sub_a_0007-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a * 9u) >> 3u); }"}
+{"id": "rf_val_shr_sub_a_0008-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a * 10u) >> 3u); }"}
+{"id": "rf_val_shr_sub_a_0009-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a * 11u) >> 3u); }"}
+{"id": "rf_val_shr_sub_a_0010-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a * 12u) >> 3u); }"}
+{"id": "rf_val_shr_sub_a_0011-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a * 13u) >> 3u); }"}
+{"id": "rf_val_shr_sub_a_0012-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a * 14u) >> 3u); }"}
+{"id": "rf_val_shr_sub_a_0013-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a * 15u) >> 3u); }"}
+{"id": "rf_val_shr_sub_b_0000-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b * 2u) >> 3u); }"}
+{"id": "rf_val_shr_sub_b_0001-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b * 3u) >> 3u); }"}
+{"id": "rf_val_shr_sub_b_0002-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b * 4u) >> 3u); }"}
+{"id": "rf_val_shr_sub_b_0003-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b * 5u) >> 3u); }"}
+{"id": "rf_val_shr_sub_b_0004-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b * 6u) >> 3u); }"}
+{"id": "rf_val_shr_sub_b_0005-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b * 7u) >> 3u); }"}
+{"id": "rf_val_shr_sub_b_0006-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b * 8) >> 3u); }"}
+{"id": "rf_val_shr_sub_b_0007-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b * 9u) >> 3u); }"}
+{"id": "rf_val_shr_sub_b_0008-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b * 10u) >> 3u); }"}
+{"id": "rf_val_shr_sub_b_0009-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b * 11u) >> 3u); }"}
+{"id": "rf_val_shr_sub_b_0010-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b * 12u) >> 3u); }"}
+{"id": "rf_val_shr_sub_b_0011-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b * 13u) >> 3u); }"}
+{"id": "rf_val_shr_sub_b_0012-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b * 14u) >> 3u); }"}
+{"id": "rf_val_shr_sub_b_0013-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b * 15u) >> 3u); }"}

@@ -163,4 +163,32 @@ class ShallowTests(unittest.TestCase):
         for family,count in cfg['extra_variants'].items():
             self.assertEqual(len({build.program(family,i,cfg['seed'],'train')['source'] for i in range(14+count)}),14+count,family)
 
+    def test_focus_split_holds_out_the_zero_score_pairs_and_keeps_coverage(self):
+        pairs=shallow.rf_split_pairs()
+        flat=[p for v in pairs.values() for p in v]
+        self.assertEqual(len(flat),len(set(flat)),'a pair appears in two splits')
+        self.assertEqual(set(flat),set(shallow.rd_pairs()))
+        self.assertEqual(sorted(pairs['validation']),sorted(shallow.RF_VALIDATION))
+        self.assertGreaterEqual(len(pairs['test']),8)
+        cls=shallow.RD_CLASS
+        where={(cls[o],cls[i]):split for split,v in pairs.items() for o,i in v}
+        for split,v in pairs.items():
+            for o,i in v:self.assertEqual(where[(cls[o],cls[i])],split,'mul/shl class split across splits')
+        for op in shallow.OPS:
+            self.assertGreaterEqual(sum(1 for o,_ in pairs['train'] if o==op),2 if op=='shr' else 3,op)
+            self.assertGreaterEqual(sum(1 for _,i in pairs['train'] if i==op),3,op)
+        self.assertFalse(set(shallow.RF_TEMPLATES)&set(shallow.RD_TEMPLATES),'rf names must not collide with rd names')
+        uniform=build.config_read(Path('configs/corpus/shallow-focus-v1-uniform.json'))
+        weighted=build.config_read(Path('configs/corpus/shallow-focus-v1-weighted.json'))
+        self.assertEqual(uniform['families'],shallow.RF_SPLITS)
+        self.assertEqual(weighted['families'],shallow.RF_SPLITS)
+        self.assertEqual(set(uniform['extra_variants']),set(weighted['extra_variants']))
+        raised=[f for f in weighted['extra_variants'] if weighted['extra_variants'][f]!=uniform['extra_variants'][f]]
+        self.assertTrue(raised)
+        for family in raised:
+            outer,inner=family.split('_')[2:4]
+            self.assertTrue(shallow.rf_weak(outer,inner),family)
+        for family,count in weighted['extra_variants'].items():
+            self.assertEqual(len({build.program(family,i,weighted['seed'],'train')['source'] for i in range(14+count)}),14+count,family)
+
 if __name__=='__main__':unittest.main()

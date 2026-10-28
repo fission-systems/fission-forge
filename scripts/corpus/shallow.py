@@ -34,8 +34,8 @@ def wide_constant(family,index,seed,shift):
 
 def instantiate(family,index,seed):
     if family in P0_TEMPLATES:return instantiate_p0(family,index,seed)
-    nodes=TEMPLATES|EXTRA_TEMPLATES|RB_TEMPLATES|RD_TEMPLATES
-    if index>=BASE_VARIANTS and (family in TEMPLATES and SPLITS[family]!='train' or family in RB_SPLITS and RB_SPLITS[family]!='train' or family in RD_SPLITS and RD_SPLITS[family]!='train' or family not in nodes):
+    nodes=TEMPLATES|EXTRA_TEMPLATES|RB_TEMPLATES|RD_TEMPLATES|RF_TEMPLATES
+    if index>=BASE_VARIANTS and (family in TEMPLATES and SPLITS[family]!='train' or family in RB_SPLITS and RB_SPLITS[family]!='train' or family in RD_SPLITS and RD_SPLITS[family]!='train' or family in RF_SPLITS and RF_SPLITS[family]!='train' or family not in nodes):
         raise ValueError('wide literal variants are train-only')
     def walk(n,parent=None):
         if isinstance(n,str):
@@ -146,3 +146,41 @@ for _split,_pairs in rd_split_pairs().items():
                 [_o,[_i,_arg,'k0'],3 if _o in ('shl','shr') else _other(_arg)],_split)
 for _op in OPS:
     for _arg in ('a','b'):_rd(f'rd_one_{_op}_{_arg}',[_op,_arg,'k0'],'train')
+
+
+# Focus split (rf): validation holds out exactly the nine (outer, inner) pairs that scored 0 in the operator-pair
+# split (every one of them is a pair whose outer operator is mul/shl or whose inner operator is add/sub/or),
+# so a score on them is directly comparable with that 0. The test pairs are drawn afresh from the remaining pairs,
+# whole mul/shl classes at a time, keeping every operator the outer operator of at least three training pairs
+# (shr is limited to two: only four shr-outer pairs exist and two are held out for validation) and the inner
+# operator of at least three.
+RF_SEED=161803
+RF_VALIDATION=[('add','mul'),('add','shl'),('mul','add'),('mul','or'),('or','sub'),('shl','add'),('shl','or'),('shr','add'),('shr','sub')]
+def rf_split_pairs():
+    rest=[p for p in rd_pairs() if p not in RF_VALIDATION]
+    groups={}
+    for o,i in rest:groups.setdefault((RD_CLASS[o],RD_CLASS[i]),[]).append((o,i))
+    def covered(taken):
+        train=[p for k in groups if k not in taken for p in groups[k]]
+        return all(sum(1 for o,_ in train if o==op)>=(2 if op=='shr' else 3) and sum(1 for _,i in train if i==op)>=3 for op in OPS)
+    keys=sorted(groups);_random.Random(RF_SEED).shuffle(keys)
+    taken=[];count=0
+    for k in keys:
+        if count<8 and covered(set(taken)|{k}):taken.append(k);count+=len(groups[k])
+    out={'train':[],'validation':sorted(RF_VALIDATION),'test':[]}
+    for k in keys:out['test' if k in taken else 'train'].extend(groups[k])
+    return {k:sorted(v) for k,v in out.items()}
+RF_TEMPLATES={}
+RF_SPLITS={}
+def _rf(name,node,split):
+    RF_TEMPLATES[name]=node;RF_SPLITS[name]=split
+for _split,_pairs in rf_split_pairs().items():
+    for _o,_i in _pairs:
+        for _arg in ('a','b'):
+            _rf(f'rf_two_{_o}_{_i}_{_arg}' if _split=='train' else f'rf_{_split[:3]}_{_o}_{_i}_{_arg}',
+                [_o,[_i,_arg,'k0'],3 if _o in ('shl','shr') else _other(_arg)],_split)
+for _op in OPS:
+    for _arg in ('a','b'):_rf(f'rf_one_{_op}_{_arg}',[_op,_arg,'k0'],'train')
+def rf_weak(outer,inner):
+    """The pair kinds that scored 0 held out: multiply/shift outer, add/sub/or inner."""
+    return outer in ('mul','shl') or inner in ('add','sub','or')

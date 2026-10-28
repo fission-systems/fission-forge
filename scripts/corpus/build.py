@@ -19,7 +19,7 @@ import shallow
 MASK = 2**32 - 1
 FAMILIES = {'affine', 'bitmask', 'rotate_mix', 'select', 'bounded_loop', 'carry',
             'remainder', 'xor_fold', 'clamp', 'quotient_round'}
-FAMILIES |= set(expressions.TEMPLATES) | set(shallow.TEMPLATES) | set(shallow.EXTRA_TEMPLATES) | set(shallow.P0_TEMPLATES) | set(shallow.RB_TEMPLATES) | set(shallow.RD_TEMPLATES)
+FAMILIES |= set(expressions.TEMPLATES) | set(shallow.TEMPLATES) | set(shallow.EXTRA_TEMPLATES) | set(shallow.P0_TEMPLATES) | set(shallow.RB_TEMPLATES) | set(shallow.RD_TEMPLATES) | set(shallow.RF_TEMPLATES)
 SPLITS = {'train', 'validation', 'test'}
 
 
@@ -86,7 +86,7 @@ def program(family, index, seed, split):
         'quotient_round': f'unsigned int d = (b & 255u) + 1u; return (a / d) + ((a % d) != 0u) + {c}u;',
     }
     identifier = f'{family}_{index:04d}'
-    expression = (expressions.instantiate(family,index,seed) if family in expressions.TEMPLATES else shallow.instantiate(family,index,seed) if family in (shallow.TEMPLATES|shallow.EXTRA_TEMPLATES|shallow.P0_TEMPLATES|shallow.RB_TEMPLATES|shallow.RD_TEMPLATES) else None)
+    expression = (expressions.instantiate(family,index,seed) if family in expressions.TEMPLATES else shallow.instantiate(family,index,seed) if family in (shallow.TEMPLATES|shallow.EXTRA_TEMPLATES|shallow.P0_TEMPLATES|shallow.RB_TEMPLATES|shallow.RD_TEMPLATES|shallow.RF_TEMPLATES) else None)
     body = 'return '+expressions.render(expression)+';' if expression is not None else bodies[family]
     source = f'unsigned int f(unsigned int a, unsigned int b) {{ {body} }}'
     return dict(id=identifier, family=family, split=split, compiled_name='corpus_' + identifier,
