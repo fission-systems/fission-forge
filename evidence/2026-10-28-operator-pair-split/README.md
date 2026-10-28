@@ -66,6 +66,6 @@ On training rows the final checkpoint reproduces 404 of 453 sampled rows exactly
 
 Single seed; validation was used to iterate on the split design (several construction fixes, see the commit log)
 and to choose the checkpoint, so 35.2% is a development-set result, not an unbiased estimate; the reserved
-**test split (224 rows) was never used and still needs one frozen evaluation**; the final-checkpoint rows are CPU
+the test split was evaluated once afterwards (78/224, see `../2026-10-28-operator-pair-test/`); the final-checkpoint rows are CPU
 generations scored with the same functional scorer; no model is promoted; this is a synthetic one/two-operation
 grammar, not real code or DecBench.

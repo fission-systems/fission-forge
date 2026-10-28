@@ -42,7 +42,7 @@ def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--corpus', type=Path, required=True)
     p.add_argument('--checkpoint', type=Path, required=True)
-    p.add_argument('--split', choices=['train', 'validation'], default='train')
+    p.add_argument('--split', choices=['train', 'validation', 'test'], default='train')
     p.add_argument('--forge', type=Path, default=Path('target/release/forge'))
     p.add_argument('--stride', type=int, default=1, help='Use every Nth row, deterministically')
     p.add_argument('--max-new-tokens', type=int, default=128)

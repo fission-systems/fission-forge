@@ -1,0 +1,402 @@
+{
+  "schema_version": 1,
+  "name": "forge-opairs-v1-compactdec-isolated-b8-functional-test-single-use",
+  "scope": "owned_synthetic_operator_pair_holdout_test_single_evaluation",
+  "corpus_lock_sha256": "5069a0ac732e89c52510e301656d2af6162a5ab2c811813ce7e97e314f104bfa",
+  "baseline": {
+    "step": 0,
+    "checkpoint_sha256": "not_applicable_random_initialization_no_baseline_generation"
+  },
+  "improvement": {
+    "kind": "fresh_64_epochs_batch_8_operator_pair_diverse_training",
+    "additional_updates": 14496,
+    "final_step": 14496,
+    "selection": "validation_NLL_only_before_functional_scoring",
+    "learning_rate": 0.0003,
+    "seed": 42,
+    "batch_size": 8,
+    "attention_chunk": 256,
+    "validation_limit": 0,
+    "evaluate_every": 256,
+    "checkpoint_every": 256
+  },
+  "evaluation": {
+    "max_new_tokens": 512,
+    "generation_timeout_seconds": 30,
+    "execution_timeout_seconds": 10,
+    "fuel_per_case": 100000,
+    "memory_bytes": 1048576,
+    "decoding": "greedy_eos_and_bpe_tokens_kv_cache_byte_budget",
+    "device": "cpu",
+    "max_output_bytes": 512
+  },
+  "test_policy": "test_split_evaluated_exactly_once_with_the_validation_NLL_selected_checkpoint_step_4096_no_selection_or_design_change_afterwards",
+  "tokenizer": {
+    "algorithm": "lexical-byte-bpe-v1",
+    "train_split_sha256": "cd790626675f00feca12516524957f284864ade7852fa9f67761f312ce7ccaf8",
+    "source_weight": 8,
+    "merges": [
+      [
+        114,
+        120
+      ],
+      [
+        109,
+        107
+      ],
+      [
+        105,
+        104
+      ],
+      [
+        109,
+        260
+      ],
+      [
+        114,
+        119
+      ],
+      [
+        114,
+        262
+      ],
+      [
+        121,
+        264
+      ],
+      [
+        261,
+        265
+      ],
+      [
+        266,
+        267
+      ],
+      [
+        118,
+        105
+      ],
+      [
+        118,
+        114
+      ],
+      [
+        120,
+        121
+      ],
+      [
+        269,
+        271
+      ],
+      [
+        272,
+        270
+      ],
+      [
+        77,
+        260
+      ],
+      [
+        73,
+        124
+      ],
+      [
+        275,
+        120
+      ],
+      [
+        94,
+        276
+      ],
+      [
+        274,
+        277
+      ],
+      [
+        103,
+        115
+      ],
+      [
+        104,
+        105
+      ],
+      [
+        274,
+        69
+      ],
+      [
+        112,
+        105
+      ],
+      [
+        69,
+        92
+      ],
+      [
+        73,
+        283
+      ],
+      [
+        99,
+        269
+      ],
+      [
+        99,
+        284
+      ],
+      [
+        101,
+        103
+      ],
+      [
+        102,
+        119
+      ],
+      [
+        105,
+        118
+      ],
+      [
+        105,
+        124
+      ],
+      [
+        107,
+        119
+      ],
+      [
+        109,
+        120
+      ],
+      [
+        112,
+        115
+      ],
+      [
+        113,
+        116
+      ],
+      [
+        115,
+        288
+      ],
+      [
+        116,
+        279
+      ],
+      [
+        119,
+        101
+      ],
+      [
+        119,
+        297
+      ],
+      [
+        122,
+        105
+      ],
+      [
+        123,
+        286
+      ],
+      [
+        279,
+        294
+      ],
+      [
+        280,
+        103
+      ],
+      [
+        285,
+        291
+      ],
+      [
+        287,
+        120
+      ],
+      [
+        289,
+        299
+      ],
+      [
+        290,
+        292
+      ],
+      [
+        293,
+        300
+      ],
+      [
+        295,
+        305
+      ],
+      [
+        296,
+        280
+      ],
+      [
+        301,
+        304
+      ],
+      [
+        306,
+        303
+      ],
+      [
+        87,
+        121
+      ],
+      [
+        312,
+        102
+      ],
+      [
+        114,
+        104
+      ],
+      [
+        281,
+        314
+      ],
+      [
+        84,
+        109
+      ],
+      [
+        103,
+        105
+      ],
+      [
+        105,
+        317
+      ],
+      [
+        313,
+        316
+      ],
+      [
+        319,
+        318
+      ],
+      [
+        71,
+        115
+      ],
+      [
+        116,
+        125
+      ],
+      [
+        321,
+        322
+      ],
+      [
+        81,
+        121
+      ],
+      [
+        112,
+        120
+      ],
+      [
+        274,
+        324
+      ],
+      [
+        326,
+        325
+      ],
+      [
+        104,
+        104
+      ],
+      [
+        281,
+        328
+      ],
+      [
+        87,
+        276
+      ],
+      [
+        274,
+        330
+      ],
+      [
+        92,
+        115
+      ],
+      [
+        274,
+        332
+      ],
+      [
+        333,
+        118
+      ],
+      [
+        86,
+        261
+      ],
+      [
+        108,
+        120
+      ],
+      [
+        274,
+        335
+      ],
+      [
+        337,
+        336
+      ],
+      [
+        83,
+        118
+      ],
+      [
+        274,
+        339
+      ],
+      [
+        80,
+        105
+      ],
+      [
+        106,
+        120
+      ],
+      [
+        274,
+        341
+      ],
+      [
+        343,
+        342
+      ],
+      [
+        274,
+        313
+      ]
+    ],
+    "isolate_digits": true
+  },
+  "model": {
+    "vocab_size": 346,
+    "hidden_size": 256,
+    "heads": 4,
+    "layers": 4,
+    "feed_forward_size": 1024,
+    "max_seq_len": 8192,
+    "rotary_positions": true
+  },
+  "representation": "pcode-ssa-return-u32-compact-dec-v1",
+  "curriculum_policy": "train_has_most_operator_pairs_with_both_roles_validation_and_test_hold_out_whole_pairs",
+  "selected_checkpoint": {
+    "step": 4096,
+    "checkpoint_sha256": "aa6cd9ee255e540c372a970c8b51df4f30484e30bfbc485c9e51fef6c5aea7a4",
+    "selection_evidence": "evidence/2026-10-28-operator-pair-split/selection.json"
+  }
+}

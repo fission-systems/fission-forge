@@ -1,0 +1,60 @@
+{
+  "rows": 224,
+  "matched": 78,
+  "compiled": 222,
+  "letters_right": 195,
+  "operators_right": 84,
+  "constants_right": 150,
+  "by_pair": {
+    "mul\u2218add": {
+      "matched": 0,
+      "rows": 28,
+      "compiled": 28
+    },
+    "mul\u2218or": {
+      "matched": 0,
+      "rows": 28,
+      "compiled": 28
+    },
+    "or\u2218and": {
+      "matched": 26,
+      "rows": 28,
+      "compiled": 28
+    },
+    "or\u2218sub": {
+      "matched": 0,
+      "rows": 28,
+      "compiled": 28
+    },
+    "shl\u2218add": {
+      "matched": 0,
+      "rows": 28,
+      "compiled": 28
+    },
+    "shl\u2218or": {
+      "matched": 0,
+      "rows": 28,
+      "compiled": 26
+    },
+    "sub\u2218and": {
+      "matched": 26,
+      "rows": 28,
+      "compiled": 28
+    },
+    "sub\u2218or": {
+      "matched": 26,
+      "rows": 28,
+      "compiled": 28
+    }
+  },
+  "by_role": {
+    "a": {
+      "matched": 39,
+      "rows": 112
+    },
+    "b": {
+      "matched": 39,
+      "rows": 112
+    }
+  }
+}

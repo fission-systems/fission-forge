@@ -211,5 +211,7 @@ two-operation training structures are memorized rather than composed. Official s
 `configs/corpus/shallow-opairs-v1.json` trains 37 of 53 (outer, inner) operator pairs with both argument roles and
 holds out 8 pairs for validation. The NLL-selected checkpoint matches **76/216** held-out functions (four of the eight
 pairs at 43-93%), the first non-trivial held-out score of a from-scratch model here; the pairs combining a shift or
-multiply with an add/sub score 0. Development-set result; the 224-row test split is unused. See
-[evidence](../evidence/2026-10-28-operator-pair-split/README.md).
+multiply with an add/sub score 0. The reserved 224-row test split, evaluated once with that checkpoint, gives **78/224** (three of eight pairs at 93%, five at 0): the
+validation score was not optimistic, but the effective sample is eight pairs. See
+[evidence](../evidence/2026-10-28-operator-pair-split/README.md) and
+[test evaluation](../evidence/2026-10-28-operator-pair-test/README.md).

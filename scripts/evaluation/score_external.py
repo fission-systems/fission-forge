@@ -34,11 +34,12 @@ def main():
     p.add_argument('--completions', type=Path, required=True)
     p.add_argument('--output', type=Path, required=True)
     p.add_argument('--arm', default='external')
+    p.add_argument('--split', choices=['validation', 'test'], default='validation')
     a = p.parse_args()
     e = a.frozen.resolve()
     manifest = f.read(e / 'protocol-manifest.json' if (e / 'protocol-manifest.json').exists() else e / 'manifest.json')
     references = f.read(e / 'references.json')
-    rows = {r['id']: r for r in map(json.loads, (a.corpus / 'release/validation.jsonl').read_text().splitlines())}
+    rows = {r['id']: r for r in map(json.loads, (a.corpus / 'release' / (a.split + '.jsonl')).read_text().splitlines())}
     completions = load_completions(a.completions)
     cap = manifest['settings']['max_output_bytes']
     out = a.output.resolve()
@@ -89,7 +90,7 @@ def main():
     total['all_case_match_rate'] = total['all_cases_match'] / n
     total['case_match_rate'] = total['matched_cases'] / reference_cases
     (out / 'completions.jsonl').write_text(''.join(json.dumps(r) + '\n' for r in exported))
-    report = dict(schema_version=1, status='complete', scope='owned_synthetic_validation_not_DecBench', arm=a.arm,
+    report = dict(schema_version=1, status='complete', scope='owned_synthetic_%s_not_DecBench' % a.split, arm=a.arm,
                   reference_manifest_sha256=f.sha((e / ('protocol-manifest.json' if (e / 'protocol-manifest.json').exists() else 'manifest.json')).read_bytes()),
                   completions_sha256=f.sha(a.completions.read_bytes()), scorer_sha256=f.sha(Path(__file__).read_bytes()),
                   reference_comparisons=reference_cases, expected_targets=n, arms={a.arm: total}, test_model_examples=0,

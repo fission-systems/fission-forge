@@ -118,7 +118,8 @@ def freeze(args):
     if plan['schema_version']!=1 or plan['corpus_lock_sha256']!=sha((corpus/'release/lock.json').read_bytes()):raise ValueError('experiment plan/corpus mismatch')
     settings=plan['evaluation']
 
-    rows=[json.loads(line) for line in (corpus/'release/validation.jsonl').read_text().splitlines()]
+    split=args.split
+    rows=[json.loads(line) for line in (corpus/'release'/(split+'.jsonl')).read_text().splitlines()]
     programs={p['id']:p for p in map(json.loads,(corpus/'programs.jsonl').read_text().splitlines())}
     inputs=read(corpus/'probes.json');write(output/'inputs.json',inputs)
     references={}
@@ -132,7 +133,7 @@ def freeze(args):
         prompt=command([forge,'pcode-compile','--raw',folder/'raw.json','--profile',folder/'profile.json','--representation',row['input']['representation'],'--output',folder/'input'],folder,'prompt')
         if prompt['exit_code']!=0:raise ValueError('invalid frozen validation prompt')
         program_id=identifier.rsplit('-',1)[0];p=programs[program_id]
-        if p['split']!='validation' or p['source']!=row['source']:raise ValueError('reference program identity mismatch')
+        if p['split']!=split or p['source']!=row['source']:raise ValueError('reference program identity mismatch')
         compiled=compile_c(row['source'].encode(),folder,'reference',args.cc)
         if compiled['status']!='compiled':raise ValueError('reference compilation failed: '+str(compiled))
         execution=run_module(folder/'reference.wasm',output/'inputs.json',folder,'reference',settings)
@@ -141,7 +142,7 @@ def freeze(args):
         references[identifier]=expected
         targets.append(dict(id=identifier,prompt_sha256=sha((folder/'input/prompt.txt').read_bytes()),source_sha256=sha(row['source'].encode()),reference_module_sha256=compiled['module_sha256'],oracle_sha256=sha(canonical(expected)),family=p['family']))
     write(output/'references.json',references)
-    manifest=dict(schema_version=SCHEMA,experiment_plan=plan,experiment_plan_sha256=sha(args.plan.read_bytes()),scope='owned_synthetic_validation_functional_probes_not_DecBench_or_real_project_accuracy',corpus_lock_sha256=sha((corpus/'release/lock.json').read_bytes()),validation_split_sha256=sha((corpus/'release/validation.jsonl').read_bytes()),inputs_sha256=sha((output/'inputs.json').read_bytes()),references_sha256=sha((output/'references.json').read_bytes()),targets=targets,expected_targets=len(rows),cases_per_target=len(inputs),settings=settings,compiler=args.cc,compiler_version=subprocess.check_output([args.cc,'--version'],text=True).splitlines()[0],compiler_flags=compiler_flags(args.cc),compiler_sha256=sha(compiler.read_bytes()),linker=str(linker),linker_sha256=sha(linker.read_bytes()),wasmtime_version=importlib.metadata.version('wasmtime'),forge_binary_sha256=sha(forge.read_bytes()),evaluator_sha256=sha(Path(__file__).read_bytes()),worker_sha256=sha(Path(__file__).with_name('wasm_worker.py').read_bytes()),test_model_examples=0,reference_comparisons=len(rows)*len(inputs),artifact_policy='raw_completions_unmodified_no_source_repair_no_reference_in_model_prompt')
+    manifest=dict(schema_version=SCHEMA,experiment_plan=plan,experiment_plan_sha256=sha(args.plan.read_bytes()),scope='owned_synthetic_%s_functional_probes_not_DecBench_or_real_project_accuracy'%split,split=split,corpus_lock_sha256=sha((corpus/'release/lock.json').read_bytes()),**{split+'_split_sha256':sha((corpus/'release'/(split+'.jsonl')).read_bytes())},inputs_sha256=sha((output/'inputs.json').read_bytes()),references_sha256=sha((output/'references.json').read_bytes()),targets=targets,expected_targets=len(rows),cases_per_target=len(inputs),settings=settings,compiler=args.cc,compiler_version=subprocess.check_output([args.cc,'--version'],text=True).splitlines()[0],compiler_flags=compiler_flags(args.cc),compiler_sha256=sha(compiler.read_bytes()),linker=str(linker),linker_sha256=sha(linker.read_bytes()),wasmtime_version=importlib.metadata.version('wasmtime'),forge_binary_sha256=sha(forge.read_bytes()),evaluator_sha256=sha(Path(__file__).read_bytes()),worker_sha256=sha(Path(__file__).with_name('wasm_worker.py').read_bytes()),test_model_examples=0,reference_comparisons=len(rows)*len(inputs),artifact_policy='raw_completions_unmodified_no_source_repair_no_reference_in_model_prompt')
     write(output/'manifest.json',manifest);print(json.dumps(dict(frozen_targets=len(rows),reference_comparisons=manifest['reference_comparisons'],manifest_sha256=sha((output/'manifest.json').read_bytes()))),flush=True)
 
 
@@ -185,7 +186,7 @@ def evaluate(args):
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__);commands=parser.add_subparsers(dest='command',required=True)
-    f=commands.add_parser('freeze');f.add_argument('--corpus',type=Path,required=True);f.add_argument('--output',type=Path,required=True);f.add_argument('--plan',type=Path,default=Path('configs/evaluation/functional-validation-v1.json'));f.add_argument('--cc',default='clang');f.add_argument('--forge',type=Path,default=Path('target/release/forge'))
+    f=commands.add_parser('freeze');f.add_argument('--corpus',type=Path,required=True);f.add_argument('--output',type=Path,required=True);f.add_argument('--plan',type=Path,default=Path('configs/evaluation/functional-validation-v1.json'));f.add_argument('--split',choices=['validation','test'],default='validation');f.add_argument('--cc',default='clang');f.add_argument('--forge',type=Path,default=Path('target/release/forge'))
     e=commands.add_parser('evaluate');e.add_argument('--frozen',type=Path,required=True);e.add_argument('--checkpoint',type=Path,required=True);e.add_argument('--output',type=Path,required=True);e.add_argument('--forge',type=Path,default=Path('target/release/forge'))
     args=parser.parse_args();freeze(args) if args.command=='freeze' else evaluate(args)
 
