@@ -81,7 +81,7 @@ def main():
         if f.sha((e/filename).read_bytes())!=manifest[key]:raise ValueError('frozen probes/references changed')
     arms={}
     if fresh:
-        if plan['corpus_lock_sha256']!=manifest['corpus_lock_sha256'] or plan['train_examples']!=training['train_examples'] or plan['steps']!=plan['epochs']*training['train_examples']:raise ValueError('fresh corpus/count plan changed')
+        if plan['corpus_lock_sha256']!=manifest['corpus_lock_sha256'] or plan['train_examples']!=training['train_examples'] or plan['steps']!=-(-plan['epochs']*training['train_examples']//plan.get('batch_size',1)):raise ValueError('fresh corpus/count plan changed')
         if training['initial_step']!=0 or training['completed_step']!=plan['steps'] or training['test_model_examples']!=0:raise ValueError('fresh training plan changed')
         selection=f.read(results/'selection.json');best=training['best_validation']
         if selection['step']!=best['step'] or selection['nll']!=best['nll'] or selection['checkpoint_sha256']!=best['weights_sha256']:raise ValueError('validation selection changed')

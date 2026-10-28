@@ -2,7 +2,7 @@
   "schema_version": 1,
   "name": "forge-shallow-wide-compactdec-isolated-b8-functional-v3",
   "scope": "owned_shallow_template_disjoint_argument_role_validation_only",
-  "corpus_lock_sha256": "e8cbf9b5b598c181ec0d372c610daa886fe701e151d522b39ff4bf190ab24165",
+  "corpus_lock_sha256": "9b95e5471fe7554b7ef4ec19e3de9a4f39c56db32adc7cd45eba3fd518a3c50c",
   "baseline": {
     "step": 0,
     "checkpoint_sha256": "not_applicable_random_initialization_no_baseline_generation"
@@ -393,5 +393,6 @@
     "rotary_positions": true
   },
   "representation": "pcode-ssa-return-u32-compact-dec-v1",
-  "curriculum_policy": "same_rows_as_compact_v3_only_literal_rendering_decimal_and_digit_isolated_bpe_change_batch_8_64_epochs"
+  "curriculum_policy": "same_rows_as_compact_v3_only_literal_rendering_decimal_and_digit_isolated_bpe_change_batch_8_64_epochs",
+  "rebuild_note": "lock digest is that of the corpus rebuilt on 2026-10-28; release files and tokenizer are byte-identical to the recorded runs, only manifest provenance fields (forge revision and binary, generator digests) differ"
 }
