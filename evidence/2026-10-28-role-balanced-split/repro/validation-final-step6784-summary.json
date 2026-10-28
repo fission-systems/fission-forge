@@ -1,0 +1,64 @@
+{
+  "split": "validation",
+  "rows": 224,
+  "exact": 0,
+  "skeleton_match": 0,
+  "literals_match": 99,
+  "literals_match_by_variant_group": {
+    "base_2_15": {
+      "match": 99,
+      "rows": 224
+    }
+  },
+  "distinct_generated_expressions": 143,
+  "most_common_generated_literals": [
+    [
+      [
+        "1"
+      ],
+      26
+    ],
+    [
+      [
+        "8"
+      ],
+      15
+    ],
+    [
+      [
+        "14"
+      ],
+      13
+    ],
+    [
+      [
+        "3"
+      ],
+      11
+    ],
+    [
+      [
+        "13"
+      ],
+      11
+    ],
+    [
+      [
+        "4"
+      ],
+      10
+    ],
+    [
+      [
+        "5"
+      ],
+      9
+    ],
+    [
+      [
+        "2"
+      ],
+      8
+    ]
+  ]
+}

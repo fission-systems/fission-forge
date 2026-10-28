@@ -1,0 +1,182 @@
+{
+  "attempted": 1204,
+  "exclusions": [
+    {
+      "id": "rb_one_mul_a_0000-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "rb_one_mul_a_0002-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "rb_one_mul_a_0006-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "rb_one_mul_a_0016-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "rb_one_mul_a_0027-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "rb_one_mul_a_0053-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "rb_one_mul_b_0000-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "rb_one_mul_b_0002-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "rb_one_mul_b_0006-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "rb_one_mul_b_0055-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "rb_one_shl_a_0000-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "rb_one_shl_a_0001-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "rb_one_shl_a_0003-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "rb_one_shl_a_0004-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "rb_one_shl_a_0005-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "rb_one_shl_a_0015-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "rb_one_shl_b_0000-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "rb_one_shl_b_0001-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "rb_one_shl_b_0002-O1",
+      "reason": "ambiguous_prompt_labels"
+    },
+    {
+      "id": "rb_one_shl_b_0026-O1",
+      "reason": "ambiguous_prompt_labels"
+    }
+  ],
+  "external_evaluation_overlap": "not_measured",
+  "native_source_comparisons": 77056,
+  "quarantined_families": [],
+  "schema_version": 1,
+  "scope": "owned_synthetic_family_disjoint_not_real_project_generalization",
+  "splits": {
+    "test": {
+      "context_eligible": {
+        "1024": 112,
+        "16384": 112,
+        "2048": 112,
+        "4096": 112,
+        "8192": 112
+      },
+      "families": [
+        "rb_test_add_a",
+        "rb_test_add_b",
+        "rb_test_or_a",
+        "rb_test_or_b",
+        "rb_test_sub_a",
+        "rb_test_sub_b",
+        "rb_test_xor_a",
+        "rb_test_xor_b"
+      ],
+      "max_sequence": 436,
+      "min_sequence": 265,
+      "programs": 112,
+      "rows": 112
+    },
+    "train": {
+      "context_eligible": {
+        "1024": 848,
+        "16384": 848,
+        "2048": 848,
+        "4096": 848,
+        "8192": 848
+      },
+      "families": [
+        "rb_one_add_a",
+        "rb_one_add_b",
+        "rb_one_and_a",
+        "rb_one_and_b",
+        "rb_one_mul_a",
+        "rb_one_mul_b",
+        "rb_one_shl_a",
+        "rb_one_shl_b",
+        "rb_two_add_a",
+        "rb_two_add_b",
+        "rb_two_and_a",
+        "rb_two_and_b",
+        "rb_two_mul_a",
+        "rb_two_mul_b",
+        "rb_two_shl_a",
+        "rb_two_shl_b"
+      ],
+      "max_sequence": 386,
+      "min_sequence": 192,
+      "programs": 848,
+      "rows": 848
+    },
+    "validation": {
+      "context_eligible": {
+        "1024": 224,
+        "16384": 224,
+        "2048": 224,
+        "4096": 224,
+        "8192": 224
+      },
+      "families": [
+        "rb_one_or_a",
+        "rb_one_or_b",
+        "rb_one_shr_a",
+        "rb_one_shr_b",
+        "rb_one_sub_a",
+        "rb_one_sub_b",
+        "rb_one_xor_a",
+        "rb_one_xor_b",
+        "rb_two_or_a",
+        "rb_two_or_b",
+        "rb_two_shr_a",
+        "rb_two_shr_b",
+        "rb_two_sub_a",
+        "rb_two_sub_b",
+        "rb_two_xor_a",
+        "rb_two_xor_b"
+      ],
+      "max_sequence": 437,
+      "min_sequence": 216,
+      "programs": 224,
+      "rows": 224
+    }
+  },
+  "supported": 1204,
+  "truncation": false,
+  "unsupported": 0,
+  "unsupported_by_split": {},
+  "x86_ir_execution_parity": "not_measured"
+}

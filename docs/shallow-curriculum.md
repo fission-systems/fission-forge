@@ -197,3 +197,11 @@ model: 3/205, coincidental). It copies literals and composes held-out argument
 roles for two-operation functions (76-97 of 98) but wraps one-operation functions in
 the training prior `<< 3u`. See
 [evidence](../evidence/2026-10-28-pretrained-finetune/README.md).
+
+## Role-balanced split (variable binding)
+
+`configs/corpus/shallow-rolebal-v2.json` trains every structure with both argument roles and validates on
+unseen asymmetric structures. After 64 epochs the final checkpoint assigns `a`/`b` correctly in 178/224
+outputs (0/205 on the confounded split), but operators are right in only 12/224 because the eight
+two-operation training structures are memorized rather than composed. Official score 0/224. See
+[evidence](../evidence/2026-10-28-role-balanced-split/README.md).

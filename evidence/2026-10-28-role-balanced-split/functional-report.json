@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "status": "complete",
+  "scope": "owned_synthetic_validation_not_DecBench",
+  "selection": "lowest_full_validation_NLL_before_functional_scoring",
+  "reference_manifest_sha256": "34144f3ef65fc5be690e22acdb8ede0f8c114bb1ecfae1018382bafae71484a6",
+  "training_plan_sha256": "b6dca30d4446e602c6a4edfe51ac9593d8a281a7dc7c7b5989f312bd8d81272c",
+  "generation_driver_sha256": "76d08338e384f6f80f3b32d618e656e273e00a6991c9b7984754efd04d54e303",
+  "scorer_sha256": "07f4f160b461abf74fbf537fc56f549790732a4702f1ed2f620bbd5868bc9f10",
+  "checkpoint_sha256": {
+    "selected": "3e7d97d5d958aae5136c6138ba104d8659c2cd2a0eca995ba166f82b5aea3d76"
+  },
+  "reference_comparisons": 14336,
+  "expected_targets": 224,
+  "arms": {
+    "selected": {
+      "targets": 224,
+      "compiled": 196,
+      "all_cases_match": 0,
+      "matched_cases": 518,
+      "executed_cases": 12544,
+      "targets_reaching_execution": 196,
+      "statuses": {
+        "output_mismatch": 196,
+        "compile_failure": 28
+      },
+      "compile_rate": 0.875,
+      "all_case_match_rate": 0.0,
+      "case_match_rate": 0.0361328125
+    }
+  },
+  "test_model_examples": 0,
+  "raw_output_policy": "unchanged_C_no_repairs"
+}

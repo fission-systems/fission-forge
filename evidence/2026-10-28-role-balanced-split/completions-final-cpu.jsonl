@@ -1,0 +1,224 @@
+{"id": "rb_one_or_a_0000-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 2u); }"}
+{"id": "rb_one_or_a_0001-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 3u); }"}
+{"id": "rb_one_or_a_0002-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 44u); }"}
+{"id": "rb_one_or_a_0003-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 5u); }"}
+{"id": "rb_one_or_a_0004-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 6u); }"}
+{"id": "rb_one_or_a_0005-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 7u); }"}
+{"id": "rb_one_or_a_0006-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 8u); }"}
+{"id": "rb_one_or_a_0007-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 9u); }"}
+{"id": "rb_one_or_a_0008-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 10u); }"}
+{"id": "rb_one_or_a_0009-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 11u); }"}
+{"id": "rb_one_or_a_0010-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 12u); }"}
+{"id": "rb_one_or_a_0011-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 13u); }"}
+{"id": "rb_one_or_a_0012-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 14u); }"}
+{"id": "rb_one_or_a_0013-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 55u); }"}
+{"id": "rb_one_or_b_0000-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b & 2u); }"}
+{"id": "rb_one_or_b_0001-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b & 3u); }"}
+{"id": "rb_one_or_b_0002-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b & 44u); }"}
+{"id": "rb_one_or_b_0003-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b & 5u); }"}
+{"id": "rb_one_or_b_0004-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b & 6u); }"}
+{"id": "rb_one_or_b_0005-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b & 7u); }"}
+{"id": "rb_one_or_b_0006-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b & 8u); }"}
+{"id": "rb_one_or_b_0007-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b & 9u); }"}
+{"id": "rb_one_or_b_0008-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b & 10u); }"}
+{"id": "rb_one_or_b_0009-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b & 11u); }"}
+{"id": "rb_one_or_b_0010-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b & 12u); }"}
+{"id": "rb_one_or_b_0011-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b & 13u); }"}
+{"id": "rb_one_or_b_0012-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b & 14u); }"}
+{"id": "rb_one_or_b_0013-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b & 55u); }"}
+{"id": "rb_one_shr_a_0000-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a << 2u); }"}
+{"id": "rb_one_shr_a_0001-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a << 3u); }"}
+{"id": "rb_one_shr_a_0002-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a << 4u); }"}
+{"id": "rb_one_shr_a_0003-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a << 5u); }"}
+{"id": "rb_one_shr_a_0004-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a << 6u); }"}
+{"id": "rb_one_shr_a_0005-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a << 7u); }"}
+{"id": "rb_one_shr_a_0006-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a << 8u); }"}
+{"id": "rb_one_shr_a_0007-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a << 9u); }"}
+{"id": "rb_one_shr_a_0008-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a << 10u); }"}
+{"id": "rb_one_shr_a_0009-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a << 14u); }"}
+{"id": "rb_one_shr_a_0010-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a << 12u); }"}
+{"id": "rb_one_shr_a_0011-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a << 13u); }"}
+{"id": "rb_one_shr_a_0012-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a << 14u); }"}
+{"id": "rb_one_shr_a_0013-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a << 15u); }"}
+{"id": "rb_one_shr_b_0000-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b << 2u); }"}
+{"id": "rb_one_shr_b_0001-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b  < 3u); }"}
+{"id": "rb_one_shr_b_0002-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b  >>4u) & 34 a); }"}
+{"id": "rb_one_shr_b_0003-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b  >>5u) & 34 a); }"}
+{"id": "rb_one_shr_b_0004-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b  >>4u) & 34 a); }"}
+{"id": "rb_one_shr_b_0005-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b << 7u); }"}
+{"id": "rb_one_shr_b_0006-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b  >>8u) & 3u); }"}
+{"id": "rb_one_shr_b_0007-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b  >>7u) & 393u); }"}
+{"id": "rb_one_shr_b_0008-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b << 10u); }"}
+{"id": "rb_one_shr_b_0009-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b << 11u); }"}
+{"id": "rb_one_shr_b_0010-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b << 12u); }"}
+{"id": "rb_one_shr_b_0011-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b << 13u); }"}
+{"id": "rb_one_shr_b_0012-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b << 14u); }"}
+{"id": "rb_one_shr_b_0013-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b << 15u); }"}
+{"id": "rb_one_sub_a_0000-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a + 22u); }"}
+{"id": "rb_one_sub_a_0001-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a + 33u); }"}
+{"id": "rb_one_sub_a_0002-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a + 44u); }"}
+{"id": "rb_one_sub_a_0003-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a + 55u); }"}
+{"id": "rb_one_sub_a_0004-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a + 64u); }"}
+{"id": "rb_one_sub_a_0005-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a + 747u); }"}
+{"id": "rb_one_sub_a_0006-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a + 88u); }"}
+{"id": "rb_one_sub_a_0007-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a + 9u); }"}
+{"id": "rb_one_sub_a_0008-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a + 101u); }"}
+{"id": "rb_one_sub_a_0009-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a + 118u); }"}
+{"id": "rb_one_sub_a_0010-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a + 1u); }"}
+{"id": "rb_one_sub_a_0011-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a + 131u); }"}
+{"id": "rb_one_sub_a_0012-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a + 141u); }"}
+{"id": "rb_one_sub_a_0013-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a + 151u); }"}
+{"id": "rb_one_sub_b_0000-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b + 22u); }"}
+{"id": "rb_one_sub_b_0001-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b + 33u); }"}
+{"id": "rb_one_sub_b_0002-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b + 44u); }"}
+{"id": "rb_one_sub_b_0003-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b + 55u); }"}
+{"id": "rb_one_sub_b_0004-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b + 64u); }"}
+{"id": "rb_one_sub_b_0005-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b + 747u); }"}
+{"id": "rb_one_sub_b_0006-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b + 88u); }"}
+{"id": "rb_one_sub_b_0007-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b + 9u); }"}
+{"id": "rb_one_sub_b_0008-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b + 101u); }"}
+{"id": "rb_one_sub_b_0009-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b + 111u); }"}
+{"id": "rb_one_sub_b_0010-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b + 1u); }"}
+{"id": "rb_one_sub_b_0011-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b + 131u); }"}
+{"id": "rb_one_sub_b_0012-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b + 141u); }"}
+{"id": "rb_one_sub_b_0013-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b + 151u); }"}
+{"id": "rb_one_xor_a_0000-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 2u); }"}
+{"id": "rb_one_xor_a_0001-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 3u); }"}
+{"id": "rb_one_xor_a_0002-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 4u); }"}
+{"id": "rb_one_xor_a_0003-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 5u); }"}
+{"id": "rb_one_xor_a_0004-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 6u); }"}
+{"id": "rb_one_xor_a_0005-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 7u); }"}
+{"id": "rb_one_xor_a_0006-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 8u); }"}
+{"id": "rb_one_xor_a_0007-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 9u); }"}
+{"id": "rb_one_xor_a_0008-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 10u); }"}
+{"id": "rb_one_xor_a_0009-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 11u); }"}
+{"id": "rb_one_xor_a_0010-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 12u); }"}
+{"id": "rb_one_xor_a_0011-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 13u); }"}
+{"id": "rb_one_xor_a_0012-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 14u); }"}
+{"id": "rb_one_xor_a_0013-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 55u); }"}
+{"id": "rb_one_xor_b_0000-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b & 2u); }"}
+{"id": "rb_one_xor_b_0001-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b & 3u); }"}
+{"id": "rb_one_xor_b_0002-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b & 44u); }"}
+{"id": "rb_one_xor_b_0003-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b & 5u); }"}
+{"id": "rb_one_xor_b_0004-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b & 6u); }"}
+{"id": "rb_one_xor_b_0005-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b & 7u); }"}
+{"id": "rb_one_xor_b_0006-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b & 8u); }"}
+{"id": "rb_one_xor_b_0007-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b & 9u); }"}
+{"id": "rb_one_xor_b_0008-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b & 10u); }"}
+{"id": "rb_one_xor_b_0009-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b & 11u); }"}
+{"id": "rb_one_xor_b_0010-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b & 12u); }"}
+{"id": "rb_one_xor_b_0011-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b & 13u); }"}
+{"id": "rb_one_xor_b_0012-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b & 14u); }"}
+{"id": "rb_one_xor_b_0013-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b & 55u); }"}
+{"id": "rb_two_or_a_0000-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 1u) & a); }"}
+{"id": "rb_two_or_a_0001-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 1u) & a); }"}
+{"id": "rb_two_or_a_0002-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 1u) & a); }"}
+{"id": "rb_two_or_a_0003-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 5u) & a); }"}
+{"id": "rb_two_or_a_0004-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 1u) & a); }"}
+{"id": "rb_two_or_a_0005-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 1u) & a); }"}
+{"id": "rb_two_or_a_0006-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 8u) & a); }"}
+{"id": "rb_two_or_a_0007-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 1u) & a); }"}
+{"id": "rb_two_or_a_0008-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a - 1u) & b); }"}
+{"id": "rb_two_or_a_0009-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a - 1u) & b); }"}
+{"id": "rb_two_or_a_0010-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a - 1u) & b); }"}
+{"id": "rb_two_or_a_0011-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a - 1u) & b); }"}
+{"id": "rb_two_or_a_0012-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a - 1u) & b); }"}
+{"id": "rb_two_or_a_0013-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a - 1u) & b); }"}
+{"id": "rb_two_or_b_0000-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 1u) & a); }"}
+{"id": "rb_two_or_b_0001-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 1u) & a); }"}
+{"id": "rb_two_or_b_0002-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 4u) & a); }"}
+{"id": "rb_two_or_b_0003-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 5u) & a); }"}
+{"id": "rb_two_or_b_0004-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 1u) & a); }"}
+{"id": "rb_two_or_b_0005-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 17u) & a); }"}
+{"id": "rb_two_or_b_0006-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 8u) & a); }"}
+{"id": "rb_two_or_b_0007-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 1u) & a); }"}
+{"id": "rb_two_or_b_0008-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 1u) & a); }"}
+{"id": "rb_two_or_b_0009-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 1u) & a); }"}
+{"id": "rb_two_or_b_0010-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 1u) & a); }"}
+{"id": "rb_two_or_b_0011-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 1u) & a); }"}
+{"id": "rb_two_or_b_0012-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 1u) & a); }"}
+{"id": "rb_two_or_b_0013-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 1u) & a); }"}
+{"id": "rb_two_shr_a_0000-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a >> 6u) * b); }"}
+{"id": "rb_two_shr_a_0001-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 180u); }"}
+{"id": "rb_two_shr_a_0002-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 1u); }"}
+{"id": "rb_two_shr_a_0003-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 24u) 4u) & a a) + & b); }"}
+{"id": "rb_two_shr_a_0004-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 28u) 18u) + a); }"}
+{"id": "rb_two_shr_a_0005-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b >> 14u) << 3u); }"}
+{"id": "rb_two_shr_a_0006-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b >> 15u) << 3u); }"}
+{"id": "rb_two_shr_a_0007-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 36u) << 3u); }"}
+{"id": "rb_two_shr_a_0008-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b >> 143u) < 3u); }"}
+{"id": "rb_two_shr_a_0009-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b >> 18u) << 3u); }"}
+{"id": "rb_two_shr_a_0010-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b >> 12u) << 3u); }"}
+{"id": "rb_two_shr_a_0011-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b >> 13u) * 3u); }"}
+{"id": "rb_two_shr_a_0012-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b >> 14u) * 3u); }"}
+{"id": "rb_two_shr_a_0013-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b >> 14u) * 3u); }"}
+{"id": "rb_two_shr_b_0000-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a >> 6u) * b); }"}
+{"id": "rb_two_shr_b_0001-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 180u); }"}
+{"id": "rb_two_shr_b_0002-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 1u); }"}
+{"id": "rb_two_shr_b_0003-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 24u) 4u) & a a) + & b); }"}
+{"id": "rb_two_shr_b_0004-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 28u) 18u) + a); }"}
+{"id": "rb_two_shr_b_0005-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b >> 145u) < 3u); }"}
+{"id": "rb_two_shr_b_0006-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b >> 15u) << 3u); }"}
+{"id": "rb_two_shr_b_0007-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b >> 145u) < 3u); }"}
+{"id": "rb_two_shr_b_0008-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b >> 143u) < 3u); }"}
+{"id": "rb_two_shr_b_0009-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b >> 18u) << 3u); }"}
+{"id": "rb_two_shr_b_0010-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b >> 12u) << 3u); }"}
+{"id": "rb_two_shr_b_0011-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b >> 13u) * 313u); }"}
+{"id": "rb_two_shr_b_0012-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b >> 14u) * 3u); }"}
+{"id": "rb_two_shr_b_0013-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b >> 14u) * 3u); }"}
+{"id": "rb_two_sub_a_0000-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 20u) + b); }"}
+{"id": "rb_two_sub_a_0001-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 34u) + b); }"}
+{"id": "rb_two_sub_a_0002-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 4u) + b); }"}
+{"id": "rb_two_sub_a_0003-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 5u) + b); }"}
+{"id": "rb_two_sub_a_0004-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 63u) + b); }"}
+{"id": "rb_two_sub_a_0005-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 47u) + b); }"}
+{"id": "rb_two_sub_a_0006-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 83u) + b); }"}
+{"id": "rb_two_sub_a_0007-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 9u) + b); }"}
+{"id": "rb_two_sub_a_0008-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a | 14u) & b); }"}
+{"id": "rb_two_sub_a_0009-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 134u); }"}
+{"id": "rb_two_sub_a_0010-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a | 14u) & b); }"}
+{"id": "rb_two_sub_a_0011-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a | 13u) & b); }"}
+{"id": "rb_two_sub_a_0012-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a & 143u); }"}
+{"id": "rb_two_sub_a_0013-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a | 15u) & b); }"}
+{"id": "rb_two_sub_b_0000-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 14u) & a); }"}
+{"id": "rb_two_sub_b_0001-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 343u) & 3u); }"}
+{"id": "rb_two_sub_b_0002-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 434u) & a); }"}
+{"id": "rb_two_sub_b_0003-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b | 345u) & a); }"}
+{"id": "rb_two_sub_b_0004-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 143u) & a); }"}
+{"id": "rb_two_sub_b_0005-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b | 343u) & a); }"}
+{"id": "rb_two_sub_b_0006-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 18u) & a); }"}
+{"id": "rb_two_sub_b_0007-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - u) + a a); }"}
+{"id": "rb_two_sub_b_0008-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b | 13u) & a); }"}
+{"id": "rb_two_sub_b_0009-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b | 13u) & a); }"}
+{"id": "rb_two_sub_b_0010-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b | 13u) & a); }"}
+{"id": "rb_two_sub_b_0011-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b | 13u) & a); }"}
+{"id": "rb_two_sub_b_0012-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b | 14u) & a); }"}
+{"id": "rb_two_sub_b_0013-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b | 15u) & a); }"}
+{"id": "rb_two_xor_a_0000-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a - 8u) + b); }"}
+{"id": "rb_two_xor_a_0001-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a - 8u) + b); }"}
+{"id": "rb_two_xor_a_0002-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 4u) & a); }"}
+{"id": "rb_two_xor_a_0003-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a - 8u) + b); }"}
+{"id": "rb_two_xor_a_0004-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 2u) & a); }"}
+{"id": "rb_two_xor_a_0005-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 3u) * a); }"}
+{"id": "rb_two_xor_a_0006-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 8u) & a); }"}
+{"id": "rb_two_xor_a_0007-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a - 8u) + b); }"}
+{"id": "rb_two_xor_a_0008-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 4u) & a); }"}
+{"id": "rb_two_xor_a_0009-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 4u) * a 3u); }"}
+{"id": "rb_two_xor_a_0010-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a * 3u); }"}
+{"id": "rb_two_xor_a_0011-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 4u) * a 3u); }"}
+{"id": "rb_two_xor_a_0012-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a * 14u); }"}
+{"id": "rb_two_xor_a_0013-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b * 27u); }"}
+{"id": "rb_two_xor_b_0000-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 8u) + a); }"}
+{"id": "rb_two_xor_b_0001-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 3u) + a); }"}
+{"id": "rb_two_xor_b_0002-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 4u) & a); }"}
+{"id": "rb_two_xor_b_0003-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b >> 34u) & a); }"}
+{"id": "rb_two_xor_b_0004-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 2u) & a); }"}
+{"id": "rb_two_xor_b_0005-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 3u) < a); }"}
+{"id": "rb_two_xor_b_0006-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 8u) & a); }"}
+{"id": "rb_two_xor_b_0007-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((a - 8u) + b); }"}
+{"id": "rb_two_xor_b_0008-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 4u) & a); }"}
+{"id": "rb_two_xor_b_0009-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 4u) * a 3747u); }"}
+{"id": "rb_two_xor_b_0010-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a * 14u); }"}
+{"id": "rb_two_xor_b_0011-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return ((b - 1u) * a 3 38u); }"}
+{"id": "rb_two_xor_b_0012-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (a * 17u); }"}
+{"id": "rb_two_xor_b_0013-O1", "text": "unsigned int f(unsigned int a, unsigned int b) { return (b * 3u); }"}
