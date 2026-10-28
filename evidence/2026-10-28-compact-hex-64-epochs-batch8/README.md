@@ -2,8 +2,8 @@
 
 Question: was the 64-epoch success of the L3 run (decimal literals, digit-isolated tokens) due to
 those representation changes, or to training length? Same rows (1367 / 205 / 112), model, seed, LR 0.0003
-and update count (10,936) as the L3 run; only the prompt/tokenizer differ: hex literals, normal BPE
-(vocabulary 424-class learned on the train split, the compact-lane codec). Colab L4, 782 s; session
+and update count (10,936) as the L3 run; only the prompt/tokenizer differ: hex literals, ordinary BPE
+(632 tokens, learned on the train split; the compact-lane codec). Colab L4, 782 s; session
 terminated; CUs not recorded. Corpus rebuilt on 2026-10-28 after an accidental `outputs/` deletion
 (release files and tokenizer byte-identical; plan bound to the rebuilt lock digest).
 
