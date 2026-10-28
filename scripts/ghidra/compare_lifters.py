@@ -58,6 +58,7 @@ def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--corpus', type=Path, required=True, help='full-SSA corpus with pool.jsonl')
     p.add_argument('--ghidra', type=Path, required=True, help='DumpPcode.java output directory')
+    p.add_argument('--reference-dump', type=Path, help='compare against another DumpPcode-format directory instead of the corpus Fission dumps')
     p.add_argument('--output', type=Path, required=True)
     a = p.parse_args()
     dumps = {}
@@ -66,12 +67,22 @@ def main():
         for name, function in d['functions'].items():
             dumps[name] = function
     rows = [json.loads(l) for l in (a.corpus / 'pool.jsonl').read_text().splitlines()]
+    reference = {}
+    if a.reference_dump:
+        for path in a.reference_dump.glob('*.json'):
+            reference.update(json.loads(path.read_text())['functions'])
     results = []
     for row in rows:
         pair = row['pair']
         name = 'corpus_' + pair['id'].rsplit('-', 1)[0]
         family = pair['id'].rsplit('_', 1)[0]
-        fission = normalize(fission_ops(pair['input']['raw']))
+        if a.reference_dump:
+            if name not in reference:
+                results.append(dict(id=pair['id'], family=family, status='missing_in_reference'))
+                continue
+            fission = normalize(ghidra_ops(reference[name]))
+        else:
+            fission = normalize(fission_ops(pair['input']['raw']))
         if name not in dumps:
             results.append(dict(id=pair['id'], family=family, status='missing_in_ghidra'))
             continue

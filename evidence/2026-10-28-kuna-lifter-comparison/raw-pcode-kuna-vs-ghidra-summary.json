@@ -1,0 +1,177 @@
+{
+  "rows": 1762,
+  "statuses": {
+    "identical": 1501,
+    "different_ops": 260,
+    "same_multiset_different_order_or_operands": 1
+  },
+  "op_count_equal": 1502,
+  "by_family": {
+    "shallow_extra_add_b": {
+      "identical": 62
+    },
+    "shallow_extra_and_b": {
+      "identical": 62
+    },
+    "shallow_extra_mul_b": {
+      "identical": 62
+    },
+    "shallow_extra_or_b": {
+      "identical": 62
+    },
+    "shallow_extra_shl_b": {
+      "identical": 62
+    },
+    "shallow_extra_shr_b": {
+      "different_ops": 62
+    },
+    "shallow_extra_sub_b": {
+      "identical": 62
+    },
+    "shallow_extra_xor_b": {
+      "identical": 62
+    },
+    "shallow_one_add_a": {
+      "identical": 62
+    },
+    "shallow_one_add_b": {
+      "identical": 14
+    },
+    "shallow_one_and_a": {
+      "identical": 62
+    },
+    "shallow_one_and_b": {
+      "identical": 14
+    },
+    "shallow_one_mul_a": {
+      "identical": 56,
+      "different_ops": 6
+    },
+    "shallow_one_mul_b": {
+      "identical": 12,
+      "different_ops": 2
+    },
+    "shallow_one_or_a": {
+      "identical": 62
+    },
+    "shallow_one_or_b": {
+      "identical": 14
+    },
+    "shallow_one_shl_a": {
+      "identical": 3,
+      "different_ops": 28
+    },
+    "shallow_one_shl_b": {
+      "identical": 2,
+      "different_ops": 12
+    },
+    "shallow_one_shr_a": {
+      "different_ops": 30,
+      "same_multiset_different_order_or_operands": 1
+    },
+    "shallow_one_shr_b": {
+      "different_ops": 14
+    },
+    "shallow_one_sub_a": {
+      "identical": 62
+    },
+    "shallow_one_sub_b": {
+      "identical": 14
+    },
+    "shallow_one_xor_a": {
+      "identical": 62
+    },
+    "shallow_one_xor_b": {
+      "identical": 14
+    },
+    "shallow_test_add": {
+      "identical": 14
+    },
+    "shallow_test_and": {
+      "identical": 14
+    },
+    "shallow_test_mul": {
+      "identical": 12,
+      "different_ops": 2
+    },
+    "shallow_test_or": {
+      "identical": 14
+    },
+    "shallow_test_shl": {
+      "different_ops": 14
+    },
+    "shallow_test_shr": {
+      "different_ops": 14
+    },
+    "shallow_test_sub": {
+      "identical": 14
+    },
+    "shallow_test_xor": {
+      "identical": 14
+    },
+    "shallow_two_add_a": {
+      "identical": 62
+    },
+    "shallow_two_add_b": {
+      "identical": 14
+    },
+    "shallow_two_and_a": {
+      "identical": 62
+    },
+    "shallow_two_and_b": {
+      "identical": 14
+    },
+    "shallow_two_mul_a": {
+      "identical": 62
+    },
+    "shallow_two_mul_b": {
+      "identical": 14
+    },
+    "shallow_two_or_a": {
+      "identical": 62
+    },
+    "shallow_two_or_b": {
+      "identical": 14
+    },
+    "shallow_two_shl_a": {
+      "identical": 62
+    },
+    "shallow_two_shl_b": {
+      "identical": 14
+    },
+    "shallow_two_shr_a": {
+      "different_ops": 62
+    },
+    "shallow_two_shr_b": {
+      "different_ops": 14
+    },
+    "shallow_two_sub_a": {
+      "identical": 62
+    },
+    "shallow_two_sub_b": {
+      "identical": 14
+    },
+    "shallow_two_xor_a": {
+      "identical": 62
+    },
+    "shallow_two_xor_b": {
+      "identical": 14
+    }
+  },
+  "most_common_first_mnemonic_pairs": [
+    [
+      [
+        "INT_EQUAL",
+        "INT_NOTEQUAL"
+      ],
+      260
+    ],
+    [
+      [
+        "INT_AND",
+        "INT_SLESS"
+      ],
+      1
+    ]
+  ]
+}

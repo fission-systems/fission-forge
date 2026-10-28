@@ -1,0 +1,13 @@
+# Instantiated by run.py with the local Kuna checkout (KUNA_ROOT); not a workspace member.
+[package]
+name = "kuna-pcode-dump"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[dependencies]
+kuna-base = { path = "@KUNA@/decompiler/crates/kuna-base" }
+kuna-num = { path = "@KUNA@/decompiler/crates/kuna-num" }
+kuna-sleigh = { path = "@KUNA@/decompiler/crates/kuna-sleigh" }
+
+[workspace]
