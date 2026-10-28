@@ -1,0 +1,36 @@
+{
+  "selected": {
+    "n": 216,
+    "matched": 76,
+    "letters": 201,
+    "ops": 85,
+    "consts": 126,
+    "fam": {
+      "add_mul": "0/24",
+      "add_shl": "0/24",
+      "and_add": "22/28",
+      "and_sub": "12/28",
+      "shr_add": "0/28",
+      "shr_sub": "0/28",
+      "xor_add": "16/28",
+      "xor_or": "26/28"
+    }
+  },
+  "final": {
+    "n": 216,
+    "matched": 39,
+    "letters": 198,
+    "ops": 40,
+    "consts": 132,
+    "fam": {
+      "add_mul": "0/24",
+      "add_shl": "0/24",
+      "and_add": "12/28",
+      "and_sub": "0/28",
+      "shr_add": "0/28",
+      "shr_sub": "0/28",
+      "xor_add": "0/28",
+      "xor_or": "27/28"
+    }
+  }
+}

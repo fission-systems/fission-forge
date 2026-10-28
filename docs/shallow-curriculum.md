@@ -205,3 +205,11 @@ unseen asymmetric structures. After 64 epochs the final checkpoint assigns `a`/`
 outputs (0/205 on the confounded split), but operators are right in only 12/224 because the eight
 two-operation training structures are memorized rather than composed. Official score 0/224. See
 [evidence](../evidence/2026-10-28-role-balanced-split/README.md).
+
+## Operator-pair split (compositional generalization)
+
+`configs/corpus/shallow-opairs-v1.json` trains 37 of 53 (outer, inner) operator pairs with both argument roles and
+holds out 8 pairs for validation. The NLL-selected checkpoint matches **76/216** held-out functions (four of the eight
+pairs at 43-93%), the first non-trivial held-out score of a from-scratch model here; the pairs combining a shift or
+multiply with an add/sub score 0. Development-set result; the 224-row test split is unused. See
+[evidence](../evidence/2026-10-28-operator-pair-split/README.md).

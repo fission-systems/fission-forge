@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "status": "complete",
+  "scope": "owned_synthetic_validation_not_DecBench",
+  "arm": "final",
+  "reference_manifest_sha256": "0968d5dcd77972101ebef61beaff360e00a78b2439066661c9dac08cb84ddc5f",
+  "completions_sha256": "9a52401440014a47f17e0df617a43735be4ce5292daaff6112dd94747a8f7246",
+  "scorer_sha256": "feafdfa85872ca362a53547710563e1a48378ca885af1fd758ebfdb0e9dd3aef",
+  "reference_comparisons": 13824,
+  "expected_targets": 216,
+  "arms": {
+    "final": {
+      "targets": 216,
+      "compiled": 215,
+      "all_cases_match": 39,
+      "matched_cases": 4520,
+      "executed_cases": 13760,
+      "targets_reaching_execution": 215,
+      "statuses": {
+        "output_mismatch": 176,
+        "compile_failure": 1,
+        "all_cases_match": 39
+      },
+      "truncated_to_cap": 0,
+      "missing": 0,
+      "compile_rate": 0.9953703703703703,
+      "all_case_match_rate": 0.18055555555555555,
+      "case_match_rate": 0.3269675925925926
+    }
+  },
+  "test_model_examples": 0,
+  "raw_output_policy": "unchanged_C_no_repairs_output_cap_only"
+}
