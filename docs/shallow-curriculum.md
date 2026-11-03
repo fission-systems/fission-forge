@@ -224,3 +224,9 @@ the weak pair kinds). On those pairs the earlier split scored 0/252; the weighte
 **53/244** and the uniform arm's final checkpoint 28/244 (its NLL-selected step 512 scores 0). Two of nine pairs flip to
 about 100%, six stay at 0. Single seed, test split (216 rows) unused. See
 [evidence](../evidence/2026-10-29-focus-split/README.md).
+
+Two more training seeds per arm (43, 44; same split and protocol) do not confirm the single-seed gain: the NLL-selected
+(official) scores are uniform 0, 1, 0 and weighted 53, 0, 39; final checkpoints uniform 28, 36, 0 and weighted 49, 28,
+24. `or∘sub` is solved by the final checkpoint in five of six runs, but the weighted-only `add∘shl` success of seed 42
+(24/24) did not recur (0 and 0-4/24), and four pairs stay at 0 in all twelve scored checkpoints. NLL selection
+mis-picks early checkpoints in three of six runs. See [evidence](../evidence/2026-11-03-focus-seeds/README.md).
